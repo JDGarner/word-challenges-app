@@ -1,0 +1,35 @@
+
+
+Calling API:
+- call API on app load, store data in store
+- can still have loading components in screens if API is slow but
+  want API to be called as soon as app starts to reduce loader time
+
+- Error handling
+
+- Add tutorial
+
+- make background animated spheres
+
+- add random word display at top of screen
+
+- call https://www.datamuse.com/api/ (e.g. https://api.datamuse.com/words?rel_rhy=list)
+- call API with each word, sort in order of most number of rhyming words
+- split into easy, medium, hard groups
+
+
+- If word is correct - it goes green and flies up
+- if wrong it goes red and bounces to the left or right
+- add timer, after timer runs out display new word
+
+- Add score
+- Add sound effects
+- Timer in top left/right, X in top left/right
+- Will need some main menu with mute also?
+
+- show correct words somewhere and incorrect somewhere else?
+
+- move all api results into my own db?
+
+- need a way to track which users got which words, 
+  or at least add a counter for number of users that got a particular word
