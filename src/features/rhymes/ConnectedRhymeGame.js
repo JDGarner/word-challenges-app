@@ -9,7 +9,7 @@ const mapStateToProps = ({ rhymes }) => {
 
   return {
     words,
-    loaded
+    loaded,
   };
 };
 
@@ -28,7 +28,7 @@ const RhymeGameLoader = ({ words, loaded }) => {
 const ConnectedRhymeGame = connect(mapStateToProps)(RhymeGameLoader);
 
 ConnectedRhymeGame.navigationOptions = {
-  header: null
+  header: null,
 };
 
 export default ConnectedRhymeGame;

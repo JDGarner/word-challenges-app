@@ -32,7 +32,7 @@ export default class RhymeGame extends Component {
       givenWord,
       answerText: "",
       animatedAnswer: "",
-      answerTextPlaceholder: "Enter Rhyme"
+      answerTextPlaceholder: "Enter Rhyme",
     };
   }
 
@@ -51,7 +51,7 @@ export default class RhymeGame extends Component {
     this.setState({
       answerText: "",
       answerTextPlaceholder: "",
-      animatedAnswer: answerText
+      animatedAnswer: answerText,
     });
   };
 

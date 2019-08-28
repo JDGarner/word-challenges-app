@@ -1,15 +1,12 @@
 
 
-Calling API:
-- call API on app load, store data in store
-- can still have loading components in screens if API is slow but
-  want API to be called as soon as app starts to reduce loader time
+- fix/check android version
 
-- Error handling
+- api Error handling
 
 - Add tutorial
 
-- make background animated spheres
+- add background animated spheres
 
 - add random word display at top of screen
 

@@ -1,20 +1,13 @@
 import React from "react";
-import { View } from "react-native";
-import styled from "styled-components";
-
-const StyledLinearGradient = styled(View)`
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-`;
+import AnimatedLinearGradient, { presetColors } from "react-native-animated-linear-gradient";
+// import { View } from "react-native";
+// import styled from "styled-components";
 
 const AppBackground = ({ children }) => {
   return (
-    <StyledLinearGradient colors={["#4c669f", "#3b5998", "#192f6a"]}>
+    <AnimatedLinearGradient customColors={presetColors.sunrise} speed={4000}>
       {children}
-    </StyledLinearGradient>
+    </AnimatedLinearGradient>
   );
 };
 
