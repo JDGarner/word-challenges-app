@@ -1,8 +1,9 @@
 import { FETCH_RHYMES_SUCCESS } from "../actions";
 
 const initialState = {
-  words: {},
-  loaded: false
+  currentWord: "",
+  currentRhymes: [],
+  loaded: false,
 };
 
 export default (state = initialState, action) => {
@@ -10,8 +11,9 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case FETCH_RHYMES_SUCCESS: {
-      const { words } = action;
-      return { ...state, words, loaded: true };
+      const { word: currentWord, rhymes: currentRhymes } = action.words[0];
+
+      return { ...state, currentWord, currentRhymes, loaded: true };
     }
     default:
       return state;

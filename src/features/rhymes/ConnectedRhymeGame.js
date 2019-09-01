@@ -1,25 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
+import { onSubmitAnswer } from "../../redux/actions";
 import RhymeGame from "./RhymeGame";
 import LoadingScreen from "../../components/loading/LoadingScreen";
 import AppBackground from "../background/AppBackground";
 
 const mapStateToProps = ({ rhymes }) => {
-  const { words, loaded } = rhymes;
+  const { currentWord, currentRhymes, loaded } = rhymes;
 
   return {
-    words,
+    currentWord,
+    currentRhymes,
     loaded,
   };
 };
 
-const RhymeGameLoader = ({ words, loaded }) => {
+const RhymeGameLoader = props => {
   const getContent = () => {
-    if (!loaded) {
+    if (!props.loaded) {
       return <LoadingScreen />;
     }
 
-    return <RhymeGame words={words} />;
+    return <RhymeGame currentWord={props.currentWord} currentRhymes={props.currentRhymes} />;
   };
 
   return <AppBackground>{getContent()}</AppBackground>;

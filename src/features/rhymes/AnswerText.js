@@ -43,10 +43,13 @@ export default class AnswerText extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      answerText: "",
+      answerTextPlaceholder: "Enter Rhyme",
+      animatedAnswerText: "",
       fadeAnimation: new Animated.Value(1),
       correctAnimation: new Animated.ValueXY({ x: 0, y: 0 }),
       incorrectAnimation: new Animated.ValueXY({ x: 0, y: 0 }),
-      animatedAnswerColor: colors.correctAnswer
+      animatedAnswerColor: colors.correctAnswer,
     };
 
     this.transform = [{ translateY: 0 }, { translateX: 0 }];
@@ -79,7 +82,7 @@ export default class AnswerText extends Component {
 
     return this.state.incorrectAnimation.x.interpolate({
       inputRange,
-      outputRange
+      outputRange,
     });
   };
 
@@ -106,7 +109,7 @@ export default class AnswerText extends Component {
 
     return this.state.incorrectAnimation.y.interpolate({
       inputRange,
-      outputRange
+      outputRange,
     });
   };
 
@@ -115,12 +118,12 @@ export default class AnswerText extends Component {
 
     this.transform = correctAnimation.getTranslateTransform();
     this.setState({
-      animatedAnswerColor: colors.correctAnswer
+      animatedAnswerColor: colors.correctAnswer,
     });
 
     Animated.spring(correctAnimation, {
       toValue: { x: 0, y: -height / 4 },
-      duration: ANIMATION_DURATION
+      duration: ANIMATION_DURATION,
     }).start(() => correctAnimation.resetAnimation());
 
     this.animateAnswerFade();
@@ -131,17 +134,17 @@ export default class AnswerText extends Component {
 
     this.transform = [
       { translateY: this.incorrectAnimationY },
-      { translateX: this.incorrectAnimationX }
+      { translateX: this.incorrectAnimationX },
     ];
     this.setState({
-      animatedAnswerColor: colors.incorrectAnswer
+      animatedAnswerColor: colors.incorrectAnswer,
     });
 
     const x = Math.random() > 0.5 ? 1 : -1;
 
     Animated.timing(incorrectAnimation, {
       toValue: { x, y: 1 },
-      duration: ANIMATION_DURATION
+      duration: ANIMATION_DURATION,
     }).start(() => incorrectAnimation.resetAnimation());
 
     this.animateAnswerFade();
@@ -152,35 +155,54 @@ export default class AnswerText extends Component {
 
     Animated.timing(fadeAnimation, {
       toValue: 0,
-      duration: ANIMATION_DURATION
+      duration: ANIMATION_DURATION,
     }).start(() => fadeAnimation.resetAnimation());
   };
 
-  onSubmitAnswer = () => {
-    this.props.onSubmitAnswer();
+  onChangeAnswerText = answerText => {
+    this.setState({ answerText });
+  };
 
-    if (Math.random() > 0.5) {
+  isAnswerCorrect = () => {
+    return this.props.currentRhymes.some(
+      rhyme => rhyme.word === this.state.answerText.toLowerCase(),
+    );
+  };
+
+  onSubmitAnswer = () => {
+    if (this.isAnswerCorrect()) {
       this.animateCorrectAnswer();
     } else {
       this.animateIncorrectAnswer();
     }
+
+    this.setState({
+      answerText: "",
+      answerTextPlaceholder: "",
+      animatedAnswerText: this.state.answerText,
+    });
   };
 
   render() {
-    const { fadeAnimation, animatedAnswerColor } = this.state;
-    const { answerText, onChangeAnswerText, animatedAnswer, placeholder } = this.props;
+    const {
+      answerText,
+      answerTextPlaceholder,
+      animatedAnswerText,
+      animatedAnswerColor,
+      fadeAnimation,
+    } = this.state;
 
     return (
       <AnswerTextContainer>
         <AnimatedAnswer style={{ transform: this.transform }}>
           <AnimatedMediumText style={{ opacity: fadeAnimation, color: animatedAnswerColor }}>
-            {animatedAnswer}
+            {animatedAnswerText}
           </AnimatedMediumText>
         </AnimatedAnswer>
         <AnswerInput
           value={answerText}
-          placeholder={placeholder}
-          onChangeText={onChangeAnswerText}
+          placeholder={answerTextPlaceholder}
+          onChangeText={this.onChangeAnswerText}
           onSubmitEditing={this.onSubmitAnswer}
           blurOnSubmit={false}
           autoFocus
