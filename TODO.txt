@@ -1,4 +1,8 @@
 
+- add some pre-animation to say What Rhymes with...
+- change animation to put correct words in a grid underneath given word
+- add green tick/red cross animation
+- handle duplicate answers
 
 - fix/check android version
 

@@ -1,18 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { onSubmitAnswer } from "../../redux/actions";
 import RhymeGame from "./RhymeGame";
 import LoadingScreen from "../../components/loading/LoadingScreen";
-import AppBackground from "../background/AppBackground";
+import AppBackground from "../../components/background/AppBackground";
+import { onSubmitAnswer } from "../../redux/actions";
 
 const mapStateToProps = ({ rhymes }) => {
-  const { currentWord, currentRhymes, loaded } = rhymes;
+  const { currentWord, currentRhymes, correctAnswers, loaded } = rhymes;
 
   return {
     currentWord,
     currentRhymes,
+    correctAnswers,
     loaded,
   };
+};
+
+const mapDispatchToProps = {
+  onSubmitAnswer,
 };
 
 const RhymeGameLoader = props => {
@@ -21,13 +26,23 @@ const RhymeGameLoader = props => {
       return <LoadingScreen />;
     }
 
-    return <RhymeGame currentWord={props.currentWord} currentRhymes={props.currentRhymes} />;
+    return (
+      <RhymeGame
+        currentWord={props.currentWord}
+        currentRhymes={props.currentRhymes}
+        correctAnswers={props.correctAnswers}
+        onSubmitAnswer={props.onSubmitAnswer}
+      />
+    );
   };
 
   return <AppBackground>{getContent()}</AppBackground>;
 };
 
-const ConnectedRhymeGame = connect(mapStateToProps)(RhymeGameLoader);
+const ConnectedRhymeGame = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RhymeGameLoader);
 
 ConnectedRhymeGame.navigationOptions = {
   header: null,

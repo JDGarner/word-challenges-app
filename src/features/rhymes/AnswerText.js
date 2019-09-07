@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { TextInput, View, Animated } from "react-native";
 
-import { AnimatedMediumText } from "../../components";
+import { AnimatedMediumText, TextContainer } from "../../components";
 import { height } from "../../constants/Layout";
 import colors from "../../theme/colors";
+import { isAnswerCorrect } from "./rhymes-utils";
 
 const AnswerTextContainer = styled(View)`
-  flex: 1;
+  /* flex: 1; */
   width: 100%;
   flex-direction: row;
   justify-content: center;
@@ -15,7 +16,7 @@ const AnswerTextContainer = styled(View)`
 
 const AnswerInput = styled(TextInput)`
   border-bottom-width: 1px;
-  border-bottom-color: #d3d3d3;
+  border-bottom-color: #939393;
   flex-shrink: 0;
   padding: 5px;
   margin-bottom: auto;
@@ -27,12 +28,14 @@ const AnswerInput = styled(TextInput)`
 
 const AnimatedAnswer = styled(Animated.View)`
   position: absolute;
-  /* border-width: 1px;
-  border-color: red; */
   padding: 5px;
   width: 100%;
   justify-content: center;
   align-items: center;
+`;
+
+const StyledTextContainer = styled(TextContainer)`
+  padding: 8px;
 `;
 
 const ANIMATION_DURATION = 400;
@@ -163,18 +166,14 @@ export default class AnswerText extends Component {
     this.setState({ answerText });
   };
 
-  isAnswerCorrect = () => {
-    return this.props.currentRhymes.some(
-      rhyme => rhyme.word === this.state.answerText.toLowerCase(),
-    );
-  };
-
   onSubmitAnswer = () => {
-    if (this.isAnswerCorrect()) {
+    if (isAnswerCorrect(this.state.answerText, this.props.currentRhymes)) {
       this.animateCorrectAnswer();
     } else {
       this.animateIncorrectAnswer();
     }
+
+    this.props.onSubmitAnswer(this.state.answerText);
 
     this.setState({
       answerText: "",
@@ -199,14 +198,16 @@ export default class AnswerText extends Component {
             {animatedAnswerText}
           </AnimatedMediumText>
         </AnimatedAnswer>
-        <AnswerInput
-          value={answerText}
-          placeholder={answerTextPlaceholder}
-          onChangeText={this.onChangeAnswerText}
-          onSubmitEditing={this.onSubmitAnswer}
-          blurOnSubmit={false}
-          autoFocus
-        />
+        <StyledTextContainer>
+          <AnswerInput
+            value={answerText}
+            placeholder={answerTextPlaceholder}
+            onChangeText={this.onChangeAnswerText}
+            onSubmitEditing={this.onSubmitAnswer}
+            blurOnSubmit={false}
+            autoFocus
+          />
+        </StyledTextContainer>
       </AnswerTextContainer>
     );
   }
