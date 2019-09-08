@@ -4,7 +4,8 @@ import { isAnswerCorrect } from "../../features/rhymes/rhymes-utils";
 const initialState = {
   currentWord: "",
   currentRhymes: [],
-  correctAnswers: ["Fair", "Scare", "Care", "Lair"],
+  // correctAnswers: ["Fair", "Scare", "Care", "Lair"],
+  correctAnswers: [],
   loaded: false,
 };
 
@@ -21,9 +22,7 @@ export default (state = initialState, action) => {
       const { answer } = action;
       const correctAnswers = [...state.correctAnswers];
 
-      console.log(">>> check answers: ", answer);
       if (isAnswerCorrect(answer, state.currentRhymes)) {
-        console.log(">>> answer correct!");
         correctAnswers.push(answer);
       }
 

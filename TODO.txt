@@ -1,8 +1,9 @@
 
+- Animation - pop into view, become bigger and wobble a bit then go to original size
 - add some pre-animation to say What Rhymes with...
-- change animation to put correct words in a grid underneath given word
 - add green tick/red cross animation
 - handle duplicate answers
+- ellipses for long text?
 
 - fix/check android version
 

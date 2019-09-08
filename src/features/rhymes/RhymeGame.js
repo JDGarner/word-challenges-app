@@ -1,57 +1,57 @@
 import React, { Component } from "react";
+import { View } from "react-native";
 import styled from "styled-components";
 import { capitalize } from "lodash";
 
 import {
   LargeText,
-  MediumText,
   SmallText,
   CenteredContainer,
   HideKeyboardOnTouch,
   TextContainer,
 } from "../../components";
 import AnswerText from "./AnswerText";
+import PopInView from "../../components/pop-in-view/PopInView";
 
 const ScreenContainer = styled(CenteredContainer)`
   flex: 1;
   justify-content: space-around;
 `;
 
-const CorrectAnswers = styled(CenteredContainer)`
-  flex: 1;
+const CorrectAnswersGrid = styled(CenteredContainer)`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 100%;
-  border-width: 1;
-  border-color: red;
+  /* border-width: 1;
+  border-color: red; */
 `;
 
 const CorrectAnswer = styled(SmallText)`
   text-align: center;
-  height: 20;
-  width: 30%;
-  border-width: 1;
-  border-color: blue;
 `;
 
-const CurrentWordHeading = styled(MediumText)`
-  margin-bottom: 14px;
+const CorrectAnswerContainer = styled(TextContainer)`
+  margin-horizontal: 10px;
+  padding: 4px 2px;
 `;
 
 const CurrentWordContainer = styled(TextContainer)`
   margin-bottom: 20px;
-  padding: 6px 20px;
+  padding: 4px 20px;
   justify-content: center;
   align-items: center;
+`;
+
+const GridItem = styled(View)`
+  width: 33.33333333%;
+  margin-bottom: 10px;
 `;
 
 export default class RhymeGame extends Component {
   render() {
     const { currentWord, currentRhymes, correctAnswers, onSubmitAnswer } = this.props;
-
-    console.log(">>> correctAnswers: ", correctAnswers);
 
     return (
       <HideKeyboardOnTouch>
@@ -60,11 +60,19 @@ export default class RhymeGame extends Component {
             <LargeText>{capitalize(currentWord)}</LargeText>
           </CurrentWordContainer>
 
-          {/* <CorrectAnswers>
+          <CorrectAnswersGrid>
             {correctAnswers.map(answer => {
-              return <CorrectAnswer key={answer}>{answer}</CorrectAnswer>;
+              return (
+                <GridItem key={answer}>
+                  <PopInView>
+                    <CorrectAnswerContainer>
+                      <CorrectAnswer>{answer}</CorrectAnswer>
+                    </CorrectAnswerContainer>
+                  </PopInView>
+                </GridItem>
+              );
             })}
-          </CorrectAnswers> */}
+          </CorrectAnswersGrid>
 
           <AnswerText currentRhymes={currentRhymes} onSubmitAnswer={onSubmitAnswer} />
         </ScreenContainer>
