@@ -1,7 +1,13 @@
 
-- Animation - pop into view, become bigger and wobble a bit then go to original size
+- when countdown hits zero, start new game:
+  - would want some post game breakdown/score presenation
+  - then a button to start a new game
+  - need some wrapped like RhymeGameMode, and a state value gameState
+  - gameState can be PreGame, Playing, PostGame, Ended
+  - GameMode wrapper renders different components based on gameState
 - add some pre-animation to say What Rhymes with...
 - add green tick/red cross animation
+- add animation to timer when it gets bumped
 - handle duplicate answers
 - ellipses for long text?
 
@@ -11,9 +17,7 @@
 
 - Add tutorial
 
-- add background animated spheres
-
-- add random word display at top of screen
+- add background animated spheres?
 
 - call https://www.datamuse.com/api/ (e.g. https://api.datamuse.com/words?rel_rhy=list)
 - call API with each word, sort in order of most number of rhyming words

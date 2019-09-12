@@ -3,20 +3,22 @@ import { connect } from "react-redux";
 import RhymeGame from "./RhymeGame";
 import LoadingScreen from "../../components/loading/LoadingScreen";
 import AppBackground from "../../components/background/AppBackground";
-import { onSubmitAnswer } from "../../redux/actions";
+import { onSubmitAnswer, onBeginGame } from "../../redux/actions";
 
 const mapStateToProps = ({ rhymes }) => {
-  const { currentWord, currentRhymes, correctAnswers, loaded } = rhymes;
+  const { currentWord, currentRhymes, correctAnswers, gameCountdown, loaded } = rhymes;
 
   return {
     currentWord,
     currentRhymes,
     correctAnswers,
+    gameCountdown,
     loaded,
   };
 };
 
 const mapDispatchToProps = {
+  onBeginGame,
   onSubmitAnswer,
 };
 
@@ -31,6 +33,8 @@ const RhymeGameLoader = props => {
         currentWord={props.currentWord}
         currentRhymes={props.currentRhymes}
         correctAnswers={props.correctAnswers}
+        gameCountdown={props.gameCountdown}
+        onBeginGame={props.onBeginGame}
         onSubmitAnswer={props.onSubmitAnswer}
       />
     );

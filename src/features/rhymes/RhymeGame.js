@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 import { capitalize } from "lodash";
 
 import {
   LargeText,
+  MediumText,
   SmallText,
   CenteredContainer,
   HideKeyboardOnTouch,
@@ -49,34 +50,52 @@ const GridItem = styled(View)`
   margin-bottom: 10px;
 `;
 
-export default class RhymeGame extends Component {
-  render() {
-    const { currentWord, currentRhymes, correctAnswers, onSubmitAnswer } = this.props;
+const CountdownText = styled(LargeText)`
+  position: absolute;
+  top: 50px;
+  right: 25px;
+  color: rgba(255, 255, 255, 0.4);
+`;
 
-    return (
-      <HideKeyboardOnTouch>
-        <ScreenContainer>
-          <CurrentWordContainer>
-            <LargeText>{capitalize(currentWord)}</LargeText>
-          </CurrentWordContainer>
+const RhymeGame = ({
+  currentWord,
+  currentRhymes,
+  correctAnswers,
+  gameCountdown,
+  onBeginGame,
+  onSubmitAnswer,
+}) => {
+  useEffect(() => {
+    onBeginGame();
+  }, [onBeginGame]);
 
-          <CorrectAnswersGrid>
-            {correctAnswers.map(answer => {
-              return (
-                <GridItem key={answer}>
-                  <PopInView>
-                    <CorrectAnswerContainer>
-                      <CorrectAnswer>{answer}</CorrectAnswer>
-                    </CorrectAnswerContainer>
-                  </PopInView>
-                </GridItem>
-              );
-            })}
-          </CorrectAnswersGrid>
+  return (
+    <HideKeyboardOnTouch>
+      <ScreenContainer>
+        <CountdownText>{gameCountdown}</CountdownText>
 
-          <AnswerText currentRhymes={currentRhymes} onSubmitAnswer={onSubmitAnswer} />
-        </ScreenContainer>
-      </HideKeyboardOnTouch>
-    );
-  }
-}
+        <CurrentWordContainer>
+          <LargeText>{capitalize(currentWord)}</LargeText>
+        </CurrentWordContainer>
+
+        <CorrectAnswersGrid>
+          {correctAnswers.map(answer => {
+            return (
+              <GridItem key={answer}>
+                <PopInView>
+                  <CorrectAnswerContainer>
+                    <CorrectAnswer>{answer}</CorrectAnswer>
+                  </CorrectAnswerContainer>
+                </PopInView>
+              </GridItem>
+            );
+          })}
+        </CorrectAnswersGrid>
+
+        <AnswerText currentRhymes={currentRhymes} onSubmitAnswer={onSubmitAnswer} />
+      </ScreenContainer>
+    </HideKeyboardOnTouch>
+  );
+};
+
+export default RhymeGame;
