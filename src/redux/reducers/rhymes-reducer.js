@@ -1,15 +1,15 @@
 import { FETCH_RHYMES_SUCCESS, ON_SUBMIT_ANSWER, GAME_COUNTDOWN_TICK } from "../actions";
-import { isAnswerCorrect } from "../../features/rhymes/rhymes-utils";
-import { INITIAL_COUNTDOWN } from "../../features/rhymes/rhymes-constants";
+import { isAnswerCorrect, isNotDuplicateAnswer } from "../../features/rhymes/rhymes-utils";
+import { INITIAL_COUNTDOWN, GAME_STATES } from "../../features/rhymes/rhymes-constants";
 
 const initialState = {
   allWords: [],
   currentWord: "",
   currentRhymes: [],
-  // correctAnswers: ["Fair", "Scare", "Care", "Lair"],
   correctAnswers: [],
   loaded: false,
   gameCountdown: INITIAL_COUNTDOWN,
+  gameState: GAME_STATES.PLAYING,
 };
 
 const getBumpedCountdown = countdown => {
@@ -32,18 +32,23 @@ export default (state = initialState, action) => {
 
       return { ...state, allWords, currentWord, currentRhymes, loaded: true };
     }
+
     case ON_SUBMIT_ANSWER: {
       const { answer } = action;
       const correctAnswers = [...state.correctAnswers];
       let gameCountdown = state.gameCountdown;
 
-      if (isAnswerCorrect(answer, state.currentRhymes)) {
+      if (
+        isAnswerCorrect(answer, state.currentRhymes) &&
+        isNotDuplicateAnswer(answer, state.correctAnswers)
+      ) {
         correctAnswers.push(answer);
         gameCountdown = getBumpedCountdown(state.gameCountdown);
       }
 
       return { ...state, correctAnswers, gameCountdown };
     }
+
     case GAME_COUNTDOWN_TICK: {
       let gameCountdown = state.gameCountdown - 1;
 

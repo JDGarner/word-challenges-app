@@ -1,9 +1,9 @@
 import { createAppContainer, createStackNavigator } from "react-navigation";
 
-import ConnectedRhymeGame from "../features/rhymes/game/ConnectedRhymeGame";
+import ConnectedRhymeGameMode from "../features/rhymes/game-mode/ConnectedRhymeGameMode";
 
 const RhymeGameStack = createStackNavigator({
-  RhymeGame: ConnectedRhymeGame,
+  RhymeGameMode: ConnectedRhymeGameMode,
 });
 
 export default createAppContainer(RhymeGameStack);

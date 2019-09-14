@@ -11,7 +11,7 @@ const LoadingContainer = styled(View)`
 const LoadingScreen = () => {
   return (
     <LoadingContainer>
-      <ActivityIndicator size="large" color={theme.loadingSpinner} />
+      <ActivityIndicator size="large" color={theme.textColor} />
     </LoadingContainer>
   );
 };

@@ -1,22 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 import { capitalize } from "lodash";
 
-import {
-  LargeText,
-  SmallText,
-  CenteredContainer,
-  HideKeyboardOnTouch,
-  TextContainer,
-} from "../../../components";
+import { LargeText, SmallText, CenteredContainer, TextContainer } from "../../../components";
 import AnswerText from "../AnswerText";
 import PopInView from "../../../components/pop-in-view/PopInView";
-
-const ScreenContainer = styled(CenteredContainer)`
-  flex: 1;
-  justify-content: space-around;
-`;
 
 const CorrectAnswersGrid = styled(CenteredContainer)`
   height: 42%;
@@ -69,31 +58,29 @@ const RhymeGame = ({
   }, [onBeginGame]);
 
   return (
-    <HideKeyboardOnTouch>
-      <ScreenContainer>
-        <CountdownText>{gameCountdown}</CountdownText>
+    <Fragment>
+      <CountdownText>{gameCountdown}</CountdownText>
 
-        <CurrentWordContainer>
-          <LargeText>{capitalize(currentWord)}</LargeText>
-        </CurrentWordContainer>
+      <CurrentWordContainer>
+        <LargeText>{capitalize(currentWord)}</LargeText>
+      </CurrentWordContainer>
 
-        <CorrectAnswersGrid>
-          {correctAnswers.map(answer => {
-            return (
-              <GridItem key={answer}>
-                <PopInView>
-                  <CorrectAnswerContainer>
-                    <CorrectAnswer>{answer}</CorrectAnswer>
-                  </CorrectAnswerContainer>
-                </PopInView>
-              </GridItem>
-            );
-          })}
-        </CorrectAnswersGrid>
+      <CorrectAnswersGrid>
+        {correctAnswers.map(answer => {
+          return (
+            <GridItem key={answer}>
+              <PopInView>
+                <CorrectAnswerContainer>
+                  <CorrectAnswer>{answer}</CorrectAnswer>
+                </CorrectAnswerContainer>
+              </PopInView>
+            </GridItem>
+          );
+        })}
+      </CorrectAnswersGrid>
 
-        <AnswerText currentRhymes={currentRhymes} onSubmitAnswer={onSubmitAnswer} />
-      </ScreenContainer>
-    </HideKeyboardOnTouch>
+      <AnswerText currentRhymes={currentRhymes} onSubmitAnswer={onSubmitAnswer} />
+    </Fragment>
   );
 };
 
