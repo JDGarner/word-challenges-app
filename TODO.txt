@@ -5,17 +5,23 @@
   - need some wrapped like RhymeGameMode, and a state value gameState
   - gameState can be PreGame, Playing, PostGame, Ended
   - GameMode wrapper renders different components based on gameState
-- add some pre-animation to say What Rhymes with...
+- handle duplicate answers
+
+Animation To Do:
 - add green tick/red cross animation
 - add animation to timer when it gets bumped
-- handle duplicate answers
+- add some pre-game animation to say What Rhymes with...
+
+Styling To Do:
 - ellipses for long text?
+- when countdown is less than 3, make it red
+- sort out spacing for different device sizes, make gap at top %
 
 - fix/check android version
 
 - api Error handling
 
-- Add tutorial
+- Add tutorial?
 
 - add background animated spheres?
 
@@ -39,3 +45,14 @@
 
 - need a way to track which users got which words, 
   or at least add a counter for number of users that got a particular word
+
+- add a way for user to contest/suggest rhyme
+
+
+
+- Add Synonym mode
+
+MVP:
+- Rhyme mode
+- Synonym mode
+- Main menu, show definitions coming soon

@@ -11,7 +11,6 @@ export const SpaceAroundContainer = styled.View`
 `;
 
 export const TextContainer = styled.View`
-  background-color: white;
   border-radius: 4px;
-  /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75); */
+  border: 2px solid ${props => props.theme.textColor};
 `;

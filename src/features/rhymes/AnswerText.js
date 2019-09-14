@@ -1,61 +1,43 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { TextInput } from "react-native";
 
-import { TextContainer } from "../../components";
-
-const AnswerInput = styled(TextInput)`
+const AnswerInput = styled(TextInput).attrs(props => ({
+  placeholderTextColor: props.theme.textColor,
+}))`
+  color: ${props => props.theme.textColor};
   border-bottom-width: 1px;
-  border-bottom-color: #939393;
+  border-bottom-color: ${props => props.theme.textColor};
   flex-shrink: 0;
   padding: 5px;
   margin-bottom: auto;
-  min-width: 135px;
+  min-width: 126px;
   text-align: center;
   font-size: ${props => props.theme.medium.fontSize};
   font-weight: ${props => props.theme.medium.fontWeight};
 `;
 
-const StyledTextContainer = styled(TextContainer)`
-  padding: 8px;
-`;
+const AnswerText = ({ onSubmitAnswer }) => {
+  const [answerText, setAnswerText] = useState("");
+  const [answerTextPlaceholder, setAnswerTextPlaceholder] = useState("Enter Rhyme");
 
-export default class AnswerText extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      answerText: "",
-      answerTextPlaceholder: "Enter Rhyme",
-    };
-  }
+  const onSubmitEditing = () => {
+    onSubmitAnswer(answerText);
 
-  onChangeAnswerText = answerText => {
-    this.setState({ answerText });
+    setAnswerText("");
+    setAnswerTextPlaceholder("");
   };
 
-  onSubmitAnswer = () => {
-    this.props.onSubmitAnswer(this.state.answerText);
+  return (
+    <AnswerInput
+      value={answerText}
+      placeholder={answerTextPlaceholder}
+      onChangeText={setAnswerText}
+      onSubmitEditing={onSubmitEditing}
+      blurOnSubmit={false}
+      autoFocus
+    />
+  );
+};
 
-    this.setState({
-      answerText: "",
-      answerTextPlaceholder: "",
-    });
-  };
-
-  render() {
-    const { answerText, answerTextPlaceholder } = this.state;
-
-    return (
-      <StyledTextContainer>
-        <AnswerInput
-          value={answerText}
-          placeholder={answerTextPlaceholder}
-          onChangeText={this.onChangeAnswerText}
-          onSubmitEditing={this.onSubmitAnswer}
-          blurOnSubmit={false}
-          autoFocus
-        />
-      </StyledTextContainer>
-    );
-  }
-}
+export default AnswerText;

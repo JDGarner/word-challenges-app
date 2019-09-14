@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import RhymeGame from "./RhymeGame";
-import LoadingScreen from "../../components/loading/LoadingScreen";
-import AppBackground from "../../components/background/AppBackground";
-import { onSubmitAnswer, onBeginGame } from "../../redux/actions";
+import LoadingScreen from "../../../components/loading/LoadingScreen";
+import AppBackground from "../../../components/background/AppBackground";
+import { onSubmitAnswer, onBeginGame } from "../../../redux/actions";
 
 const mapStateToProps = ({ rhymes }) => {
   const { currentWord, currentRhymes, correctAnswers, gameCountdown, loaded } = rhymes;
