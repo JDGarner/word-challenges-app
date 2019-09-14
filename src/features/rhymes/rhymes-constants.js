@@ -4,3 +4,5 @@ export const GAME_STATES = {
   POSTGAME: "PostGame",
   FINISHED: "Finished",
 };
+
+export const INITIAL_COUNTDOWN = 10;

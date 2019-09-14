@@ -16,8 +16,7 @@ Styling To Do:
 - ellipses for long text?
 - when countdown is less than 3, make it red
 - sort out spacing for different device sizes, make gap at top %
-
-- fix/check android version
+- countdown on iOS/android position
 
 - api Error handling
 
