@@ -4,7 +4,8 @@ import {
   fetchRhymesError,
   ON_BEGIN_GAME,
   gameCountdownTick,
-} from "../actions";
+  ON_GAME_END,
+} from "./rhymes-actions";
 
 async function fetchRhymesFromApi(store) {
   try {
@@ -17,15 +18,20 @@ async function fetchRhymesFromApi(store) {
   }
 }
 
+let gameCountdownInterval = null;
+
 export default store => next => action => {
   switch (action.type) {
     case FETCH_RHYMES:
       fetchRhymesFromApi(store);
       break;
     case ON_BEGIN_GAME:
-      setInterval(() => {
+      gameCountdownInterval = setInterval(() => {
         store.dispatch(gameCountdownTick());
       }, 1000);
+      break;
+    case ON_GAME_END:
+      clearInterval(gameCountdownInterval);
       break;
     default:
       break;

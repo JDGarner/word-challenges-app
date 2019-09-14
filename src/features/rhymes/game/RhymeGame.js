@@ -51,11 +51,16 @@ const RhymeGame = ({
   correctAnswers,
   gameCountdown,
   onBeginGame,
+  onGameEnd,
   onSubmitAnswer,
 }) => {
   useEffect(() => {
     onBeginGame();
-  }, [onBeginGame]);
+
+    return () => {
+      onGameEnd();
+    };
+  }, [onBeginGame, onGameEnd]);
 
   return (
     <Fragment>

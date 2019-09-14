@@ -11,6 +11,7 @@ Post Game State:
 show score - correct answers(/total possible?)
 New Game button
 
+- trim whitespace of answer, handle case
 
 
 Animation To Do:

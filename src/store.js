@@ -1,13 +1,13 @@
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import rhymesReducer from "./reducers/rhymes-reducer";
-import rhymesMiddleware from "./middleware/rhymes-middleware";
+import rhymesReducer from "./features/rhymes/redux/rhymes-reducer";
+import rhymesMiddleware from "./features/rhymes/redux/rhymes-middleware";
 
 const initialStore = {};
 
 export default function configureStore() {
   const reducers = combineReducers({
-    rhymes: rhymesReducer
+    rhymes: rhymesReducer,
   });
 
   const middleware = applyMiddleware(rhymesMiddleware, thunk);

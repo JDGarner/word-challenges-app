@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import AppNavigator from "./navigation/AppNavigator";
 import theme from "./theme";
-import configureStore from "./redux/store";
-import { fetchRhymes } from "./redux/actions";
+import configureStore from "./store";
+import { fetchRhymes } from "./features/rhymes/redux/rhymes-actions";
 
 const store = configureStore();
 

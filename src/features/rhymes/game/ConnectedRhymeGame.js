@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import RhymeGame from "./RhymeGame";
-import { onSubmitAnswer, onBeginGame } from "../../../redux/actions";
+import { onSubmitAnswer, onBeginGame, onGameEnd } from "../redux/rhymes-actions";
 
 const mapStateToProps = ({ rhymes }) => {
   const { currentWord, currentRhymes, correctAnswers, gameCountdown } = rhymes;
@@ -15,6 +15,7 @@ const mapStateToProps = ({ rhymes }) => {
 
 const mapDispatchToProps = {
   onBeginGame,
+  onGameEnd,
   onSubmitAnswer,
 };
 

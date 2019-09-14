@@ -1,11 +1,13 @@
-import styled from "styled-components";
+import React from "react";
+import { TouchableHighlight } from "react-native";
+import { TextContainer } from "..";
 
-const decorateButton = () => styled.TouchableHighlight`
-  border: 1px solid grey;
-  border-radius: 3px;
-  padding: 8px 26px;
-`;
+const Button = ({ children, onPress }) => {
+  return (
+    <TouchableHighlight onPress={onPress}>
+      <TextContainer>{children}</TextContainer>
+    </TouchableHighlight>
+  );
+};
 
-export const LargeButton = decorateButton("large");
-export const MediumButton = decorateButton("medium");
-export const SmallButton = decorateButton("small");
+export default Button;
