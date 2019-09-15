@@ -6,6 +6,7 @@ export const ON_BEGIN_GAME = "ON_BEGIN_GAME";
 export const ON_GAME_END = "ON_GAME_END";
 export const GAME_COUNTDOWN_TICK = "GAME_COUNTDOWN_TICK";
 export const ON_SUBMIT_ANSWER = "ON_SUBMIT_ANSWER";
+export const ON_PRE_GAME_COUNTDOWN_END = "ON_PRE_GAME_COUNTDOWN_END";
 export const ON_COUNTDOWN_ANIMATION_END = "ON_COUNTDOWN_ANIMATION_END";
 
 export const fetchRhymes = () => ({
@@ -39,6 +40,10 @@ export const gameCountdownTick = () => ({
 
 export const onCountdownAnimationEnd = () => ({
   type: ON_COUNTDOWN_ANIMATION_END,
+});
+
+export const onPreGameCountdownEnd = () => ({
+  type: ON_PRE_GAME_COUNTDOWN_END,
 });
 
 export const onSubmitAnswer = answer => ({

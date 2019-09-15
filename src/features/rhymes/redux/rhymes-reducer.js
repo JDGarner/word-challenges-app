@@ -6,6 +6,7 @@ import {
   GAME_COUNTDOWN_TICK,
   ON_PRESS_START_NEW_GAME,
   ON_COUNTDOWN_ANIMATION_END,
+  ON_PRE_GAME_COUNTDOWN_END,
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
@@ -18,7 +19,7 @@ const initialState = {
   loaded: false,
   gameCountdown: INITIAL_COUNTDOWN,
   animatingCountdown: false,
-  gameState: GAME_STATES.PLAYING,
+  gameState: GAME_STATES.PREGAME,
   score: 0,
 };
 
@@ -82,11 +83,15 @@ export default (state = initialState, action) => {
     }
 
     case ON_PRESS_START_NEW_GAME: {
-      return { ...state, score: 0, gameState: GAME_STATES.PLAYING };
+      return { ...state, score: 0, gameState: GAME_STATES.PREGAME };
     }
 
     case ON_COUNTDOWN_ANIMATION_END: {
       return { ...state, animatingCountdown: false };
+    }
+
+    case ON_PRE_GAME_COUNTDOWN_END: {
+      return { ...state, gameState: GAME_STATES.PLAYING };
     }
 
     default:

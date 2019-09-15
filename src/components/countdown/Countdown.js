@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Animated, Easing } from "react-native";
 import styled from "styled-components";
 import { LargeText } from "..";
+import theme from "../../theme";
 
 const CountdownContainer = styled(Animated.View)`
   position: absolute;
   top: 50px;
   right: 25px;
-  color: ${props => props.theme.textColor};
 `;
 
 const Countdown = ({ gameCountdown, animatingCountdown, onAnimationEnd }) => {
@@ -34,9 +34,11 @@ const Countdown = ({ gameCountdown, animatingCountdown, onAnimationEnd }) => {
     }
   }, [animatingCountdown, scaleValue, onAnimationEnd]);
 
+  const textColor = gameCountdown <= 3 ? theme.redColor : theme.textColor;
+
   return (
     <CountdownContainer style={{ transform: [{ scale: scaleValue }] }}>
-      <LargeText>{gameCountdown}</LargeText>
+      <LargeText color={textColor}>{gameCountdown}</LargeText>
     </CountdownContainer>
   );
 };
