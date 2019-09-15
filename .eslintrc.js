@@ -13,6 +13,6 @@ module.exports = {
     "prettier/prettier": "error",
     quotes: ["error", "double"],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": 0,
   },
 };

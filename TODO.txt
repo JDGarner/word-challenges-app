@@ -7,6 +7,8 @@ Then transition to Playing state
 
 - Improve PostGame UI (You found X Rhymes for Y, we can think of Z more)
 
+- make answer grid scrollable and scroll to bottom on new answer
+
 Animation To Do:
 - add shimmer animation - correct answers and new given word
 - add green tick/red cross animation

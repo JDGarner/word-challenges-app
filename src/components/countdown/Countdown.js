@@ -32,7 +32,7 @@ const Countdown = ({ gameCountdown, animatingCountdown, onAnimationEnd }) => {
         onAnimationEnd();
       });
     }
-  }, [animatingCountdown, scaleValue, onAnimationEnd]);
+  }, [animatingCountdown]);
 
   const textColor = gameCountdown <= 3 ? theme.redColor : theme.textColor;
 
