@@ -6,8 +6,8 @@ const RhymePostGame = ({ score, onPressStartNewGame }) => {
   return (
     <Fragment>
       <LargeText>{score}</LargeText>
-      <Button onPress={onPressStartNewGame}>
-        <LargeText>New Game</LargeText>
+      <Button style={{ paddingVertical: 6, paddingHorizontal: 12 }} onPress={onPressStartNewGame}>
+        <LargeText>Play Again</LargeText>
       </Button>
     </Fragment>
   );

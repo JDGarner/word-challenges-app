@@ -1,5 +1,6 @@
 import { SmallText, MediumText, LargeText, AnimatedMediumText } from "./text/Text";
 import Button from "./button/Button";
+import Countdown from "./countdown/Countdown";
 import { CenteredContainer, SpaceAroundContainer, TextContainer } from "./containers/Containers";
 import HideKeyboardOnTouch from "./keyboard/HideKeyboardOnTouch";
 
@@ -13,4 +14,5 @@ export {
   TextContainer,
   HideKeyboardOnTouch,
   Button,
+  Countdown,
 };

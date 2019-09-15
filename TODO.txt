@@ -1,25 +1,20 @@
 
-- when countdown hits zero, start new game:
-  - would want some post game breakdown/score presenation
-  - then a button to start a new game
+
 
 Pre Game State:
 Show 'What Rhymes with...' and a 3, 2, 1
 Then transition to Playing state
 
-Post Game State:
-show score - correct answers(/total possible?)
-New Game button
-
-- trim whitespace of answer, handle case
-
+- Improve PostGame UI (You found X Rhymes for Y, we can think of Z more)
 
 Animation To Do:
 - add green tick/red cross animation
-- add animation to timer when it gets bumped (make it enlarge quickly then go back down)
 - add some pre-game animation to say What Rhymes with...
 - animate duplicate answer (shimmer?)
 - add shimmer animation - correct answers and new given word
+
+Add Main Menu:
+- Rhymes, Synonyms, Definitions (coming soon)
 
 Styling To Do:
 - ellipses for long text?

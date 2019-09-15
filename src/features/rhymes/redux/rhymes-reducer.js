@@ -1,8 +1,11 @@
+import { capitalize } from "lodash";
+
 import {
   FETCH_RHYMES_SUCCESS,
   ON_SUBMIT_ANSWER,
   GAME_COUNTDOWN_TICK,
   ON_PRESS_START_NEW_GAME,
+  ON_COUNTDOWN_ANIMATION_END,
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
@@ -14,6 +17,7 @@ const initialState = {
   correctAnswers: [],
   loaded: false,
   gameCountdown: INITIAL_COUNTDOWN,
+  animatingCountdown: false,
   gameState: GAME_STATES.PLAYING,
   score: 0,
 };
@@ -40,21 +44,22 @@ export default (state = initialState, action) => {
     }
 
     case ON_SUBMIT_ANSWER: {
-      const { answer } = action;
-      const correctAnswers = [...state.correctAnswers];
-      let gameCountdown = state.gameCountdown;
-      let score = state.score;
+      const answer = capitalize(action.answer.trim());
 
       if (
         isAnswerCorrect(answer, state.currentRhymes) &&
         isNotDuplicateAnswer(answer, state.correctAnswers)
       ) {
-        correctAnswers.push(answer);
-        gameCountdown = getBumpedCountdown(state.gameCountdown);
-        score++;
+        return {
+          ...state,
+          correctAnswers: [...state.correctAnswers, answer],
+          gameCountdown: getBumpedCountdown(state.gameCountdown),
+          score: state.score + 1,
+          animatingCountdown: true,
+        };
       }
 
-      return { ...state, correctAnswers, gameCountdown, score };
+      return state;
     }
 
     case GAME_COUNTDOWN_TICK: {
@@ -78,6 +83,10 @@ export default (state = initialState, action) => {
 
     case ON_PRESS_START_NEW_GAME: {
       return { ...state, score: 0, gameState: GAME_STATES.PLAYING };
+    }
+
+    case ON_COUNTDOWN_ANIMATION_END: {
+      return { ...state, animatingCountdown: false };
     }
 
     default:

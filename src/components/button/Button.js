@@ -2,10 +2,10 @@ import React from "react";
 import { TouchableHighlight } from "react-native";
 import { TextContainer } from "..";
 
-const Button = ({ children, onPress }) => {
+const Button = ({ children, style, onPress }) => {
   return (
     <TouchableHighlight onPress={onPress}>
-      <TextContainer>{children}</TextContainer>
+      <TextContainer style={style}>{children}</TextContainer>
     </TouchableHighlight>
   );
 };

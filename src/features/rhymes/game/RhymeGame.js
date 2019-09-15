@@ -3,7 +3,13 @@ import { View } from "react-native";
 import styled from "styled-components";
 import { capitalize } from "lodash";
 
-import { LargeText, SmallText, CenteredContainer, TextContainer } from "../../../components";
+import {
+  LargeText,
+  SmallText,
+  CenteredContainer,
+  TextContainer,
+  Countdown,
+} from "../../../components";
 import AnswerText from "../AnswerText";
 import PopInView from "../../../components/pop-in-view/PopInView";
 
@@ -38,18 +44,13 @@ const GridItem = styled(View)`
   margin-bottom: 10px;
 `;
 
-const CountdownText = styled(LargeText)`
-  position: absolute;
-  top: 50px;
-  right: 25px;
-  color: ${props => props.theme.textColor};
-`;
-
 const RhymeGame = ({
   currentWord,
   currentRhymes,
   correctAnswers,
   gameCountdown,
+  animatingCountdown,
+  onCountdownAnimationEnd,
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
@@ -64,7 +65,12 @@ const RhymeGame = ({
 
   return (
     <Fragment>
-      <CountdownText>{gameCountdown}</CountdownText>
+      {/* <CountdownText>{gameCountdown}</CountdownText> */}
+      <Countdown
+        gameCountdown={gameCountdown}
+        animatingCountdown={animatingCountdown}
+        onAnimationEnd={onCountdownAnimationEnd}
+      />
 
       <CurrentWordContainer>
         <LargeText>{capitalize(currentWord)}</LargeText>
