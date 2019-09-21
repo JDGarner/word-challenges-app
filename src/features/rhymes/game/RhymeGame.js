@@ -61,7 +61,7 @@ const RhymeGame = ({
     return () => {
       onGameEnd();
     };
-  }, [onBeginGame, onGameEnd]);
+  }, []);
 
   return (
     <Fragment>

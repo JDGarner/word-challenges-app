@@ -1,6 +1,7 @@
 export const FETCH_RHYMES = "FETCH_RHYMES";
 export const FETCH_RHYMES_SUCCESS = "FETCH_RHYMES_SUCCESS";
 export const FETCH_RHYMES_ERROR = "FETCH_RHYMES_ERROR";
+export const FETCH_ADDITIONAL_RHYMES_SUCCESS = "FETCH_ADDITIONAL_RHYMES_SUCCESS";
 export const ON_PRESS_START_NEW_GAME = "ON_PRESS_START_NEW_GAME";
 export const ON_BEGIN_GAME = "ON_BEGIN_GAME";
 export const ON_GAME_END = "ON_GAME_END";
@@ -13,13 +14,18 @@ export const fetchRhymes = () => ({
   type: FETCH_RHYMES,
 });
 
-export const fetchRhymesSuccess = words => ({
+export const fetchRhymesSuccess = rhymes => ({
   type: FETCH_RHYMES_SUCCESS,
-  words,
+  rhymes,
 });
 
 export const fetchRhymesError = () => ({
   type: FETCH_RHYMES_ERROR,
+});
+
+export const fetchAdditionalRhymesSuccess = rhymes => ({
+  type: FETCH_ADDITIONAL_RHYMES_SUCCESS,
+  rhymes,
 });
 
 export const onPressStartNewGame = () => ({

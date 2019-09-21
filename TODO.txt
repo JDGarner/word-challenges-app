@@ -1,9 +1,7 @@
+- If initial API call fails, show Connection error
+- If press start new game and there are no rhymes on the next index, show connection error
+- With retry button?
 
-
-
-Pre Game State:
-Show 'What Rhymes with...' and a 3, 2, 1
-Then transition to Playing state
 
 - Improve PostGame UI (You found X Rhymes for Y, we can think of Z more)
 

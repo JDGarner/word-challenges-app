@@ -1,4 +1,4 @@
-import { capitalize } from "lodash";
+import { capitalize, cloneDeep } from "lodash";
 
 import {
   FETCH_RHYMES_SUCCESS,
@@ -7,12 +7,14 @@ import {
   ON_PRESS_START_NEW_GAME,
   ON_COUNTDOWN_ANIMATION_END,
   ON_PRE_GAME_COUNTDOWN_END,
+  FETCH_ADDITIONAL_RHYMES_SUCCESS,
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
 
 const initialState = {
-  allWords: [],
+  allRhymes: [],
+  currentRhymeIndex: 0,
   currentWord: "",
   currentRhymes: [],
   correctAnswers: [],
@@ -38,10 +40,23 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case FETCH_RHYMES_SUCCESS: {
-      const allWords = action.words;
-      const { word: currentWord, rhymes: currentRhymes } = allWords[0];
+      const allRhymes = action.rhymes;
+      const { word: currentWord, rhymes: currentRhymes } = allRhymes[0];
 
-      return { ...state, allWords, currentWord, currentRhymes, loaded: true };
+      return { ...state, allRhymes, currentWord, currentRhymes, loaded: true };
+    }
+
+    case FETCH_ADDITIONAL_RHYMES_SUCCESS: {
+      // New Rhymes have arrived, get rid of the current ones before current index
+      // Add the new ones on the end
+      const allRhymes = cloneDeep(state.allRhymes);
+      const remainingRhymes = allRhymes.splice(state.currentRhymeIndex);
+
+      return {
+        ...state,
+        allRhymes: [...remainingRhymes, ...action.rhymes],
+        currentRhymeIndex: 0,
+      };
     }
 
     case ON_SUBMIT_ANSWER: {
@@ -67,23 +82,26 @@ export default (state = initialState, action) => {
       let gameCountdown = state.gameCountdown - 1;
 
       if (gameCountdown === 0) {
-        const randomIndex = Math.floor(Math.random() * state.allWords.length);
-        const { word: currentWord, rhymes: currentRhymes } = state.allWords[randomIndex];
-        return {
-          ...state,
-          gameCountdown: INITIAL_COUNTDOWN,
-          currentWord,
-          currentRhymes,
-          correctAnswers: [],
-          gameState: GAME_STATES.POSTGAME,
-        };
+        return { ...state, gameState: GAME_STATES.POSTGAME };
       }
 
       return { ...state, gameCountdown };
     }
 
     case ON_PRESS_START_NEW_GAME: {
-      return { ...state, score: 0, gameState: GAME_STATES.PREGAME };
+      const nextIndex = state.currentRhymeIndex + 1;
+      const { word: currentWord, rhymes: currentRhymes } = state.allRhymes[nextIndex];
+
+      return {
+        ...state,
+        score: 0,
+        correctAnswers: [],
+        currentWord,
+        currentRhymes,
+        currentRhymeIndex: nextIndex,
+        gameCountdown: INITIAL_COUNTDOWN,
+        gameState: GAME_STATES.PREGAME,
+      };
     }
 
     case ON_COUNTDOWN_ANIMATION_END: {
