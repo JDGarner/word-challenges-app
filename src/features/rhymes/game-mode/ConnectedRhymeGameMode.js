@@ -6,9 +6,9 @@ import RhymeGameMode from "./RhymeGameMode";
 import { LoadingScreen, ErrorScreen } from "../../../components";
 
 const mapStateToProps = ({ rhymes }) => {
-  const { gameState, loaded, connectionError } = rhymes;
+  const { gameState, loaded, connectionError, errorCode } = rhymes;
 
-  return { gameState, loaded, connectionError };
+  return { gameState, loaded, connectionError, errorCode };
 };
 
 const mapDispatchToProps = {
@@ -18,7 +18,7 @@ const mapDispatchToProps = {
 const RhymeGameModeLoader = props => {
   const getContent = () => {
     if (props.connectionError) {
-      return <ErrorScreen onButtonPress={props.fetchRhymesRetry} />;
+      return <ErrorScreen onButtonPress={props.fetchRhymesRetry} errorCode={props.errorCode} />;
     }
 
     if (!props.loaded) {

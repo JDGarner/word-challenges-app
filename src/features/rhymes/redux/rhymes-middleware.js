@@ -1,3 +1,4 @@
+import NetInfo from "@react-native-community/netinfo";
 import {
   FETCH_RHYMES,
   fetchRhymesSuccess,
@@ -11,68 +12,72 @@ import {
   fetchRhymes,
 } from "./rhymes-actions";
 import { RHYMES_LOCAL_BUFFER, RETRY_TIMEOUT } from "../rhymes-constants";
+import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 
-async function callFetch(store, onError) {
-  try {
-    const response = await fetch("https://word-challenges-api.jdgarner.now.sh/random-rhymes");
-    if (response.status === 200) {
-      return response;
-    } else {
-      console.log(">>> API Error");
-      if (onError) {
-        store.dispatch(onError());
-      }
+async function fetchData(onError = () => {}) {
+  return await NetInfo.fetch().then(async state => {
+    if (!state.isConnected) {
+      onError(ERROR_CODES.CONNECTION);
       return null;
     }
-  } catch (error) {
-    console.log(">>> Network Error");
-    console.error(error);
-    if (onError) {
-      store.dispatch(onError());
+
+    try {
+      const response = await fetch("https://word-challenges-api.jdgarner.now.sh/random-rhymes");
+      if (response.status === 200) {
+        return response;
+      } else {
+        onError(ERROR_CODES.API);
+        return null;
+      }
+    } catch (error) {
+      console.error(error);
+      onError(ERROR_CODES.API);
+      return null;
     }
-    return null;
-  }
+  });
 }
 
-async function fetchRhymesFromApi(store, onSuccess, onError) {
-  const response = await callFetch(store, onError);
+async function fetchRhymesFromApi(onSuccess, onError = () => {}) {
+  const response = await fetchData(onError);
 
   try {
     if (response) {
       const responseJson = await response.json();
-      store.dispatch(onSuccess(responseJson));
+      onSuccess(responseJson);
     }
   } catch (error) {
-    console.log(">>> JSON Parse Error");
     console.error(error);
-    if (onError) {
-      store.dispatch(onError());
-    }
+    onError(ERROR_CODES.GENERIC);
   }
 }
 
 let gameCountdownInterval = null;
 
 export default store => next => action => {
+  const { dispatch, getState } = store;
+
   switch (action.type) {
     case FETCH_RHYMES:
-      fetchRhymesFromApi(store, data => fetchRhymesSuccess(data), () => fetchRhymesError());
+      fetchRhymesFromApi(
+        data => dispatch(fetchRhymesSuccess(data)),
+        code => dispatch(fetchRhymesError(code)),
+      );
       break;
 
     case FETCH_RHYMES_RETRY:
       setTimeout(() => {
-        store.dispatch(fetchRhymes());
+        dispatch(fetchRhymes());
       }, RETRY_TIMEOUT);
       break;
 
     case ON_BEGIN_GAME:
       gameCountdownInterval = setInterval(() => {
-        store.dispatch(gameCountdownTick());
+        dispatch(gameCountdownTick());
       }, 1000);
       break;
 
     case ON_PRESS_START_NEW_GAME:
-      const { currentRhymeIndex, allRhymes } = store.getState().rhymes;
+      const { currentRhymeIndex, allRhymes } = getState().rhymes;
       if (currentRhymeIndex > allRhymes.length - RHYMES_LOCAL_BUFFER) {
         fetchRhymesFromApi(store, data => fetchAdditionalRhymesSuccess(data));
       }

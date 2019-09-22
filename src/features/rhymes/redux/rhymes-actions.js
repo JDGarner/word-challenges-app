@@ -24,8 +24,9 @@ export const fetchRhymesSuccess = rhymes => ({
   rhymes,
 });
 
-export const fetchRhymesError = () => ({
+export const fetchRhymesError = errorCode => ({
   type: FETCH_RHYMES_ERROR,
+  errorCode,
 });
 
 export const fetchAdditionalRhymesSuccess = rhymes => ({

@@ -47,15 +47,22 @@ export default (state = initialState, action) => {
       const allRhymes = action.rhymes;
       const { word: currentWord, rhymes: currentRhymes } = allRhymes[0];
 
-      return { ...state, allRhymes, currentWord, currentRhymes, loaded: true };
+      return {
+        ...state,
+        allRhymes,
+        currentWord,
+        currentRhymes,
+        loaded: true,
+        connectionError: false,
+      };
     }
 
     case FETCH_RHYMES_RETRY: {
-      return { ...state, connectionError: false };
+      return { ...state, connectionError: false, errorCode: "" };
     }
 
     case FETCH_RHYMES_ERROR: {
-      return { ...state, connectionError: true };
+      return { ...state, connectionError: true, errorCode: action.errorCode };
     }
 
     case FETCH_ADDITIONAL_RHYMES_SUCCESS: {
@@ -68,6 +75,7 @@ export default (state = initialState, action) => {
         ...state,
         allRhymes: [...remainingRhymes, ...action.rhymes],
         currentRhymeIndex: 0,
+        connectionError: false,
       };
     }
 
