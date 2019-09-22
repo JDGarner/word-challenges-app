@@ -1,4 +1,5 @@
 export const FETCH_RHYMES = "FETCH_RHYMES";
+export const FETCH_RHYMES_RETRY = "FETCH_RHYMES_RETRY";
 export const FETCH_RHYMES_SUCCESS = "FETCH_RHYMES_SUCCESS";
 export const FETCH_RHYMES_ERROR = "FETCH_RHYMES_ERROR";
 export const FETCH_ADDITIONAL_RHYMES_SUCCESS = "FETCH_ADDITIONAL_RHYMES_SUCCESS";
@@ -12,6 +13,10 @@ export const ON_COUNTDOWN_ANIMATION_END = "ON_COUNTDOWN_ANIMATION_END";
 
 export const fetchRhymes = () => ({
   type: FETCH_RHYMES,
+});
+
+export const fetchRhymesRetry = () => ({
+  type: FETCH_RHYMES_RETRY,
 });
 
 export const fetchRhymesSuccess = rhymes => ({

@@ -8,6 +8,9 @@ import {
   ON_COUNTDOWN_ANIMATION_END,
   ON_PRE_GAME_COUNTDOWN_END,
   FETCH_ADDITIONAL_RHYMES_SUCCESS,
+  FETCH_RHYMES_ERROR,
+  FETCH_RHYMES,
+  FETCH_RHYMES_RETRY,
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
@@ -23,6 +26,7 @@ const initialState = {
   animatingCountdown: false,
   gameState: GAME_STATES.PREGAME,
   score: 0,
+  connectionError: false,
 };
 
 const getBumpedCountdown = countdown => {
@@ -44,6 +48,14 @@ export default (state = initialState, action) => {
       const { word: currentWord, rhymes: currentRhymes } = allRhymes[0];
 
       return { ...state, allRhymes, currentWord, currentRhymes, loaded: true };
+    }
+
+    case FETCH_RHYMES_RETRY: {
+      return { ...state, connectionError: false };
+    }
+
+    case FETCH_RHYMES_ERROR: {
+      return { ...state, connectionError: true };
     }
 
     case FETCH_ADDITIONAL_RHYMES_SUCCESS: {
