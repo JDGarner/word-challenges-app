@@ -1,8 +1,3 @@
-- If initial API call fails, show Connection error
-- If press start new game and there are no rhymes on the next index, show connection error
-- With retry button?
-
-
 - Improve PostGame UI (You found X Rhymes for Y, we can think of Z more)
 
 - make answer grid scrollable and scroll to bottom on new answer

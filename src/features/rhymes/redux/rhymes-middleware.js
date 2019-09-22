@@ -23,6 +23,7 @@ async function fetchData(onError = () => {}) {
 
     try {
       const response = await fetch("https://word-challenges-api.jdgarner.now.sh/random-rhymes");
+
       if (response.status === 200) {
         return response;
       } else {

@@ -14,6 +14,7 @@ import {
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
+import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 
 const initialState = {
   allRhymes: [],
@@ -26,6 +27,7 @@ const initialState = {
   animatingCountdown: false,
   gameState: GAME_STATES.PREGAME,
   score: 0,
+  errorCode: "",
   connectionError: false,
 };
 
@@ -52,13 +54,15 @@ export default (state = initialState, action) => {
         allRhymes,
         currentWord,
         currentRhymes,
+        currentRhymeIndex: 0,
         loaded: true,
         connectionError: false,
+        gameState: GAME_STATES.PREGAME,
       };
     }
 
     case FETCH_RHYMES_RETRY: {
-      return { ...state, connectionError: false, errorCode: "" };
+      return { ...state, loaded: false, connectionError: false, errorCode: "" };
     }
 
     case FETCH_RHYMES_ERROR: {
@@ -110,6 +114,21 @@ export default (state = initialState, action) => {
 
     case ON_PRESS_START_NEW_GAME: {
       const nextIndex = state.currentRhymeIndex + 1;
+      const nextRhyme = state.allRhymes[nextIndex];
+
+      // API call must have failed to fetch additional rhymes, go to error state
+      if (!nextRhyme) {
+        return {
+          ...state,
+          score: 0,
+          correctAnswers: [],
+          currentRhymeIndex: 0,
+          gameCountdown: INITIAL_COUNTDOWN,
+          errorCode: ERROR_CODES.GENERIC,
+          connectionError: true,
+        };
+      }
+
       const { word: currentWord, rhymes: currentRhymes } = state.allRhymes[nextIndex];
 
       return {
