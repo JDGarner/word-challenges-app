@@ -1,33 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
-import { capitalize } from "lodash";
-import { MediumText, LargeText, TextContainer } from "../../../components";
+import { LargeText } from "../../../components";
+import GameHeader from "../GameHeader";
 
 const PreGameContainer = styled(View)`
   flex: 1;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const PreGameHeader = styled(View)`
-  margin-top: 40px;
-  justify-content: center;
-  align-items: center;
-`;
-
-const PreGameMessage = styled(MediumText)`
-  margin-bottom: 20px;
-`;
-
-const CurrentWordContainer = styled(TextContainer)`
-  padding: 4px 20px;
-  justify-content: center;
+  width: 100%;
+  justify-content: flex-start;
   align-items: center;
 `;
 
 const PreGameCountdown = styled(LargeText)`
-  height: 50%;
+  position: absolute;
+  top: 47%;
+  width: 100%;
 `;
 
 let countdownInterval = null;
@@ -50,13 +37,8 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd }) => {
 
   return (
     <PreGameContainer>
-      <PreGameHeader>
-        <PreGameMessage>What Rhymes with...</PreGameMessage>
-        <CurrentWordContainer>
-          <LargeText>{capitalize(currentWord)}</LargeText>
-        </CurrentWordContainer>
-      </PreGameHeader>
-      <PreGameCountdown>{countdown}</PreGameCountdown>
+      <GameHeader word={currentWord} />
+      <PreGameCountdown textAlign="center">{countdown}</PreGameCountdown>
     </PreGameContainer>
   );
 };

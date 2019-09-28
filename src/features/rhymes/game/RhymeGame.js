@@ -1,17 +1,17 @@
 import React, { useEffect, Fragment } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
-import { capitalize } from "lodash";
 
-import {
-  LargeText,
-  SmallText,
-  CenteredContainer,
-  TextContainer,
-  Countdown,
-} from "../../../components";
+import { SmallText, CenteredContainer, TextContainer, Countdown } from "../../../components";
 import AnswerText from "../AnswerText";
 import PopInView from "../../../components/pop-in-view/PopInView";
+import GameHeader from "../GameHeader";
+
+// const GameContainer = styled(View)`
+//   flex: 1;
+//   /* justify-content: space-around; */
+//   /* align-items: center; */
+// `;
 
 const CorrectAnswersGrid = styled(CenteredContainer)`
   height: 42%;
@@ -29,14 +29,6 @@ const CorrectAnswer = styled(SmallText)`
 const CorrectAnswerContainer = styled(TextContainer)`
   margin-horizontal: 10px;
   padding: 4px 2px;
-`;
-
-const CurrentWordContainer = styled(TextContainer)`
-  margin-top: 150px;
-  margin-bottom: 40px;
-  padding: 4px 20px;
-  justify-content: center;
-  align-items: center;
 `;
 
 const GridItem = styled(View)`
@@ -65,16 +57,13 @@ const RhymeGame = ({
 
   return (
     <Fragment>
-      {/* <CountdownText>{gameCountdown}</CountdownText> */}
       <Countdown
         gameCountdown={gameCountdown}
         animatingCountdown={animatingCountdown}
         onAnimationEnd={onCountdownAnimationEnd}
       />
 
-      <CurrentWordContainer>
-        <LargeText>{capitalize(currentWord)}</LargeText>
-      </CurrentWordContainer>
+      <GameHeader word={currentWord} />
 
       <CorrectAnswersGrid>
         {correctAnswers.map(answer => {

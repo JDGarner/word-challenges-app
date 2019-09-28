@@ -9,7 +9,6 @@ import {
   ON_PRE_GAME_COUNTDOWN_END,
   FETCH_ADDITIONAL_RHYMES_SUCCESS,
   FETCH_RHYMES_ERROR,
-  FETCH_RHYMES,
   FETCH_RHYMES_RETRY,
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";

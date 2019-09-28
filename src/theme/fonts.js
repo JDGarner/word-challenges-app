@@ -3,6 +3,10 @@ export default {
     fontSize: 36,
     fontWeight: "400",
   },
+  mediumlarge: {
+    fontSize: 24,
+    fontWeight: "400",
+  },
   medium: {
     fontSize: 20,
     fontWeight: "400",

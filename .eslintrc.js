@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   extends: "@react-native-community",
   rules: {
+    "curly": 0,
     "global-require": 0,
     "no-use-before-define": 0,
     "react/prop-types": 0,

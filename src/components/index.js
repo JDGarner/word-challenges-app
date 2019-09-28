@@ -1,4 +1,4 @@
-import { SmallText, MediumText, LargeText, AnimatedMediumText } from "./text/Text";
+import { SmallText, MediumText, MediumLargeText, LargeText, AnimatedMediumText } from "./text/Text";
 import Button from "./button/Button";
 import Countdown from "./countdown/Countdown";
 import ErrorScreen from "./error/ErrorScreen";
@@ -9,6 +9,7 @@ import HideKeyboardOnTouch from "./keyboard/HideKeyboardOnTouch";
 export {
   SmallText,
   MediumText,
+  MediumLargeText,
   AnimatedMediumText,
   LargeText,
   CenteredContainer,

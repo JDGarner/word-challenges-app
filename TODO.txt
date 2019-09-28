@@ -1,8 +1,7 @@
-- Improve PostGame UI (You found X Rhymes for Y, we can think of Z more)
-
 - make answer grid scrollable and scroll to bottom on new answer
 
 Animation To Do:
+- post game animation text
 - add shimmer animation - correct answers and new given word
 - add green tick/red cross animation
 - animate duplicate answer (shimmer?)
@@ -15,15 +14,7 @@ Styling To Do:
 - sort out spacing for different device sizes, make gap at top %
 - countdown on iOS/android position
 
-- api Error handling
-
-- Add tutorial?
-
 - add background animated spheres?
-
-- call https://www.datamuse.com/api/ (e.g. https://api.datamuse.com/words?rel_rhy=list)
-- call API with each word, sort in order of most number of rhyming words
-- split into easy, medium, hard groups
 
 
 - If word is correct - it goes green and flies up
@@ -34,25 +25,31 @@ Styling To Do:
 - Timer in top left/right, X in top left/right
 - Will need some main menu with mute also?
 
-- move all api results into my own db
-
 - need a way to track which users got which words, 
   or at least add a counter for number of users that got a particular word
 
-- add a way for user to contest/suggest rhyme
-
-
-
 - Add Synonym mode
+
+Defintions Mode:
+- Get first definition from https://www.wordsapi.com/ or datamuse
+- User has to type word in
 
 MVP:
 - Rhyme mode
-- Synonym mode
+- Synonym mode (or do defintions next?)
 - Main menu, definitions coming soon?
+- have difficulty settings?
 
 2nd Version:
 - Compare users score to other players
 
-Pro version with 2 extra game modes:
-- Definitions
-- ?
+Pro version with extra game modes? Or just ads?:
+- See which might generate more money?
+
+Other Game Modes:
+- Words that are often used to describe...
+https://www.wordsapi.com/ https://www.datamuse.com/api/
+
+Maybe:
+- Add you missed suggestions
+- add a way for user to contest/suggest rhyme

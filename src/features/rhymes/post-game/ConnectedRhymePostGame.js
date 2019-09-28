@@ -5,6 +5,8 @@ import { onPressStartNewGame } from "../redux/rhymes-actions";
 const mapStateToProps = ({ rhymes }) => {
   return {
     score: rhymes.score,
+    totalRhymes: rhymes.currentRhymes.length,
+    word: rhymes.currentWord,
   };
 };
 
