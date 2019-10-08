@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import RhymePreGame from "./RhymePreGame";
-import { onPreGameCountdownEnd } from "../redux/rhymes/rhymes-actions";
+import { onPreGameCountdownEnd } from "../redux/rhymes-actions";
 
 const mapStateToProps = ({ rhymes }) => {
   return {

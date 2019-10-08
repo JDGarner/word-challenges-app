@@ -11,9 +11,9 @@ import {
   FETCH_RHYMES_ERROR,
   FETCH_RHYMES_RETRY,
 } from "./rhymes-actions";
-import { isAnswerCorrect, isNotDuplicateAnswer } from "../../rhymes-utils";
-import { INITIAL_COUNTDOWN, GAME_STATES } from "../../rhymes-constants";
-import { ERROR_CODES } from "../../../../components/error/ErrorScreen";
+import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
+import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
+import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 
 // const getFakeCorrectAnswers = () => {
 //   let a = [];
