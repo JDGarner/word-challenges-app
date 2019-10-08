@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import AppNavigator from "./navigation/AppNavigator";
 import theme from "./theme";
 import configureStore from "./store";
-import { fetchRhymes } from "./features/rhymes/redux/rhymes-actions";
+import { fetchRhymes } from "./features/rhymes/redux/rhymes/rhymes-actions";
 
 const store = configureStore();
 

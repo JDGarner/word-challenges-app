@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchRhymesRetry } from "../redux/rhymes-actions";
+import { fetchRhymesRetry } from "../redux/rhymes/rhymes-actions";
 import AppBackground from "../../../components/background/AppBackground";
 import RhymeGameMode from "./RhymeGameMode";
 import { LoadingScreen, ErrorScreen } from "../../../components";

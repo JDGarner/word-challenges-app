@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import RhymePostGame from "./RhymePostGame";
-import { onPressStartNewGame } from "../redux/rhymes-actions";
+import { onPressStartNewGame } from "../redux/rhymes/rhymes-actions";
 
 const mapStateToProps = ({ rhymes }) => {
   return {

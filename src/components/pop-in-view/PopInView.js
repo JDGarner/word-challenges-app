@@ -22,7 +22,9 @@ const PopInView = props => {
   }, [scaleValue]);
 
   return (
-    <Animated.View style={{ transform: [{ scale: scaleValue }] }}>{props.children}</Animated.View>
+    <Animated.View pointerEvents="none" style={{ transform: [{ scale: scaleValue }] }}>
+      {props.children}
+    </Animated.View>
   );
 };
 

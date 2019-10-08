@@ -21,8 +21,6 @@ const RhymeGameMode = ({ gameState }) => {
         return <ConnectedRhymeGame />;
       case GAME_STATES.POSTGAME:
         return <ConnectedRhymePostGame />;
-      case GAME_STATES.FINISHED:
-        return null;
     }
 
     return null;

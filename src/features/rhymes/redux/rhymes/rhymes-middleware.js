@@ -11,18 +11,20 @@ import {
   FETCH_RHYMES_RETRY,
   fetchRhymes,
 } from "./rhymes-actions";
-import { RHYMES_LOCAL_BUFFER, RETRY_TIMEOUT } from "../rhymes-constants";
-import { ERROR_CODES } from "../../../components/error/ErrorScreen";
+import { RHYMES_LOCAL_BUFFER, RETRY_TIMEOUT } from "../../rhymes-constants";
+import { ERROR_CODES } from "../../../../components/error/ErrorScreen";
+import enhancedFetch from "../../../../fetch-util";
+import { API_URL } from "../../../../Config";
 
 async function fetchData(onError = () => {}) {
   return await NetInfo.fetch().then(async state => {
-    if (!state.isConnected) {
-      onError(ERROR_CODES.CONNECTION);
-      return null;
-    }
+    // if (!state.isConnected) {
+    //   onError(ERROR_CODES.CONNECTION);
+    //   return null;
+    // }
 
     try {
-      const response = await fetch("https://word-challenges-api.jdgarner.now.sh/random-rhymes");
+      const response = await enhancedFetch(API_URL, "random-rhymes");
 
       if (response.status === 200) {
         return response;

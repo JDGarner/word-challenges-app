@@ -8,7 +8,6 @@ const AnswerInput = styled(TextInput).attrs(props => ({
   color: ${props => props.theme.textColor};
   border-bottom-width: 1px;
   border-bottom-color: ${props => props.theme.textColor};
-  flex-shrink: 0;
   padding: 5px;
   margin-bottom: auto;
   min-width: 126px;

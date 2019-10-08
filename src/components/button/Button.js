@@ -1,8 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 import { TouchableHighlight } from "react-native";
 import { TextContainer } from "..";
 
-const Button = ({ children, style, onPress }) => {
+export const Button = ({ children, style, onPress }) => {
   return (
     <TouchableHighlight onPress={onPress}>
       <TextContainer style={style}>{children}</TextContainer>
@@ -10,4 +11,7 @@ const Button = ({ children, style, onPress }) => {
   );
 };
 
-export default Button;
+export const PaddedButton = styled(Button)`
+  padding-vertical: 6;
+  padding-horizontal: 12;
+`;

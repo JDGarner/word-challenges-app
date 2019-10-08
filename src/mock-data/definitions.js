@@ -1,0 +1,155 @@
+const definitions = [
+  {
+    _id: "5d99a788027a521eb8db0a89",
+    word: "vilify",
+    definition: "Spread negative information about",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0b1b",
+    word: "gratuitous",
+    definition: "Uncalled for; lacking good reason; unwarranted",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db09d7",
+    word: "duress",
+    definition: "Compulsory force or threat",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0b00",
+    word: "limn",
+    definition: "Make a portrait of",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0a42",
+    word: "partisan",
+    definition: "A fervent and even militant proponent of something",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db09ba",
+    word: "contusion",
+    definition: "An injury in which the skin is not broken",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0b1e",
+    word: "incisive",
+    definition: "Clear and sharp in analysis or expression",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0995",
+    word: "aspersion",
+    definition: "A disparaging remark",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0b16",
+    word: "fabricate",
+    definition: "To make up, invent",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db09d3",
+    word: "divisive",
+    definition: "Causing or characterized by disagreement or disunity",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0af8",
+    word: "susurration",
+    definition: "The indistinct sound of people whispering",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db09d2",
+    word: "disrepute",
+    definition: "The state of being held in low esteem",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0af2",
+    word: "austere",
+    definition: "Of a stern or strict bearing or demeanor",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db09a7",
+    word: "circumlocution",
+    definition: "An indirect way of expressing something",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0972",
+    word: "abnegation",
+    definition: "The denial and rejection of a doctrine or belief",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0a71",
+    word: "solicitous",
+    definition: "Full of anxiety and concern",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0b13",
+    word: "enmity",
+    definition: "Ill will; hatred; hostility",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0a7b",
+    word: "toady",
+    definition: "A person who tries to please someone to gain an advantage",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0a13",
+    word: "injunction",
+    definition: "A judicial remedy to prohibit a party from doing something",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0a03",
+    word: "gratuitous",
+    definition: "Unnecessary and unwarranted",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0ab3",
+    word: "incendiary",
+    definition:
+      "Designed to set something on fire, tending to create public disturbances or violence",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0a4b",
+    word: "philanthropic",
+    definition: "Of or relating to charitable giving",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db09e5",
+    word: "engender",
+    definition: "Call forth",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0976",
+    word: "accede",
+    definition: "Yield to another's wish or opinion",
+    difficulty: "hard",
+  },
+  {
+    _id: "5d99a788027a521eb8db0ac2",
+    word: "gauche",
+    definition: "Lacking social polish",
+    difficulty: "hard",
+  },
+];
+
+export default definitions;

@@ -1,26 +1,25 @@
 import React, { useEffect, Fragment } from "react";
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import styled from "styled-components";
 
-import { SmallText, CenteredContainer, TextContainer, Countdown } from "../../../components";
+import { SmallText, TextContainer, Countdown } from "../../../components";
 import AnswerText from "../AnswerText";
 import PopInView from "../../../components/pop-in-view/PopInView";
 import GameHeader from "../GameHeader";
 
-// const GameContainer = styled(View)`
-//   flex: 1;
-//   /* justify-content: space-around; */
-//   /* align-items: center; */
-// `;
-
-const CorrectAnswersGrid = styled(CenteredContainer)`
-  height: 42%;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
+const CorrectAnswersGrid = styled(View)`
+  height: 40%;
   width: 100%;
+  margin-bottom: 20px;
 `;
+
+const answerGridStyle = {
+  flexDirection: "row",
+  flexWrap: "wrap",
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
+  width: "100%",
+};
 
 const CorrectAnswer = styled(SmallText)`
   text-align: center;
@@ -66,17 +65,19 @@ const RhymeGame = ({
       <GameHeader word={currentWord} />
 
       <CorrectAnswersGrid>
-        {correctAnswers.map(answer => {
-          return (
-            <GridItem key={answer}>
-              <PopInView>
-                <CorrectAnswerContainer>
-                  <CorrectAnswer>{answer}</CorrectAnswer>
-                </CorrectAnswerContainer>
-              </PopInView>
-            </GridItem>
-          );
-        })}
+        <ScrollView contentContainerStyle={answerGridStyle}>
+          {correctAnswers.map(answer => {
+            return (
+              <GridItem key={answer}>
+                <PopInView>
+                  <CorrectAnswerContainer>
+                    <CorrectAnswer>{answer}</CorrectAnswer>
+                  </CorrectAnswerContainer>
+                </PopInView>
+              </GridItem>
+            );
+          })}
+        </ScrollView>
       </CorrectAnswersGrid>
 
       <AnswerText currentRhymes={currentRhymes} onSubmitAnswer={onSubmitAnswer} />

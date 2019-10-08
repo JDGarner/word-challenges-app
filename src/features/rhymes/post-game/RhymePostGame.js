@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 
-import { MediumLargeText, LargeText, Button } from "../../../components";
+import { MediumLargeText, LargeText, Button, PaddedButton } from "../../../components";
 
 const getPraiseForScore = (score, percentage) => {
   if (percentage > 95) return "Wicked Sick!";
@@ -101,9 +101,9 @@ const RhymePostGame = ({ score, totalRhymes, word, onPressStartNewGame }) => {
       <PostGameText textAlign="center">{scoreText}</PostGameText>
       <PercentageText>{percentageText}</PercentageText>
       <PlayAgain>
-        <Button style={{ paddingVertical: 6, paddingHorizontal: 12 }} onPress={onPressStartNewGame}>
+        <PaddedButton onPress={onPressStartNewGame}>
           <LargeText>Play Again</LargeText>
-        </Button>
+        </PaddedButton>
       </PlayAgain>
     </PostGameContainer>
   );

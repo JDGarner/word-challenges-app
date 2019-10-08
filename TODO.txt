@@ -1,38 +1,45 @@
-- make answer grid scrollable and scroll to bottom on new answer
-
-Animation To Do:
-- post game animation text
-- add shimmer animation - correct answers and new given word
-- add green tick/red cross animation
-- animate duplicate answer (shimmer?)
-
 Add Main Menu:
-- Rhymes, Synonyms, Definitions (coming soon)
+- Rhymes, Synonyms, Definitions
 
-Styling To Do:
-- ellipses for long text?
-- sort out spacing for different device sizes, make gap at top %
-- countdown on iOS/android position
+Definitions To Do:
+Get selection of easy, medium, hard words
+1 Game - 10 words, each one with 20 seconds timer?
+With 15 seconds down show Begins with X? 
+With 10 seconds down show number of letters?
+Skip button
 
-- add background animated spheres?
+Rhymes to do:
+  Animation To Do:
+  - post game animation text
+  - add shimmer animation - correct answers and new given word
+  - add green tick/red cross animation
+  - animate duplicate answer (shimmer?)
 
+  Bugs To Fix:
+  - cant scroll after click on answer inside grid
 
-- If word is correct - it goes green and flies up
-- if wrong it goes red and bounces to the left or right
-- add timer, after timer runs out display new word
+  Styling To Do:
+  - ellipses for long text?
+  - sort out spacing for different device sizes, make gap at top %
+  - countdown on iOS/android position
+  - add background animated spheres?
+  - font?
 
-- Add sound effects?
-- Timer in top left/right, X in top left/right
-- Will need some main menu with mute also?
+- Add sound effects? mute?
+- X in top left/right
 
 - need a way to track which users got which words, 
   or at least add a counter for number of users that got a particular word
 
-- Add Synonym mode
+
+Synonym mode:
+
 
 Defintions Mode:
-- Get first definition from https://www.wordsapi.com/ or datamuse
-- User has to type word in
+- User has to type word in for given definition
+Easy - easier words
+Medium - harder words with clues
+Hard - harder words no clues
 
 MVP:
 - Rhyme mode
