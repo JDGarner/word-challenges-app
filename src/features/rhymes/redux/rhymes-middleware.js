@@ -10,9 +10,9 @@ import {
   FETCH_RHYMES_RETRY,
   fetchRhymes,
 } from "./rhymes-actions";
-import { RHYMES_LOCAL_BUFFER, RETRY_TIMEOUT } from "../rhymes-constants";
+import { RHYMES_LOCAL_BUFFER } from "../rhymes-constants";
 import fetchFromApi from "../../../fetch-util";
-import { ENDPOINTS } from "../../../Config";
+import { ENDPOINTS, RETRY_TIMEOUT } from "../../../Config";
 
 let gameCountdownInterval = null;
 
@@ -40,15 +40,15 @@ export default store => next => action => {
       }, 1000);
       break;
 
+    case ON_GAME_END:
+      clearInterval(gameCountdownInterval);
+      break;
+
     case ON_PRESS_START_NEW_GAME:
       const { currentRhymeIndex, allRhymes } = getState().rhymes;
       if (currentRhymeIndex > allRhymes.length - RHYMES_LOCAL_BUFFER) {
         fetchFromApi(ENDPOINTS.RHYMES, data => dispatch(fetchAdditionalRhymesSuccess(data)));
       }
-      break;
-
-    case ON_GAME_END:
-      clearInterval(gameCountdownInterval);
       break;
 
     default:

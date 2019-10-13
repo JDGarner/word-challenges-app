@@ -1,12 +1,32 @@
 Add Main Menu:
 - Rhymes, Synonyms, Definitions
 
-Definitions To Do:
-Get selection of easy, medium, hard words
-1 Game - 10 words, each one with 20 seconds timer?
+Definitions Game:
+1 Game - 5 words, each one with 20 seconds timer?
 With 15 seconds down show Begins with X? 
 With 10 seconds down show number of letters?
 Skip button
+Easy mode - scrambled letters, easy words
+Medium mode - scrambled letters, hard words
+Hard mode - type letters, hard words
+(Add clues/hints if it seems too hard still)
+
+Definitions To Do:
+- add timer logic
+- add get next word logic
+- add countdown animation, make countdown logic generic?
+- add end game/post game logic
+- add new game logic
+- add fetching more definitions at end of game logic
+- add skip button
+
+- add extra difficulties
+- add clues
+- use scrambled up letters? in easy mode?
+
+- Make modes different colours/gradients
+- Remove border from given rhyme/definition
+
 
 Rhymes to do:
   Animation To Do:

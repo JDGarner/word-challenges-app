@@ -29,7 +29,7 @@ const enhancedFetch = async (url, endpoint) => {
   return fetch(`${url}/${endpoint}`);
 };
 
-async function fetchData(endpoint, onError = () => {}) {
+const fetchData = async (endpoint, onError = () => {}) => {
   return await NetInfo.fetch().then(async state => {
     if (!state.isConnected && API_URL !== MOCK_URL) {
       onError(ERROR_CODES.CONNECTION);
@@ -51,7 +51,7 @@ async function fetchData(endpoint, onError = () => {}) {
       return null;
     }
   });
-}
+};
 
 const fetchFromApi = async (endpoint, onSuccess, onError = () => {}) => {
   const response = await fetchData(endpoint, onError);

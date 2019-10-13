@@ -3,7 +3,7 @@ import { View, ScrollView } from "react-native";
 import styled from "styled-components";
 
 import { SmallText, TextContainer, Countdown } from "../../../components";
-import AnswerText from "../AnswerText";
+import AnswerText from "../../../components/answer-text/AnswerText";
 import PopInView from "../../../components/pop-in-view/PopInView";
 import GameHeader from "../GameHeader";
 
@@ -80,7 +80,7 @@ const RhymeGame = ({
         </ScrollView>
       </CorrectAnswersGrid>
 
-      <AnswerText currentRhymes={currentRhymes} onSubmitAnswer={onSubmitAnswer} />
+      <AnswerText onSubmitAnswer={onSubmitAnswer} placeholder="Enter Rhyme" />
     </Fragment>
   );
 };

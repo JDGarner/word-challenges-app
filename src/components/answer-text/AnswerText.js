@@ -16,9 +16,9 @@ const AnswerInput = styled(TextInput).attrs(props => ({
   font-weight: ${props => props.theme.medium.fontWeight};
 `;
 
-const AnswerText = ({ onSubmitAnswer }) => {
+const AnswerText = ({ onSubmitAnswer, placeholder }) => {
   const [answerText, setAnswerText] = useState("");
-  const [answerTextPlaceholder, setAnswerTextPlaceholder] = useState("Enter Rhyme");
+  const [answerTextPlaceholder, setAnswerTextPlaceholder] = useState(placeholder);
 
   const onSubmitEditing = () => {
     onSubmitAnswer(answerText);

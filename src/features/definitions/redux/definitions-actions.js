@@ -1,8 +1,13 @@
-export const FETCH_DEFINITIONS = "FETCH_DEFINITIONS";
-export const FETCH_DEFINITIONS_RETRY = "FETCH_DEFINITIONS_RETRY";
-export const FETCH_DEFINITIONS_SUCCESS = "FETCH_DEFINITIONS_SUCCESS";
-export const FETCH_DEFINITIONS_ERROR = "FETCH_DEFINITIONS_ERROR";
-export const FETCH_ADDITIONAL_DEFINITIONS_SUCCESS = "FETCH_ADDITIONAL_DEFINITIONS_SUCCESS";
+const NAMESPACE = "DEFINITIONS";
+
+export const FETCH_DEFINITIONS = `${NAMESPACE}/FETCH_DEFINITIONS`;
+export const FETCH_DEFINITIONS_RETRY = `${NAMESPACE}/FETCH_DEFINITIONS_RETRY`;
+export const FETCH_DEFINITIONS_SUCCESS = `${NAMESPACE}/FETCH_DEFINITIONS_SUCCESS`;
+export const FETCH_DEFINITIONS_ERROR = `${NAMESPACE}/FETCH_DEFINITIONS_ERROR`;
+export const FETCH_ADDITIONAL_DEFINITIONS_SUCCESS = `${NAMESPACE}/FETCH_ADDITIONAL_DEFINITIONS_SUCCESS`;
+export const ON_BEGIN_GAME = `${NAMESPACE}/ON_BEGIN_GAME`;
+export const ON_GAME_END = `${NAMESPACE}/ON_GAME_END`;
+export const GAME_COUNTDOWN_TICK = `${NAMESPACE}/GAME_COUNTDOWN_TICK`;
 
 export const fetchDefinitions = () => ({
   type: FETCH_DEFINITIONS,
@@ -25,4 +30,16 @@ export const fetchDefinitionsError = errorCode => ({
 export const fetchAdditionalDefinitionsSuccess = definitions => ({
   type: FETCH_ADDITIONAL_DEFINITIONS_SUCCESS,
   definitions,
+});
+
+export const onBeginGame = () => ({
+  type: ON_BEGIN_GAME,
+});
+
+export const onGameEnd = () => ({
+  type: ON_GAME_END,
+});
+
+export const gameCountdownTick = () => ({
+  type: GAME_COUNTDOWN_TICK,
 });
