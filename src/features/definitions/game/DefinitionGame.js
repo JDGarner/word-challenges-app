@@ -3,7 +3,14 @@ import GameHeader from "../GameHeader";
 import AnswerText from "../../../components/answer-text/AnswerText";
 import { Countdown } from "../../../components";
 
-const DefinitionGame = ({ currentDefinition, gameCountdown, onBeginGame, onGameEnd }) => {
+const DefinitionGame = ({
+  definition,
+  scrambledLetters,
+  gameCountdown,
+  onBeginGame,
+  onGameEnd,
+  onSubmitAnswer,
+}) => {
   useEffect(() => {
     onBeginGame();
 
@@ -15,9 +22,9 @@ const DefinitionGame = ({ currentDefinition, gameCountdown, onBeginGame, onGameE
   return (
     <Fragment>
       <Countdown gameCountdown={gameCountdown} />
-      <GameHeader definition={currentDefinition} />
+      <GameHeader definition={definition} />
 
-      <AnswerText placeholder="Enter Word" onSubmitAnswer={() => {}} />
+      <AnswerText placeholder="Enter Word" onSubmitAnswer={onSubmitAnswer} />
     </Fragment>
   );
 };

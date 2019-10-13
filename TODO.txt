@@ -1,5 +1,11 @@
-Add Main Menu:
-- Rhymes, Synonyms, Definitions
+General To Do:
+- Improve main menu styling
+- Decide on next game mode, Synonyms? (pick correct from random list of words)
+- Change countdown to pie timer?
+- add some animation on all screens? (faded spheres?)
+
+Potential Refactors:
+- make countdown logic generic?
 
 Definitions Game:
 1 Game - 5 words, each one with 20 seconds timer?
@@ -8,17 +14,16 @@ With 10 seconds down show number of letters?
 Skip button
 Easy mode - scrambled letters, easy words
 Medium mode - scrambled letters, hard words
-Hard mode - type letters, hard words
+Hard mode - type letters, hard words (leave for now?)
 (Add clues/hints if it seems too hard still)
 
 Definitions To Do:
-- add timer logic
-- add get next word logic
-- add countdown animation, make countdown logic generic?
-- add end game/post game logic
-- add new game logic
-- add fetching more definitions at end of game logic
+- add scrambled letters feature
 - add skip button
+- add score to post game screen
+- add pre-game countdown? or remove pregame state
+- increase buffer, increase amount of definitions sent
+- add exit to main menu
 
 - add extra difficulties
 - add clues
@@ -80,3 +85,21 @@ https://www.wordsapi.com/ https://www.datamuse.com/api/
 Maybe:
 - Add you missed suggestions
 - add a way for user to contest/suggest rhyme
+
+
+
+
+
+Potential Tests to write:
+- Rhymes:
+  - When current rhyme index reaches buffer, additional rhymes are loaded
+  - When there is no next rhyme, connection error shows with retry
+  - After retry success, new game is launched, in pregame state
+  - Initial request succeeds > Game is playing > next request fails > retry succeeds > new game starts
+- Definitions:
+  - When current definition index reaches buffer, additional definitions are loaded
+  - When there is no next definition, connection error shows with retry
+  - After retry success, new game is launched, in playing state
+  - Initial request succeeds > Game is playing > next request succeeds > new game starts with new definitions
+  - Initial request succeeds > Game is playing > next request fails > retry succeeds > new game starts
+  - Initial request fails > retry fails > retry succeeds > game starts

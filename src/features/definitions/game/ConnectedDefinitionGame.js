@@ -3,10 +3,10 @@ import DefinitionGame from "./DefinitionGame";
 import { onBeginGame, onGameEnd } from "../redux/definitions-actions";
 
 const mapStateToProps = ({ definitions }) => {
-  const { currentDefinitions, currentDefinitionIndex, gameCountdown } = definitions;
-  const { definition: currentDefinition } = currentDefinitions[currentDefinitionIndex];
+  const { currentDefinition, scrambledLetters, gameCountdown } = definitions;
+  const { definition } = currentDefinition;
 
-  return { currentDefinition, gameCountdown };
+  return { definition, scrambledLetters, gameCountdown };
 };
 
 const mapDispatchToProps = {
