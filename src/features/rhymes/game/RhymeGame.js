@@ -37,7 +37,6 @@ const GridItem = styled(View)`
 
 const RhymeGame = ({
   currentWord,
-  currentRhymes,
   correctAnswers,
   gameCountdown,
   animatingCountdown,

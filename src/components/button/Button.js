@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { TouchableHighlight } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { TextContainer } from "..";
 
-export const Button = ({ children, style, onPress }) => {
+export const BorderedButton = ({ children, style, onPress }) => {
   return (
-    <TouchableHighlight onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
       <TextContainer style={style}>{children}</TextContainer>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 
-export const PaddedButton = styled(Button)`
-  padding-vertical: 6;
-  padding-horizontal: 12;
+export const PaddedButton = styled(BorderedButton)`
+  padding-vertical: ${props => props.paddingVertical || 6};
+  padding-horizontal: ${props => props.paddingHorizontal || 12};
 `;

@@ -14,6 +14,7 @@ import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 const initialState = {
   allDefinitions: [],
   scrambledLetters: [],
+  currentDefinition: {},
   currentDefinitionIndex: 0,
   roundIndex: 1,
   loaded: false,

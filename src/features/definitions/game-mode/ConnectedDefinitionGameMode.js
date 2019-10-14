@@ -6,9 +6,10 @@ import DefintionGameMode from "./DefinitionGameMode";
 import { ErrorScreen, LoadingScreen } from "../../../components";
 
 const mapStateToProps = ({ definitions }) => {
-  const { gameState, loaded, connectionError, errorCode } = definitions;
+  const { gameState, loaded, connectionError, errorCode, currentDefinition } = definitions;
+  const { word: currentWord } = currentDefinition;
 
-  return { gameState, loaded, connectionError, errorCode };
+  return { gameState, currentWord, loaded, connectionError, errorCode };
 };
 
 const mapDispatchToProps = {
@@ -27,7 +28,7 @@ const DefintionGameModeLoader = props => {
       return <LoadingScreen />;
     }
 
-    return <DefintionGameMode gameState={props.gameState} />;
+    return <DefintionGameMode currentWord={props.currentWord} gameState={props.gameState} />;
   };
 
   return <AppBackground>{getContent()}</AppBackground>;

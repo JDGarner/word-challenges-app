@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { View } from "react-native";
-import { LargeText, Button, MediumText } from "..";
+import { LargeText, BorderedButton, MediumText } from "..";
 
 export const ERROR_CODES = {
   CONNECTION: "CONNECTION",
@@ -27,7 +27,7 @@ const ErrorText = styled(MediumText)`
   margin-bottom: 30px;
 `;
 
-const ErrorButton = styled(Button)`
+const ErrorButton = styled(BorderedButton)`
   margin-bottom: 20px;
 `;
 

@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 
-import { MediumLargeText, LargeText, Button, PaddedButton } from "../../../components";
+import { MediumLargeText, LargeText, PaddedButton } from "../../../components";
 
 const getPraiseForScore = (score, percentage) => {
   if (percentage > 95) return "Wicked Sick!";

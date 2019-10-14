@@ -2,11 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { View } from "react-native";
 import { capitalize } from "lodash";
-import { LargeText, TextContainer } from "../../components";
+import { MediumLargeText, TextContainer } from "../../components";
 
 const PreGameHeader = styled(View)`
-  height: 30%;
-  margin-bottom: 40px;
+  height: 15%;
   justify-content: flex-end;
   align-items: center;
 `;
@@ -20,7 +19,7 @@ const PreGameHeader = styled(View)`
 const GameHeader = ({ definition }) => {
   return (
     <PreGameHeader>
-      <LargeText>{capitalize(definition)}</LargeText>
+      <MediumLargeText textAlign="center">{capitalize(definition)}</MediumLargeText>
     </PreGameHeader>
   );
 };
