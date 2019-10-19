@@ -23,3 +23,5 @@ export default function AppProvider() {
     </Provider>
   );
 }
+
+console.disableYellowBox = true;

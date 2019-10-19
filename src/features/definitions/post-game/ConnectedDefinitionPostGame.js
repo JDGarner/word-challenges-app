@@ -3,7 +3,8 @@ import DefinitionPostGame from "./DefinitionPostGame";
 import { onPressStartNewGame } from "../redux/definitions-actions";
 
 const mapStateToProps = ({ definitions }) => {
-  return {};
+  const { currentDefinitions } = definitions;
+  return { currentDefinitions };
 };
 
 const mapDispatchToProps = {

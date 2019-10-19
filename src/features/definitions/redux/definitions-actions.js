@@ -8,6 +8,7 @@ export const FETCH_ADDITIONAL_DEFINITIONS_SUCCESS = `${NAMESPACE}/FETCH_ADDITION
 export const ON_BEGIN_GAME = `${NAMESPACE}/ON_BEGIN_GAME`;
 export const ON_GAME_END = `${NAMESPACE}/ON_GAME_END`;
 export const GAME_COUNTDOWN_TICK = `${NAMESPACE}/GAME_COUNTDOWN_TICK`;
+export const ON_SUBMIT_ANSWER = `${NAMESPACE}/ON_SUBMIT_ANSWER`;
 export const ON_PRESS_START_NEW_GAME = `${NAMESPACE}/ON_PRESS_START_NEW_GAME`;
 
 export const fetchDefinitions = () => ({
@@ -43,6 +44,11 @@ export const onGameEnd = () => ({
 
 export const gameCountdownTick = () => ({
   type: GAME_COUNTDOWN_TICK,
+});
+
+export const onSubmitAnswer = answer => ({
+  type: ON_SUBMIT_ANSWER,
+  answer,
 });
 
 export const onPressStartNewGame = () => ({

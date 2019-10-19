@@ -4,6 +4,8 @@ General To Do:
 - Change countdown to pie timer?
 - add some animation on all screens? (faded spheres?)
 
+
+
 Potential Refactors:
 - make countdown logic generic?
 
@@ -12,22 +14,25 @@ Definitions Game:
 With 15 seconds down show Begins with X? 
 With 10 seconds down show number of letters?
 Skip button
-Easy mode - scrambled letters, easy words
-Medium mode - scrambled letters, hard words
-Hard mode - type letters, hard words (leave for now?)
+Easy words, Medium words, Hard words
 (Add clues/hints if it seems too hard still)
 
 Definitions To Do:
-- add scrambled letters feature
-- add skip button
+- Show green/red letters animation on submit answer, show progress chunk colour green/red
 - add score to post game screen
+- post game colour red/green answers for correct/incorrect
+- add skip button
+- add animation to letters on press and on appear/disappear
+- Less padding and smaller font for bigger words, don't let it wrap
 - add pre-game countdown? or remove pregame state
 - increase buffer, increase amount of definitions sent
 - add exit to main menu
+- add ability to reshuffle letters
+- progress bar along the bottom (chunks/5)
+- Write web scraper for Oxford/cambridge sites
 
 - add extra difficulties
-- add clues
-- use scrambled up letters? in easy mode?
+- add clues? (2 clues per round? - give first X letters?)
 
 - Make modes different colours/gradients
 - Remove border from given rhyme/definition
@@ -103,3 +108,9 @@ Potential Tests to write:
   - Initial request succeeds > Game is playing > next request succeeds > new game starts with new definitions
   - Initial request succeeds > Game is playing > next request fails > retry succeeds > new game starts
   - Initial request fails > retry fails > retry succeeds > game starts
+
+
+
+Name Ideas:
+Word Play Challenge
+Something like WordScapes/other word puns

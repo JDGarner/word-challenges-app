@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { cloneDeep } from "lodash";
 import styled from "styled-components";
 import { View, TouchableOpacity } from "react-native";
 import GameHeader from "../GameHeader";
@@ -46,35 +47,88 @@ const AnswerButton = styled(TouchableOpacity)`
   width: ${ANSWER_SIZE};
 `;
 
+/**
+State Structure Example:
+
+const scrambledLetters = [
+  {
+    id: "1",
+    letter: "H"
+    showing: false,
+  }
+]
+
+const answerLetters = [
+  {
+    id: "1",
+    letter: "H"
+  },
+  {
+    id: "2-placeholder",
+    letter: ""
+  },
+]
+
+ */
+
 const DefinitionGame = ({
   definition,
-  scrambledLetters,
+  letters,
   gameCountdown,
   onBeginGame,
   onGameEnd,
+  onSubmitAnswer,
 }) => {
-  const [answerLetters, setAnswerLetters] = useState(scrambledLetters.map(l => ""));
-  const [hiddenLetters, setHiddenLetters] = useState(scrambledLetters.map(l => false));
+  const [scrambledLetters, setScrambledLetters] = useState(
+    letters.map((l, i) => ({
+      id: i,
+      letter: l,
+      showing: true,
+    })),
+  );
 
-  const addAnswerLetter = (letter, index) => {
-    const firstEmptyIndex = answerLetters.findIndex(l => l === "");
-    const newLetters = [...answerLetters];
-    newLetters[firstEmptyIndex] = letter;
-    setAnswerLetters(newLetters);
+  const [answerLetters, setAnswerLetters] = useState(
+    letters.map((l, i) => ({
+      id: `${i}-placeholder`,
+      letter: "",
+    })),
+  );
 
-    const newHiddenLetters = [...hiddenLetters];
-    newHiddenLetters[index] = true;
-    setHiddenLetters(newHiddenLetters);
+  const addAnswerLetter = (scrambled, index) => {
+    if (scrambled.showing) {
+      // Add letter to first empty answer space
+      const firstEmptyIndex = answerLetters.findIndex(a => a.letter === "");
+      const clonedAnswers = cloneDeep(answerLetters);
+      clonedAnswers[firstEmptyIndex] = {
+        id: scrambled.id,
+        letter: scrambled.letter,
+      };
+      setAnswerLetters(clonedAnswers);
+
+      // Hide letter from scrambled letter choices
+      const clonedScrambled = cloneDeep(scrambledLetters);
+      clonedScrambled[index].showing = false;
+      setScrambledLetters(clonedScrambled);
+
+      // If all letter choices are hidden, submit answer
+      if (clonedScrambled.every(s => !s.showing)) {
+        onSubmitAnswer(clonedAnswers.map(a => a.letter).join(""));
+      }
+    }
   };
 
-  const removeAnswerLetter = index => {
-    const newLetters = [...answerLetters];
-    newLetters[index] = "";
-    setAnswerLetters(newLetters);
+  const removeAnswerLetter = (answer, index) => {
+    if (answer.letter !== "") {
+      // Set scrambled letter with matching id of removed answer letter to show
+      const matchingIndex = scrambledLetters.findIndex(s => s.id === answer.id);
+      const clonedScrambled = cloneDeep(scrambledLetters);
+      clonedScrambled[matchingIndex].showing = true;
+      setScrambledLetters(clonedScrambled);
 
-    const newHiddenLetters = [...hiddenLetters];
-    newHiddenLetters[index] = false;
-    setHiddenLetters(newHiddenLetters);
+      const clonedAnswers = cloneDeep(answerLetters);
+      clonedAnswers[index] = { id: `${index}-placeholder`, letter: "" };
+      setAnswerLetters(clonedAnswers);
+    }
   };
 
   useEffect(() => {
@@ -91,24 +145,24 @@ const DefinitionGame = ({
       <GameHeader definition={definition} />
 
       <ScrambledLettersContainer>
-        {scrambledLetters.map((letter, i) => {
-          if (hiddenLetters[i]) {
+        {scrambledLetters.map((scrambled, i) => {
+          if (scrambled.showing === false) {
             return <EmptyLetterPlaceHolder />;
           }
 
           return (
-            <LetterButton onPress={() => addAnswerLetter(letter, i)}>
-              <MediumText textAlign="center">{letter}</MediumText>
+            <LetterButton onPress={() => addAnswerLetter(scrambled, i)}>
+              <MediumText textAlign="center">{scrambled.letter}</MediumText>
             </LetterButton>
           );
         })}
       </ScrambledLettersContainer>
 
       <AnswersContainer>
-        {answerLetters.map((letter, i) => {
+        {answerLetters.map((answer, i) => {
           return (
-            <AnswerButton onPress={() => removeAnswerLetter(i)}>
-              <MediumText textAlign="center">{letter}</MediumText>
+            <AnswerButton onPress={() => removeAnswerLetter(answer, i)}>
+              <MediumText textAlign="center">{answer.letter}</MediumText>
             </AnswerButton>
           );
         })}
