@@ -8,6 +8,7 @@ import {
   ON_PRESS_START_NEW_GAME,
   ON_SUBMIT_ANSWER,
   ON_SKIP_CURRENT_WORD,
+  ON_SHUFFLE_CURRENT_WORD,
 } from "./definitions-actions";
 import { GAME_STATES, INITIAL_COUNTDOWN, WORDS_PER_ROUND } from "../definitions-constants";
 import { roundIsOver } from "../definitions-utils";
@@ -160,6 +161,11 @@ export default (state = initialState, action) => {
       }
 
       return { ...getStateForGameEnd(state) };
+    }
+
+    case ON_SHUFFLE_CURRENT_WORD: {
+      const scrambledLetters = shuffle(state.currentDefinition.word.toUpperCase().split(""));
+      return { ...state, scrambledLetters };
     }
 
     default:

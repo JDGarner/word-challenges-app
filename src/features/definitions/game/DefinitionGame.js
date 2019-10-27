@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { View, TouchableOpacity } from "react-native";
 import GameHeader from "../GameHeader";
 import ProgressBar from "./ProgressBar";
-import { Countdown, BorderedButton, MediumText } from "../../../components";
+import { Countdown, BorderedButton, PaddedButton, MediumText } from "../../../components";
 
 const LETTER_SIZE = 46;
 const ANSWER_SIZE = 28;
@@ -22,6 +22,13 @@ const AnswersContainer = styled(View)`
   width: 100%;
   justify-content: center;
   margin-bottom: 10%;
+`;
+
+const FooterContainer = styled(View)``;
+
+const ButtonsContainer = styled(View)`
+  align-self: center;
+  margin-bottom: 10;
 `;
 
 const EmptyLetterPlaceHolder = styled(View)`
@@ -72,6 +79,21 @@ const answerLetters = [
 
  */
 
+const getScrambledLetters = letters => {
+  return letters.map((l, i) => ({
+    id: i,
+    letter: l,
+    showing: true,
+  }));
+};
+
+const getAnswerLetters = letters => {
+  return letters.map((l, i) => ({
+    id: `${i}-placeholder`,
+    letter: "",
+  }));
+};
+
 const DefinitionGame = ({
   definition,
   currentDefinitions,
@@ -82,21 +104,24 @@ const DefinitionGame = ({
   onGameEnd,
   onSubmitAnswer,
   onSkipCurrentWord,
+  onShuffleCurrentWord,
 }) => {
-  const [scrambledLetters, setScrambledLetters] = useState(
-    letters.map((l, i) => ({
-      id: i,
-      letter: l,
-      showing: true,
-    })),
-  );
+  const [scrambledLetters, setScrambledLetters] = useState(getScrambledLetters(letters));
+  const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters));
 
-  const [answerLetters, setAnswerLetters] = useState(
-    letters.map((l, i) => ({
-      id: `${i}-placeholder`,
-      letter: "",
-    })),
-  );
+  useEffect(() => {
+    onBeginGame();
+
+    return () => {
+      onGameEnd();
+    };
+  }, [onBeginGame, onGameEnd]);
+
+  useEffect(() => {
+    // Letters have been re-shuffled, reset to initial state
+    setScrambledLetters(getScrambledLetters(letters));
+    setAnswerLetters(getAnswerLetters(letters));
+  }, [letters]);
 
   const addAnswerLetter = (scrambled, index) => {
     if (scrambled.showing) {
@@ -135,14 +160,6 @@ const DefinitionGame = ({
     }
   };
 
-  useEffect(() => {
-    onBeginGame();
-
-    return () => {
-      onGameEnd();
-    };
-  }, []);
-
   return (
     <Fragment>
       <Countdown gameCountdown={gameCountdown} />
@@ -172,13 +189,20 @@ const DefinitionGame = ({
         })}
       </AnswersContainer>
 
-      <BorderedButton onPress={onSkipCurrentWord}>
-        <MediumText textAlign="center">Skip</MediumText>
-      </BorderedButton>
-      <ProgressBar
-        definitions={currentDefinitions}
-        currentDefinitionIndex={currentDefinitionIndex}
-      />
+      <FooterContainer>
+        <ButtonsContainer>
+          <PaddedButton onPress={onSkipCurrentWord} paddingVertical={3}>
+            <MediumText textAlign="center">Skip</MediumText>
+          </PaddedButton>
+          <PaddedButton onPress={onShuffleCurrentWord} paddingVertical={3}>
+            <MediumText textAlign="center">Shuffle</MediumText>
+          </PaddedButton>
+        </ButtonsContainer>
+        <ProgressBar
+          definitions={currentDefinitions}
+          currentDefinitionIndex={currentDefinitionIndex}
+        />
+      </FooterContainer>
     </Fragment>
   );
 };

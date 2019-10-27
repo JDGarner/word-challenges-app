@@ -8,17 +8,17 @@ Potential Refactors:
 - make countdown logic generic?
 
 Definitions To Do:
-- show progress chunk colour green/red
+In Game:
+- add shuffle animation
+- change styling of skip/shuffle to be symbols (next to letters?)
 - show green/red letters animation on submit answer
 - add score to post game screen
 - post game colour red/green answers for correct/incorrect
-- add skip button
 - add animation to letters on press and on appear/disappear
 - Less padding and smaller font for bigger words, don't let it wrap
 - add pre-game countdown? or remove pregame state
 - increase buffer, increase amount of definitions sent
 - add exit to main menu
-- add ability to reshuffle letters
 - progress bar along the bottom (chunks/5)
 - Write web scraper for Oxford/cambridge sites
 

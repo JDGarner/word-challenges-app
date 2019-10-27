@@ -36,7 +36,6 @@ const getProgressChunkColor = (isCorrect, defIndex, currentDefinitionIndex) => {
 };
 
 const ProgressBar = ({ definitions, currentDefinitionIndex }) => {
-  console.log(">>> definitions: ", definitions);
   return (
     <ProgressBarContainer>
       {definitions.map((def, i) => (
