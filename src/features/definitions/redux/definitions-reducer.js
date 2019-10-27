@@ -7,6 +7,7 @@ import {
   FETCH_ADDITIONAL_DEFINITIONS_SUCCESS,
   ON_PRESS_START_NEW_GAME,
   ON_SUBMIT_ANSWER,
+  ON_SKIP_CURRENT_WORD,
 } from "./definitions-actions";
 import { GAME_STATES, INITIAL_COUNTDOWN, WORDS_PER_ROUND } from "../definitions-constants";
 import { roundIsOver } from "../definitions-utils";
@@ -14,6 +15,7 @@ import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 
 const initialState = {
   allDefinitions: [],
+  allDefinitionsIndex: 0,
   scrambledLetters: [],
   currentDefinitions: [],
   currentDefinition: {},
@@ -32,14 +34,15 @@ const getStateForRoundEnd = state => {
 };
 
 const getStateForGameEnd = state => {
-  let currentDefinitionIndex = state.currentDefinitionIndex + 1;
-  const currentDefinition = state.allDefinitions[currentDefinitionIndex];
+  let allDefinitionsIndex = state.allDefinitionsIndex + 1;
+  const currentDefinition = state.allDefinitions[allDefinitionsIndex];
   const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
 
   return {
     ...state,
     currentDefinition,
-    currentDefinitionIndex,
+    currentDefinitionIndex: state.currentDefinitionIndex + 1,
+    allDefinitionsIndex,
     scrambledLetters,
     gameCountdown: INITIAL_COUNTDOWN,
   };
@@ -59,6 +62,7 @@ export default (state = initialState, action) => {
         ...state,
         allDefinitions,
         currentDefinition,
+        currentDefinitionIndex: 0,
         currentDefinitions,
         scrambledLetters,
         gameState: GAME_STATES.PLAYING,
@@ -79,12 +83,12 @@ export default (state = initialState, action) => {
       // New Definitions have arrived, get rid of the current ones before current index
       // Add the new ones on the end
       const allDefinitions = cloneDeep(state.allDefinitions);
-      const remainingDefinitions = allDefinitions.splice(state.currentDefinitionIndex);
+      const remainingDefinitions = allDefinitions.splice(state.allDefinitionsIndex);
 
       return {
         ...state,
         allDefinitions: [...remainingDefinitions, ...action.definitions],
-        currentDefinitionIndex: 0,
+        allDefinitionsIndex: 0,
         roundIndex: 1,
         connectionError: false,
       };
@@ -108,14 +112,14 @@ export default (state = initialState, action) => {
     }
 
     case ON_PRESS_START_NEW_GAME: {
-      const nextIndex = state.currentDefinitionIndex + 1;
+      const nextIndex = state.allDefinitionsIndex + 1;
       const nextDefinition = state.allDefinitions[nextIndex];
 
       // API call must have failed to fetch additional definitions, go to error state
       if (!nextDefinition) {
         return {
           ...state,
-          currentDefinitionIndex: 0,
+          allDefinitionsIndex: 0,
           gameCountdown: INITIAL_COUNTDOWN,
           errorCode: ERROR_CODES.GENERIC,
           connectionError: true,
@@ -129,9 +133,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         currentDefinition,
+        currentDefinitionIndex: 0,
         currentDefinitions,
         scrambledLetters,
-        currentDefinitionIndex: nextIndex,
+        allDefinitionsIndex: nextIndex,
         gameCountdown: INITIAL_COUNTDOWN,
         gameState: GAME_STATES.PLAYING,
       };
@@ -140,13 +145,21 @@ export default (state = initialState, action) => {
     case ON_SUBMIT_ANSWER: {
       const isCorrect = action.answer.toUpperCase() === state.currentDefinition.word.toUpperCase();
       const currentDefinitions = cloneDeep(state.currentDefinitions);
-      currentDefinitions[state.roundIndex].isCorrect = isCorrect;
+      currentDefinitions[state.currentDefinitionIndex].isCorrect = isCorrect;
 
       if (roundIsOver(state)) {
         return { ...getStateForRoundEnd(state), currentDefinitions };
       }
 
       return { ...getStateForGameEnd(state), currentDefinitions };
+    }
+
+    case ON_SKIP_CURRENT_WORD: {
+      if (roundIsOver(state)) {
+        return { ...getStateForRoundEnd(state) };
+      }
+
+      return { ...getStateForGameEnd(state) };
     }
 
     default:

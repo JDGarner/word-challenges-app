@@ -1,18 +1,36 @@
 import { connect } from "react-redux";
 import DefinitionGame from "./DefinitionGame";
-import { onBeginGame, onGameEnd, onSubmitAnswer } from "../redux/definitions-actions";
+import {
+  onBeginGame,
+  onGameEnd,
+  onSubmitAnswer,
+  onSkipCurrentWord,
+} from "../redux/definitions-actions";
 
 const mapStateToProps = ({ definitions }) => {
-  const { currentDefinition, scrambledLetters, gameCountdown } = definitions;
+  const {
+    currentDefinition,
+    currentDefinitions,
+    currentDefinitionIndex,
+    scrambledLetters,
+    gameCountdown,
+  } = definitions;
   const { definition } = currentDefinition;
 
-  return { definition, letters: scrambledLetters, gameCountdown };
+  return {
+    currentDefinitions,
+    definition,
+    currentDefinitionIndex,
+    letters: scrambledLetters,
+    gameCountdown,
+  };
 };
 
 const mapDispatchToProps = {
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
+  onSkipCurrentWord,
 };
 
 const ConnectedDefinitionGame = connect(

@@ -3,6 +3,7 @@ import { cloneDeep } from "lodash";
 import styled from "styled-components";
 import { View, TouchableOpacity } from "react-native";
 import GameHeader from "../GameHeader";
+import ProgressBar from "./ProgressBar";
 import { Countdown, BorderedButton, MediumText } from "../../../components";
 
 const LETTER_SIZE = 46;
@@ -20,7 +21,7 @@ const AnswersContainer = styled(View)`
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
-  margin-bottom: 30%;
+  margin-bottom: 10%;
 `;
 
 const EmptyLetterPlaceHolder = styled(View)`
@@ -73,11 +74,14 @@ const answerLetters = [
 
 const DefinitionGame = ({
   definition,
+  currentDefinitions,
+  currentDefinitionIndex,
   letters,
   gameCountdown,
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
+  onSkipCurrentWord,
 }) => {
   const [scrambledLetters, setScrambledLetters] = useState(
     letters.map((l, i) => ({
@@ -167,6 +171,14 @@ const DefinitionGame = ({
           );
         })}
       </AnswersContainer>
+
+      <BorderedButton onPress={onSkipCurrentWord}>
+        <MediumText textAlign="center">Skip</MediumText>
+      </BorderedButton>
+      <ProgressBar
+        definitions={currentDefinitions}
+        currentDefinitionIndex={currentDefinitionIndex}
+      />
     </Fragment>
   );
 };

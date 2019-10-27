@@ -4,21 +4,12 @@ General To Do:
 - Change countdown to pie timer?
 - add some animation on all screens? (faded spheres?)
 
-
-
 Potential Refactors:
 - make countdown logic generic?
 
-Definitions Game:
-1 Game - 5 words, each one with 20 seconds timer?
-With 15 seconds down show Begins with X? 
-With 10 seconds down show number of letters?
-Skip button
-Easy words, Medium words, Hard words
-(Add clues/hints if it seems too hard still)
-
 Definitions To Do:
-- Show green/red letters animation on submit answer, show progress chunk colour green/red
+- show progress chunk colour green/red
+- show green/red letters animation on submit answer
 - add score to post game screen
 - post game colour red/green answers for correct/incorrect
 - add skip button
@@ -36,6 +27,7 @@ Definitions To Do:
 
 - Make modes different colours/gradients
 - Remove border from given rhyme/definition
+- look into performance profiling (is everything being re-rendered when countdown ticks?)
 
 
 Rhymes to do:
@@ -86,6 +78,7 @@ Pro version with extra game modes? Or just ads?:
 Other Game Modes:
 - Words that are often used to describe...
 https://www.wordsapi.com/ https://www.datamuse.com/api/
+Greek letters mode, scientific symbols?, generic symbols?
 
 Maybe:
 - Add you missed suggestions
