@@ -11,9 +11,8 @@ Potential Refactors:
 
 Definitions To Do:
 In Game:
-- exit to main menu button (top left)
 - add shuffle animation
-- change styling of skip/shuffle to be symbols (next to letters?)
+- fix countdown on rhymes
 - show green/red letters animation on submit answer
 - add score to post game screen
 - post game colour red/green answers for correct/incorrect
@@ -24,6 +23,9 @@ In Game:
 - add exit to main menu
 - progress bar along the bottom (chunks/5)
 - Write web scraper for Oxford/cambridge sites
+- remove/update Jibe, Paradigm definition
+- could move ON_EXIT_GAME logic to listen to navigation event instead of timeout
+- Sort out game and round naming (round should be within a game)
 
 - add extra difficulties
 - add clues? (2 clues per round? - give first X letters?)

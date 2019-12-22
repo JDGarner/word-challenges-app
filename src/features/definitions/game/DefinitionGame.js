@@ -8,10 +8,19 @@ import GameHeader from "../GameHeader";
 // import ProgressBar from "./ProgressBar";
 import { Countdown, BorderedButton, MediumText } from "../../../components";
 import theme from "../../../theme";
+import { CloseButton } from "../../../components/button/Button";
 
 const LETTER_SIZE = 46;
 const ANSWER_SIZE = 28;
 const ICON_SIZE = 32;
+
+const TopBar = styled(View)`
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12;
+`;
 
 const ScrambledLettersContainer = styled(View)`
   flex-direction: row;
@@ -108,8 +117,6 @@ const getAnswerLetters = letters => {
 
 const DefinitionGame = ({
   definition,
-  currentDefinitions,
-  currentDefinitionIndex,
   letters,
   gameCountdown,
   onBeginGame,
@@ -117,6 +124,8 @@ const DefinitionGame = ({
   onSubmitAnswer,
   onSkipCurrentWord,
   onShuffleCurrentWord,
+  onExitGame,
+  navigation,
 }) => {
   const [scrambledLetters, setScrambledLetters] = useState(getScrambledLetters(letters));
   const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters));
@@ -172,9 +181,19 @@ const DefinitionGame = ({
     }
   };
 
+  const onPressExitGame = () => {
+    navigation.goBack();
+    setTimeout(() => {
+      onExitGame();
+    }, 500);
+  };
+
   return (
     <Fragment>
-      <Countdown gameCountdown={gameCountdown} />
+      <TopBar>
+        <CloseButton onPress={onPressExitGame} />
+        <Countdown gameCountdown={gameCountdown} />
+      </TopBar>
       <GameHeader definition={definition} />
 
       <ScrambledLettersContainer>

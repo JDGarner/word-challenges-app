@@ -12,6 +12,7 @@ export const ON_SUBMIT_ANSWER = `${NAMESPACE}/ON_SUBMIT_ANSWER`;
 export const ON_PRESS_START_NEW_GAME = `${NAMESPACE}/ON_PRESS_START_NEW_GAME`;
 export const ON_SKIP_CURRENT_WORD = `${NAMESPACE}/ON_SKIP_CURRENT_WORD`;
 export const ON_SHUFFLE_CURRENT_WORD = `${NAMESPACE}/ON_SHUFFLE_CURRENT_WORD`;
+export const ON_EXIT_GAME = `${NAMESPACE}/ON_EXIT_GAME`;
 
 export const fetchDefinitions = () => ({
   type: FETCH_DEFINITIONS,
@@ -63,4 +64,8 @@ export const onSkipCurrentWord = () => ({
 
 export const onShuffleCurrentWord = () => ({
   type: ON_SHUFFLE_CURRENT_WORD,
+});
+
+export const onExitGame = () => ({
+  type: ON_EXIT_GAME,
 });

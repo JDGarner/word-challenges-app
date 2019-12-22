@@ -5,9 +5,7 @@ import { LargeText } from "..";
 import theme from "../../theme";
 
 const CountdownContainer = styled(Animated.View)`
-  position: absolute;
-  top: 50px;
-  right: 25px;
+  padding-bottom: 2;
 `;
 
 const Countdown = ({ gameCountdown, animatingCountdown, onAnimationEnd }) => {

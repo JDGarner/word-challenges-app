@@ -9,6 +9,7 @@ import {
   ON_SUBMIT_ANSWER,
   ON_SKIP_CURRENT_WORD,
   ON_SHUFFLE_CURRENT_WORD,
+  ON_EXIT_GAME,
 } from "./definitions-actions";
 import { GAME_STATES, INITIAL_COUNTDOWN, WORDS_PER_ROUND } from "../definitions-constants";
 import { roundIsOver } from "../definitions-utils";
@@ -46,6 +47,23 @@ const getStateForGameEnd = state => {
     allDefinitionsIndex,
     scrambledLetters,
     gameCountdown: INITIAL_COUNTDOWN,
+  };
+};
+
+const getStateForNewRound = (state, nextIndex) => {
+  const currentDefinition = state.allDefinitions[nextIndex];
+  const currentDefinitions = state.allDefinitions.slice(nextIndex, nextIndex + WORDS_PER_ROUND);
+  const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
+
+  return {
+    ...state,
+    currentDefinition,
+    currentDefinitionIndex: 0,
+    currentDefinitions,
+    scrambledLetters,
+    allDefinitionsIndex: nextIndex,
+    gameCountdown: INITIAL_COUNTDOWN,
+    gameState: GAME_STATES.PLAYING,
   };
 };
 
@@ -127,19 +145,9 @@ export default (state = initialState, action) => {
         };
       }
 
-      const currentDefinition = state.allDefinitions[nextIndex];
-      const currentDefinitions = state.allDefinitions.slice(nextIndex, nextIndex + WORDS_PER_ROUND);
-      const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
-
       return {
         ...state,
-        currentDefinition,
-        currentDefinitionIndex: 0,
-        currentDefinitions,
-        scrambledLetters,
-        allDefinitionsIndex: nextIndex,
-        gameCountdown: INITIAL_COUNTDOWN,
-        gameState: GAME_STATES.PLAYING,
+        ...getStateForNewRound(state, nextIndex),
       };
     }
 
@@ -166,6 +174,18 @@ export default (state = initialState, action) => {
     case ON_SHUFFLE_CURRENT_WORD: {
       const scrambledLetters = shuffle(state.currentDefinition.word.toUpperCase().split(""));
       return { ...state, scrambledLetters };
+    }
+
+    case ON_EXIT_GAME: {
+      // Move index up to the nearest 5
+      const nextIndex = Math.ceil(state.allDefinitionsIndex / 5) * 5;
+      const roundIndex = state.roundIndex + 1;
+
+      return {
+        ...state,
+        ...getStateForNewRound(state, nextIndex),
+        roundIndex,
+      };
     }
 
     default:

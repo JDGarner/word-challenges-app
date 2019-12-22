@@ -9,14 +9,14 @@ import ConnectedDefinitionPostGame from "../post-game/ConnectedDefinitionPostGam
 const ScreenContainer = styled(CenteredContainer)`
   flex: 1;
   justify-content: space-around;
-  padding-horizontal: 10%;
+  padding-horizontal: 7%;
 `;
 
-const DefinitionGameMode = ({ gameState, currentWord }) => {
+const DefinitionGameMode = ({ gameState, currentWord, navigation }) => {
   const renderContent = () => {
     switch (gameState) {
       case GAME_STATES.PLAYING:
-        return <ConnectedDefinitionGame key={currentWord} />;
+        return <ConnectedDefinitionGame key={currentWord} navigation={navigation} />;
       case GAME_STATES.POSTGAME:
         return <ConnectedDefinitionPostGame />;
     }

@@ -1,4 +1,5 @@
 import { createAppContainer, createStackNavigator } from "react-navigation";
+import { fadeIn } from "react-navigation-transitions";
 
 import MainMenu from "../features/main-menu/MainMenu";
 import ConnectedRhymeGameMode from "../features/rhymes/game-mode/ConnectedRhymeGameMode";
@@ -12,6 +13,7 @@ const WordGameStack = createStackNavigator(
   },
   {
     initialRouteName: "MainMenu",
+    transitionConfig: () => fadeIn(),
   },
 );
 

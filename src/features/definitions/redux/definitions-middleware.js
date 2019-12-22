@@ -9,6 +9,7 @@ import {
   gameCountdownTick,
   ON_PRESS_START_NEW_GAME,
   fetchAdditionalDefinitionsSuccess,
+  ON_EXIT_GAME,
 } from "./definitions-actions";
 import fetchFromApi from "../../../fetch-util";
 import { ENDPOINTS, RETRY_TIMEOUT } from "../../../Config";
@@ -44,6 +45,7 @@ export default store => next => action => {
       clearInterval(gameCountdownInterval);
       break;
 
+    case ON_EXIT_GAME:
     case ON_PRESS_START_NEW_GAME:
       const { allDefinitionsIndex, allDefinitions } = getState().definitions;
       if (allDefinitionsIndex > allDefinitions.length - DEFINITIONS_LOCAL_BUFFER) {

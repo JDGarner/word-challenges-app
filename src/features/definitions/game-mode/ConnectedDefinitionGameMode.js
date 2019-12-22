@@ -28,7 +28,13 @@ const DefintionGameModeLoader = props => {
       return <LoadingScreen />;
     }
 
-    return <DefintionGameMode currentWord={props.currentWord} gameState={props.gameState} />;
+    return (
+      <DefintionGameMode
+        currentWord={props.currentWord}
+        gameState={props.gameState}
+        navigation={props.navigation}
+      />
+    );
   };
 
   return <AppBackground>{getContent()}</AppBackground>;

@@ -6,22 +6,15 @@ import {
   onSubmitAnswer,
   onSkipCurrentWord,
   onShuffleCurrentWord,
+  onExitGame,
 } from "../redux/definitions-actions";
 
 const mapStateToProps = ({ definitions }) => {
-  const {
-    currentDefinition,
-    currentDefinitions,
-    currentDefinitionIndex,
-    scrambledLetters,
-    gameCountdown,
-  } = definitions;
+  const { currentDefinition, scrambledLetters, gameCountdown } = definitions;
   const { definition } = currentDefinition;
 
   return {
     definition,
-    currentDefinitions,
-    currentDefinitionIndex,
     letters: scrambledLetters,
     gameCountdown,
   };
@@ -33,6 +26,7 @@ const mapDispatchToProps = {
   onSubmitAnswer,
   onSkipCurrentWord,
   onShuffleCurrentWord,
+  onExitGame,
 };
 
 const ConnectedDefinitionGame = connect(
