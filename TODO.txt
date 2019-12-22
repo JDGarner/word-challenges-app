@@ -11,7 +11,7 @@ Potential Refactors:
 
 Definitions To Do:
 In Game:
-- exit to main menu button (move timer to left side)
+- exit to main menu button (top left)
 - add shuffle animation
 - change styling of skip/shuffle to be symbols (next to letters?)
 - show green/red letters animation on submit answer

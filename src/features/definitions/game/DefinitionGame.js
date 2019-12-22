@@ -5,19 +5,13 @@ import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import GameHeader from "../GameHeader";
-import ProgressBar from "./ProgressBar";
+// import ProgressBar from "./ProgressBar";
 import { Countdown, BorderedButton, MediumText } from "../../../components";
 import theme from "../../../theme";
 
 const LETTER_SIZE = 46;
 const ANSWER_SIZE = 28;
 const ICON_SIZE = 32;
-
-const CentreSectionContainer = styled(View)`
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-`;
 
 const ScrambledLettersContainer = styled(View)`
   flex-direction: row;
@@ -34,7 +28,12 @@ const AnswersContainer = styled(View)`
   margin-bottom: 10%;
 `;
 
-const FooterContainer = styled(View)``;
+const FooterContainer = styled(View)`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32;
+`;
 
 const EmptyLetterPlaceHolder = styled(View)`
   margin-vertical: 6;
@@ -61,12 +60,11 @@ const AnswerButton = styled(TouchableOpacity)`
 `;
 
 const ShuffleButton = styled(TouchableOpacity)`
-  margin-top: 14;
+  margin-right: 16;
 `;
 
 const SkipButton = styled(TouchableOpacity)`
-  align-self: center;
-  margin-bottom: 14;
+  margin-left: 16;
 `;
 
 /**
@@ -179,24 +177,19 @@ const DefinitionGame = ({
       <Countdown gameCountdown={gameCountdown} />
       <GameHeader definition={definition} />
 
-      <CentreSectionContainer>
-        <ScrambledLettersContainer>
-          {scrambledLetters.map((scrambled, i) => {
-            if (scrambled.showing === false) {
-              return <EmptyLetterPlaceHolder />;
-            }
+      <ScrambledLettersContainer>
+        {scrambledLetters.map((scrambled, i) => {
+          if (scrambled.showing === false) {
+            return <EmptyLetterPlaceHolder />;
+          }
 
-            return (
-              <LetterButton onPress={() => addAnswerLetter(scrambled, i)}>
-                <MediumText textAlign="center">{scrambled.letter}</MediumText>
-              </LetterButton>
-            );
-          })}
-        </ScrambledLettersContainer>
-        <ShuffleButton onPress={onShuffleCurrentWord}>
-          <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
-        </ShuffleButton>
-      </CentreSectionContainer>
+          return (
+            <LetterButton onPress={() => addAnswerLetter(scrambled, i)}>
+              <MediumText textAlign="center">{scrambled.letter}</MediumText>
+            </LetterButton>
+          );
+        })}
+      </ScrambledLettersContainer>
 
       <AnswersContainer>
         {answerLetters.map((answer, i) => {
@@ -209,13 +202,16 @@ const DefinitionGame = ({
       </AnswersContainer>
 
       <FooterContainer>
+        <ShuffleButton onPress={onShuffleCurrentWord}>
+          <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
+        </ShuffleButton>
         <SkipButton onPress={onSkipCurrentWord}>
-          <Icon name="skip-next" size={ICON_SIZE} color={theme.textColor} />
+          <Icon name="skip-next" size={ICON_SIZE + 4} color={theme.textColor} />
         </SkipButton>
-        <ProgressBar
+        {/* <ProgressBar
           definitions={currentDefinitions}
           currentDefinitionIndex={currentDefinitionIndex}
-        />
+        /> */}
       </FooterContainer>
     </Fragment>
   );
