@@ -3,12 +3,15 @@ General To Do:
 - Decide on next game mode, Synonyms? (pick correct from random list of words)
 - Change countdown to pie timer?
 - add some animation on all screens? (faded spheres?)
+- add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
+- upgrade react native
 
 Potential Refactors:
 - make countdown logic generic?
 
 Definitions To Do:
 In Game:
+- exit to main menu button (move timer to left side)
 - add shuffle animation
 - change styling of skip/shuffle to be symbols (next to letters?)
 - show green/red letters animation on submit answer
@@ -107,3 +110,8 @@ Potential Tests to write:
 Name Ideas:
 Word Play Challenge
 Something like WordScapes/other word puns
+
+
+
+Design Inspiration:
+https://github.com/catalinmiron/react-native-dribbble-app

@@ -2,12 +2,22 @@ import React, { useState, useEffect, Fragment } from "react";
 import { cloneDeep } from "lodash";
 import styled from "styled-components";
 import { View, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+
 import GameHeader from "../GameHeader";
 import ProgressBar from "./ProgressBar";
-import { Countdown, BorderedButton, PaddedButton, MediumText } from "../../../components";
+import { Countdown, BorderedButton, MediumText } from "../../../components";
+import theme from "../../../theme";
 
 const LETTER_SIZE = 46;
 const ANSWER_SIZE = 28;
+const ICON_SIZE = 32;
+
+const CentreSectionContainer = styled(View)`
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`;
 
 const ScrambledLettersContainer = styled(View)`
   flex-direction: row;
@@ -25,11 +35,6 @@ const AnswersContainer = styled(View)`
 `;
 
 const FooterContainer = styled(View)``;
-
-const ButtonsContainer = styled(View)`
-  align-self: center;
-  margin-bottom: 10;
-`;
 
 const EmptyLetterPlaceHolder = styled(View)`
   margin-vertical: 6;
@@ -53,6 +58,15 @@ const AnswerButton = styled(TouchableOpacity)`
   margin-horizontal: 3;
   height: ${ANSWER_SIZE};
   width: ${ANSWER_SIZE};
+`;
+
+const ShuffleButton = styled(TouchableOpacity)`
+  margin-top: 14;
+`;
+
+const SkipButton = styled(TouchableOpacity)`
+  align-self: center;
+  margin-bottom: 14;
 `;
 
 /**
@@ -165,19 +179,24 @@ const DefinitionGame = ({
       <Countdown gameCountdown={gameCountdown} />
       <GameHeader definition={definition} />
 
-      <ScrambledLettersContainer>
-        {scrambledLetters.map((scrambled, i) => {
-          if (scrambled.showing === false) {
-            return <EmptyLetterPlaceHolder />;
-          }
+      <CentreSectionContainer>
+        <ScrambledLettersContainer>
+          {scrambledLetters.map((scrambled, i) => {
+            if (scrambled.showing === false) {
+              return <EmptyLetterPlaceHolder />;
+            }
 
-          return (
-            <LetterButton onPress={() => addAnswerLetter(scrambled, i)}>
-              <MediumText textAlign="center">{scrambled.letter}</MediumText>
-            </LetterButton>
-          );
-        })}
-      </ScrambledLettersContainer>
+            return (
+              <LetterButton onPress={() => addAnswerLetter(scrambled, i)}>
+                <MediumText textAlign="center">{scrambled.letter}</MediumText>
+              </LetterButton>
+            );
+          })}
+        </ScrambledLettersContainer>
+        <ShuffleButton onPress={onShuffleCurrentWord}>
+          <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
+        </ShuffleButton>
+      </CentreSectionContainer>
 
       <AnswersContainer>
         {answerLetters.map((answer, i) => {
@@ -190,14 +209,9 @@ const DefinitionGame = ({
       </AnswersContainer>
 
       <FooterContainer>
-        <ButtonsContainer>
-          <PaddedButton onPress={onSkipCurrentWord} paddingVertical={3}>
-            <MediumText textAlign="center">Skip</MediumText>
-          </PaddedButton>
-          <PaddedButton onPress={onShuffleCurrentWord} paddingVertical={3}>
-            <MediumText textAlign="center">Shuffle</MediumText>
-          </PaddedButton>
-        </ButtonsContainer>
+        <SkipButton onPress={onSkipCurrentWord}>
+          <Icon name="skip-next" size={ICON_SIZE} color={theme.textColor} />
+        </SkipButton>
         <ProgressBar
           definitions={currentDefinitions}
           currentDefinitionIndex={currentDefinitionIndex}
