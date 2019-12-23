@@ -11,17 +11,13 @@ Potential Refactors:
 
 Definitions To Do:
 In Game:
+- decide on max word size? incontrovertible?
+- add animation to letters on press and on appear/disappear
 - add shuffle animation
-- fix countdown on rhymes
 - show green/red letters animation on submit answer
 - add score to post game screen
 - post game colour red/green answers for correct/incorrect
-- add animation to letters on press and on appear/disappear
-- Less padding and smaller font for bigger words, don't let it wrap
-- add pre-game countdown? or remove pregame state
 - increase buffer, increase amount of definitions sent
-- add exit to main menu
-- progress bar along the bottom (chunks/5)
 - Write web scraper for Oxford/cambridge sites
 - remove/update Jibe, Paradigm definition
 - could move ON_EXIT_GAME logic to listen to navigation event instead of timeout
@@ -36,6 +32,9 @@ In Game:
 
 
 Rhymes to do:
+  - fix countdown
+  - add close button & exit game logic
+
   Animation To Do:
   - post game animation text
   - add shimmer animation - correct answers and new given word
@@ -53,7 +52,6 @@ Rhymes to do:
   - font?
 
 - Add sound effects? mute?
-- X in top left/right
 
 - need a way to track which users got which words, 
   or at least add a counter for number of users that got a particular word

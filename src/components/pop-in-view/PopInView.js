@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Animated, Easing } from "react-native";
 
-const PopInView = props => {
+const PopInView = ({ children }) => {
   const [scaleValue] = useState(new Animated.Value(0.8));
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const PopInView = props => {
 
   return (
     <Animated.View pointerEvents="none" style={{ transform: [{ scale: scaleValue }] }}>
-      {props.children}
+      {children}
     </Animated.View>
   );
 };

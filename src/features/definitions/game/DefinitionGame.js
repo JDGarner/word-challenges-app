@@ -5,13 +5,11 @@ import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import GameHeader from "../GameHeader";
-// import ProgressBar from "./ProgressBar";
-import { Countdown, BorderedButton, MediumText } from "../../../components";
+import { Countdown, MediumText } from "../../../components";
 import theme from "../../../theme";
 import { CloseButton } from "../../../components/button/Button";
+import ScrambledLetters from "./ScrambledLetters";
 
-const LETTER_SIZE = 46;
-const ANSWER_SIZE = 28;
 const ICON_SIZE = 32;
 
 const TopBar = styled(View)`
@@ -22,16 +20,8 @@ const TopBar = styled(View)`
   margin-top: 12;
 `;
 
-const ScrambledLettersContainer = styled(View)`
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: center;
-`;
-
 const AnswersContainer = styled(View)`
   flex-direction: row;
-  flex-wrap: wrap;
   width: 100%;
   justify-content: center;
   margin-bottom: 10%;
@@ -44,28 +34,15 @@ const FooterContainer = styled(View)`
   margin-bottom: 32;
 `;
 
-const EmptyLetterPlaceHolder = styled(View)`
-  margin-vertical: 6;
-  margin-horizontal: 6;
-  height: ${LETTER_SIZE};
-  width: ${LETTER_SIZE};
-`;
-
-const LetterButton = styled(BorderedButton)`
-  justify-content: center;
-  margin-vertical: 6;
-  margin-horizontal: 6;
-  height: ${LETTER_SIZE};
-  width: ${LETTER_SIZE};
-`;
-
 const AnswerButton = styled(TouchableOpacity)`
   border-bottom-width: 2px;
   border-bottom-color: ${props => props.theme.textColor};
   justify-content: center;
-  margin-horizontal: 3;
-  height: ${ANSWER_SIZE};
-  width: ${ANSWER_SIZE};
+  margin-horizontal: ${props => props.marginHorizontal};
+  flex: 1;
+  height: ${props => props.height};
+  width: 28;
+  max-width: ${props => props.maxWidth};
 `;
 
 const ShuffleButton = styled(TouchableOpacity)`
@@ -74,6 +51,10 @@ const ShuffleButton = styled(TouchableOpacity)`
 
 const SkipButton = styled(TouchableOpacity)`
   margin-left: 16;
+`;
+
+const AnswerText = styled(MediumText)`
+  /* margin-bottom: ${props => props.marginBottom}; */
 `;
 
 /**
@@ -113,6 +94,22 @@ const getAnswerLetters = letters => {
     id: `${i}-placeholder`,
     letter: "",
   }));
+};
+
+const getAnswerTextProps = letters => {
+  if (letters.length < 7) {
+    return { fontSize: 26, height: 36, maxWidth: 34, marginHorizontal: 5 };
+  }
+
+  if (letters.length < 10) {
+    return { fontSize: 24, height: 34, maxWidth: 30, marginHorizontal: 4 };
+  }
+
+  if (letters.length < 12) {
+    return { fontSize: 22, height: 32, maxWidth: 28, marginHorizontal: 3 };
+  }
+
+  return { fontSize: 20, height: 28, maxWidth: 28, marginHorizontal: 3 };
 };
 
 const DefinitionGame = ({
@@ -188,6 +185,8 @@ const DefinitionGame = ({
     }, 500);
   };
 
+  const answerTextProps = getAnswerTextProps(answerLetters);
+
   return (
     <Fragment>
       <TopBar>
@@ -196,25 +195,15 @@ const DefinitionGame = ({
       </TopBar>
       <GameHeader definition={definition} />
 
-      <ScrambledLettersContainer>
-        {scrambledLetters.map((scrambled, i) => {
-          if (scrambled.showing === false) {
-            return <EmptyLetterPlaceHolder />;
-          }
-
-          return (
-            <LetterButton onPress={() => addAnswerLetter(scrambled, i)}>
-              <MediumText textAlign="center">{scrambled.letter}</MediumText>
-            </LetterButton>
-          );
-        })}
-      </ScrambledLettersContainer>
+      <ScrambledLetters scrambledLetters={scrambledLetters} onPressLetter={addAnswerLetter} />
 
       <AnswersContainer>
         {answerLetters.map((answer, i) => {
           return (
-            <AnswerButton onPress={() => removeAnswerLetter(answer, i)}>
-              <MediumText textAlign="center">{answer.letter}</MediumText>
+            <AnswerButton onPress={() => removeAnswerLetter(answer, i)} {...answerTextProps}>
+              <AnswerText textAlign="center" {...answerTextProps}>
+                {answer.letter}
+              </AnswerText>
             </AnswerButton>
           );
         })}
@@ -227,10 +216,6 @@ const DefinitionGame = ({
         <SkipButton onPress={onSkipCurrentWord}>
           <Icon name="skip-next" size={ICON_SIZE + 4} color={theme.textColor} />
         </SkipButton>
-        {/* <ProgressBar
-          definitions={currentDefinitions}
-          currentDefinitionIndex={currentDefinitionIndex}
-        /> */}
       </FooterContainer>
     </Fragment>
   );
