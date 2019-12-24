@@ -11,8 +11,6 @@ Potential Refactors:
 
 Definitions To Do:
 In Game:
-- decide on max word size? incontrovertible?
-- add animation to letters on press and on appear/disappear
 - add shuffle animation
 - show green/red letters animation on submit answer
 - add score to post game screen

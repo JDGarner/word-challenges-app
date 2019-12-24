@@ -1,16 +1,25 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { cloneDeep } from "lodash";
 import styled from "styled-components";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Animated } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import GameHeader from "../GameHeader";
-import { Countdown, MediumText } from "../../../components";
+import { Countdown } from "../../../components";
 import theme from "../../../theme";
 import { CloseButton } from "../../../components/button/Button";
-import ScrambledLetters from "./ScrambledLetters";
+import ScrambledLetter from "./ScrambledLetter";
+import AnswerLetter from "./AnswerLetter";
+import { getAnswerTextProps } from "../definitions-utils";
 
 const ICON_SIZE = 32;
+
+const ScrambledLettersContainer = styled(View)`
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+`;
 
 const TopBar = styled(View)`
   flex-direction: row;
@@ -34,27 +43,12 @@ const FooterContainer = styled(View)`
   margin-bottom: 32;
 `;
 
-const AnswerButton = styled(TouchableOpacity)`
-  border-bottom-width: 2px;
-  border-bottom-color: ${props => props.theme.textColor};
-  justify-content: center;
-  margin-horizontal: ${props => props.marginHorizontal};
-  flex: 1;
-  height: ${props => props.height};
-  width: 28;
-  max-width: ${props => props.maxWidth};
-`;
-
 const ShuffleButton = styled(TouchableOpacity)`
   margin-right: 16;
 `;
 
 const SkipButton = styled(TouchableOpacity)`
   margin-left: 16;
-`;
-
-const AnswerText = styled(MediumText)`
-  /* margin-bottom: ${props => props.marginBottom}; */
 `;
 
 /**
@@ -96,20 +90,8 @@ const getAnswerLetters = letters => {
   }));
 };
 
-const getAnswerTextProps = letters => {
-  if (letters.length < 7) {
-    return { fontSize: 26, height: 36, maxWidth: 34, marginHorizontal: 5 };
-  }
-
-  if (letters.length < 10) {
-    return { fontSize: 24, height: 34, maxWidth: 30, marginHorizontal: 4 };
-  }
-
-  if (letters.length < 12) {
-    return { fontSize: 22, height: 32, maxWidth: 28, marginHorizontal: 3 };
-  }
-
-  return { fontSize: 20, height: 28, maxWidth: 28, marginHorizontal: 3 };
+const getLetterOpacities = letters => {
+  return letters.map(l => new Animated.Value(0.5));
 };
 
 const DefinitionGame = ({
@@ -126,6 +108,7 @@ const DefinitionGame = ({
 }) => {
   const [scrambledLetters, setScrambledLetters] = useState(getScrambledLetters(letters));
   const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters));
+  const [letterOpacities, setLetterOpacities] = useState(getLetterOpacities(letters));
 
   useEffect(() => {
     onBeginGame();
@@ -185,6 +168,15 @@ const DefinitionGame = ({
     }, 500);
   };
 
+  const disappearLetter = () => {};
+
+  const onPressShuffle = () => {
+    // make them all disappear at slightly different times
+
+    onShuffleCurrentWord();
+    // make them all disappear at slightly different times
+  };
+
   const answerTextProps = getAnswerTextProps(answerLetters);
 
   return (
@@ -195,22 +187,35 @@ const DefinitionGame = ({
       </TopBar>
       <GameHeader definition={definition} />
 
-      <ScrambledLetters scrambledLetters={scrambledLetters} onPressLetter={addAnswerLetter} />
+      <ScrambledLettersContainer>
+        {scrambledLetters.map((scrambled, i) => {
+          return (
+            <ScrambledLetter
+              key={scrambled.id}
+              showing={scrambled.showing}
+              letter={scrambled.letter}
+              // opacity={letterOpacities[i]}
+              onPressLetter={() => addAnswerLetter(scrambled, i)}
+            />
+          );
+        })}
+      </ScrambledLettersContainer>
 
       <AnswersContainer>
         {answerLetters.map((answer, i) => {
           return (
-            <AnswerButton onPress={() => removeAnswerLetter(answer, i)} {...answerTextProps}>
-              <AnswerText textAlign="center" {...answerTextProps}>
-                {answer.letter}
-              </AnswerText>
-            </AnswerButton>
+            <AnswerLetter
+              key={answer.id}
+              onPressLetter={() => removeAnswerLetter(answer, i)}
+              letter={answer.letter}
+              {...answerTextProps}
+            />
           );
         })}
       </AnswersContainer>
 
       <FooterContainer>
-        <ShuffleButton onPress={onShuffleCurrentWord}>
+        <ShuffleButton onPress={onPressShuffle}>
           <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
         </ShuffleButton>
         <SkipButton onPress={onSkipCurrentWord}>
