@@ -6,7 +6,9 @@ import {
   animateScrambledLetter,
   animateLetterPressIn,
   animateLetterPressOut,
+  animateLetterReappear,
 } from "../definitions-utils";
+import { SHUFFLE_ANIMATION_TIME } from "../definitions-constants";
 
 const LETTER_SIZE = 46;
 
@@ -25,15 +27,29 @@ const LetterButton = styled(BorderedButton)`
   width: ${LETTER_SIZE};
 `;
 
-const ScrambledLetter = ({ letter, showing, opacity, onPressLetter }) => {
+const ScrambledLetter = ({
+  letter,
+  showing,
+  shuffleToggle,
+  animationDelayTime,
+  animationTotalTime,
+  onPressLetter,
+}) => {
   const [scaleValue] = useState(new Animated.Value(1));
+  const [opacity] = useState(new Animated.Value(1));
 
   useEffect(() => {
     animateScrambledLetter(scaleValue, showing);
   }, [showing]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      animateLetterReappear(opacity, animationDelayTime, animationTotalTime);
+    }, animationDelayTime);
+  }, [shuffleToggle]);
+
   return (
-    <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
+    <Animated.View style={{ transform: [{ scale: scaleValue }], opacity }}>
       {showing === false ? (
         <EmptyLetterPlaceHolder />
       ) : (

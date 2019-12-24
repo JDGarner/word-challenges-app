@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { cloneDeep } from "lodash";
+import { cloneDeep, shuffle } from "lodash";
 import styled from "styled-components";
-import { View, TouchableOpacity, Animated } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import GameHeader from "../GameHeader";
@@ -11,6 +11,7 @@ import { CloseButton } from "../../../components/button/Button";
 import ScrambledLetter from "./ScrambledLetter";
 import AnswerLetter from "./AnswerLetter";
 import { getAnswerTextProps } from "../definitions-utils";
+import { SHUFFLE_ANIMATION_GAP_TIME } from "../definitions-constants";
 
 const ICON_SIZE = 32;
 
@@ -90,8 +91,8 @@ const getAnswerLetters = letters => {
   }));
 };
 
-const getLetterOpacities = letters => {
-  return letters.map(l => new Animated.Value(0.5));
+const getAnimationDelayTimes = letters => {
+  return shuffle(letters.map((l, i) => i * SHUFFLE_ANIMATION_GAP_TIME));
 };
 
 const DefinitionGame = ({
@@ -108,7 +109,10 @@ const DefinitionGame = ({
 }) => {
   const [scrambledLetters, setScrambledLetters] = useState(getScrambledLetters(letters));
   const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters));
-  const [letterOpacities, setLetterOpacities] = useState(getLetterOpacities(letters));
+
+  const [shuffleToggle, setShuffleToggle] = useState(false);
+  const animationDelayTimes = getAnimationDelayTimes(letters);
+  const animationTotalTime = letters.length * SHUFFLE_ANIMATION_GAP_TIME;
 
   useEffect(() => {
     onBeginGame();
@@ -168,13 +172,12 @@ const DefinitionGame = ({
     }, 500);
   };
 
-  const disappearLetter = () => {};
-
   const onPressShuffle = () => {
-    // make them all disappear at slightly different times
+    setShuffleToggle(!shuffleToggle);
 
-    onShuffleCurrentWord();
-    // make them all disappear at slightly different times
+    setTimeout(() => {
+      onShuffleCurrentWord();
+    }, animationTotalTime);
   };
 
   const answerTextProps = getAnswerTextProps(answerLetters);
@@ -194,7 +197,9 @@ const DefinitionGame = ({
               key={scrambled.id}
               showing={scrambled.showing}
               letter={scrambled.letter}
-              // opacity={letterOpacities[i]}
+              shuffleToggle={shuffleToggle}
+              animationDelayTime={animationDelayTimes[i]}
+              animationTotalTime={animationTotalTime}
               onPressLetter={() => addAnswerLetter(scrambled, i)}
             />
           );

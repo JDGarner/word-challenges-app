@@ -1,5 +1,5 @@
 import { Animated } from "react-native";
-import { WORDS_PER_ROUND } from "./definitions-constants";
+import { WORDS_PER_ROUND, OPACITY_ANIMATE_TIME } from "./definitions-constants";
 
 export const roundIsOver = ({ allDefinitionsIndex, roundIndex }) => {
   return allDefinitionsIndex >= WORDS_PER_ROUND * roundIndex - 1;
@@ -67,4 +67,21 @@ export const animateAnswerLetter = (value, letter) => {
   } else {
     animateLetterSpring(value);
   }
+};
+
+export const animateLetterReappear = (opacity, startTime, totalTime) => {
+  Animated.sequence([
+    Animated.timing(opacity, {
+      toValue: 0,
+      duration: OPACITY_ANIMATE_TIME,
+    }),
+    Animated.timing(opacity, {
+      toValue: 0,
+      duration: totalTime + startTime,
+    }),
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: OPACITY_ANIMATE_TIME,
+    }),
+  ]).start();
 };
