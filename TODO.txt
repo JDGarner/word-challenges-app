@@ -1,5 +1,6 @@
 General To Do:
 - Improve main menu styling
+- Add colour themes to each mode
 - Decide on next game mode, Synonyms? (pick correct from random list of words)
 - Change countdown to pie timer?
 - add some animation on all screens? (faded spheres?)
@@ -11,10 +12,10 @@ Potential Refactors:
 
 Definitions To Do:
 In Game:
-- add shuffle animation
 - show green/red letters animation on submit answer
 - add score to post game screen
 - post game colour red/green answers for correct/incorrect
+- add X to post game screen
 - increase buffer, increase amount of definitions sent
 - Write web scraper for Oxford/cambridge sites
 - remove/update Jibe, Paradigm definition

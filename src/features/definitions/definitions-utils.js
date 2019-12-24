@@ -70,18 +70,30 @@ export const animateAnswerLetter = (value, letter) => {
 };
 
 export const animateLetterReappear = (opacity, startTime, totalTime) => {
-  Animated.sequence([
-    Animated.timing(opacity, {
-      toValue: 0,
-      duration: OPACITY_ANIMATE_TIME,
-    }),
-    Animated.timing(opacity, {
-      toValue: 0,
-      duration: totalTime + startTime,
-    }),
+  Animated.timing(opacity, {
+    toValue: 0,
+    duration: OPACITY_ANIMATE_TIME,
+  }).start();
+
+  setTimeout(() => {
     Animated.timing(opacity, {
       toValue: 1,
       duration: OPACITY_ANIMATE_TIME,
-    }),
-  ]).start();
+    }).start();
+  }, totalTime + startTime);
 };
+
+// Linearly in reverse:
+// export const animateLetterReappear = (opacity, startTime, totalTime, index) => {
+//   Animated.timing(opacity, {
+//     toValue: 0,
+//     duration: OPACITY_ANIMATE_TIME,
+//   }).start();
+
+//   setTimeout(() => {
+//     Animated.timing(opacity, {
+//       toValue: 1,
+//       duration: OPACITY_ANIMATE_TIME,
+//     }).start();
+//   }, totalTime - startTime + SHUFFLE_ANIMATION_GAP_TIME * (index + 1));
+// };
