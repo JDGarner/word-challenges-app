@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import DefinitionPostGame from "./DefinitionPostGame";
-import { onPressStartNewGame } from "../redux/definitions-actions";
+import { onPressStartNewGame, onExitGame } from "../redux/definitions-actions";
 
 const mapStateToProps = ({ definitions }) => {
   const { currentDefinitions } = definitions;
@@ -9,6 +9,7 @@ const mapStateToProps = ({ definitions }) => {
 
 const mapDispatchToProps = {
   onPressStartNewGame,
+  onExitGame,
 };
 
 const ConnectedDefinitionPostGame = connect(

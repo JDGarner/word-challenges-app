@@ -1,14 +1,16 @@
 General To Do:
 - Improve main menu styling
-- Add colour themes to each mode
-- Decide on next game mode, Synonyms? (pick correct from random list of words)
-- Change countdown to pie timer?
-- add some animation on all screens? (faded spheres?)
+- Decide on next game mode, Science definitions? Synonyms? (pick correct from random list of words)
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
 - upgrade react native
 
+Potential Tweaks:
+- Change countdown to pie timer?
+
 Potential Refactors:
 - make countdown logic generic?
+- keep fetching data when app first loads but don't setup game logic until on play 
+  (so that exit logic can be simplified)
 
 Definitions To Do:
 In Game:
@@ -19,6 +21,7 @@ In Game:
 - increase buffer, increase amount of definitions sent
 - Write web scraper for Oxford/cambridge sites
 - remove/update Jibe, Paradigm definition
+- test can you shuffle just before game end to cause bug?
 - could move ON_EXIT_GAME logic to listen to navigation event instead of timeout
 - Sort out game and round naming (round should be within a game)
 

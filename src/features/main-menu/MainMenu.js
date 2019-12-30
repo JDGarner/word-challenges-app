@@ -15,7 +15,7 @@ const MenuItem = styled(PaddedButton)`
 
 const MainMenu = ({ navigation }) => {
   return (
-    <AppBackground>
+    <AppBackground theme="menu">
       <MenuContainer>
         <MenuItem onPress={() => navigation.navigate("DefinitionGame")}>
           <LargeText>Definitions</LargeText>

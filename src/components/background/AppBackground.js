@@ -7,11 +7,15 @@ const Background = styled(LinearGradient)`
 `;
 
 // const appColors = ["#7d63ff", "#5b56ff"];
-const appColors = ["#4F88A3", "#80C5CA"];
+const appColors = {
+  menu: ["#bdddea", "#92bfe0"],
+  definitions: ["#94d0eb", "#5ea4de"],
+  rhymes: ["#94d0eb", "#5ea4de"],
+};
 
-const AppBackground = ({ children }) => {
+const AppBackground = ({ children, theme = "menu" }) => {
   return (
-    <Background start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={appColors}>
+    <Background start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={appColors[theme]}>
       {children}
     </Background>
   );

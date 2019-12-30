@@ -18,7 +18,7 @@ const DefinitionGameMode = ({ gameState, currentWord, navigation }) => {
       case GAME_STATES.PLAYING:
         return <ConnectedDefinitionGame key={currentWord} navigation={navigation} />;
       case GAME_STATES.POSTGAME:
-        return <ConnectedDefinitionPostGame />;
+        return <ConnectedDefinitionPostGame navigation={navigation} />;
     }
 
     return null;

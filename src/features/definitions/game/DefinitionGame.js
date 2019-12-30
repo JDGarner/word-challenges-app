@@ -5,29 +5,27 @@ import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import GameHeader from "../GameHeader";
-import { Countdown } from "../../../components";
 import theme from "../../../theme";
-import { CloseButton } from "../../../components/button/Button";
 import ScrambledLetter from "./ScrambledLetter";
 import AnswerLetter from "./AnswerLetter";
 import { getAnswerTextProps } from "../definitions-utils";
 import { SHUFFLE_ANIMATION_GAP_TIME } from "../definitions-constants";
+import TopBar from "../TopBar";
 
 const ICON_SIZE = 32;
+
+const ContentContainer = styled(View)`
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+`;
 
 const ScrambledLettersContainer = styled(View)`
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
-`;
-
-const TopBar = styled(View)`
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 12;
 `;
 
 const AnswersContainer = styled(View)`
@@ -184,49 +182,48 @@ const DefinitionGame = ({
 
   return (
     <Fragment>
-      <TopBar>
-        <CloseButton onPress={onPressExitGame} />
-        <Countdown gameCountdown={gameCountdown} />
-      </TopBar>
-      <GameHeader definition={definition} />
+      <TopBar onPressExitGame={onPressExitGame} gameCountdown={gameCountdown} />
+      <ContentContainer>
+        <GameHeader definition={definition} />
 
-      <ScrambledLettersContainer>
-        {scrambledLetters.map((scrambled, i) => {
-          return (
-            <ScrambledLetter
-              key={scrambled.id}
-              showing={scrambled.showing}
-              letter={scrambled.letter}
-              shuffleToggle={shuffleToggle}
-              animationDelayTime={animationDelayTimes[i]}
-              animationTotalTime={animationTotalTime}
-              onPressLetter={() => addAnswerLetter(scrambled, i)}
-            />
-          );
-        })}
-      </ScrambledLettersContainer>
+        <ScrambledLettersContainer>
+          {scrambledLetters.map((scrambled, i) => {
+            return (
+              <ScrambledLetter
+                key={scrambled.id}
+                showing={scrambled.showing}
+                letter={scrambled.letter}
+                shuffleToggle={shuffleToggle}
+                animationDelayTime={animationDelayTimes[i]}
+                animationTotalTime={animationTotalTime}
+                onPressLetter={() => addAnswerLetter(scrambled, i)}
+              />
+            );
+          })}
+        </ScrambledLettersContainer>
 
-      <AnswersContainer>
-        {answerLetters.map((answer, i) => {
-          return (
-            <AnswerLetter
-              key={answer.id}
-              onPressLetter={() => removeAnswerLetter(answer, i)}
-              letter={answer.letter}
-              {...answerTextProps}
-            />
-          );
-        })}
-      </AnswersContainer>
+        <AnswersContainer>
+          {answerLetters.map((answer, i) => {
+            return (
+              <AnswerLetter
+                key={answer.id}
+                onPressLetter={() => removeAnswerLetter(answer, i)}
+                letter={answer.letter}
+                {...answerTextProps}
+              />
+            );
+          })}
+        </AnswersContainer>
 
-      <FooterContainer>
-        <ShuffleButton onPress={onPressShuffle}>
-          <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
-        </ShuffleButton>
-        <SkipButton onPress={onSkipCurrentWord}>
-          <Icon name="skip-next" size={ICON_SIZE + 4} color={theme.textColor} />
-        </SkipButton>
-      </FooterContainer>
+        <FooterContainer>
+          <ShuffleButton onPress={onPressShuffle}>
+            <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
+          </ShuffleButton>
+          <SkipButton onPress={onSkipCurrentWord}>
+            <Icon name="skip-next" size={ICON_SIZE + 4} color={theme.textColor} />
+          </SkipButton>
+        </FooterContainer>
+      </ContentContainer>
     </Fragment>
   );
 };

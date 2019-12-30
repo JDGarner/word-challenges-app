@@ -1,36 +1,54 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 
 import { LargeText, PaddedButton, MediumText } from "../../../components";
 import theme from "../../../theme";
+import TopBar from "../TopBar";
 
-const PostGameContainer = styled(View)`
+const ContentContainer = styled(View)`
   flex: 1;
-  justify-content: center;
   align-items: center;
-  margin-horizontal: 15px;
-  margin-bottom: 20px;
+  justify-content: space-around;
 `;
+
+const AnswersContainer = styled(View)``;
 
 const PlayAgain = styled(View)`
-  margin-top: 20px;
+  margin-top: 60;
 `;
 
-const DefinitionPostGame = ({ onPressStartNewGame, currentDefinitions }) => {
+const DefinitionPostGame = ({
+  onPressStartNewGame,
+  onExitGame,
+  currentDefinitions,
+  navigation,
+}) => {
+  const onPressExitGame = () => {
+    navigation.goBack();
+    setTimeout(() => {
+      onExitGame();
+    }, 500);
+  };
+
   return (
-    <PostGameContainer>
-      {currentDefinitions.map(def => (
-        <MediumText color={def.isCorrect ? theme.correctColor : theme.incorrectColor}>
-          {def.word} - {def.definition}
-        </MediumText>
-      ))}
-      <PlayAgain>
-        <PaddedButton onPress={onPressStartNewGame}>
-          <LargeText>Play Again</LargeText>
-        </PaddedButton>
-      </PlayAgain>
-    </PostGameContainer>
+    <Fragment>
+      <TopBar onPressExitGame={onPressExitGame} />
+      <ContentContainer>
+        <AnswersContainer>
+          {currentDefinitions.map(def => (
+            <MediumText color={def.isCorrect ? theme.correctColor : theme.incorrectColor}>
+              {def.word} - {def.definition}
+            </MediumText>
+          ))}
+        </AnswersContainer>
+        <PlayAgain>
+          <PaddedButton onPress={onPressStartNewGame}>
+            <LargeText>Play Again</LargeText>
+          </PaddedButton>
+        </PlayAgain>
+      </ContentContainer>
+    </Fragment>
   );
 };
 
