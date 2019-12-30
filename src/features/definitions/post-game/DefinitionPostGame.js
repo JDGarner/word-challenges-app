@@ -37,7 +37,9 @@ const DefinitionPostGame = ({
       <ContentContainer>
         <AnswersContainer>
           {currentDefinitions.map(def => (
-            <MediumText color={def.isCorrect ? theme.correctColor : theme.incorrectColor}>
+            <MediumText
+              key={def._id}
+              color={def.isCorrect ? theme.correctColor : theme.incorrectColor}>
               {def.word} - {def.definition}
             </MediumText>
           ))}

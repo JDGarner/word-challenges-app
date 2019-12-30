@@ -82,6 +82,7 @@ export default (state = initialState, action) => {
         allDefinitions,
         currentDefinition,
         currentDefinitionIndex: 0,
+        allDefinitionsIndex: 0,
         currentDefinitions,
         scrambledLetters,
         gameState: GAME_STATES.PLAYING,
@@ -130,7 +131,22 @@ export default (state = initialState, action) => {
       return { ...state, gameCountdown };
     }
 
-    case ON_PRESS_START_NEW_GAME: {
+    case ON_EXIT_GAME:
+    case ON_PRESS_START_NEW_GAME:
+      // if game is exited while half way through...
+      if (state.gameState === GAME_STATES.PLAYING) {
+        // Move index up to the nearest 5
+        const nextIndex = Math.ceil(state.allDefinitionsIndex / 5) * 5;
+        const roundIndex = state.roundIndex + 1;
+
+        return {
+          ...state,
+          ...getStateForNewRound(state, nextIndex),
+          roundIndex,
+        };
+      }
+
+      // if game is restarted/exited from post game screen
       const nextIndex = state.allDefinitionsIndex + 1;
       const nextDefinition = state.allDefinitions[nextIndex];
 
@@ -149,7 +165,6 @@ export default (state = initialState, action) => {
         ...state,
         ...getStateForNewRound(state, nextIndex),
       };
-    }
 
     case ON_SUBMIT_ANSWER: {
       const isCorrect = action.answer.toUpperCase() === state.currentDefinition.word.toUpperCase();
@@ -174,18 +189,6 @@ export default (state = initialState, action) => {
     case ON_SHUFFLE_CURRENT_WORD: {
       const scrambledLetters = shuffle(state.currentDefinition.word.toUpperCase().split(""));
       return { ...state, scrambledLetters };
-    }
-
-    case ON_EXIT_GAME: {
-      // Move index up to the nearest 5
-      const nextIndex = Math.ceil(state.allDefinitionsIndex / 5) * 5;
-      const roundIndex = state.roundIndex + 1;
-
-      return {
-        ...state,
-        ...getStateForNewRound(state, nextIndex),
-        roundIndex,
-      };
     }
 
     default:
