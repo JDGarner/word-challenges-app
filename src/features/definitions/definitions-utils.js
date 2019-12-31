@@ -5,6 +5,32 @@ export const roundIsOver = ({ allDefinitionsIndex, roundIndex }) => {
   return allDefinitionsIndex >= WORDS_PER_ROUND * roundIndex - 1;
 };
 
+export const getPraiseForScore = (correct, total) => {
+  const percent = correct / total;
+
+  if (percent === 1) {
+    return "Perfect!";
+  }
+
+  if (percent >= 0.8) {
+    return "Super!";
+  }
+
+  if (percent >= 0.6) {
+    return "Muy Bien!";
+  }
+
+  if (percent >= 0.4) {
+    return "Not Bad!";
+  }
+
+  if (percent >= 0.2) {
+    return "Good Effort!";
+  }
+
+  return "Better Luck Next Round!";
+};
+
 export const getAnswerTextProps = letters => {
   if (letters.length < 7) {
     return { fontSize: 26, height: 36, maxWidth: 34, marginHorizontal: 5 };

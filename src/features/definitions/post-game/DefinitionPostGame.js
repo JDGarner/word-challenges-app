@@ -12,6 +12,7 @@ import {
   ANSWER_ANIMATION_DURATION,
 } from "../definitions-constants";
 import PopInView from "../../../components/pop-in-view/PopInView";
+import { getPraiseForScore } from "../definitions-utils";
 
 const ContentContainer = styled(View)`
   flex: 1;
@@ -50,6 +51,7 @@ const DefinitionPostGame = ({
   };
 
   const score = currentDefinitions.filter(d => d.isCorrect).length;
+  const praise = getPraiseForScore(score, WORDS_PER_ROUND);
   const totalAnimationTime =
     ANSWER_ANIMATION_START_DELAY_TIME +
     WORDS_PER_ROUND * ANSWER_ANIMATION_GAP_TIME +
@@ -64,7 +66,7 @@ const DefinitionPostGame = ({
       />
       <ContentContainer>
         <PopInView popToSize={1} duration={ANSWER_ANIMATION_START_DELAY_TIME} delay={150}>
-          <MediumLargeText>Not Bad!</MediumLargeText>
+          <MediumLargeText>{praise}</MediumLargeText>
         </PopInView>
         <AnswerContainer>
           {currentDefinitions.map((def, i) => (

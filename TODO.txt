@@ -6,13 +6,13 @@ General To Do:
 
 Potential Tweaks:
 - Change countdown to pie timer?
+- Change colour/font weight of praise/word in post game screen
 
 Potential Refactors:
 - make countdown logic generic?
 
 Definitions To Do:
-- add message to post game
-- show green/red letters animation on submit answer
+- show correct/incorrect animation/feedback on submit answer
 - increase buffer, increase amount of definitions sent
 - Write web scraper for Oxford/cambridge sites
 - remove/update Jibe, Paradigm definition
