@@ -9,15 +9,10 @@ Potential Tweaks:
 
 Potential Refactors:
 - make countdown logic generic?
-- keep fetching data when app first loads but don't setup game logic until on play 
-  (so that exit logic can be simplified)
 
 Definitions To Do:
-In Game:
+- add message to post game
 - show green/red letters animation on submit answer
-- add score to post game screen
-- post game colour red/green answers for correct/incorrect
-- add X to post game screen
 - increase buffer, increase amount of definitions sent
 - Write web scraper for Oxford/cambridge sites
 - remove/update Jibe, Paradigm definition

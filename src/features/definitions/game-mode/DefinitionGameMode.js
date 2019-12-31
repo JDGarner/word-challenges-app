@@ -9,7 +9,7 @@ import ConnectedDefinitionPostGame from "../post-game/ConnectedDefinitionPostGam
 const ScreenContainer = styled(CenteredContainer)`
   flex: 1;
   justify-content: space-around;
-  padding-horizontal: 7%;
+  padding-horizontal: 5%;
 `;
 
 const DefinitionGameMode = ({ gameState, currentWord, navigation }) => {

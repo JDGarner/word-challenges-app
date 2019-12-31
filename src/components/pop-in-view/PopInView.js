@@ -1,31 +1,56 @@
 import React, { useState, useEffect } from "react";
 import { Animated, Easing } from "react-native";
 
-const PopInView = ({ children }) => {
+const PopInView = ({ children, popToSize, duration, delay, pointerEvents }) => {
   const [scaleValue] = useState(new Animated.Value(0.8));
+  const [opacity] = useState(new Animated.Value(0));
 
-  useEffect(() => {
+  const animate = () => {
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration,
+      useNativeDriver: true,
+    }).start();
+
     Animated.sequence([
       Animated.timing(scaleValue, {
-        toValue: 1.2,
-        duration: 150,
+        toValue: popToSize,
+        duration: duration * 0.4,
         easing: Easing.linear,
         useNativeDriver: true,
       }),
       Animated.timing(scaleValue, {
         toValue: 1.0,
-        duration: 150,
+        duration: duration * 0.6,
         easing: Easing.linear,
         useNativeDriver: true,
       }),
     ]).start();
+  };
+
+  useEffect(() => {
+    if (delay) {
+      setTimeout(() => {
+        animate();
+      }, delay);
+    } else {
+      animate();
+    }
   }, [scaleValue]);
 
   return (
-    <Animated.View pointerEvents="none" style={{ transform: [{ scale: scaleValue }] }}>
+    <Animated.View
+      pointerEvents={pointerEvents}
+      style={{ transform: [{ scale: scaleValue }], opacity }}>
       {children}
     </Animated.View>
   );
+};
+
+PopInView.defaultProps = {
+  pointerEvents: "none",
+  popToSize: 1.2,
+  duration: 300,
 };
 
 export default PopInView;
