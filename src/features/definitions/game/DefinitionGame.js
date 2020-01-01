@@ -9,8 +9,12 @@ import theme from "../../../theme";
 import ScrambledLetter from "./ScrambledLetter";
 import AnswerLetter from "./AnswerLetter";
 import { getAnswerTextProps } from "../definitions-utils";
-import { SHUFFLE_ANIMATION_GAP_TIME } from "../definitions-constants";
+import {
+  SHUFFLE_ANIMATION_GAP_TIME,
+  ANSWER_FEEDBACK_ANIMATION_DURATION,
+} from "../definitions-constants";
 import TopBar from "../TopBar";
+import AnswerFeedback from "./AnswerFeedback";
 
 const ICON_SIZE = 32;
 
@@ -94,6 +98,7 @@ const getAnimationDelayTimes = letters => {
 };
 
 const DefinitionGame = ({
+  word,
   definition,
   letters,
   gameCountdown,
@@ -109,6 +114,9 @@ const DefinitionGame = ({
   const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters));
 
   const [shuffleToggle, setShuffleToggle] = useState(false);
+  const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
+  const [answerFeedbackAnimationToggle, setAnswerFeedbackAnimationToggle] = useState(false);
+
   const animationDelayTimes = getAnimationDelayTimes(letters);
   const animationTotalTime = letters.length * SHUFFLE_ANIMATION_GAP_TIME;
 
@@ -125,6 +133,15 @@ const DefinitionGame = ({
     setScrambledLetters(getScrambledLetters(letters));
     setAnswerLetters(getAnswerLetters(letters));
   }, [letters]);
+
+  const onAllLettersAdded = answer => {
+    setIsCurrentAnswerCorrect(answer.toUpperCase() === word.toUpperCase());
+    setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
+
+    setTimeout(() => {
+      onSubmitAnswer(answer);
+    }, ANSWER_FEEDBACK_ANIMATION_DURATION);
+  };
 
   const addAnswerLetter = (scrambled, index) => {
     if (scrambled.showing) {
@@ -144,7 +161,7 @@ const DefinitionGame = ({
 
       // If all letter choices are hidden, submit answer
       if (clonedScrambled.every(s => !s.showing)) {
-        onSubmitAnswer(clonedAnswers.map(a => a.letter).join(""));
+        onAllLettersAdded(clonedAnswers.map(a => a.letter).join(""));
       }
     }
   };
@@ -223,6 +240,11 @@ const DefinitionGame = ({
             <Icon name="skip-next" size={ICON_SIZE + 4} color={theme.textColor} />
           </SkipButton>
         </FooterContainer>
+
+        <AnswerFeedback
+          isCorrect={isCurrentAnswerCorrect}
+          animationToggle={answerFeedbackAnimationToggle}
+        />
       </ContentContainer>
     </Fragment>
   );

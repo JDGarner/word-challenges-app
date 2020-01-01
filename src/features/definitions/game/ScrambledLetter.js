@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Animated } from "react-native";
 import styled from "styled-components";
 import { BorderedButton, MediumText } from "../../../components";
@@ -8,6 +8,7 @@ import {
   animateLetterPressOut,
   animateLetterReappear,
 } from "../definitions-utils";
+import { useDidUpdateEffect } from "../../../hooks/generic-hooks";
 
 const LETTER_SIZE = 46;
 
@@ -25,15 +26,6 @@ const LetterButton = styled(BorderedButton)`
   height: ${LETTER_SIZE};
   width: ${LETTER_SIZE};
 `;
-
-function useDidUpdateEffect(fn, inputs) {
-  const didMountRef = useRef(false);
-
-  useEffect(() => {
-    if (didMountRef.current) fn();
-    else didMountRef.current = true;
-  }, inputs);
-}
 
 const ScrambledLetter = ({
   letter,

@@ -11,9 +11,10 @@ import {
 
 const mapStateToProps = ({ definitions }) => {
   const { currentDefinition, scrambledLetters, gameCountdown } = definitions;
-  const { definition } = currentDefinition;
+  const { definition, word } = currentDefinition;
 
   return {
+    word,
     definition,
     letters: scrambledLetters,
     gameCountdown,
