@@ -34,6 +34,7 @@ const ScrambledLetter = ({
   animationDelayTime,
   animationTotalTime,
   onPressLetter,
+  disabled,
 }) => {
   const [scaleValue] = useState(new Animated.Value(1));
   const [opacity] = useState(new Animated.Value(1));
@@ -56,7 +57,8 @@ const ScrambledLetter = ({
         <LetterButton
           onPressIn={() => animateLetterPressIn(scaleValue)}
           onPressOut={() => animateLetterPressOut(scaleValue)}
-          onPress={onPressLetter}>
+          onPress={onPressLetter}
+          disabled={disabled}>
           <MediumText textAlign="center">{letter}</MediumText>
         </LetterButton>
       )}

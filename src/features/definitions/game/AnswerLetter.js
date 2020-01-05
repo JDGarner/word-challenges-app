@@ -19,7 +19,7 @@ const AnswerButton = styled(TouchableOpacity)`
   max-width: ${props => props.maxWidth};
 `;
 
-const AnswerLetter = ({ letter, onPressLetter, ...styleProps }) => {
+const AnswerLetter = ({ letter, onPressLetter, disabled, ...styleProps }) => {
   const [scaleValue] = useState(new Animated.Value(0.5));
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const AnswerLetter = ({ letter, onPressLetter, ...styleProps }) => {
       onPressIn={() => animateLetterPressIn(scaleValue)}
       onPressOut={() => animateLetterPressOut(scaleValue)}
       onPress={onPressLetter}
+      disabled={disabled}
       {...styleProps}>
       <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
         <MediumText textAlign="center" {...styleProps}>

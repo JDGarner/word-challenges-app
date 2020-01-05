@@ -130,6 +130,7 @@ const DefinitionGame = ({
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
   const [answerFeedbackAnimationToggle, setAnswerFeedbackAnimationToggle] = useState(false);
   const [gameOpacity] = useState(new Animated.Value(0));
+  const [userActionsDisabled, setUserActionsDisabled] = useState(false);
 
   const animationDelayTimes = getAnimationDelayTimes(letters);
   const animationTotalTime = letters.length * SHUFFLE_ANIMATION_GAP_TIME;
@@ -151,7 +152,8 @@ const DefinitionGame = ({
   useEffect(() => {
     // Fade out game, show incorrect answer feedback
     if (gameCountdown === 0) {
-      // TODO: disable letter changes
+      setUserActionsDisabled(true);
+
       Animated.timing(gameOpacity, {
         toValue: 0,
         duration: ANSWER_FEEDBACK_ANIMATION_DURATION,
@@ -170,8 +172,14 @@ const DefinitionGame = ({
   }, [word]);
 
   const onAllLettersAdded = answer => {
+    setUserActionsDisabled(true);
     setIsCurrentAnswerCorrect(answer.toUpperCase() === word.toUpperCase());
+
     setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
+    Animated.timing(gameOpacity, {
+      toValue: 0,
+      duration: ANSWER_FEEDBACK_ANIMATION_DURATION,
+    }).start();
 
     setTimeout(() => {
       onSubmitAnswer(answer);
@@ -246,6 +254,7 @@ const DefinitionGame = ({
                   key={scrambled.id}
                   showing={scrambled.showing}
                   letter={scrambled.letter}
+                  disabled={userActionsDisabled}
                   shuffleToggle={shuffleToggle}
                   animationDelayTime={animationDelayTimes[i]}
                   animationTotalTime={animationTotalTime}
@@ -260,6 +269,7 @@ const DefinitionGame = ({
               return (
                 <AnswerLetter
                   key={answer.id}
+                  disabled={userActionsDisabled}
                   onPressLetter={() => removeAnswerLetter(answer, i)}
                   letter={answer.letter}
                   {...answerTextProps}
@@ -271,10 +281,10 @@ const DefinitionGame = ({
 
         <FooterContainer>
           <FooterButtons>
-            <ShuffleButton onPress={onPressShuffle}>
+            <ShuffleButton onPress={onPressShuffle} disabled={userActionsDisabled}>
               <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
             </ShuffleButton>
-            <SkipButton onPress={onSkipCurrentWord}>
+            <SkipButton onPress={onSkipCurrentWord} disabled={userActionsDisabled}>
               <Icon name="skip-next" size={ICON_SIZE + 4} color={theme.textColor} />
             </SkipButton>
           </FooterButtons>

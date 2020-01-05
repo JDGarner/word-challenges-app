@@ -5,9 +5,9 @@ import { TouchableOpacity } from "react-native";
 import { TextContainer } from "..";
 import theme from "../../theme";
 
-export const BorderedButton = ({ children, style, onPress, onPressIn, onPressOut }) => {
+export const BorderedButton = ({ children, style, ...buttonProps }) => {
   return (
-    <TouchableOpacity onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut}>
+    <TouchableOpacity {...buttonProps}>
       <TextContainer style={style}>{children}</TextContainer>
     </TouchableOpacity>
   );

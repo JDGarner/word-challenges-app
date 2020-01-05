@@ -5,7 +5,6 @@ General To Do:
 - upgrade react native
 
 Definitions To Do:
-- disable buttons on game timeout
 - increase buffer, increase amount of definitions sent
 - Write web scraper for Oxford/cambridge sites
 - remove/update Jibe, Paradigm definition
