@@ -6,8 +6,6 @@ General To Do:
 
 Definitions To Do:
 - disable buttons on game timeout
-- make bottom bar a fixed height
-- make answer feedback more central
 - increase buffer, increase amount of definitions sent
 - Write web scraper for Oxford/cambridge sites
 - remove/update Jibe, Paradigm definition

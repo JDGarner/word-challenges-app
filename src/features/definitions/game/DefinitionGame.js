@@ -25,6 +25,14 @@ const ContentContainer = styled(Animated.View)`
   width: 100%;
 `;
 
+const CentreContainer = styled(View)`
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 46;
+`;
+
 const ScrambledLettersContainer = styled(View)`
   flex-direction: row;
   flex-wrap: wrap;
@@ -40,10 +48,15 @@ const AnswersContainer = styled(View)`
 `;
 
 const FooterContainer = styled(View)`
+  height: 16%;
+  margin-top: auto;
+`;
+
+const FooterButtons = styled(View)`
+  padding-top: 16;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 32;
+  align-items: flex-start;
 `;
 
 const ShuffleButton = styled(TouchableOpacity)`
@@ -223,44 +236,48 @@ const DefinitionGame = ({
     <Fragment>
       <TopBar onPressExitGame={onPressExitGame} gameCountdown={gameCountdown} />
       <ContentContainer style={{ opacity: gameOpacity }}>
-        <GameHeader definition={definition} />
+        <CentreContainer>
+          <GameHeader definition={definition} />
 
-        <ScrambledLettersContainer>
-          {scrambledLetters.map((scrambled, i) => {
-            return (
-              <ScrambledLetter
-                key={scrambled.id}
-                showing={scrambled.showing}
-                letter={scrambled.letter}
-                shuffleToggle={shuffleToggle}
-                animationDelayTime={animationDelayTimes[i]}
-                animationTotalTime={animationTotalTime}
-                onPressLetter={() => addAnswerLetter(scrambled, i)}
-              />
-            );
-          })}
-        </ScrambledLettersContainer>
+          <ScrambledLettersContainer>
+            {scrambledLetters.map((scrambled, i) => {
+              return (
+                <ScrambledLetter
+                  key={scrambled.id}
+                  showing={scrambled.showing}
+                  letter={scrambled.letter}
+                  shuffleToggle={shuffleToggle}
+                  animationDelayTime={animationDelayTimes[i]}
+                  animationTotalTime={animationTotalTime}
+                  onPressLetter={() => addAnswerLetter(scrambled, i)}
+                />
+              );
+            })}
+          </ScrambledLettersContainer>
 
-        <AnswersContainer>
-          {answerLetters.map((answer, i) => {
-            return (
-              <AnswerLetter
-                key={answer.id}
-                onPressLetter={() => removeAnswerLetter(answer, i)}
-                letter={answer.letter}
-                {...answerTextProps}
-              />
-            );
-          })}
-        </AnswersContainer>
+          <AnswersContainer>
+            {answerLetters.map((answer, i) => {
+              return (
+                <AnswerLetter
+                  key={answer.id}
+                  onPressLetter={() => removeAnswerLetter(answer, i)}
+                  letter={answer.letter}
+                  {...answerTextProps}
+                />
+              );
+            })}
+          </AnswersContainer>
+        </CentreContainer>
 
         <FooterContainer>
-          <ShuffleButton onPress={onPressShuffle}>
-            <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
-          </ShuffleButton>
-          <SkipButton onPress={onSkipCurrentWord}>
-            <Icon name="skip-next" size={ICON_SIZE + 4} color={theme.textColor} />
-          </SkipButton>
+          <FooterButtons>
+            <ShuffleButton onPress={onPressShuffle}>
+              <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
+            </ShuffleButton>
+            <SkipButton onPress={onSkipCurrentWord}>
+              <Icon name="skip-next" size={ICON_SIZE + 4} color={theme.textColor} />
+            </SkipButton>
+          </FooterButtons>
         </FooterContainer>
 
         <AnswerFeedback
