@@ -4,6 +4,10 @@ General To Do:
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
 - upgrade react native
 
+Name Ideas:
+- Word Romp
+- Word Binge
+
 Definitions To Do:
 - increase buffer, increase amount of definitions sent
 - Write web scraper for Oxford/cambridge sites
