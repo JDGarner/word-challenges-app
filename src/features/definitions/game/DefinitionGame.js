@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { cloneDeep, shuffle } from "lodash";
 import styled from "styled-components";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Animated } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import GameHeader from "../GameHeader";
@@ -18,7 +18,7 @@ import AnswerFeedback from "./AnswerFeedback";
 
 const ICON_SIZE = 32;
 
-const ContentContainer = styled(View)`
+const ContentContainer = styled(Animated.View)`
   flex: 1;
   align-items: center;
   justify-content: space-around;
@@ -116,6 +116,7 @@ const DefinitionGame = ({
   const [shuffleToggle, setShuffleToggle] = useState(false);
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
   const [answerFeedbackAnimationToggle, setAnswerFeedbackAnimationToggle] = useState(false);
+  const [gameOpacity] = useState(new Animated.Value(0));
 
   const animationDelayTimes = getAnimationDelayTimes(letters);
   const animationTotalTime = letters.length * SHUFFLE_ANIMATION_GAP_TIME;
@@ -133,6 +134,27 @@ const DefinitionGame = ({
     setScrambledLetters(getScrambledLetters(letters));
     setAnswerLetters(getAnswerLetters(letters));
   }, [letters]);
+
+  useEffect(() => {
+    // Fade out game, show incorrect answer feedback
+    if (gameCountdown === 0) {
+      // TODO: disable letter changes
+      Animated.timing(gameOpacity, {
+        toValue: 0,
+        duration: ANSWER_FEEDBACK_ANIMATION_DURATION,
+      }).start();
+      setIsCurrentAnswerCorrect(false);
+      setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
+    }
+  }, [gameCountdown]);
+
+  // Fade in game when word changes
+  useEffect(() => {
+    Animated.timing(gameOpacity, {
+      toValue: 1,
+      duration: 380,
+    }).start();
+  }, [word]);
 
   const onAllLettersAdded = answer => {
     setIsCurrentAnswerCorrect(answer.toUpperCase() === word.toUpperCase());
@@ -200,7 +222,7 @@ const DefinitionGame = ({
   return (
     <Fragment>
       <TopBar onPressExitGame={onPressExitGame} gameCountdown={gameCountdown} />
-      <ContentContainer>
+      <ContentContainer style={{ opacity: gameOpacity }}>
         <GameHeader definition={definition} />
 
         <ScrambledLettersContainer>

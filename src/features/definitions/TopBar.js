@@ -27,7 +27,7 @@ const TopBar = ({ gameCountdown, onPressExitGame, animateDuration, animateDelay 
   return (
     <TopBarContainer>
       {CloseComponent}
-      {gameCountdown && <Countdown gameCountdown={gameCountdown} />}
+      {!isNaN(gameCountdown) && <Countdown gameCountdown={gameCountdown} />}
     </TopBarContainer>
   );
 };

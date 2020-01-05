@@ -10,10 +10,15 @@ import {
   ON_PRESS_START_NEW_GAME,
   fetchAdditionalDefinitionsSuccess,
   ON_EXIT_GAME,
+  gameCountdownAtZero,
+  GAME_COUNTDOWN_TICK,
 } from "./definitions-actions";
 import fetchFromApi from "../../../fetch-util";
 import { ENDPOINTS, RETRY_TIMEOUT } from "../../../Config";
-import { DEFINITIONS_LOCAL_BUFFER } from "../definitions-constants";
+import {
+  DEFINITIONS_LOCAL_BUFFER,
+  ANSWER_FEEDBACK_ANIMATION_DURATION,
+} from "../definitions-constants";
 
 let gameCountdownInterval = null;
 
@@ -43,6 +48,15 @@ export default store => next => action => {
 
     case ON_GAME_END:
       clearInterval(gameCountdownInterval);
+      break;
+
+    case GAME_COUNTDOWN_TICK:
+      const { gameCountdown } = getState().definitions;
+      if (gameCountdown === 1) {
+        setTimeout(() => {
+          dispatch(gameCountdownAtZero());
+        }, ANSWER_FEEDBACK_ANIMATION_DURATION);
+      }
       break;
 
     case ON_EXIT_GAME:

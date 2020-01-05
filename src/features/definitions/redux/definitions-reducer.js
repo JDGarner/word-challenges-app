@@ -10,6 +10,7 @@ import {
   ON_SKIP_CURRENT_WORD,
   ON_SHUFFLE_CURRENT_WORD,
   ON_EXIT_GAME,
+  GAME_COUNTDOWN_AT_ZERO,
 } from "./definitions-actions";
 import { GAME_STATES, INITIAL_COUNTDOWN, WORDS_PER_ROUND } from "../definitions-constants";
 import { roundIsOver } from "../definitions-utils";
@@ -114,21 +115,18 @@ export default (state = initialState, action) => {
       };
     }
 
-    case GAME_COUNTDOWN_TICK: {
-      let gameCountdown = state.gameCountdown - 1;
+    case GAME_COUNTDOWN_TICK:
+      return { ...state, gameCountdown: state.gameCountdown - 1 };
 
-      if (gameCountdown === 0) {
-        const currentDefinitions = cloneDeep(state.currentDefinitions);
-        currentDefinitions[state.roundIndex].isCorrect = false;
+    case GAME_COUNTDOWN_AT_ZERO: {
+      const currentDefinitions = cloneDeep(state.currentDefinitions);
+      currentDefinitions[state.roundIndex].isCorrect = false;
 
-        if (roundIsOver(state)) {
-          return { ...getStateForRoundEnd(state), currentDefinitions };
-        }
-
-        return { ...getStateForGameEnd(state), currentDefinitions };
+      if (roundIsOver(state)) {
+        return { ...getStateForRoundEnd(state), currentDefinitions };
       }
 
-      return { ...state, gameCountdown };
+      return { ...getStateForGameEnd(state), currentDefinitions };
     }
 
     case ON_EXIT_GAME:
