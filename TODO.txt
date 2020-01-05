@@ -8,24 +8,21 @@ Definitions To Do:
 - increase buffer, increase amount of definitions sent
 - Write web scraper for Oxford/cambridge sites
 - remove/update Jibe, Paradigm definition
-- test can you shuffle just before game end to cause bug?
-- could move ON_EXIT_GAME logic to listen to navigation event instead of timeout
-- Sort out game and round naming (round should be within a game)
 
 - add extra difficulties
-- add clues? (2 clues per round? - give first X letters?)
-
-- Make modes different colours/gradients
-- Remove border from given rhyme/definition
 - look into performance profiling (is everything being re-rendered when countdown ticks?)
 
+Potential Features:
+- add clues? (2 clues per round? - give first X letters?, give example?, give synonym?)
 
 Potential Tweaks:
 - Change countdown to pie timer?
 - Change colour/font weight of praise/word in post game screen
 
 Potential Refactors:
+- Sort out game and round naming (round should be within a game)
 - make countdown logic generic?
+- could move ON_EXIT_GAME logic to listen to navigation event instead of timeout
 
 
 Rhymes to do:
