@@ -9,7 +9,6 @@ Name Ideas:
 - Word Binge
 
 Definitions To Do:
-- increase buffer, increase amount of definitions sent
 - Write web scraper for Oxford/cambridge sites
 - remove/update Jibe, Paradigm definition
 

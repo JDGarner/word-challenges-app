@@ -12,6 +12,7 @@ const MenuContainer = styled(View)`
 const MenuItems = styled(View)`
   flex: 1;
   width: 100%;
+  margin-bottom: 30%;
   justify-content: center;
   align-items: center;
 `;
