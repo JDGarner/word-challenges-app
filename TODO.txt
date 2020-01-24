@@ -1,73 +1,80 @@
-General To Do:
+----------------------------------------
+1st Release
+----------------------------------------
+
+General:
+- upgrade react-native
+- Android av4 aab
+- set cache control headers on API 
+- add api key to app in .env file, send api key on requests (on custom header?)
+- move API_URL into .env file
 - Improve main menu styling
-- Decide on next game mode, Science definitions? Synonyms? (pick correct from random list of words)
+- add extra game mode coming soon disabled button
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
-- upgrade react native
+- Add sound effects & mute
 
-Name Ideas:
-- Word Romp
-- Word Binge
-
-Definitions To Do:
-- Write web scraper for Oxford/cambridge sites
-- remove/update Jibe, Paradigm definition
-
-- add extra difficulties
-- look into performance profiling (is everything being re-rendered when countdown ticks?)
-
-Potential Features:
-- add clues? (2 clues per round? - give first X letters?, give example?, give synonym?)
+Definitions:
+- add extra difficulties:
+  - Novice - easier words + clues
+  - Journeyman - easier words, no clues
+  - Expert - harder words + clues
+  - Master - harder words, no clues
 
 Potential Tweaks:
 - Change countdown to pie timer?
 - Change colour/font weight of praise/word in post game screen
+
+Rhymes:
+- fix countdown?
+- add close button & exit game logic
+- post game animation text
+- add shimmer animation - correct answers and new given word
+- add green tick/red cross animation
+- animate duplicate answer (shimmer?)
+
+Bugs:
+- cant scroll after click on answer inside grid
+
+Styling To Do:
+- ellipses for long text?
+- sort out spacing for different device sizes, make gap at top %
+- countdown on iOS/android position
+- font?
+
+
+
+
+----------------------------------------
+Future Release
+----------------------------------------
+
+General:
+- Decide on next game mode, Science definitions? Synonyms? (pick correct from random list of words)
+- upgrade react native
+- need a way to track which users got which words, 
+  or at least add a counter for number of users that got a particular word
+
+Definitions:
+- look into performance profiling (is everything being re-rendered when countdown ticks?)
+
+Potential Features:
+- add clues? (2 clues per round? - give first X letters?, give example?, give synonym?)
+- add background animated spheres
 
 Potential Refactors:
 - Sort out game and round naming (round should be within a game)
 - make countdown logic generic?
 - could move ON_EXIT_GAME logic to listen to navigation event instead of timeout
 
+----------------------------------------
+Other
+----------------------------------------
 
-Rhymes to do:
-  - fix countdown
-  - add close button & exit game logic
-
-  Animation To Do:
-  - post game animation text
-  - add shimmer animation - correct answers and new given word
-  - add green tick/red cross animation
-  - animate duplicate answer (shimmer?)
-
-  Bugs To Fix:
-  - cant scroll after click on answer inside grid
-
-  Styling To Do:
-  - ellipses for long text?
-  - sort out spacing for different device sizes, make gap at top %
-  - countdown on iOS/android position
-  - add background animated spheres?
-  - font?
-
-- Add sound effects? mute?
-
-- need a way to track which users got which words, 
-  or at least add a counter for number of users that got a particular word
-
-
-Synonym mode:
-
-
-Defintions Mode:
-- User has to type word in for given definition
-Easy - easier words
-Medium - harder words with clues
-Hard - harder words no clues
-
-MVP:
-- Rhyme mode
-- Synonym mode (or do defintions next?)
-- Main menu, definitions coming soon?
-- have difficulty settings?
+Name Ideas:
+- Word Romp
+- Word Binge
+- Word Play Challenge
+- Something like WordScapes/other word puns
 
 2nd Version:
 - Compare users score to other players
@@ -101,12 +108,6 @@ Potential Tests to write:
   - Initial request succeeds > Game is playing > next request succeeds > new game starts with new definitions
   - Initial request succeeds > Game is playing > next request fails > retry succeeds > new game starts
   - Initial request fails > retry fails > retry succeeds > game starts
-
-
-
-Name Ideas:
-Word Play Challenge
-Something like WordScapes/other word puns
 
 
 

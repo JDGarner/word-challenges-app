@@ -26,7 +26,11 @@ const enhancedFetch = async (url, endpoint) => {
     return mockFetch(endpoint);
   }
 
-  return fetch(`${url}/${endpoint}`);
+  return fetch(`${url}/${endpoint}`, {
+    headers: {
+      Authorization: "api_key_here",
+    },
+  });
 };
 
 const fetchData = async (endpoint, onError = () => {}) => {
