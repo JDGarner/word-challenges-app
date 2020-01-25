@@ -3,8 +3,6 @@
 ----------------------------------------
 
 General:
-- move API_URL into .env file, read it from config in app
-- don't commit .env, backup in dropbox
 - upgrade react-native
 - Android av4 aab
 - set cache control headers on API 
@@ -14,6 +12,7 @@ General:
 - add extra game mode coming soon disabled button
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
 - Add sound effects & mute
+- Test out effect of caching headers on API
 
 Definitions:
 - fix post game styling on smaller screens

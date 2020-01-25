@@ -14,7 +14,7 @@ import {
   GAME_COUNTDOWN_TICK,
 } from "./definitions-actions";
 import fetchFromApi from "../../../fetch-util";
-import { ENDPOINTS, RETRY_TIMEOUT } from "../../../Config";
+import { ENDPOINTS, RETRY_TIMEOUT } from "../../../app-constants";
 import {
   DEFINITIONS_LOCAL_BUFFER,
   ANSWER_FEEDBACK_ANIMATION_DURATION,

@@ -12,7 +12,7 @@ import {
 } from "./rhymes-actions";
 import { RHYMES_LOCAL_BUFFER } from "../rhymes-constants";
 import fetchFromApi from "../../../fetch-util";
-import { ENDPOINTS, RETRY_TIMEOUT } from "../../../Config";
+import { ENDPOINTS, RETRY_TIMEOUT } from "../../../app-constants";
 
 let gameCountdownInterval = null;
 

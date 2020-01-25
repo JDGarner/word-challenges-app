@@ -1,5 +1,5 @@
 import NetInfo from "@react-native-community/netinfo";
-import { MOCK_URL, API_URL } from "./Config";
+import { MOCK_URL, getConfig } from "./Config";
 import getMockData from "./mock-data";
 import { ERROR_CODES } from "./components/error/ErrorScreen";
 
@@ -35,13 +35,13 @@ const enhancedFetch = async (url, endpoint) => {
 
 const fetchData = async (endpoint, onError = () => {}) => {
   return await NetInfo.fetch().then(async state => {
-    if (!state.isConnected && API_URL !== MOCK_URL) {
+    if (!state.isConnected && getConfig().API_URL !== MOCK_URL) {
       onError(ERROR_CODES.CONNECTION);
       return null;
     }
 
     try {
-      const response = await enhancedFetch(API_URL, endpoint);
+      const response = await enhancedFetch(getConfig().API_URL, endpoint);
 
       if (response.status === 200) {
         return response;

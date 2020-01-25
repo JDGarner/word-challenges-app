@@ -1,4 +1,4 @@
-import { ENDPOINTS } from "../Config";
+import { ENDPOINTS } from "../app-constants";
 import rhymes from "./rhymes";
 import definitions from "./definitions";
 
