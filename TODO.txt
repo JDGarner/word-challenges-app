@@ -3,22 +3,31 @@
 ----------------------------------------
 
 General:
+- move API_URL into .env file, read it from config in app
+- don't commit .env, backup in dropbox
 - upgrade react-native
 - Android av4 aab
 - set cache control headers on API 
 - add api key to app in .env file, send api key on requests (on custom header?)
-- move API_URL into .env file
+- add different dev and prod environments with different .env files (see config github)
 - Improve main menu styling
 - add extra game mode coming soon disabled button
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
 - Add sound effects & mute
 
 Definitions:
+- fix post game styling on smaller screens
 - add extra difficulties:
+Option 1:
   - Novice - easier words + clues
   - Journeyman - easier words, no clues
   - Expert - harder words + clues
   - Master - harder words, no clues
+Option 2:
+  - Novice - multiple choice (3-4 choices)
+  - Journeyman - multiple choice (5-6 choices)
+  - Expert - mixed up letters + clues
+  - Master - mixed up letters + no clues
 
 Potential Tweaks:
 - Change countdown to pie timer?
