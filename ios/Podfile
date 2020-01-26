@@ -37,20 +37,5 @@ target 'WordChallenges' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'WordChallengesTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
   use_native_modules!
-end
-
-target 'WordChallenges-tvOS' do
-  # Pods for WordChallenges-tvOS
-
-  target 'WordChallenges-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
