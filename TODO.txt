@@ -3,8 +3,8 @@
 ----------------------------------------
 
 General:
-- upgrade react-native
-- enable hermes
+- enableProguardInReleaseBuilds ?
+- enableSeparateBuildPerCPUArchitecture ?
 - Android av4 aab
 - set cache control headers on API
 - add api key to app in .env file, send api key on requests (on custom header?)

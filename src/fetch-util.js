@@ -63,7 +63,7 @@ const fetchFromApi = async (endpoint, onSuccess, onError = () => {}) => {
   try {
     if (response) {
       const responseJson = await response.json();
-      console.log(">>> response: ", responseJson);
+      // console.log(">>> response: ", responseJson);
       onSuccess(responseJson);
     }
   } catch (error) {
