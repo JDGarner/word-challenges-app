@@ -6,9 +6,10 @@ General:
 - upgrade react-native
 - enable hermes
 - Android av4 aab
-- set cache control headers on API 
+- set cache control headers on API
 - add api key to app in .env file, send api key on requests (on custom header?)
 - add different dev and prod environments with different .env files (see config github)
+- splash screen
 - Improve main menu styling
 - add extra game mode coming soon disabled button
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
