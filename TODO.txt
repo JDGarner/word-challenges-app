@@ -4,6 +4,7 @@
 
 General:
 - upgrade react-native
+- enable hermes
 - Android av4 aab
 - set cache control headers on API 
 - add api key to app in .env file, send api key on requests (on custom header?)
@@ -13,6 +14,7 @@ General:
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
 - Add sound effects & mute
 - Test out effect of caching headers on API
+- read react native docs on releasing before releasing
 
 Definitions:
 - fix post game styling on smaller screens

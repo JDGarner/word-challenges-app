@@ -1,7 +1,0 @@
-Definitions Game:
-1 Game - 5 words, each one with 20 seconds timer?
-With 15 seconds down show Begins with X? 
-With 10 seconds down show number of letters?
-Skip button
-Easy words, Medium words, Hard words
-(Add clues/hints if it seems too hard still)
