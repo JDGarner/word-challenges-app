@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { View } from "react-native";
-import { LargeText, BorderedButton, MediumText } from "..";
+import { MediumText, LargeText } from "../text/Text";
+import { BorderedButton } from "../button/Button";
 
 export const ERROR_CODES = {
   CONNECTION: "CONNECTION",

@@ -3,11 +3,8 @@
 ----------------------------------------
 
 General:
-- enableProguardInReleaseBuilds ?
-- enableSeparateBuildPerCPUArchitecture ?
-- Android av4 aab
-- set cache control headers on API
 - add api key to app in .env file, send api key on requests (on custom header?)
+- set cache control headers on API
 - add different dev and prod environments with different .env files (see config github)
 - splash screen
 - Improve main menu styling
@@ -16,6 +13,8 @@ General:
 - Add sound effects & mute
 - Test out effect of caching headers on API
 - read react native docs on releasing before releasing
+  - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
+
 
 Definitions:
 - fix post game styling on smaller screens
@@ -60,6 +59,8 @@ Future Release
 ----------------------------------------
 
 General:
+- enableProguardInReleaseBuilds, enableSeparateBuildPerCPUArchitecture ?
+  - look into how to see bundle size/app/apk size https://medium.com/@rishii.kumar.chawda/reduce-your-react-native-app-size-dramatically-5430d773c92f
 - Decide on next game mode, Science definitions? Synonyms? (pick correct from random list of words)
 - upgrade react native
 - need a way to track which users got which words, 

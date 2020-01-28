@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Animated, Easing } from "react-native";
 import styled from "styled-components";
-import { LargeText } from "..";
+import { LargeText } from "../text/Text";
 import theme from "../../theme";
 
 const CountdownContainer = styled(Animated.View)`

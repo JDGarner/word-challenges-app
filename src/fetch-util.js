@@ -3,6 +3,8 @@ import { MOCK_URL, getConfig } from "./Config";
 import getMockData from "./mock-data";
 import { ERROR_CODES } from "./components/error/ErrorScreen";
 
+const { API_URL, API_KEY } = getConfig();
+
 const mockFetch = endpoint => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -28,20 +30,20 @@ const enhancedFetch = async (url, endpoint) => {
 
   return fetch(`${url}/${endpoint}`, {
     headers: {
-      Authorization: "api_key_here",
+      Authorization: API_KEY,
     },
   });
 };
 
 const fetchData = async (endpoint, onError = () => {}) => {
   return await NetInfo.fetch().then(async state => {
-    if (!state.isConnected && getConfig().API_URL !== MOCK_URL) {
+    if (!state.isConnected && API_URL !== MOCK_URL) {
       onError(ERROR_CODES.CONNECTION);
       return null;
     }
 
     try {
-      const response = await enhancedFetch(getConfig().API_URL, endpoint);
+      const response = await enhancedFetch(API_URL, endpoint);
 
       if (response.status === 200) {
         return response;

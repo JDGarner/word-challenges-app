@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { TouchableOpacity } from "react-native";
-import { TextContainer } from "..";
 import theme from "../../theme";
+import { TextContainer } from "../containers/Containers";
 
 export const BorderedButton = ({ children, style, ...buttonProps }) => {
   return (
