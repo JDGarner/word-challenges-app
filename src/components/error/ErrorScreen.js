@@ -12,8 +12,8 @@ export const ERROR_CODES = {
 
 const ERROR_CODES_TO_TEXT = {
   CONNECTION: "Network error, no internet connection",
-  API: "Oops, something went wrong, our service may be down at the moment",
-  GENERIC: "Oops, something went wrong, our service may be down at the moment",
+  API: "Oops, something went wrong, our servers may be down at the moment",
+  GENERIC: "Oops, something went wrong, our servers may be down at the moment",
 };
 
 const ErrorContainer = styled(View)`
