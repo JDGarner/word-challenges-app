@@ -12,7 +12,12 @@ import {
   ON_EXIT_GAME,
   GAME_COUNTDOWN_AT_ZERO,
 } from "./definitions-actions";
-import { GAME_STATES, INITIAL_COUNTDOWN, WORDS_PER_ROUND } from "../definitions-constants";
+import {
+  GAME_STATES,
+  INITIAL_COUNTDOWN,
+  WORDS_PER_ROUND,
+  DIFFICULTIES,
+} from "../definitions-constants";
 import { roundIsOver } from "../definitions-utils";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 
@@ -25,8 +30,9 @@ const initialState = {
   currentDefinitionIndex: 0,
   roundIndex: 1,
   loaded: false,
-  gameState: GAME_STATES.PLAYING,
+  gameState: GAME_STATES.DIFFICULTYSELECTION,
   gameCountdown: INITIAL_COUNTDOWN,
+  difficulty: DIFFICULTIES.NOVICE,
   errorCode: "",
   connectionError: false,
 };
@@ -51,7 +57,7 @@ const getStateForGameEnd = state => {
   };
 };
 
-const getStateForNewRound = (state, nextIndex) => {
+const getStateForNewRound = (state, nextIndex, newGameState) => {
   const currentDefinition = state.allDefinitions[nextIndex];
   const currentDefinitions = state.allDefinitions.slice(nextIndex, nextIndex + WORDS_PER_ROUND);
   const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
@@ -64,9 +70,22 @@ const getStateForNewRound = (state, nextIndex) => {
     scrambledLetters,
     allDefinitionsIndex: nextIndex,
     gameCountdown: INITIAL_COUNTDOWN,
-    gameState: GAME_STATES.PLAYING,
+    gameState: newGameState,
   };
 };
+
+// Adding difficulty selection notes:
+// 1 - Can be in separate or same call to API (1 call makes sense)
+//   - Make FETCH_DEFINITIONS_SUCCESS handle easy and hard definitions
+//   - duplicate state for stuff that needs to be persistent between rounds:
+// allDefinitions -> allHardDefinitions, allEasyDefinitions
+// allDefinitionsIndex -> ...
+// currentDefinitions -> ...
+
+// TODO: maybe make this refactor first before adding difficulty level:
+// for stuff that only needs to be set during play time
+// set it just before game starts (e.g. on selecting difficulty)
+// e.g. currentDefinition, scrambledLetters, etc
 
 export default (state = initialState, action) => {
   const { type } = action;
@@ -131,6 +150,9 @@ export default (state = initialState, action) => {
 
     case ON_EXIT_GAME:
     case ON_PRESS_START_NEW_GAME:
+      const newGameState =
+        type === ON_EXIT_GAME ? GAME_STATES.DIFFICULTYSELECTION : GAME_STATES.PLAYING;
+
       // if game is exited while half way through...
       if (state.gameState === GAME_STATES.PLAYING) {
         // Move index up to the nearest 5
@@ -139,7 +161,7 @@ export default (state = initialState, action) => {
 
         return {
           ...state,
-          ...getStateForNewRound(state, nextIndex),
+          ...getStateForNewRound(state, nextIndex, newGameState),
           roundIndex,
         };
       }
@@ -156,12 +178,13 @@ export default (state = initialState, action) => {
           gameCountdown: INITIAL_COUNTDOWN,
           errorCode: ERROR_CODES.GENERIC,
           connectionError: true,
+          gameState: newGameState,
         };
       }
 
       return {
         ...state,
-        ...getStateForNewRound(state, nextIndex),
+        ...getStateForNewRound(state, nextIndex, newGameState),
       };
 
     case ON_SUBMIT_ANSWER: {

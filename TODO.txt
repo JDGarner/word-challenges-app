@@ -3,32 +3,38 @@
 ----------------------------------------
 
 General:
-- add api key to app in .env file, send api key on requests (on custom header?)
-- set cache control headers on API
-- add different dev and prod environments with different .env files (see config github)
+- add difficulties to definitions
+  - add clues
+  - add easier words
+- add difficulties to rhymes?
 - splash screen
 - Improve main menu styling
-- add extra game mode coming soon disabled button
+- add extra game mode coming soon disabled button (or add Synonyms?)
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
 - Add sound effects & mute
-- Test out effect of caching headers on API
+- add different dev and prod environments with different .env files (see config github)
 - read react native docs on releasing before releasing
   - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 
+Maybe in 1st release:
+- Add Synonyms mode
+- Add user stats
 
 Definitions:
 - fix post game styling on smaller screens
+- lock difficulties until completing earlier levels?
 - add extra difficulties:
+  - update usage of gameState to handle extra selection state
+  - implement onSelectDifficulty
+  - refactor to only set redux state needed for game on difficulty selection
+  - add easy definitions into api call, set them on api success
+- keep track of users % correct for each difficulty
+
 Option 1:
   - Novice - easier words + clues
   - Journeyman - easier words, no clues
   - Expert - harder words + clues
   - Master - harder words, no clues
-Option 2:
-  - Novice - multiple choice (3-4 choices)
-  - Journeyman - multiple choice (5-6 choices)
-  - Expert - mixed up letters + clues
-  - Master - mixed up letters + no clues
 
 Potential Tweaks:
 - Change countdown to pie timer?

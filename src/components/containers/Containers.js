@@ -14,3 +14,14 @@ export const TextContainer = styled.View`
   border-radius: 4px;
   border: 2px solid ${props => props.theme.textColor};
 `;
+
+export const ScreenContainer = styled(CenteredContainer)`
+  flex: 1;
+  justify-content: space-around;
+`;
+
+export const ScreenContainerPadded = styled(CenteredContainer)`
+  flex: 1;
+  justify-content: space-around;
+  padding-horizontal: 5%;
+`;

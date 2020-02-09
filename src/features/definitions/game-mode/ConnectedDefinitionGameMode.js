@@ -2,8 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchDefinitionsRetry } from "../redux/definitions-actions";
 import AppBackground from "../../../components/background/AppBackground";
+import { ScreenContainerPadded } from "../../../components/containers/Containers";
 import DefintionGameMode from "./DefinitionGameMode";
 import { ErrorScreen, LoadingScreen } from "../../../components";
+import { GAME_STATES } from "../definitions-constants";
+import ConnectedDefinitionDifficultySelection from "../difficulty-selection/ConnectedDefinitionDifficultySelection";
 
 const mapStateToProps = ({ definitions }) => {
   const { gameState, loaded, connectionError, errorCode, currentDefinition } = definitions;
@@ -18,6 +21,14 @@ const mapDispatchToProps = {
 
 const DefintionGameModeLoader = props => {
   const getContent = () => {
+    if (props.gameState === GAME_STATES.DIFFICULTYSELECTION) {
+      return (
+        <ScreenContainerPadded>
+          <ConnectedDefinitionDifficultySelection navigation={props.navigation} />
+        </ScreenContainerPadded>
+      );
+    }
+
     if (props.connectionError) {
       return (
         <ErrorScreen onButtonPress={props.fetchDefinitionsRetry} errorCode={props.errorCode} />

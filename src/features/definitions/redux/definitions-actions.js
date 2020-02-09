@@ -14,6 +14,7 @@ export const ON_PRESS_START_NEW_GAME = `${NAMESPACE}/ON_PRESS_START_NEW_GAME`;
 export const ON_SKIP_CURRENT_WORD = `${NAMESPACE}/ON_SKIP_CURRENT_WORD`;
 export const ON_SHUFFLE_CURRENT_WORD = `${NAMESPACE}/ON_SHUFFLE_CURRENT_WORD`;
 export const ON_EXIT_GAME = `${NAMESPACE}/ON_EXIT_GAME`;
+export const ON_SELECT_DIFFICULTY = `${NAMESPACE}/ON_SELECT_DIFFICULTY`;
 
 export const fetchDefinitions = () => ({
   type: FETCH_DEFINITIONS,
@@ -73,4 +74,9 @@ export const onShuffleCurrentWord = () => ({
 
 export const onExitGame = () => ({
   type: ON_EXIT_GAME,
+});
+
+export const onSelectDifficulty = difficulty => ({
+  type: ON_SELECT_DIFFICULTY,
+  difficulty,
 });

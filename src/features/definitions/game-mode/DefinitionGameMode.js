@@ -1,16 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 
-import { CenteredContainer, HideKeyboardOnTouch } from "../../../components";
+import { HideKeyboardOnTouch } from "../../../components";
 import ConnectedDefinitionGame from "../game/ConnectedDefinitionGame";
 import { GAME_STATES } from "../definitions-constants";
 import ConnectedDefinitionPostGame from "../post-game/ConnectedDefinitionPostGame";
-
-const ScreenContainer = styled(CenteredContainer)`
-  flex: 1;
-  justify-content: space-around;
-  padding-horizontal: 5%;
-`;
+import { ScreenContainerPadded } from "../../../components/containers/Containers";
 
 const DefinitionGameMode = ({ gameState, currentWord, navigation }) => {
   const renderContent = () => {
@@ -26,7 +20,7 @@ const DefinitionGameMode = ({ gameState, currentWord, navigation }) => {
 
   return (
     <HideKeyboardOnTouch>
-      <ScreenContainer>{renderContent()}</ScreenContainer>
+      <ScreenContainerPadded>{renderContent()}</ScreenContainerPadded>
     </HideKeyboardOnTouch>
   );
 };

@@ -1,7 +1,14 @@
 export const GAME_STATES = {
-  // TODO: DIFFICULTYSELECTION: "DifficultySelection"
+  DIFFICULTYSELECTION: "DifficultySelection",
   PLAYING: "Playing",
   POSTGAME: "PostGame",
+};
+
+export const DIFFICULTIES = {
+  NOVICE: "Novice",
+  JOURNEYMAN: "Journeyman",
+  EXPERT: "Expert",
+  MASTER: "Master",
 };
 
 export const WORDS_PER_ROUND = 5;
