@@ -72,6 +72,7 @@ General:
 - upgrade react native
 - need a way to track which users got which words, 
   or at least add a counter for number of users that got a particular word
+- does there need to be a timeout on the api?
 
 Definitions:
 - look into performance profiling (is everything being re-rendered when countdown ticks?)

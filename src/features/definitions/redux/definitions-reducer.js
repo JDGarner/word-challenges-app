@@ -61,9 +61,9 @@ const getStateForNextQuestion = state => {
   };
 };
 
-const getStateForNewRound = state => {
-  const nextIndex = state.allDefinitionsIndex;
-  const nextDefinition = state.allDefinitions[nextIndex];
+const getStateForNewRound = (state, nextIndex, definitions = null) => {
+  const allDefinitions = definitions ? definitions : state.allDefinitions;
+  const nextDefinition = allDefinitions[nextIndex];
 
   // API call must have failed to fetch additional definitions, go to error state
   if (!nextDefinition) {
@@ -77,65 +77,46 @@ const getStateForNewRound = state => {
     };
   }
 
-  const currentDefinition = state.allDefinitions[nextIndex];
-  const currentDefinitions = state.allDefinitions.slice(nextIndex, nextIndex + WORDS_PER_ROUND);
+  const currentDefinition = allDefinitions[nextIndex];
+  const currentDefinitions = allDefinitions.slice(nextIndex, nextIndex + WORDS_PER_ROUND);
   const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
 
   return {
     ...state,
-    currentDefinition,
     questionIndex: 0,
+    allDefinitionsIndex: nextIndex,
+    currentDefinition,
     currentDefinitions,
     scrambledLetters,
-    allDefinitionsIndex: nextIndex,
     gameCountdown: INITIAL_COUNTDOWN,
-    gameState: GAME_STATES.PLAYING,
   };
 };
 
 // Adding difficulty selection notes:
 // 1 - Can be in separate or same call to API (1 call makes sense)
 //   - Make FETCH_DEFINITIONS_SUCCESS handle easy and hard definitions
-//   - duplicate state for stuff that needs to be persistent between rounds:
 // allDefinitions -> allHardDefinitions, allEasyDefinitions
-// allDefinitionsIndex -> ...
-// currentDefinitions -> ...
-
-// TODO: maybe make this refactor first before adding difficulty level:
-// for stuff that only needs to be set during play time
-// set it just before game starts (e.g. on selecting difficulty)
-// e.g. currentDefinition, scrambledLetters, etc
+// allDefinitionsIndex -> allHardDefinitionsIndex, allEasyDefinitionsIndex
+// currentDefinitions -> currentHardDefinitions, currentEasyDefinitions
 
 export default (state = initialState, action) => {
   const { type } = action;
 
   switch (type) {
-    case FETCH_DEFINITIONS_SUCCESS: {
-      const allDefinitions = action.definitions;
-      const currentDefinitions = allDefinitions.slice(0, WORDS_PER_ROUND);
-      const currentDefinition = allDefinitions[0];
-      const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
-
+    case FETCH_DEFINITIONS_SUCCESS:
       return {
         ...state,
-        allDefinitions,
-        currentDefinition,
-        questionIndex: 0,
-        allDefinitionsIndex: 0,
-        currentDefinitions,
-        scrambledLetters,
+        ...getStateForNewRound(state, 0, action.definitions),
+        allDefinitions: action.definitions,
         loaded: true,
         connectionError: false,
       };
-    }
 
-    case FETCH_DEFINITIONS_ERROR: {
+    case FETCH_DEFINITIONS_ERROR:
       return { ...state, connectionError: true, errorCode: action.errorCode };
-    }
 
-    case FETCH_DEFINITIONS_RETRY: {
+    case FETCH_DEFINITIONS_RETRY:
       return { ...state, loaded: false, connectionError: false, errorCode: "" };
-    }
 
     case FETCH_ADDITIONAL_DEFINITIONS_SUCCESS: {
       // New Definitions have arrived, get rid of the current ones before current index
@@ -163,11 +144,11 @@ export default (state = initialState, action) => {
       return { ...getStateForNextQuestion(state) };
 
     case ON_EXIT_GAME: {
-      const allDefinitionsIndex = Math.ceil(state.allDefinitionsIndex / 5) * 5;
+      const nextIndex = Math.ceil(state.allDefinitionsIndex / 5) * 5;
 
       return {
         ...state,
-        allDefinitionsIndex,
+        ...getStateForNewRound(state, nextIndex),
         gameState: GAME_STATES.DIFFICULTYSELECTION,
       };
     }
@@ -184,17 +165,24 @@ export default (state = initialState, action) => {
       return { ...getStateForNextQuestion(state), currentDefinitions };
     }
 
-    case ON_SHUFFLE_CURRENT_WORD: {
-      const scrambledLetters = shuffle(state.currentDefinition.word.toUpperCase().split(""));
-      return { ...state, scrambledLetters };
-    }
+    case ON_SHUFFLE_CURRENT_WORD:
+      return {
+        ...state,
+        scrambledLetters: shuffle(state.currentDefinition.word.toUpperCase().split("")),
+      };
 
-    case ON_PRESS_START_NEW_GAME:
     case ON_SELECT_DIFFICULTY:
       return {
         ...state,
-        ...getStateForNewRound(state),
-        difficulty: action.difficulty ? action.difficulty : state.difficulty,
+        gameState: GAME_STATES.PLAYING,
+        difficulty: action.difficulty,
+      };
+
+    case ON_PRESS_START_NEW_GAME:
+      return {
+        ...state,
+        ...getStateForNewRound(state, state.allDefinitionsIndex),
+        gameState: GAME_STATES.PLAYING,
       };
 
     default:
