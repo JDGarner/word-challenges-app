@@ -40,12 +40,6 @@ export default store => next => action => {
       }, RETRY_TIMEOUT);
       break;
 
-    case ON_BEGIN_GAME:
-      gameCountdownInterval = setInterval(() => {
-        dispatch(gameCountdownTick());
-      }, 1000);
-      break;
-
     case ON_GAME_END:
       clearInterval(gameCountdownInterval);
       break;
@@ -59,8 +53,11 @@ export default store => next => action => {
       }
       break;
 
-    case ON_EXIT_GAME:
-    case ON_PRESS_START_NEW_GAME:
+    case ON_BEGIN_GAME:
+      gameCountdownInterval = setInterval(() => {
+        dispatch(gameCountdownTick());
+      }, 1000);
+
       const { allDefinitionsIndex, allDefinitions } = getState().definitions;
       if (allDefinitionsIndex > allDefinitions.length - DEFINITIONS_LOCAL_BUFFER) {
         fetchFromApi(ENDPOINTS.DEFINITIONS, data =>

@@ -11,6 +11,7 @@ import {
   ON_SHUFFLE_CURRENT_WORD,
   ON_EXIT_GAME,
   GAME_COUNTDOWN_AT_ZERO,
+  ON_SELECT_DIFFICULTY,
 } from "./definitions-actions";
 import {
   GAME_STATES,
@@ -27,8 +28,7 @@ const initialState = {
   scrambledLetters: [],
   currentDefinitions: [],
   currentDefinition: {},
-  currentDefinitionIndex: 0,
-  roundIndex: 1,
+  questionIndex: 0,
   loaded: false,
   gameState: GAME_STATES.DIFFICULTYSELECTION,
   gameCountdown: INITIAL_COUNTDOWN,
@@ -38,26 +38,45 @@ const initialState = {
 };
 
 const getStateForRoundEnd = state => {
-  const roundIndex = state.roundIndex + 1;
-  return { ...state, roundIndex, gameState: GAME_STATES.POSTGAME };
+  return {
+    ...state,
+    questionIndex: 0,
+    allDefinitionsIndex: state.allDefinitionsIndex + 1,
+    gameState: GAME_STATES.POSTGAME,
+  };
 };
 
-const getStateForGameEnd = state => {
-  let allDefinitionsIndex = state.allDefinitionsIndex + 1;
-  const currentDefinition = state.allDefinitions[allDefinitionsIndex];
+const getStateForNextQuestion = state => {
+  let questionIndex = state.questionIndex + 1;
+  const currentDefinition = state.currentDefinitions[questionIndex];
   const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
 
   return {
     ...state,
     currentDefinition,
-    currentDefinitionIndex: state.currentDefinitionIndex + 1,
-    allDefinitionsIndex,
     scrambledLetters,
+    questionIndex,
+    allDefinitionsIndex: state.allDefinitionsIndex + 1,
     gameCountdown: INITIAL_COUNTDOWN,
   };
 };
 
-const getStateForNewRound = (state, nextIndex, newGameState) => {
+const getStateForNewRound = state => {
+  const nextIndex = state.allDefinitionsIndex;
+  const nextDefinition = state.allDefinitions[nextIndex];
+
+  // API call must have failed to fetch additional definitions, go to error state
+  if (!nextDefinition) {
+    return {
+      ...state,
+      allDefinitionsIndex: 0,
+      gameCountdown: INITIAL_COUNTDOWN,
+      errorCode: ERROR_CODES.GENERIC,
+      connectionError: true,
+      gameState: GAME_STATES.PLAYING,
+    };
+  }
+
   const currentDefinition = state.allDefinitions[nextIndex];
   const currentDefinitions = state.allDefinitions.slice(nextIndex, nextIndex + WORDS_PER_ROUND);
   const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
@@ -65,12 +84,12 @@ const getStateForNewRound = (state, nextIndex, newGameState) => {
   return {
     ...state,
     currentDefinition,
-    currentDefinitionIndex: 0,
+    questionIndex: 0,
     currentDefinitions,
     scrambledLetters,
     allDefinitionsIndex: nextIndex,
     gameCountdown: INITIAL_COUNTDOWN,
-    gameState: newGameState,
+    gameState: GAME_STATES.PLAYING,
   };
 };
 
@@ -101,11 +120,10 @@ export default (state = initialState, action) => {
         ...state,
         allDefinitions,
         currentDefinition,
-        currentDefinitionIndex: 0,
+        questionIndex: 0,
         allDefinitionsIndex: 0,
         currentDefinitions,
         scrambledLetters,
-        gameState: GAME_STATES.PLAYING,
         loaded: true,
         connectionError: false,
       };
@@ -129,7 +147,6 @@ export default (state = initialState, action) => {
         ...state,
         allDefinitions: [...remainingDefinitions, ...action.definitions],
         allDefinitionsIndex: 0,
-        roundIndex: 1,
         connectionError: false,
       };
     }
@@ -137,80 +154,48 @@ export default (state = initialState, action) => {
     case GAME_COUNTDOWN_TICK:
       return { ...state, gameCountdown: state.gameCountdown - 1 };
 
-    case GAME_COUNTDOWN_AT_ZERO: {
-      const currentDefinitions = cloneDeep(state.currentDefinitions);
-      currentDefinitions[state.roundIndex].isCorrect = false;
-
-      if (roundIsOver(state)) {
-        return { ...getStateForRoundEnd(state), currentDefinitions };
+    case ON_SKIP_CURRENT_WORD:
+    case GAME_COUNTDOWN_AT_ZERO:
+      if (roundIsOver(state.questionIndex + 1)) {
+        return { ...getStateForRoundEnd(state) };
       }
 
-      return { ...getStateForGameEnd(state), currentDefinitions };
-    }
+      return { ...getStateForNextQuestion(state) };
 
-    case ON_EXIT_GAME:
-    case ON_PRESS_START_NEW_GAME:
-      const newGameState =
-        type === ON_EXIT_GAME ? GAME_STATES.DIFFICULTYSELECTION : GAME_STATES.PLAYING;
-
-      // if game is exited while half way through...
-      if (state.gameState === GAME_STATES.PLAYING) {
-        // Move index up to the nearest 5
-        const nextIndex = Math.ceil(state.allDefinitionsIndex / 5) * 5;
-        const roundIndex = state.roundIndex + 1;
-
-        return {
-          ...state,
-          ...getStateForNewRound(state, nextIndex, newGameState),
-          roundIndex,
-        };
-      }
-
-      // if game is restarted/exited from post game screen
-      const nextIndex = state.allDefinitionsIndex + 1;
-      const nextDefinition = state.allDefinitions[nextIndex];
-
-      // API call must have failed to fetch additional definitions, go to error state
-      if (!nextDefinition) {
-        return {
-          ...state,
-          allDefinitionsIndex: 0,
-          gameCountdown: INITIAL_COUNTDOWN,
-          errorCode: ERROR_CODES.GENERIC,
-          connectionError: true,
-          gameState: newGameState,
-        };
-      }
+    case ON_EXIT_GAME: {
+      const allDefinitionsIndex = Math.ceil(state.allDefinitionsIndex / 5) * 5;
 
       return {
         ...state,
-        ...getStateForNewRound(state, nextIndex, newGameState),
+        allDefinitionsIndex,
+        gameState: GAME_STATES.DIFFICULTYSELECTION,
       };
+    }
 
     case ON_SUBMIT_ANSWER: {
       const isCorrect = action.answer.toUpperCase() === state.currentDefinition.word.toUpperCase();
       const currentDefinitions = cloneDeep(state.currentDefinitions);
-      currentDefinitions[state.currentDefinitionIndex].isCorrect = isCorrect;
+      currentDefinitions[state.questionIndex].isCorrect = isCorrect;
 
-      if (roundIsOver(state)) {
+      if (roundIsOver(state.questionIndex + 1)) {
         return { ...getStateForRoundEnd(state), currentDefinitions };
       }
 
-      return { ...getStateForGameEnd(state), currentDefinitions };
-    }
-
-    case ON_SKIP_CURRENT_WORD: {
-      if (roundIsOver(state)) {
-        return { ...getStateForRoundEnd(state) };
-      }
-
-      return { ...getStateForGameEnd(state) };
+      return { ...getStateForNextQuestion(state), currentDefinitions };
     }
 
     case ON_SHUFFLE_CURRENT_WORD: {
       const scrambledLetters = shuffle(state.currentDefinition.word.toUpperCase().split(""));
       return { ...state, scrambledLetters };
     }
+
+    case ON_PRESS_START_NEW_GAME:
+    case ON_SELECT_DIFFICULTY:
+      return {
+        ...state,
+        ...getStateForNewRound(state),
+        difficulty: action.difficulty ? action.difficulty : state.difficulty,
+      };
 
     default:
       return state;

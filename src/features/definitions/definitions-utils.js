@@ -1,8 +1,8 @@
 import { Animated } from "react-native";
 import { WORDS_PER_ROUND, OPACITY_ANIMATE_TIME } from "./definitions-constants";
 
-export const roundIsOver = ({ allDefinitionsIndex, roundIndex }) => {
-  return allDefinitionsIndex >= WORDS_PER_ROUND * roundIndex - 1;
+export const roundIsOver = questionIndex => {
+  return questionIndex >= WORDS_PER_ROUND;
 };
 
 export const getPraiseForScore = (correct, total) => {

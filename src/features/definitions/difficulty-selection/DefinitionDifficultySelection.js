@@ -42,13 +42,14 @@ const DifficultyOption = styled(PaddedButton)`
 
 const DefinitionDifficultySelection = ({ onSelectDifficulty, onExitGame, navigation }) => {
   const getDifficultyOptions = () => {
-    return map(DIFFICULTIES, difficulty => {
-      return (
-        <DifficultyOption key={difficulty} onPress={() => onSelectDifficulty(difficulty)}>
+    return map(DIFFICULTIES, difficulty => ({
+      id: difficulty,
+      component: (
+        <DifficultyOption onPress={() => onSelectDifficulty(difficulty)}>
           <LargeText>{difficulty}</LargeText>
         </DifficultyOption>
-      );
-    });
+      ),
+    }));
   };
 
   return (

@@ -3,6 +3,7 @@ import PopInView from "../pop-in-view/PopInView";
 
 const AnimatedSequence = ({
   items,
+  itemsAreButtons,
   popToSize,
   animationGapTime,
   animationStartDelay,
@@ -10,15 +11,18 @@ const AnimatedSequence = ({
 }) => {
   return items.map((item, i) => (
     <PopInView
+      key={item.id}
       popToSize={popToSize}
       duration={animationAppearDuration}
-      delay={i * animationGapTime + animationStartDelay}>
-      {item}
+      delay={i * animationGapTime + animationStartDelay}
+      pointerEvents={itemsAreButtons ? "auto" : "none"}>
+      {item.component}
     </PopInView>
   ));
 };
 
 AnimatedSequence.defaultProps = {
+  itemsAreButtons: true,
   popToSize: 1.1,
   animationGapTime: 100,
   animationStartDelay: 100,

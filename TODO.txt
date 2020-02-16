@@ -18,17 +18,17 @@ General:
 
 Maybe in 1st release:
 - Add Synonyms mode
-- Add user stats
+- keep track of users % correct for each difficulty
 
 Definitions:
 - fix post game styling on smaller screens
 - lock difficulties until completing earlier levels?
 - add extra difficulties:
+  - implement onSelectDifficulty, fix issue where number of words increases after exiting
   - update usage of gameState to handle extra selection state
-  - implement onSelectDifficulty
   - refactor to only set redux state needed for game on difficulty selection
   - add easy definitions into api call, set them on api success
-- keep track of users % correct for each difficulty
+- re-test retry fail/success logic
 
 Option 1:
   - Novice - easier words + clues
@@ -56,6 +56,7 @@ Styling To Do:
 - sort out spacing for different device sizes, make gap at top %
 - countdown on iOS/android position
 - font?
+- look through each screen again carefully
 
 
 
