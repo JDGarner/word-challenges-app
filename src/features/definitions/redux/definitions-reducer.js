@@ -18,16 +18,22 @@ import {
   INITIAL_COUNTDOWN,
   WORDS_PER_ROUND,
   DIFFICULTIES,
+  DIFFICULTY_MAP,
 } from "../definitions-constants";
-import { roundIsOver } from "../definitions-utils";
+import { roundIsOver, getDefinitionState, getDefinitionKeys } from "../definitions-utils";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 
 const initialState = {
-  allDefinitions: [],
-  allDefinitionsIndex: 0,
-  scrambledLetters: [],
-  currentDefinitions: [],
-  currentDefinition: {},
+  allEasyDefinitions: [],
+  allHardDefinitions: [],
+  allEasyDefinitionsIndex: 0,
+  allHardDefinitionsIndex: 0,
+  currentEasyDefinitions: [],
+  currentHardDefinitions: [],
+  currentEasyDefinition: {},
+  currentHardDefinition: {},
+  scrambledEasyLetters: [],
+  scrambledHardLetters: [],
   questionIndex: 0,
   loaded: false,
   gameState: GAME_STATES.DIFFICULTYSELECTION,
@@ -38,38 +44,52 @@ const initialState = {
 };
 
 const getStateForRoundEnd = state => {
+  const { allDefinitionsIndexKey } = getDefinitionKeys(DIFFICULTY_MAP[state.difficulty]);
+
   return {
     ...state,
     questionIndex: 0,
-    allDefinitionsIndex: state.allDefinitionsIndex + 1,
+    [allDefinitionsIndexKey]: state[allDefinitionsIndexKey] + 1,
     gameState: GAME_STATES.POSTGAME,
   };
 };
 
 const getStateForNextQuestion = state => {
+  const {
+    currentDefinitionKey,
+    currentDefinitionsKey,
+    scrambledLettersKey,
+    allDefinitionsIndexKey,
+  } = getDefinitionKeys(DIFFICULTY_MAP[state.difficulty]);
+
   let questionIndex = state.questionIndex + 1;
-  const currentDefinition = state.currentDefinitions[questionIndex];
+  const currentDefinition = state[currentDefinitionsKey][questionIndex];
   const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
 
   return {
     ...state,
-    currentDefinition,
-    scrambledLetters,
+    [currentDefinitionKey]: currentDefinition,
+    [scrambledLettersKey]: scrambledLetters,
     questionIndex,
-    allDefinitionsIndex: state.allDefinitionsIndex + 1,
+    [allDefinitionsIndexKey]: state[allDefinitionsIndexKey] + 1,
     gameCountdown: INITIAL_COUNTDOWN,
   };
 };
 
-const getStateForNewRound = (state, nextIndex, definitions = null) => {
-  const allDefinitions = definitions ? definitions : state.allDefinitions;
+const getStateForNewRound = (state, nextIndex, allDefinitions, difficulty) => {
   const nextDefinition = allDefinitions[nextIndex];
+  const {
+    allDefinitionsIndexKey,
+    currentDefinitionKey,
+    currentDefinitionsKey,
+    scrambledLettersKey,
+  } = getDefinitionKeys(difficulty);
 
   // API call must have failed to fetch additional definitions, go to error state
   if (!nextDefinition) {
     return {
       ...state,
-      allDefinitionsIndex: 0,
+      [allDefinitionsIndexKey]: 0,
       gameCountdown: INITIAL_COUNTDOWN,
       errorCode: ERROR_CODES.GENERIC,
       connectionError: true,
@@ -83,34 +103,30 @@ const getStateForNewRound = (state, nextIndex, definitions = null) => {
 
   return {
     ...state,
+    [allDefinitionsIndexKey]: nextIndex,
+    [currentDefinitionKey]: currentDefinition,
+    [currentDefinitionsKey]: currentDefinitions,
+    [scrambledLettersKey]: scrambledLetters,
     questionIndex: 0,
-    allDefinitionsIndex: nextIndex,
-    currentDefinition,
-    currentDefinitions,
-    scrambledLetters,
     gameCountdown: INITIAL_COUNTDOWN,
   };
 };
-
-// Adding difficulty selection notes:
-// 1 - Can be in separate or same call to API (1 call makes sense)
-//   - Make FETCH_DEFINITIONS_SUCCESS handle easy and hard definitions
-// allDefinitions -> allHardDefinitions, allEasyDefinitions
-// allDefinitionsIndex -> allHardDefinitionsIndex, allEasyDefinitionsIndex
-// currentDefinitions -> currentHardDefinitions, currentEasyDefinitions
 
 export default (state = initialState, action) => {
   const { type } = action;
 
   switch (type) {
-    case FETCH_DEFINITIONS_SUCCESS:
+    case FETCH_DEFINITIONS_SUCCESS: {
+      const { allDefinitionsKey } = getDefinitionKeys(action.difficulty);
+
       return {
         ...state,
-        ...getStateForNewRound(state, 0, action.definitions),
-        allDefinitions: action.definitions,
+        ...getStateForNewRound(state, 0, action.definitions, action.difficulty),
+        [allDefinitionsKey]: action.definitions,
         loaded: true,
         connectionError: false,
       };
+    }
 
     case FETCH_DEFINITIONS_ERROR:
       return { ...state, connectionError: true, errorCode: action.errorCode };
@@ -121,13 +137,14 @@ export default (state = initialState, action) => {
     case FETCH_ADDITIONAL_DEFINITIONS_SUCCESS: {
       // New Definitions have arrived, get rid of the current ones before current index
       // Add the new ones on the end
-      const allDefinitions = cloneDeep(state.allDefinitions);
-      const remainingDefinitions = allDefinitions.splice(state.allDefinitionsIndex);
+      const { allDefinitionsKey, allDefinitionsIndexKey } = getDefinitionKeys(action.difficulty);
+      const allDefinitions = cloneDeep(state[allDefinitionsKey]);
+      const remainingDefinitions = allDefinitions.splice(state[allDefinitionsIndexKey]);
 
       return {
         ...state,
-        allDefinitions: [...remainingDefinitions, ...action.definitions],
-        allDefinitionsIndex: 0,
+        [allDefinitionsKey]: [...remainingDefinitions, ...action.definitions],
+        [allDefinitionsIndexKey]: 0,
         connectionError: false,
       };
     }
@@ -144,32 +161,41 @@ export default (state = initialState, action) => {
       return { ...getStateForNextQuestion(state) };
 
     case ON_EXIT_GAME: {
-      const nextIndex = Math.ceil(state.allDefinitionsIndex / 5) * 5;
+      const { allDefinitions, allDefinitionsIndex, difficulty } = getDefinitionState(state);
+      const nextIndex = Math.ceil(allDefinitionsIndex / 5) * 5;
 
       return {
         ...state,
-        ...getStateForNewRound(state, nextIndex),
+        ...getStateForNewRound(state, nextIndex, allDefinitions, difficulty),
         gameState: GAME_STATES.DIFFICULTYSELECTION,
       };
     }
 
     case ON_SUBMIT_ANSWER: {
-      const isCorrect = action.answer.toUpperCase() === state.currentDefinition.word.toUpperCase();
-      const currentDefinitions = cloneDeep(state.currentDefinitions);
+      const { currentDefinitionKey, currentDefinitionsKey } = getDefinitionKeys(
+        DIFFICULTY_MAP[state.difficulty],
+      );
+
+      const isCorrect =
+        action.answer.toUpperCase() === state[currentDefinitionKey].word.toUpperCase();
+      const currentDefinitions = cloneDeep(state[currentDefinitionsKey]);
       currentDefinitions[state.questionIndex].isCorrect = isCorrect;
 
       if (roundIsOver(state.questionIndex + 1)) {
-        return { ...getStateForRoundEnd(state), currentDefinitions };
+        return { ...getStateForRoundEnd(state), [currentDefinitionsKey]: currentDefinitions };
       }
 
-      return { ...getStateForNextQuestion(state), currentDefinitions };
+      return { ...getStateForNextQuestion(state), [currentDefinitionsKey]: currentDefinitions };
     }
 
-    case ON_SHUFFLE_CURRENT_WORD:
+    case ON_SHUFFLE_CURRENT_WORD: {
+      const { currentDefinitionKey } = getDefinitionKeys(DIFFICULTY_MAP[state.difficulty]);
+
       return {
         ...state,
-        scrambledLetters: shuffle(state.currentDefinition.word.toUpperCase().split("")),
+        scrambledLetters: shuffle(state[currentDefinitionKey].word.toUpperCase().split("")),
       };
+    }
 
     case ON_SELECT_DIFFICULTY:
       return {
@@ -178,12 +204,15 @@ export default (state = initialState, action) => {
         difficulty: action.difficulty,
       };
 
-    case ON_PRESS_START_NEW_GAME:
+    case ON_PRESS_START_NEW_GAME: {
+      const { allDefinitions, allDefinitionsIndex, difficulty } = getDefinitionState(state);
+
       return {
         ...state,
-        ...getStateForNewRound(state, state.allDefinitionsIndex),
+        ...getStateForNewRound(state, allDefinitionsIndex, allDefinitions, difficulty),
         gameState: GAME_STATES.PLAYING,
       };
+    }
 
     default:
       return state;

@@ -7,9 +7,7 @@ import {
   ON_BEGIN_GAME,
   ON_GAME_END,
   gameCountdownTick,
-  ON_PRESS_START_NEW_GAME,
   fetchAdditionalDefinitionsSuccess,
-  ON_EXIT_GAME,
   gameCountdownAtZero,
   GAME_COUNTDOWN_TICK,
 } from "./definitions-actions";
@@ -18,25 +16,28 @@ import { ENDPOINTS, RETRY_TIMEOUT } from "../../../app-constants";
 import {
   DEFINITIONS_LOCAL_BUFFER,
   ANSWER_FEEDBACK_ANIMATION_DURATION,
+  DIFFICULTY_MAP,
 } from "../definitions-constants";
+import { getDefinitionState, getEndpointForDifficulty } from "../definitions-utils";
 
 let gameCountdownInterval = null;
 
 export default store => next => action => {
   const { dispatch, getState } = store;
+  const { definitions } = getState();
 
   switch (action.type) {
     case FETCH_DEFINITIONS:
       fetchFromApi(
-        ENDPOINTS.DEFINITIONS,
-        data => dispatch(fetchDefinitionsSuccess(data)),
-        code => dispatch(fetchDefinitionsError(code)),
+        getEndpointForDifficulty(action.difficulty),
+        data => dispatch(fetchDefinitionsSuccess(data, action.difficulty)),
+        code => dispatch(fetchDefinitionsError(code, action.difficulty)),
       );
       break;
 
     case FETCH_DEFINITIONS_RETRY:
       setTimeout(() => {
-        dispatch(fetchDefinitions());
+        dispatch(fetchDefinitions(DIFFICULTY_MAP[definitions.difficulty]));
       }, RETRY_TIMEOUT);
       break;
 
@@ -45,7 +46,7 @@ export default store => next => action => {
       break;
 
     case GAME_COUNTDOWN_TICK:
-      const { gameCountdown } = getState().definitions;
+      const { gameCountdown } = definitions;
       if (gameCountdown === 1) {
         setTimeout(() => {
           dispatch(gameCountdownAtZero());
@@ -58,10 +59,10 @@ export default store => next => action => {
         dispatch(gameCountdownTick());
       }, 1000);
 
-      const { allDefinitionsIndex, allDefinitions } = getState().definitions;
+      const { allDefinitionsIndex, allDefinitions, difficulty } = getDefinitionState(definitions);
       if (allDefinitionsIndex > allDefinitions.length - DEFINITIONS_LOCAL_BUFFER) {
-        fetchFromApi(ENDPOINTS.DEFINITIONS, data =>
-          dispatch(fetchAdditionalDefinitionsSuccess(data)),
+        fetchFromApi(getEndpointForDifficulty(difficulty), data =>
+          dispatch(fetchAdditionalDefinitionsSuccess(data, difficulty)),
         );
       }
       break;

@@ -8,9 +8,11 @@ import {
   onShuffleCurrentWord,
   onExitGame,
 } from "../redux/definitions-actions";
+import { getDefinitionState } from "../definitions-utils";
 
 const mapStateToProps = ({ definitions }) => {
-  const { currentDefinition, scrambledLetters, gameCountdown } = definitions;
+  const { gameCountdown } = definitions;
+  const { currentDefinition, scrambledLetters } = getDefinitionState(definitions);
   const { definition, word } = currentDefinition;
 
   return {

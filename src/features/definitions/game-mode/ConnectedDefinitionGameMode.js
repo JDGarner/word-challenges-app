@@ -7,9 +7,12 @@ import DefintionGameMode from "./DefinitionGameMode";
 import { ErrorScreen, LoadingScreen } from "../../../components";
 import { GAME_STATES } from "../definitions-constants";
 import ConnectedDefinitionDifficultySelection from "../difficulty-selection/ConnectedDefinitionDifficultySelection";
+import { getDefinitionState } from "../definitions-utils";
 
 const mapStateToProps = ({ definitions }) => {
-  const { gameState, loaded, connectionError, errorCode, currentDefinition } = definitions;
+  const { gameState, loaded, connectionError, errorCode } = definitions;
+  const { currentDefinition } = getDefinitionState(definitions);
+
   const { word: currentWord } = currentDefinition;
 
   return { gameState, currentWord, loaded, connectionError, errorCode };

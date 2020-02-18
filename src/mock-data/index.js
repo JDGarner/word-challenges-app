@@ -1,14 +1,18 @@
 import { ENDPOINTS } from "../app-constants";
 import rhymes from "./rhymes";
-import definitions from "./definitions";
+import { easyDefinitions, hardDefinitions } from "./definitions";
 
 const getMockData = endpoint => {
   if (endpoint === ENDPOINTS.RHYMES) {
     return rhymes;
   }
 
-  if (endpoint === ENDPOINTS.DEFINITIONS) {
-    return definitions;
+  if (endpoint === ENDPOINTS.EASY_DEFINITIONS) {
+    return easyDefinitions;
+  }
+
+  if (endpoint === ENDPOINTS.HARD_DEFINITIONS) {
+    return hardDefinitions;
   }
 
   return null;

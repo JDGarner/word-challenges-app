@@ -6,13 +6,15 @@ import theme from "./theme";
 import configureStore from "./store";
 import { fetchRhymes } from "./features/rhymes/redux/rhymes-actions";
 import { fetchDefinitions } from "./features/definitions/redux/definitions-actions";
+import { WORD_DIFFICULTIES } from "./features/definitions/definitions-constants";
 
 const store = configureStore();
 
 export default function AppProvider() {
   useEffect(() => {
     store.dispatch(fetchRhymes());
-    store.dispatch(fetchDefinitions());
+    store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.EASY));
+    store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.HARD));
   }, []);
 
   return (

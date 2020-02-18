@@ -23,12 +23,8 @@ Maybe in 1st release:
 Definitions:
 - fix post game styling on smaller screens
 - lock difficulties until completing earlier levels?
-- add extra difficulties:
-  - implement onSelectDifficulty, fix issue where number of words increases after exiting
-  - update usage of gameState to handle extra selection state
-  - refactor to only set redux state needed for game on difficulty selection
-  - add easy definitions into api call, set them on api success
-- re-test retry fail/success logic
+- add extra difficulties
+- re-test retry fail/success logic - do I need different connectionError per difficulty?
 
 Option 1:
   - Novice - easier words + clues
@@ -73,6 +69,8 @@ General:
 - need a way to track which users got which words, 
   or at least add a counter for number of users that got a particular word
 - does there need to be a timeout on the api?
+- add X to loading state
+- look into adding reselect
 
 Definitions:
 - look into performance profiling (is everything being re-rendered when countdown ticks?)

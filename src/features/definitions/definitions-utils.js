@@ -1,5 +1,11 @@
 import { Animated } from "react-native";
-import { WORDS_PER_ROUND, OPACITY_ANIMATE_TIME } from "./definitions-constants";
+import {
+  WORDS_PER_ROUND,
+  OPACITY_ANIMATE_TIME,
+  WORD_DIFFICULTIES,
+  DIFFICULTY_MAP,
+} from "./definitions-constants";
+import { ENDPOINTS } from "../../app-constants";
 
 export const roundIsOver = questionIndex => {
   return questionIndex >= WORDS_PER_ROUND;
@@ -109,7 +115,55 @@ export const animateLetterReappear = (opacity, startTime, totalTime) => {
   }, totalTime + startTime);
 };
 
-// Linearly in reverse:
+export const getDefinitionState = state => {
+  if (DIFFICULTY_MAP[state.difficulty] === WORD_DIFFICULTIES.EASY) {
+    return {
+      allDefinitions: state.allEasyDefinitions,
+      allDefinitionsIndex: state.allEasyDefinitionsIndex,
+      currentDefinitions: state.currentEasyDefinitions,
+      currentDefinition: state.currentEasyDefinition,
+      scrambledLetters: state.scrambledEasyLetters,
+      difficulty: DIFFICULTY_MAP[state.difficulty],
+    };
+  }
+
+  return {
+    allDefinitions: state.allHardDefinitions,
+    allDefinitionsIndex: state.allHardDefinitionsIndex,
+    currentDefinitions: state.currentHardDefinitions,
+    currentDefinition: state.currentHardDefinition,
+    scrambledLetters: state.scrambledHardLetters,
+    difficulty: DIFFICULTY_MAP[state.difficulty],
+  };
+};
+
+export const getEndpointForDifficulty = difficulty => {
+  return difficulty === WORD_DIFFICULTIES.EASY
+    ? ENDPOINTS.EASY_DEFINITIONS
+    : ENDPOINTS.HARD_DEFINITIONS;
+};
+
+export const getDefinitionKeys = difficulty => {
+  if (difficulty === WORD_DIFFICULTIES.EASY) {
+    return {
+      allDefinitionsKey: "allEasyDefinitions",
+      allDefinitionsIndexKey: "allEasyDefinitionsIndex",
+      currentDefinitionsKey: "currentEasyDefinitions",
+      currentDefinitionKey: "currentEasyDefinition",
+      scrambledLettersKey: "scrambledEasyLetters",
+    };
+  }
+
+  return {
+    allDefinitionsKey: "allHardDefinitions",
+    allDefinitionsIndexKey: "allHardDefinitionsIndex",
+    currentDefinitionsKey: "currentHardDefinitions",
+    currentDefinitionKey: "currentHardDefinition",
+    scrambledLettersKey: "scrambledHardLetters",
+  };
+};
+
+// Linear animation in reverse:
 // export const animateLetterReappear = (opacity, startTime, totalTime, index) => {
 //   Animated.timing(opacity, {
 //     toValue: 0,

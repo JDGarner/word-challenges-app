@@ -16,27 +16,31 @@ export const ON_SHUFFLE_CURRENT_WORD = `${NAMESPACE}/ON_SHUFFLE_CURRENT_WORD`;
 export const ON_EXIT_GAME = `${NAMESPACE}/ON_EXIT_GAME`;
 export const ON_SELECT_DIFFICULTY = `${NAMESPACE}/ON_SELECT_DIFFICULTY`;
 
-export const fetchDefinitions = () => ({
+export const fetchDefinitions = difficulty => ({
   type: FETCH_DEFINITIONS,
+  difficulty,
 });
 
 export const fetchDefinitionsRetry = () => ({
   type: FETCH_DEFINITIONS_RETRY,
 });
 
-export const fetchDefinitionsSuccess = definitions => ({
+export const fetchDefinitionsSuccess = (definitions, difficulty) => ({
   type: FETCH_DEFINITIONS_SUCCESS,
   definitions,
+  difficulty,
 });
 
-export const fetchDefinitionsError = errorCode => ({
+export const fetchDefinitionsError = (errorCode, difficulty) => ({
   type: FETCH_DEFINITIONS_ERROR,
   errorCode,
+  difficulty,
 });
 
-export const fetchAdditionalDefinitionsSuccess = definitions => ({
+export const fetchAdditionalDefinitionsSuccess = (definitions, difficulty) => ({
   type: FETCH_ADDITIONAL_DEFINITIONS_SUCCESS,
   definitions,
+  difficulty,
 });
 
 export const onBeginGame = () => ({
