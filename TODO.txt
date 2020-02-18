@@ -2,10 +2,17 @@
 1st Release
 ----------------------------------------
 
+Definitions:
+- add new difficulties to API
+- add clues
+- re-test retry logic with new difficulty levels
+- fix post game styling on smaller screens
+- lock difficulties until completing earlier levels?
+
+Rhymes:
+- add exit game logic
+
 General:
-- add difficulties to definitions
-  - add clues
-  - add easier words
 - add difficulties to rhymes?
 - splash screen
 - Improve main menu styling
@@ -20,11 +27,8 @@ Maybe in 1st release:
 - Add Synonyms mode
 - keep track of users % correct for each difficulty
 
-Definitions:
-- fix post game styling on smaller screens
-- lock difficulties until completing earlier levels?
-- add extra difficulties
-- re-test retry fail/success logic - do I need different connectionError per difficulty?
+
+
 
 Option 1:
   - Novice - easier words + clues

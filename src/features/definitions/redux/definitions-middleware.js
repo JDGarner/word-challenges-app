@@ -17,6 +17,7 @@ import {
   DEFINITIONS_LOCAL_BUFFER,
   ANSWER_FEEDBACK_ANIMATION_DURATION,
   DIFFICULTY_MAP,
+  WORD_DIFFICULTIES,
 } from "../definitions-constants";
 import { getDefinitionState, getEndpointForDifficulty } from "../definitions-utils";
 
@@ -37,7 +38,8 @@ export default store => next => action => {
 
     case FETCH_DEFINITIONS_RETRY:
       setTimeout(() => {
-        dispatch(fetchDefinitions(DIFFICULTY_MAP[definitions.difficulty]));
+        store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.EASY));
+        store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.HARD));
       }, RETRY_TIMEOUT);
       break;
 
