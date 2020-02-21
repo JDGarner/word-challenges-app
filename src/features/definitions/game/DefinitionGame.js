@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, useMemo, Fragment } from "react";
 import { cloneDeep, shuffle } from "lodash";
 import styled from "styled-components";
 import { View, TouchableOpacity, Animated } from "react-native";
@@ -8,7 +8,7 @@ import GameHeader from "../GameHeader";
 import theme from "../../../theme";
 import ScrambledLetter from "./ScrambledLetter";
 import AnswerLetter from "./AnswerLetter";
-import { getAnswerTextProps } from "../definitions-utils";
+import { getAnswerTextProps, getFreeLetters } from "../definitions-utils";
 import {
   SHUFFLE_ANIMATION_GAP_TIME,
   ANSWER_FEEDBACK_ANIMATION_DURATION,
@@ -89,21 +89,43 @@ const answerLetters = [
   },
 ]
 
+const freeLetters = [
+  {
+    letter: "H"
+    scrambledIndex: 2,
+    correctIndex: 0,
+  }
+]
+
  */
 
-const getScrambledLetters = letters => {
-  return letters.map((l, i) => ({
-    id: i,
-    letter: l,
-    showing: true,
-  }));
+const getScrambledLetters = (letters, freeLetters) => {
+  return letters.map((l, i) => {
+    return {
+      id: i,
+      letter: l,
+      // only show scrambled letter initially if it isn't in freeLetters
+      showing: !freeLetters.some(f => f.scrambledIndex === i),
+    };
+  });
 };
 
-const getAnswerLetters = letters => {
-  return letters.map((l, i) => ({
-    id: `${i}-placeholder`,
-    letter: "",
-  }));
+const getAnswerLetters = (letters, freeLetters) => {
+  return letters.map((l, i) => {
+    const freeLetter = freeLetters.find(f => f.correctIndex === i);
+
+    if (freeLetter) {
+      return {
+        id: freeLetter.scrambledIndex,
+        letter: freeLetter.letter,
+      };
+    }
+
+    return {
+      id: `${i}-placeholder`,
+      letter: "",
+    };
+  });
 };
 
 const getAnimationDelayTimes = letters => {
@@ -115,6 +137,7 @@ const DefinitionGame = ({
   definition,
   letters,
   gameCountdown,
+  difficulty,
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
@@ -123,8 +146,14 @@ const DefinitionGame = ({
   onExitGame,
   navigation,
 }) => {
-  const [scrambledLetters, setScrambledLetters] = useState(getScrambledLetters(letters));
-  const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters));
+  const freeLetters = useMemo(() => {
+    return getFreeLetters(letters, word, difficulty);
+  }, [letters, word, difficulty]);
+
+  const [scrambledLetters, setScrambledLetters] = useState(
+    getScrambledLetters(letters, freeLetters),
+  );
+  const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters, freeLetters));
 
   const [shuffleToggle, setShuffleToggle] = useState(false);
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
@@ -145,8 +174,8 @@ const DefinitionGame = ({
 
   useEffect(() => {
     // Letters have been re-shuffled, reset to initial state
-    setScrambledLetters(getScrambledLetters(letters));
-    setAnswerLetters(getAnswerLetters(letters));
+    setScrambledLetters(getScrambledLetters(letters, freeLetters));
+    setAnswerLetters(getAnswerLetters(letters, freeLetters));
   }, [letters]);
 
   useEffect(() => {

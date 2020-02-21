@@ -11,7 +11,7 @@ import {
 import { getDefinitionState } from "../definitions-utils";
 
 const mapStateToProps = ({ definitions }) => {
-  const { gameCountdown } = definitions;
+  const { gameCountdown, difficulty } = definitions;
   const { currentDefinition, scrambledLetters } = getDefinitionState(definitions);
   const { definition, word } = currentDefinition;
 
@@ -20,6 +20,7 @@ const mapStateToProps = ({ definitions }) => {
     definition,
     letters: scrambledLetters,
     gameCountdown,
+    difficulty,
   };
 };
 
@@ -32,9 +33,6 @@ const mapDispatchToProps = {
   onExitGame,
 };
 
-const ConnectedDefinitionGame = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(DefinitionGame);
+const ConnectedDefinitionGame = connect(mapStateToProps, mapDispatchToProps)(DefinitionGame);
 
 export default ConnectedDefinitionGame;

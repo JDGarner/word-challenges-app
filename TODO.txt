@@ -2,15 +2,26 @@
 1st Release
 ----------------------------------------
 
+- !!! Consider getting rid of rhyme mode entirely, focus on definitions?
+
 Definitions:
-- add new difficulties to API
-- add clues
+- test/user test difficulty levels with different clue parameters
 - re-test retry logic with new difficulty levels
 - fix post game styling on smaller screens
 - lock difficulties until completing earlier levels?
+- Info icon on each difficulty:
+  Novice - Mostly common words, with some letters already filled in
+  Journeyman - Mostly common words
+  Expert - Mostly obscure words, with some letters already filled in
+  Master - Mostly obscure words
+- make post game breakdown scrollable in case smaller devices can't see?
 
 Rhymes:
 - add exit game logic
+
+Leaderboard/Stats:
+- Leaderboard button on main menu
+- Maybe leaderboard button in each difficulty
 
 General:
 - add difficulties to rhymes?
@@ -25,7 +36,12 @@ General:
 
 Maybe in 1st release:
 - Add Synonyms mode
-- keep track of users % correct for each difficulty
+- Stats:
+  - ELO for each difficulty level
+  - Split ELO levels into leagues - bronze -> diamond with a leaderboard on each one
+  - look into how i would add ELO? how I could track/store stats & identify users without accounts
+    - on android could use google play accounts?
+  - Maybe - Other user stats - % correct, longest streak?
 
 
 
@@ -93,9 +109,9 @@ Other
 ----------------------------------------
 
 Name Ideas:
-- Word Romp
+- Word master/ninja/binge/fiend
+- Wordy Something
 - Word Binge
-- Word Play Challenge
 - Something like WordScapes/other word puns
 
 2nd Version:

@@ -34,7 +34,7 @@ const MainMenu = ({ navigation }) => {
     <AppBackground theme="menu">
       <MenuContainer>
         <Title>
-          <LargeText>Word Binge</LargeText>
+          <LargeText>Word Ninja</LargeText>
         </Title>
         <MenuItems>
           <MenuItem onPress={() => navigation.navigate("DefinitionGame")}>

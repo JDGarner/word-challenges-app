@@ -189,11 +189,13 @@ export default (state = initialState, action) => {
     }
 
     case ON_SHUFFLE_CURRENT_WORD: {
-      const { currentDefinitionKey } = getDefinitionKeys(DIFFICULTY_MAP[state.difficulty]);
+      const { currentDefinitionKey, scrambledLettersKey } = getDefinitionKeys(
+        DIFFICULTY_MAP[state.difficulty],
+      );
 
       return {
         ...state,
-        scrambledLetters: shuffle(state[currentDefinitionKey].word.toUpperCase().split("")),
+        [scrambledLettersKey]: shuffle(state[currentDefinitionKey].word.toUpperCase().split("")),
       };
     }
 

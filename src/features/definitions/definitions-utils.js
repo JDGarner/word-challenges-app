@@ -1,9 +1,11 @@
 import { Animated } from "react-native";
+import { sampleSize } from "lodash";
 import {
   WORDS_PER_ROUND,
   OPACITY_ANIMATE_TIME,
   WORD_DIFFICULTIES,
   DIFFICULTY_MAP,
+  DIFFICULTIES,
 } from "./definitions-constants";
 import { ENDPOINTS } from "../../app-constants";
 
@@ -161,6 +163,44 @@ export const getDefinitionKeys = difficulty => {
     currentDefinitionKey: "currentHardDefinition",
     scrambledLettersKey: "scrambledHardLetters",
   };
+};
+
+const shouldGiveFreeLetters = difficulty => {
+  return difficulty === DIFFICULTIES.NOVICE || difficulty === DIFFICULTIES.EXPERT;
+};
+
+const getNumberOfFreeLetters = size => {
+  if (size <= 6) {
+    return 1;
+  }
+
+  if (size <= 8) {
+    return 2;
+  }
+
+  if (size <= 11) {
+    return 3;
+  }
+
+  return 4;
+};
+
+export const getFreeLetters = (scrambledLetters, word, difficulty) => {
+  if (shouldGiveFreeLetters(difficulty)) {
+    const freeLetters = sampleSize(
+      scrambledLetters,
+      getNumberOfFreeLetters(scrambledLetters.length),
+    );
+    return freeLetters.map(letter => {
+      return {
+        letter,
+        scrambledIndex: scrambledLetters.indexOf(letter),
+        correctIndex: word.indexOf(letter.toLowerCase()),
+      };
+    });
+  }
+
+  return [];
 };
 
 // Linear animation in reverse:
