@@ -148,7 +148,7 @@ const DefinitionGame = ({
 }) => {
   const freeLetters = useMemo(() => {
     return getFreeLetters(letters, word, difficulty);
-  }, [letters, word, difficulty]);
+  }, [word, difficulty]);
 
   const [scrambledLetters, setScrambledLetters] = useState(
     getScrambledLetters(letters, freeLetters),
