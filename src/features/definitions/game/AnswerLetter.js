@@ -19,11 +19,13 @@ const AnswerButton = styled(TouchableOpacity)`
   max-width: ${props => props.maxWidth};
 `;
 
-const AnswerLetter = ({ letter, onPressLetter, disabled, ...styleProps }) => {
-  const [scaleValue] = useState(new Animated.Value(0.5));
+const AnswerLetter = ({ letter, isFreeLetter, onPressLetter, disabled, ...styleProps }) => {
+  const [scaleValue] = useState(new Animated.Value(isFreeLetter ? 1 : 0.5));
 
   useEffect(() => {
-    animateAnswerLetter(scaleValue, letter);
+    if (!isFreeLetter) {
+      animateAnswerLetter(scaleValue, letter);
+    }
   }, [letter]);
 
   return (

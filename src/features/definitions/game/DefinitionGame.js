@@ -308,6 +308,7 @@ const DefinitionGame = ({
                   disabled={userActionsDisabled || answer.isFreeLetter}
                   onPressLetter={() => removeAnswerLetter(answer, i)}
                   letter={answer.letter}
+                  isFreeLetter={answer.isFreeLetter}
                   {...answerTextProps}
                 />
               );

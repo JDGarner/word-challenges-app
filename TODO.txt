@@ -3,7 +3,6 @@
 ----------------------------------------
 
 Definitions:
-- check there is no bug when free letters are the same, e.g. two As
 - make post game breakdown scrollable in case smaller devices can't see?
 - re-test retry logic with new difficulty levels
 - fix post game styling on smaller screens

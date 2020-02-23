@@ -185,6 +185,7 @@ export const getFreeLetters = (scrambledLetters, word, difficulty) => {
   if (shouldGiveFreeLetters(difficulty)) {
     const numOfFreeLetters = getNumberOfFreeLetters(scrambledLetters.length);
     let freeLetters = [];
+    let assignedScrambledIndexes = [];
 
     // get the first numOfFreeLetters letters from word, even indexes
     for (let i = 0; i < numOfFreeLetters; i++) {
@@ -192,9 +193,17 @@ export const getFreeLetters = (scrambledLetters, word, difficulty) => {
     }
 
     return freeLetters.map(freeLetter => {
+      const scrambledIndex = scrambledLetters.findIndex(
+        (s, i) => s === freeLetter.letter && !assignedScrambledIndexes.includes(i),
+      );
+
+      // In case freeLetters contains some of the same letters, don't allow them to be set
+      // with the same scrambled index (get the next one)
+      assignedScrambledIndexes.push(scrambledIndex);
+
       return {
         letter: freeLetter.letter,
-        scrambledIndex: scrambledLetters.indexOf(freeLetter.letter),
+        scrambledIndex,
         correctIndex: freeLetter.index,
       };
     });
