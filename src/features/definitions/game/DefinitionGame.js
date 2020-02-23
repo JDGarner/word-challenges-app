@@ -174,8 +174,11 @@ const DefinitionGame = ({
 
   useEffect(() => {
     // Letters have been re-shuffled, reset to initial state
-    setScrambledLetters(getScrambledLetters(letters, freeLetters));
-    setAnswerLetters(getAnswerLetters(letters, freeLetters));
+    // Need to recompute freeLetters also because scrambled letters have changed position
+    const newFreeLetters = getFreeLetters(letters, word, difficulty);
+
+    setScrambledLetters(getScrambledLetters(letters, newFreeLetters));
+    setAnswerLetters(getAnswerLetters(letters, newFreeLetters));
   }, [letters]);
 
   useEffect(() => {

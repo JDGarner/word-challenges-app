@@ -2,19 +2,21 @@
 1st Release
 ----------------------------------------
 
-- !!! Consider getting rid of rhyme mode entirely, focus on definitions?
-
 Definitions:
-- test/user test difficulty levels with different clue parameters
+- move shuffle logic out of redux and into DefinitionGame:
+  - make it so scrambled letters don't have gaps in them when using free letters
+  - make it so free letters can't be pressed?
+  - check there is no bug when free letters are the same, e.g. two As
+- make post game breakdown scrollable in case smaller devices can't see?
 - re-test retry logic with new difficulty levels
 - fix post game styling on smaller screens
 - lock difficulties until completing earlier levels?
 - Info icon on each difficulty:
-  Novice - Mostly common words, with some letters already filled in
-  Journeyman - Mostly common words
-  Expert - Mostly obscure words, with some letters already filled in
-  Master - Mostly obscure words
-- make post game breakdown scrollable in case smaller devices can't see?
+    Novice - Mostly common words, with some letters already filled in
+    Journeyman - Mostly common words, no letters filled in
+    Expert - Mostly obscure words, with some letters already filled in
+    Master - Mostly obscure words, no letters filled in
+
 
 Rhymes:
 - add exit game logic
@@ -22,6 +24,12 @@ Rhymes:
 Leaderboard/Stats:
 - Leaderboard button on main menu
 - Maybe leaderboard button in each difficulty
+- Stats:
+  - ELO for each difficulty level
+  - Split ELO levels into leagues - bronze -> diamond with a leaderboard on each one
+  - look into how i would add ELO? how I could track/store stats & identify users without accounts
+    - on android could use google play accounts?
+  - Maybe - Other user stats - % correct, longest streak?
 
 General:
 - add difficulties to rhymes?
@@ -34,16 +42,14 @@ General:
 - read react native docs on releasing before releasing
   - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 
+Testing:
+- test/user test difficulty levels with different clue parameters
+- test animation speeds/timings
+- test button placement
+- test different devices
+
 Maybe in 1st release:
 - Add Synonyms mode
-- Stats:
-  - ELO for each difficulty level
-  - Split ELO levels into leagues - bronze -> diamond with a leaderboard on each one
-  - look into how i would add ELO? how I could track/store stats & identify users without accounts
-    - on android could use google play accounts?
-  - Maybe - Other user stats - % correct, longest streak?
-
-
 
 
 Option 1:

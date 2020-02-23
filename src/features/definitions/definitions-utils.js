@@ -187,15 +187,19 @@ const getNumberOfFreeLetters = size => {
 
 export const getFreeLetters = (scrambledLetters, word, difficulty) => {
   if (shouldGiveFreeLetters(difficulty)) {
-    const freeLetters = sampleSize(
-      scrambledLetters,
-      getNumberOfFreeLetters(scrambledLetters.length),
-    );
-    return freeLetters.map(letter => {
+    const numOfFreeLetters = getNumberOfFreeLetters(scrambledLetters.length);
+    let freeLetters = [];
+
+    // get the first numOfFreeLetters letters from word, even indexes
+    for (let i = 0; i <= numOfFreeLetters * 2; i += 2) {
+      freeLetters.push({ letter: word[i].toUpperCase(), index: i });
+    }
+
+    return freeLetters.map(freeLetter => {
       return {
-        letter,
-        scrambledIndex: scrambledLetters.indexOf(letter),
-        correctIndex: word.indexOf(letter.toLowerCase()),
+        letter: freeLetter.letter,
+        scrambledIndex: scrambledLetters.indexOf(freeLetter.letter),
+        correctIndex: freeLetter.index,
       };
     });
   }
