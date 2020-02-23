@@ -124,7 +124,6 @@ export const getDefinitionState = state => {
       allDefinitionsIndex: state.allEasyDefinitionsIndex,
       currentDefinitions: state.currentEasyDefinitions,
       currentDefinition: state.currentEasyDefinition,
-      scrambledLetters: state.scrambledEasyLetters,
       difficulty: DIFFICULTY_MAP[state.difficulty],
     };
   }
@@ -134,7 +133,6 @@ export const getDefinitionState = state => {
     allDefinitionsIndex: state.allHardDefinitionsIndex,
     currentDefinitions: state.currentHardDefinitions,
     currentDefinition: state.currentHardDefinition,
-    scrambledLetters: state.scrambledHardLetters,
     difficulty: DIFFICULTY_MAP[state.difficulty],
   };
 };
@@ -152,7 +150,6 @@ export const getDefinitionKeys = difficulty => {
       allDefinitionsIndexKey: "allEasyDefinitionsIndex",
       currentDefinitionsKey: "currentEasyDefinitions",
       currentDefinitionKey: "currentEasyDefinition",
-      scrambledLettersKey: "scrambledEasyLetters",
     };
   }
 
@@ -161,7 +158,6 @@ export const getDefinitionKeys = difficulty => {
     allDefinitionsIndexKey: "allHardDefinitionsIndex",
     currentDefinitionsKey: "currentHardDefinitions",
     currentDefinitionKey: "currentHardDefinition",
-    scrambledLettersKey: "scrambledHardLetters",
   };
 };
 
@@ -191,8 +187,8 @@ export const getFreeLetters = (scrambledLetters, word, difficulty) => {
     let freeLetters = [];
 
     // get the first numOfFreeLetters letters from word, even indexes
-    for (let i = 0; i <= numOfFreeLetters * 2; i += 2) {
-      freeLetters.push({ letter: word[i].toUpperCase(), index: i });
+    for (let i = 0; i < numOfFreeLetters; i++) {
+      freeLetters.push({ letter: word[i * 2].toUpperCase(), index: i * 2 });
     }
 
     return freeLetters.map(freeLetter => {

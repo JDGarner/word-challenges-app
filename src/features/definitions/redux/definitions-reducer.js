@@ -8,7 +8,6 @@ import {
   ON_PRESS_START_NEW_GAME,
   ON_SUBMIT_ANSWER,
   ON_SKIP_CURRENT_WORD,
-  ON_SHUFFLE_CURRENT_WORD,
   ON_EXIT_GAME,
   GAME_COUNTDOWN_AT_ZERO,
   ON_SELECT_DIFFICULTY,
@@ -32,8 +31,6 @@ const initialState = {
   currentHardDefinitions: [],
   currentEasyDefinition: {},
   currentHardDefinition: {},
-  scrambledEasyLetters: [],
-  scrambledHardLetters: [],
   questionIndex: 0,
   loaded: false,
   gameState: GAME_STATES.DIFFICULTYSELECTION,
@@ -55,21 +52,16 @@ const getStateForRoundEnd = state => {
 };
 
 const getStateForNextQuestion = state => {
-  const {
-    currentDefinitionKey,
-    currentDefinitionsKey,
-    scrambledLettersKey,
-    allDefinitionsIndexKey,
-  } = getDefinitionKeys(DIFFICULTY_MAP[state.difficulty]);
+  const { currentDefinitionKey, currentDefinitionsKey, allDefinitionsIndexKey } = getDefinitionKeys(
+    DIFFICULTY_MAP[state.difficulty],
+  );
 
   let questionIndex = state.questionIndex + 1;
   const currentDefinition = state[currentDefinitionsKey][questionIndex];
-  const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
 
   return {
     ...state,
     [currentDefinitionKey]: currentDefinition,
-    [scrambledLettersKey]: scrambledLetters,
     questionIndex,
     [allDefinitionsIndexKey]: state[allDefinitionsIndexKey] + 1,
     gameCountdown: INITIAL_COUNTDOWN,
@@ -78,12 +70,9 @@ const getStateForNextQuestion = state => {
 
 const getStateForNewRound = (state, nextIndex, allDefinitions, difficulty) => {
   const nextDefinition = allDefinitions[nextIndex];
-  const {
-    allDefinitionsIndexKey,
-    currentDefinitionKey,
-    currentDefinitionsKey,
-    scrambledLettersKey,
-  } = getDefinitionKeys(difficulty);
+  const { allDefinitionsIndexKey, currentDefinitionKey, currentDefinitionsKey } = getDefinitionKeys(
+    difficulty,
+  );
 
   // API call must have failed to fetch additional definitions, go to error state
   if (!nextDefinition) {
@@ -99,14 +88,12 @@ const getStateForNewRound = (state, nextIndex, allDefinitions, difficulty) => {
 
   const currentDefinition = allDefinitions[nextIndex];
   const currentDefinitions = allDefinitions.slice(nextIndex, nextIndex + WORDS_PER_ROUND);
-  const scrambledLetters = shuffle(currentDefinition.word.toUpperCase().split(""));
 
   return {
     ...state,
     [allDefinitionsIndexKey]: nextIndex,
     [currentDefinitionKey]: currentDefinition,
     [currentDefinitionsKey]: currentDefinitions,
-    [scrambledLettersKey]: scrambledLetters,
     questionIndex: 0,
     gameCountdown: INITIAL_COUNTDOWN,
   };
@@ -186,17 +173,6 @@ export default (state = initialState, action) => {
       }
 
       return { ...getStateForNextQuestion(state), [currentDefinitionsKey]: currentDefinitions };
-    }
-
-    case ON_SHUFFLE_CURRENT_WORD: {
-      const { currentDefinitionKey, scrambledLettersKey } = getDefinitionKeys(
-        DIFFICULTY_MAP[state.difficulty],
-      );
-
-      return {
-        ...state,
-        [scrambledLettersKey]: shuffle(state[currentDefinitionKey].word.toUpperCase().split("")),
-      };
     }
 
     case ON_SELECT_DIFFICULTY:

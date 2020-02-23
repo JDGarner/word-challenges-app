@@ -100,14 +100,18 @@ const freeLetters = [
  */
 
 const getScrambledLetters = (letters, freeLetters) => {
-  return letters.map((l, i) => {
-    return {
-      id: i,
-      letter: l,
-      // only show scrambled letter initially if it isn't in freeLetters
-      showing: !freeLetters.some(f => f.scrambledIndex === i),
-    };
-  });
+  return letters
+    .map((l, i) => {
+      return {
+        id: i,
+        letter: l,
+        showing: true,
+      };
+    })
+    .filter((s, i) => {
+      // Filter out any free letters
+      return !freeLetters.some(f => f.scrambledIndex === i);
+    });
 };
 
 const getAnswerLetters = (letters, freeLetters) => {
@@ -118,6 +122,7 @@ const getAnswerLetters = (letters, freeLetters) => {
       return {
         id: freeLetter.scrambledIndex,
         letter: freeLetter.letter,
+        isFreeLetter: true,
       };
     }
 
@@ -135,17 +140,19 @@ const getAnimationDelayTimes = letters => {
 const DefinitionGame = ({
   word,
   definition,
-  letters,
   gameCountdown,
   difficulty,
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
   onSkipCurrentWord,
-  onShuffleCurrentWord,
   onExitGame,
   navigation,
 }) => {
+  const letters = useMemo(() => {
+    return shuffle(word.toUpperCase().split(""));
+  }, [word]);
+
   const freeLetters = useMemo(() => {
     return getFreeLetters(letters, word, difficulty);
   }, [word, difficulty]);
@@ -171,15 +178,6 @@ const DefinitionGame = ({
       onGameEnd();
     };
   }, [onBeginGame, onGameEnd]);
-
-  useEffect(() => {
-    // Letters have been re-shuffled, reset to initial state
-    // Need to recompute freeLetters also because scrambled letters have changed position
-    const newFreeLetters = getFreeLetters(letters, word, difficulty);
-
-    setScrambledLetters(getScrambledLetters(letters, newFreeLetters));
-    setAnswerLetters(getAnswerLetters(letters, newFreeLetters));
-  }, [letters]);
 
   useEffect(() => {
     // Fade out game, show incorrect answer feedback
@@ -266,7 +264,13 @@ const DefinitionGame = ({
     setShuffleToggle(!shuffleToggle);
 
     setTimeout(() => {
-      onShuffleCurrentWord();
+      // Re-shuffle the letters, reset scrambled/answers to initial state
+      // Need to recompute freeLetters also because scrambled letters have changed position
+      const shuffledLetters = shuffle(word.toUpperCase().split(""));
+      const newFreeLetters = getFreeLetters(shuffledLetters, word, difficulty);
+
+      setScrambledLetters(getScrambledLetters(shuffledLetters, newFreeLetters));
+      setAnswerLetters(getAnswerLetters(shuffledLetters, newFreeLetters));
     }, animationTotalTime);
   };
 
@@ -301,7 +305,7 @@ const DefinitionGame = ({
               return (
                 <AnswerLetter
                   key={answer.id}
-                  disabled={userActionsDisabled}
+                  disabled={userActionsDisabled || answer.isFreeLetter}
                   onPressLetter={() => removeAnswerLetter(answer, i)}
                   letter={answer.letter}
                   {...answerTextProps}

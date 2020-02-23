@@ -12,7 +12,6 @@ export const GAME_COUNTDOWN_AT_ZERO = `${NAMESPACE}/GAME_COUNTDOWN_AT_ZERO`;
 export const ON_SUBMIT_ANSWER = `${NAMESPACE}/ON_SUBMIT_ANSWER`;
 export const ON_PRESS_START_NEW_GAME = `${NAMESPACE}/ON_PRESS_START_NEW_GAME`;
 export const ON_SKIP_CURRENT_WORD = `${NAMESPACE}/ON_SKIP_CURRENT_WORD`;
-export const ON_SHUFFLE_CURRENT_WORD = `${NAMESPACE}/ON_SHUFFLE_CURRENT_WORD`;
 export const ON_EXIT_GAME = `${NAMESPACE}/ON_EXIT_GAME`;
 export const ON_SELECT_DIFFICULTY = `${NAMESPACE}/ON_SELECT_DIFFICULTY`;
 
@@ -70,10 +69,6 @@ export const onPressStartNewGame = () => ({
 
 export const onSkipCurrentWord = () => ({
   type: ON_SKIP_CURRENT_WORD,
-});
-
-export const onShuffleCurrentWord = () => ({
-  type: ON_SHUFFLE_CURRENT_WORD,
 });
 
 export const onExitGame = () => ({

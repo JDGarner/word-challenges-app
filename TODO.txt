@@ -3,10 +3,7 @@
 ----------------------------------------
 
 Definitions:
-- move shuffle logic out of redux and into DefinitionGame:
-  - make it so scrambled letters don't have gaps in them when using free letters
-  - make it so free letters can't be pressed?
-  - check there is no bug when free letters are the same, e.g. two As
+- check there is no bug when free letters are the same, e.g. two As
 - make post game breakdown scrollable in case smaller devices can't see?
 - re-test retry logic with new difficulty levels
 - fix post game styling on smaller screens
