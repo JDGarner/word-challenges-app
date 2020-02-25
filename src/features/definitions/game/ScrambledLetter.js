@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { View, Animated } from "react-native";
 import styled from "styled-components";
 import { BorderedButton, MediumText } from "../../../components";
@@ -6,9 +6,7 @@ import {
   animateScrambledLetter,
   animateLetterPressIn,
   animateLetterPressOut,
-  animateLetterReappear,
 } from "../definitions-utils";
-import { useDidUpdateEffect } from "../../../hooks/generic-hooks";
 
 const LETTER_SIZE = 46;
 
@@ -27,36 +25,19 @@ const LetterButton = styled(BorderedButton)`
   width: ${LETTER_SIZE};
 `;
 
-const ScrambledLetter = ({
-  letter,
-  showing,
-  shuffleToggle,
-  animationDelayTime,
-  animationTotalTime,
-  onPressLetter,
-  disabled,
-}) => {
-  const [scaleValue] = useState(new Animated.Value(1));
-  const [opacity] = useState(new Animated.Value(1));
-
-  useEffect(() => {
-    animateScrambledLetter(scaleValue, showing);
-  }, [showing]);
-
-  useDidUpdateEffect(() => {
-    setTimeout(() => {
-      animateLetterReappear(opacity, animationDelayTime, animationTotalTime);
-    }, animationDelayTime);
-  }, [shuffleToggle]);
+const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue }) => {
+  // useEffect(() => {
+  //   animateScrambledLetter(scaleValue, showing);
+  // }, [showing]);
 
   return (
-    <Animated.View style={{ transform: [{ scale: scaleValue }], opacity }}>
+    <Animated.View style={{ transform: [{ scale: scaleValue }], opacity: scaleValue }}>
       {showing === false ? (
         <EmptyLetterPlaceHolder />
       ) : (
         <LetterButton
-          onPressIn={() => animateLetterPressIn(scaleValue)}
-          onPressOut={() => animateLetterPressOut(scaleValue)}
+          // onPressIn={() => animateLetterPressIn(scaleValue)}
+          // onPressOut={() => animateLetterPressOut(scaleValue)}
           onPress={onPressLetter}
           disabled={disabled}>
           <MediumText textAlign="center">{letter}</MediumText>

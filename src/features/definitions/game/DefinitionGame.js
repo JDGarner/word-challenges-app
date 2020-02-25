@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useMemo, Fragment } from "react";
 import { cloneDeep, shuffle } from "lodash";
 import styled from "styled-components";
-import { View, TouchableOpacity, Animated } from "react-native";
+import { View, TouchableOpacity, Animated, Easing } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import GameHeader from "../GameHeader";
 import theme from "../../../theme";
 import ScrambledLetter from "./ScrambledLetter";
 import AnswerLetter from "./AnswerLetter";
-import { getAnswerTextProps, getFreeLetters } from "../definitions-utils";
+import { getAnswerTextProps, getFreeLetters, getShuffleReappearDelay } from "../definitions-utils";
 import {
-  SHUFFLE_ANIMATION_GAP_TIME,
   ANSWER_FEEDBACK_ANIMATION_DURATION,
+  SHUFFLE_ANIMATION_TIME,
+  SHUFFLE_ANIMATION_STAGGER_TIME,
 } from "../definitions-constants";
 import TopBar from "../TopBar";
 import AnswerFeedback from "./AnswerFeedback";
@@ -133,10 +134,6 @@ const getAnswerLetters = (letters, freeLetters) => {
   });
 };
 
-const getAnimationDelayTimes = letters => {
-  return shuffle(letters.map((l, i) => i * SHUFFLE_ANIMATION_GAP_TIME));
-};
-
 const DefinitionGame = ({
   word,
   definition,
@@ -149,27 +146,19 @@ const DefinitionGame = ({
   onExitGame,
   navigation,
 }) => {
-  const letters = useMemo(() => {
-    return shuffle(word.toUpperCase().split(""));
-  }, [word]);
-
-  const freeLetters = useMemo(() => {
-    return getFreeLetters(letters, word, difficulty);
-  }, [word, difficulty]);
+  const letters = useMemo(() => shuffle(word.toUpperCase().split("")), [word]);
+  const freeLetters = useMemo(() => getFreeLetters(letters, word, difficulty), [word, difficulty]);
+  const scrambledLettersScale = useMemo(() => letters.map(() => new Animated.Value(1)), [word]);
 
   const [scrambledLetters, setScrambledLetters] = useState(
     getScrambledLetters(letters, freeLetters),
   );
   const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters, freeLetters));
 
-  const [shuffleToggle, setShuffleToggle] = useState(false);
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
   const [answerFeedbackAnimationToggle, setAnswerFeedbackAnimationToggle] = useState(false);
   const [gameOpacity] = useState(new Animated.Value(0));
   const [userActionsDisabled, setUserActionsDisabled] = useState(false);
-
-  const animationDelayTimes = getAnimationDelayTimes(letters);
-  const animationTotalTime = letters.length * SHUFFLE_ANIMATION_GAP_TIME;
 
   useEffect(() => {
     onBeginGame();
@@ -187,6 +176,7 @@ const DefinitionGame = ({
       Animated.timing(gameOpacity, {
         toValue: 0,
         duration: ANSWER_FEEDBACK_ANIMATION_DURATION,
+        useNativeDriver: true,
       }).start();
       setIsCurrentAnswerCorrect(false);
       setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
@@ -198,6 +188,7 @@ const DefinitionGame = ({
     Animated.timing(gameOpacity, {
       toValue: 1,
       duration: 380,
+      useNativeDriver: true,
     }).start();
   }, [word]);
 
@@ -209,6 +200,7 @@ const DefinitionGame = ({
     Animated.timing(gameOpacity, {
       toValue: 0,
       duration: ANSWER_FEEDBACK_ANIMATION_DURATION,
+      useNativeDriver: true,
     }).start();
 
     setTimeout(() => {
@@ -261,7 +253,20 @@ const DefinitionGame = ({
   };
 
   const onPressShuffle = () => {
-    setShuffleToggle(!shuffleToggle);
+    // Reset answers to initial state
+    setAnswerLetters(getAnswerLetters(answerLetters, freeLetters));
+
+    Animated.stagger(
+      SHUFFLE_ANIMATION_STAGGER_TIME,
+      shuffle(scrambledLettersScale).map(scale => {
+        return Animated.timing(scale, {
+          toValue: 0,
+          duration: SHUFFLE_ANIMATION_TIME,
+          easing: Easing.cubic,
+          useNativeDriver: true,
+        });
+      }),
+    ).start();
 
     setTimeout(() => {
       // Re-shuffle the letters, reset scrambled/answers to initial state
@@ -270,8 +275,20 @@ const DefinitionGame = ({
       const newFreeLetters = getFreeLetters(shuffledLetters, word, difficulty);
 
       setScrambledLetters(getScrambledLetters(shuffledLetters, newFreeLetters));
-      setAnswerLetters(getAnswerLetters(shuffledLetters, newFreeLetters));
-    }, animationTotalTime);
+      setAnswerLetters(getAnswerLetters(answerLetters, newFreeLetters));
+
+      Animated.stagger(
+        SHUFFLE_ANIMATION_STAGGER_TIME,
+        shuffle(scrambledLettersScale).map(scale => {
+          return Animated.timing(scale, {
+            toValue: 1,
+            duration: SHUFFLE_ANIMATION_TIME,
+            easing: Easing.out(Easing.cubic),
+            useNativeDriver: true,
+          });
+        }),
+      ).start();
+    }, getShuffleReappearDelay(scrambledLettersScale));
   };
 
   const answerTextProps = getAnswerTextProps(answerLetters);
@@ -291,9 +308,7 @@ const DefinitionGame = ({
                   showing={scrambled.showing}
                   letter={scrambled.letter}
                   disabled={userActionsDisabled}
-                  shuffleToggle={shuffleToggle}
-                  animationDelayTime={animationDelayTimes[i]}
-                  animationTotalTime={animationTotalTime}
+                  scaleValue={scrambledLettersScale[i]}
                   onPressLetter={() => addAnswerLetter(scrambled, i)}
                 />
               );

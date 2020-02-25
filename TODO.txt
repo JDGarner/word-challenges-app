@@ -3,7 +3,12 @@
 ----------------------------------------
 
 Definitions:
+- fix animation smoothness on android:
+- put back in bounce effect when scrambled letters are pressed/reappear
+  - on shuffle fade out answer letters when they disappear?
+  - try other android animations
 - make post game breakdown scrollable in case smaller devices can't see?
+- fix difficulty selection for smaller screens
 - re-test retry logic with new difficulty levels
 - fix post game styling on smaller screens
 - lock difficulties until completing earlier levels?
@@ -16,6 +21,7 @@ Definitions:
 
 Rhymes:
 - add exit game logic
+- add hate to straight
 
 Leaderboard/Stats:
 - Leaderboard button on main menu

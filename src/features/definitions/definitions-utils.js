@@ -1,11 +1,12 @@
 import { Animated } from "react-native";
-import { sampleSize } from "lodash";
 import {
   WORDS_PER_ROUND,
-  OPACITY_ANIMATE_TIME,
   WORD_DIFFICULTIES,
   DIFFICULTY_MAP,
   DIFFICULTIES,
+  SHUFFLE_ANIMATION_TIME,
+  SHUFFLE_ANIMATION_STAGGER_TIME,
+  SHUFFLE_ANIMATION_REAPPEAR_BUFFER,
 } from "./definitions-constants";
 import { ENDPOINTS } from "../../app-constants";
 
@@ -62,6 +63,7 @@ export const getAnswerTextProps = letters => {
 export const animateLetterPressIn = value => {
   Animated.spring(value, {
     toValue: 0.8,
+    useNativeDriver: true,
   }).start();
 };
 
@@ -70,6 +72,7 @@ export const animateLetterPressOut = value => {
     toValue: 1,
     speed: 16,
     bounciness: 16,
+    useNativeDriver: true,
   }).start();
 };
 
@@ -78,12 +81,14 @@ const animateLetterSpring = value => {
     toValue: 1,
     speed: 14,
     bounciness: 14,
+    useNativeDriver: true,
   }).start();
 };
 
 const animateLetterHide = value => {
   Animated.spring(value, {
     toValue: 0.7,
+    useNativeDriver: true,
   }).start();
 };
 
@@ -101,20 +106,6 @@ export const animateAnswerLetter = (value, letter) => {
   } else {
     animateLetterSpring(value);
   }
-};
-
-export const animateLetterReappear = (opacity, startTime, totalTime) => {
-  Animated.timing(opacity, {
-    toValue: 0,
-    duration: OPACITY_ANIMATE_TIME,
-  }).start();
-
-  setTimeout(() => {
-    Animated.timing(opacity, {
-      toValue: 1,
-      duration: OPACITY_ANIMATE_TIME,
-    }).start();
-  }, totalTime + startTime);
 };
 
 export const getDefinitionState = state => {
@@ -166,6 +157,10 @@ const shouldGiveFreeLetters = difficulty => {
 };
 
 const getNumberOfFreeLetters = size => {
+  if (size <= 3) {
+    return 0;
+  }
+
   if (size <= 6) {
     return 1;
   }
@@ -212,17 +207,10 @@ export const getFreeLetters = (scrambledLetters, word, difficulty) => {
   return [];
 };
 
-// Linear animation in reverse:
-// export const animateLetterReappear = (opacity, startTime, totalTime, index) => {
-//   Animated.timing(opacity, {
-//     toValue: 0,
-//     duration: OPACITY_ANIMATE_TIME,
-//   }).start();
-
-//   setTimeout(() => {
-//     Animated.timing(opacity, {
-//       toValue: 1,
-//       duration: OPACITY_ANIMATE_TIME,
-//     }).start();
-//   }, totalTime - startTime + SHUFFLE_ANIMATION_GAP_TIME * (index + 1));
-// };
+export const getShuffleReappearDelay = letters => {
+  return (
+    SHUFFLE_ANIMATION_TIME +
+    letters.length * SHUFFLE_ANIMATION_STAGGER_TIME +
+    SHUFFLE_ANIMATION_REAPPEAR_BUFFER
+  );
+};
