@@ -3,10 +3,6 @@
 ----------------------------------------
 
 Definitions:
-- fix animation smoothness on android:
-- put back in bounce effect when scrambled letters are pressed/reappear
-  - on shuffle fade out answer letters when they disappear?
-  - try other android animations
 - make post game breakdown scrollable in case smaller devices can't see?
 - fix difficulty selection for smaller screens
 - re-test retry logic with new difficulty levels
@@ -102,6 +98,7 @@ General:
 
 Definitions:
 - look into performance profiling (is everything being re-rendered when countdown ticks?)
+- on shuffle fade out answer letters when they disappear?
 
 Potential Features:
 - add clues? (2 clues per round? - give first X letters?, give example?, give synonym?)

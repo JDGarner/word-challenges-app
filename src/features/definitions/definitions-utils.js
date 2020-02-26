@@ -1,4 +1,5 @@
-import { Animated } from "react-native";
+import { Animated, Easing } from "react-native";
+import { shuffle } from "lodash";
 import {
   WORDS_PER_ROUND,
   WORD_DIFFICULTIES,
@@ -205,6 +206,20 @@ export const getFreeLetters = (scrambledLetters, word, difficulty) => {
   }
 
   return [];
+};
+
+export const doShuffleAnimation = (letterScale, appear = true) => {
+  Animated.stagger(
+    SHUFFLE_ANIMATION_STAGGER_TIME,
+    shuffle(letterScale).map(scale => {
+      return Animated.timing(scale, {
+        toValue: appear ? 1 : 0,
+        duration: SHUFFLE_ANIMATION_TIME,
+        easing: appear ? Easing.out(Easing.cubic) : Easing.cubic,
+        useNativeDriver: true,
+      });
+    }),
+  ).start();
 };
 
 export const getShuffleReappearDelay = letters => {

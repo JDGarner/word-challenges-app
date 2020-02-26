@@ -26,9 +26,9 @@ const LetterButton = styled(BorderedButton)`
 `;
 
 const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue }) => {
-  // useEffect(() => {
-  //   animateScrambledLetter(scaleValue, showing);
-  // }, [showing]);
+  useEffect(() => {
+    animateScrambledLetter(scaleValue, showing);
+  }, [showing]);
 
   return (
     <Animated.View style={{ transform: [{ scale: scaleValue }], opacity: scaleValue }}>
@@ -36,8 +36,8 @@ const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue 
         <EmptyLetterPlaceHolder />
       ) : (
         <LetterButton
-          // onPressIn={() => animateLetterPressIn(scaleValue)}
-          // onPressOut={() => animateLetterPressOut(scaleValue)}
+          onPressIn={() => animateLetterPressIn(scaleValue)}
+          onPressOut={() => animateLetterPressOut(scaleValue)}
           onPress={onPressLetter}
           disabled={disabled}>
           <MediumText textAlign="center">{letter}</MediumText>
