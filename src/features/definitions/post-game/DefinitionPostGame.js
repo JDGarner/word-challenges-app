@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { View } from "react-native";
+import React, { Fragment, useRef, useState } from "react";
+import { View, ScrollView, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components";
 
 import { LargeText, PaddedButton, MediumLargeText } from "../../../components";
@@ -18,24 +18,42 @@ const ContentContainer = styled(View)`
   flex: 1;
   width: 100%;
   align-items: center;
+  justify-content: space-between;
+`;
+
+const FeedbackTextContainer = styled(View)`
+  flex: 0.4;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 8%;
+`;
+
+const ScrollViewContainer = styled(View)`
+  max-height: 70%;
+  width: 100%;
+`;
+
+const AnswersScrollView = styled(ScrollView)`
+  width: 100%;
+  margin-vertical: 16;
+`;
+
+const Footer = styled(View)`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32;
 `;
 
 const ScoreContainer = styled(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-bottom: 45;
+  margin-bottom: 12;
 `;
 
-const AnswerContainer = styled(View)`
-  width: 100%;
-  margin-top: 30;
-  margin-bottom: 30;
+const PlayAgain = styled(View)`
+  margin-top: 12;
 `;
-
-const PlayAgain = styled(View)``;
 
 const DefinitionPostGame = ({
   onPressStartNewGame,
@@ -43,6 +61,16 @@ const DefinitionPostGame = ({
   currentDefinitions,
   navigation,
 }) => {
+  const [showScrollBar, setShowScrollBar] = useState(false);
+  const scrollViewRef = useRef();
+
+  const flashScrollBars = () => {
+    setShowScrollBar(true);
+    if (scrollViewRef && scrollViewRef.current && scrollViewRef.current.flashScrollIndicators) {
+      scrollViewRef.current.flashScrollIndicators();
+    }
+  };
+
   const onPressExitGame = () => {
     navigation.goBack();
     setTimeout(() => {
@@ -65,40 +93,54 @@ const DefinitionPostGame = ({
         animateDelay={totalAnimationTime}
       />
       <ContentContainer>
-        <PopInView popToSize={1} duration={ANSWER_ANIMATION_START_DELAY_TIME} delay={150}>
-          <MediumLargeText>{praise}</MediumLargeText>
-        </PopInView>
-        <AnswerContainer>
-          {currentDefinitions.map((def, i) => (
-            <Answer
-              key={def._id}
-              delay={i * ANSWER_ANIMATION_GAP_TIME + ANSWER_ANIMATION_START_DELAY_TIME}
-              {...def}
-            />
-          ))}
-        </AnswerContainer>
-        <ScoreContainer>
-          <PopInView popToSize={1} duration={220} delay={totalAnimationTime}>
-            <LargeText>{score}</LargeText>
+        <FeedbackTextContainer>
+          <PopInView popToSize={1} duration={ANSWER_ANIMATION_START_DELAY_TIME} delay={150}>
+            <MediumLargeText>{praise}</MediumLargeText>
           </PopInView>
-          <PopInView popToSize={1} duration={220} delay={totalAnimationTime + 60}>
-            <LargeText> / </LargeText>
-          </PopInView>
-          <PopInView popToSize={1} duration={220} delay={totalAnimationTime + 120}>
-            <LargeText>{WORDS_PER_ROUND}</LargeText>
-          </PopInView>
-        </ScoreContainer>
-        <PlayAgain>
-          <PopInView
-            pointerEvents="auto"
-            popToSize={1}
-            duration={1500}
-            delay={totalAnimationTime + 350}>
-            <PaddedButton onPress={onPressStartNewGame}>
-              <LargeText>Play Again</LargeText>
-            </PaddedButton>
-          </PopInView>
-        </PlayAgain>
+        </FeedbackTextContainer>
+        <ScrollViewContainer>
+          <AnswersScrollView
+            ref={scrollViewRef}
+            showsVerticalScrollIndicator={showScrollBar}
+            contentContainerStyle={{ alignItems: "center", justifyContent: "center" }}>
+            <TouchableWithoutFeedback>
+              <View style={{ alignItems: "center", justifyContent: "center" }}>
+                {currentDefinitions.map((def, i) => (
+                  <Answer
+                    key={def._id}
+                    delay={i * ANSWER_ANIMATION_GAP_TIME + ANSWER_ANIMATION_START_DELAY_TIME}
+                    {...def}
+                  />
+                ))}
+              </View>
+            </TouchableWithoutFeedback>
+          </AnswersScrollView>
+        </ScrollViewContainer>
+        <Footer>
+          <ScoreContainer>
+            <PopInView popToSize={1} duration={220} delay={totalAnimationTime}>
+              <LargeText>{score}</LargeText>
+            </PopInView>
+            <PopInView popToSize={1} duration={220} delay={totalAnimationTime + 60}>
+              <LargeText> / </LargeText>
+            </PopInView>
+            <PopInView popToSize={1} duration={220} delay={totalAnimationTime + 120}>
+              <LargeText>{WORDS_PER_ROUND}</LargeText>
+            </PopInView>
+          </ScoreContainer>
+          <PlayAgain>
+            <PopInView
+              pointerEvents="auto"
+              popToSize={1}
+              duration={1500}
+              delay={totalAnimationTime + 350}
+              onAnimationEnd={flashScrollBars}>
+              <PaddedButton onPress={onPressStartNewGame}>
+                <LargeText>Play Again</LargeText>
+              </PaddedButton>
+            </PopInView>
+          </PlayAgain>
+        </Footer>
       </ContentContainer>
     </Fragment>
   );

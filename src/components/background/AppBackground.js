@@ -1,4 +1,5 @@
 import React from "react";
+import { SafeAreaView } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import styled from "styled-components";
 
@@ -16,7 +17,7 @@ const appColors = {
 const AppBackground = ({ children, theme = "menu" }) => {
   return (
     <Background start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={appColors[theme]}>
-      {children}
+      <SafeAreaView style={{ flex: 1 }}>{children}</SafeAreaView>
     </Background>
   );
 };

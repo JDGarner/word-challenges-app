@@ -8,7 +8,6 @@ import { MediumLargeText } from "../../../components";
 import { ANSWER_ANIMATION_DURATION } from "../definitions-constants";
 
 const AnswerContainer = styled(Animated.View)`
-  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

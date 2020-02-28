@@ -11,7 +11,7 @@ import PopInView from "../../../components/pop-in-view/PopInView";
 
 const ContentContainer = styled(View)`
   flex: 1;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -29,8 +29,7 @@ const Title = styled(View)`
 const DifficultyOptions = styled(View)`
   flex: 1;
   width: 100%;
-  margin-bottom: 30%;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 

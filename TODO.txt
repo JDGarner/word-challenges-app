@@ -3,16 +3,17 @@
 ----------------------------------------
 
 Definitions:
-- make post game breakdown scrollable in case smaller devices can't see?
-- fix difficulty selection for smaller screens
+- swap around answer letters and scrambled?
+- fix bug where you can hammer the shuffle/next button (play again button can be pressed before it shows)
+- fix difficulty selection for smaller screens - smaller buttons for all screens?
 - re-test retry logic with new difficulty levels
-- fix post game styling on smaller screens
 - lock difficulties until completing earlier levels?
 - Info icon on each difficulty:
     Novice - Mostly common words, with some letters already filled in
     Journeyman - Mostly common words, no letters filled in
     Expert - Mostly obscure words, with some letters already filled in
     Master - Mostly obscure words, no letters filled in
+- Add more feedback text randomly
 
 
 Rhymes:
@@ -31,6 +32,7 @@ Leaderboard/Stats:
 
 General:
 - add difficulties to rhymes?
+- make exit X into back arrow?
 - splash screen
 - Improve main menu styling
 - add extra game mode coming soon disabled button (or add Synonyms?)
@@ -48,6 +50,8 @@ Testing:
 
 Maybe in 1st release:
 - Add Synonyms mode
+- Add tutorial/intro?
+- Add animated background?
 
 
 Option 1:

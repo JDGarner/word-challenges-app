@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Animated, Easing } from "react-native";
 
-const PopInView = ({ children, popToSize, duration, delay, pointerEvents }) => {
+const PopInView = ({ children, popToSize, duration, delay, pointerEvents, onAnimationEnd }) => {
   const [scaleValue] = useState(new Animated.Value(0.8));
   const [opacity] = useState(new Animated.Value(0));
 
@@ -25,7 +25,7 @@ const PopInView = ({ children, popToSize, duration, delay, pointerEvents }) => {
         easing: Easing.linear,
         useNativeDriver: true,
       }),
-    ]).start();
+    ]).start(onAnimationEnd);
   };
 
   useEffect(() => {
@@ -51,6 +51,7 @@ PopInView.defaultProps = {
   pointerEvents: "none",
   popToSize: 1.2,
   duration: 300,
+  onAnimationEnd: () => {},
 };
 
 export default PopInView;
