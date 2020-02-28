@@ -18,9 +18,9 @@ export const PaddedButton = styled(BorderedButton)`
   padding-horizontal: ${props => props.paddingHorizontal || 12};
 `;
 
-export const CloseButton = ({ onPress }) => {
+export const CloseButton = buttonProps => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity {...buttonProps}>
       <Icon name="close" size={38} color={theme.textColor} />
     </TouchableOpacity>
   );

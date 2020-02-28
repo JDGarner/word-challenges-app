@@ -46,7 +46,6 @@ const AnswersContainer = styled(View)`
   flex-direction: row;
   width: 100%;
   justify-content: center;
-  margin-bottom: 10%;
 `;
 
 const FooterContainer = styled(View)`
@@ -281,21 +280,6 @@ const DefinitionGame = ({
         <CentreContainer>
           <GameHeader definition={definition} />
 
-          <ScrambledLettersContainer>
-            {scrambledLetters.map((scrambled, i) => {
-              return (
-                <ScrambledLetter
-                  key={scrambled.id}
-                  showing={scrambled.showing}
-                  letter={scrambled.letter}
-                  disabled={userActionsDisabled}
-                  scaleValue={scrambledLetterScales[i]}
-                  onPressLetter={() => addAnswerLetter(scrambled, i)}
-                />
-              );
-            })}
-          </ScrambledLettersContainer>
-
           <AnswersContainer>
             {answerLetters.map((answer, i) => {
               return (
@@ -310,6 +294,21 @@ const DefinitionGame = ({
               );
             })}
           </AnswersContainer>
+
+          <ScrambledLettersContainer>
+            {scrambledLetters.map((scrambled, i) => {
+              return (
+                <ScrambledLetter
+                  key={scrambled.id}
+                  showing={scrambled.showing}
+                  letter={scrambled.letter}
+                  disabled={userActionsDisabled}
+                  scaleValue={scrambledLetterScales[i]}
+                  onPressLetter={() => addAnswerLetter(scrambled, i)}
+                />
+              );
+            })}
+          </ScrambledLettersContainer>
         </CentreContainer>
 
         <FooterContainer>

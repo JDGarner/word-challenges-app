@@ -62,9 +62,11 @@ const DefinitionPostGame = ({
   navigation,
 }) => {
   const [showScrollBar, setShowScrollBar] = useState(false);
+  const [userActionsDisabled, setUserActionsDisabled] = useState(true);
   const scrollViewRef = useRef();
 
-  const flashScrollBars = () => {
+  const onPlayAgainAnimationStart = () => {
+    setUserActionsDisabled(false);
     setShowScrollBar(true);
     if (scrollViewRef && scrollViewRef.current && scrollViewRef.current.flashScrollIndicators) {
       scrollViewRef.current.flashScrollIndicators();
@@ -91,6 +93,7 @@ const DefinitionPostGame = ({
         onPressExitGame={onPressExitGame}
         animateDuration={500}
         animateDelay={totalAnimationTime}
+        disabled={userActionsDisabled}
       />
       <ContentContainer>
         <FeedbackTextContainer>
@@ -134,8 +137,8 @@ const DefinitionPostGame = ({
               popToSize={1}
               duration={1500}
               delay={totalAnimationTime + 350}
-              onAnimationEnd={flashScrollBars}>
-              <PaddedButton onPress={onPressStartNewGame}>
+              onAnimationStart={onPlayAgainAnimationStart}>
+              <PaddedButton onPress={onPressStartNewGame} disabled={userActionsDisabled}>
                 <LargeText>Play Again</LargeText>
               </PaddedButton>
             </PopInView>

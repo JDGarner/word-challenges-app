@@ -14,13 +14,13 @@ const TopBarContainer = styled(View)`
   margin-bottom: auto;
 `;
 
-const TopBar = ({ gameCountdown, onPressExitGame, animateDuration, animateDelay }) => {
+const TopBar = ({ gameCountdown, onPressExitGame, animateDuration, animateDelay, disabled }) => {
   const CloseComponent = animateDuration ? (
     <PopInView pointerEvents="auto" popToSize={1} duration={animateDuration} delay={animateDelay}>
-      <CloseButton onPress={onPressExitGame} />
+      <CloseButton onPress={onPressExitGame} disabled={disabled} />
     </PopInView>
   ) : (
-    <CloseButton onPress={onPressExitGame} />
+    <CloseButton onPress={onPressExitGame} disabled={disabled} />
   );
 
   return (
@@ -29,6 +29,10 @@ const TopBar = ({ gameCountdown, onPressExitGame, animateDuration, animateDelay 
       {!isNaN(gameCountdown) && <Countdown gameCountdown={gameCountdown} />}
     </TopBarContainer>
   );
+};
+
+TopBar.defaultProps = {
+  disabled: false,
 };
 
 export default TopBar;

@@ -3,8 +3,6 @@
 ----------------------------------------
 
 Definitions:
-- swap around answer letters and scrambled?
-- fix bug where you can hammer the shuffle/next button (play again button can be pressed before it shows)
 - fix difficulty selection for smaller screens - smaller buttons for all screens?
 - re-test retry logic with new difficulty levels
 - lock difficulties until completing earlier levels?
