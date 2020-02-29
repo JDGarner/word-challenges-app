@@ -3,9 +3,9 @@ import { View } from "react-native";
 import { map } from "lodash";
 import styled from "styled-components";
 
-import { LargeText, PaddedButton } from "../../../components";
+import { PaddedButton, MediumText, MediumLargeText, MediumLargerText } from "../../../components";
 import TopBar from "../TopBar";
-import { DIFFICULTIES } from "../definitions-constants";
+import { DIFFICULTIES, DIFFICULTY_TO_INFO_MAP } from "../definitions-constants";
 import AnimatedSequence from "../../../components/animated-sequence/AnimatedSequence";
 import PopInView from "../../../components/pop-in-view/PopInView";
 
@@ -34,9 +34,9 @@ const DifficultyOptions = styled(View)`
 `;
 
 const DifficultyOption = styled(PaddedButton)`
-  width: 240;
+  width: 180;
   align-items: center;
-  margin-vertical: 24;
+  margin-vertical: 18;
 `;
 
 const DefinitionDifficultySelection = ({ onSelectDifficulty, onExitGame, navigation }) => {
@@ -45,7 +45,11 @@ const DefinitionDifficultySelection = ({ onSelectDifficulty, onExitGame, navigat
       id: difficulty,
       component: (
         <DifficultyOption onPress={() => onSelectDifficulty(difficulty)}>
-          <LargeText>{difficulty}</LargeText>
+          <MediumLargeText>{difficulty}</MediumLargeText>
+          {/* <View>
+            <MediumLargeText>{difficulty}</MediumLargeText>
+            <MediumText>{DIFFICULTY_TO_INFO_MAP[difficulty]}</MediumText>
+          </View> */}
         </DifficultyOption>
       ),
     }));
@@ -58,7 +62,7 @@ const DefinitionDifficultySelection = ({ onSelectDifficulty, onExitGame, navigat
         <TitleContainer>
           <PopInView pointerEvents="auto" popToSize={1} duration={300} delay={50}>
             <Title>
-              <LargeText>Select a Difficulty</LargeText>
+              <MediumLargerText>Select a Difficulty</MediumLargerText>
             </Title>
           </PopInView>
         </TitleContainer>

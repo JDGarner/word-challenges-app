@@ -2,6 +2,12 @@
 1st Release
 ----------------------------------------
 
+New Thought:
+App Name - Endless Vocabulary
+Main Menu - Difficulty Selection
+Notes - Ditch rhymes, make it more like endless general knowledge. Add stats/leaderboards etc
+
+
 Definitions:
 - fix difficulty selection for smaller screens - smaller buttons for all screens?
 - re-test retry logic with new difficulty levels
@@ -29,10 +35,11 @@ Leaderboard/Stats:
   - Maybe - Other user stats - % correct, longest streak?
 
 General:
+- Improve main menu styling:
+  - add logo - Or just definitions, rhymes, synonyms and no logo?
 - add difficulties to rhymes?
 - make exit X into back arrow?
 - splash screen
-- Improve main menu styling
 - add extra game mode coming soon disabled button (or add Synonyms?)
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
 - Add sound effects & mute

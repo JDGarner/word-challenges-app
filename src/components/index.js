@@ -1,11 +1,4 @@
-import {
-  SmallText,
-  MediumText,
-  MediumLargeText,
-  MediumLargerText,
-  LargeText,
-  AnimatedMediumText,
-} from "./text/Text";
+import { SmallText, MediumText, MediumLargeText, MediumLargerText, LargeText } from "./text/Text";
 import { BorderedButton, PaddedButton } from "./button/Button";
 import Countdown from "./countdown/Countdown";
 import ErrorScreen from "./error/ErrorScreen";
@@ -19,7 +12,6 @@ export {
   MediumText,
   MediumLargeText,
   MediumLargerText,
-  AnimatedMediumText,
   LargeText,
   CenteredContainer,
   SpaceAroundContainer,

@@ -23,6 +23,13 @@ export const DIFFICULTY_MAP = {
   [DIFFICULTIES.MASTER]: WORD_DIFFICULTIES.HARD,
 };
 
+export const DIFFICULTY_TO_INFO_MAP = {
+  [DIFFICULTIES.NOVICE]: "Mostly common words, with some letters already filled in",
+  [DIFFICULTIES.JOURNEYMAN]: "Mostly common words, no letters filled in",
+  [DIFFICULTIES.EXPERT]: "Mostly obscure words, with some letters already filled in",
+  [DIFFICULTIES.MASTER]: "Mostly obscure words, no letters filled in",
+};
+
 export const WORDS_PER_ROUND = 5;
 export const INITIAL_COUNTDOWN = 20;
 export const DEFINITIONS_LOCAL_BUFFER = 30;
