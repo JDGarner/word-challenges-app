@@ -1,6 +1,5 @@
 import React from "react";
 
-import { HideKeyboardOnTouch } from "../../../components";
 import ConnectedDefinitionGame from "../game/ConnectedDefinitionGame";
 import { GAME_STATES } from "../definitions-constants";
 import ConnectedDefinitionPostGame from "../post-game/ConnectedDefinitionPostGame";
@@ -18,11 +17,7 @@ const DefinitionGameMode = ({ gameState, currentWord, navigation }) => {
     return null;
   };
 
-  return (
-    <HideKeyboardOnTouch>
-      <ScreenContainerPadded>{renderContent()}</ScreenContainerPadded>
-    </HideKeyboardOnTouch>
-  );
+  return <ScreenContainerPadded>{renderContent()}</ScreenContainerPadded>;
 };
 
 export default DefinitionGameMode;

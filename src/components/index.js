@@ -6,6 +6,7 @@ import LoadingScreen from "./loading/LoadingScreen";
 import { CenteredContainer, SpaceAroundContainer, TextContainer } from "./containers/Containers";
 import HideKeyboardOnTouch from "./keyboard/HideKeyboardOnTouch";
 import AppBackground from "./background/AppBackground";
+import Circle from "./circle/Circle";
 
 export {
   SmallText,
@@ -23,4 +24,5 @@ export {
   LoadingScreen,
   ErrorScreen,
   AppBackground,
+  Circle,
 };

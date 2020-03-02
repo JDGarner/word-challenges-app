@@ -2,11 +2,20 @@
 1st Release
 ----------------------------------------
 
-New Thought:
-App Name - Endless Vocabulary
-Main Menu - Difficulty Selection
-Notes - Ditch rhymes, make it more like endless general knowledge. Add stats/leaderboards etc
-
+- Improve App Desing:
+  - Try out different fonts/colours
+    - add other menu UI elements - Mute, Leaderboards? then see what pastel design looks like
+    - white background, solid pastel colours for each mode which governs secondary colour for that mode
+  - Try out animated background?
+- add difficulties to rhymes?
+- make exit X into back arrow?
+- splash screen
+- add extra game mode coming soon disabled button (or add Synonyms?)
+- add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
+- Add sound effects & mute
+- add different dev and prod environments with different .env files (see config github)
+- read react native docs on releasing before releasing
+  - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 
 Definitions:
 - fix difficulty selection for smaller screens - smaller buttons for all screens?
@@ -18,7 +27,6 @@ Definitions:
     Expert - Mostly obscure words, with some letters already filled in
     Master - Mostly obscure words, no letters filled in
 - Add more feedback text randomly
-
 
 Rhymes:
 - add exit game logic
@@ -33,19 +41,6 @@ Leaderboard/Stats:
   - look into how i would add ELO? how I could track/store stats & identify users without accounts
     - on android could use google play accounts?
   - Maybe - Other user stats - % correct, longest streak?
-
-General:
-- Improve main menu styling:
-  - add logo - Or just definitions, rhymes, synonyms and no logo?
-- add difficulties to rhymes?
-- make exit X into back arrow?
-- splash screen
-- add extra game mode coming soon disabled button (or add Synonyms?)
-- add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
-- Add sound effects & mute
-- add different dev and prod environments with different .env files (see config github)
-- read react native docs on releasing before releasing
-  - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 
 Testing:
 - test/user test difficulty levels with different clue parameters
@@ -127,6 +122,9 @@ Name Ideas:
 - Wordy Something
 - Word Binge
 - Something like WordScapes/other word puns
+- Endless/Infinite Vocabulary
+- Uncommon Parlance
+- Lexical Ninja
 
 2nd Version:
 - Compare users score to other players
