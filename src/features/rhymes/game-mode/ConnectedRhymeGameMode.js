@@ -28,7 +28,7 @@ const RhymeGameModeLoader = props => {
     return <RhymeGameMode gameState={props.gameState} />;
   };
 
-  return <AppBackground theme="rhymes">{getContent()}</AppBackground>;
+  return <AppBackground>{getContent()}</AppBackground>;
 };
 
 const ConnectedRhymeGameMode = connect(

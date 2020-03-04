@@ -33,7 +33,7 @@ const TopBar = styled(View)`
 
 const MainMenu = ({ navigation }) => {
   return (
-    <AppBackground theme="menu">
+    <AppBackground>
       <TopBar>
         <MediumLargeText>WORD MAESTRO</MediumLargeText>
         <SettingsButton>

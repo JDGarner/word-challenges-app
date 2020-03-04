@@ -51,7 +51,7 @@ const DefintionGameModeLoader = props => {
     );
   };
 
-  return <AppBackground theme="definitions">{getContent()}</AppBackground>;
+  return <AppBackground>{getContent()}</AppBackground>;
 };
 
 const ConnectedDefintionGameMode = connect(
