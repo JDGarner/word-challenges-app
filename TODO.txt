@@ -8,6 +8,7 @@
     - Test out different sphere/background colour & animation combinations - randomise them a bit?
     - add other menu UI elements - Leaderboards?
     - Android set color of top bar?
+    - Dark theme and light theme? Or various themes in settings menu?
 - add difficulties to rhymes?
 - make exit X into back arrow?
 - splash screen
