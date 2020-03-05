@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { StatusBar } from "react-native";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import theme from "./theme";
@@ -21,9 +22,12 @@ export default function AppProvider() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <AppBackground>
-          <ConnectedAppScreens />
-        </AppBackground>
+        <>
+          <StatusBar backgroundColor="black" barStyle="light-content" />
+          <AppBackground>
+            <ConnectedAppScreens />
+          </AppBackground>
+        </>
       </ThemeProvider>
     </Provider>
   );

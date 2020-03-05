@@ -8,7 +8,6 @@
   - Test out different fonts
   - Capitalise Menu buttons? Move title back to centre top position? Capitalise difficulty selection?
   - add other menu UI elements - Leaderboards?
-  - Android set color of top bar?
   - Set different themes in settings menu?
 
 - add difficulties to rhymes?
