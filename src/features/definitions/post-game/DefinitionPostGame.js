@@ -13,6 +13,7 @@ import {
 } from "../definitions-constants";
 import PopInView from "../../../components/pop-in-view/PopInView";
 import { getPraiseForScore } from "../definitions-utils";
+import { SCREENS } from "../../../app-constants";
 
 const ContentContainer = styled(View)`
   flex: 1;
@@ -59,7 +60,7 @@ const DefinitionPostGame = ({
   onPressStartNewGame,
   onExitGame,
   currentDefinitions,
-  navigation,
+  changeScreen,
 }) => {
   const [showScrollBar, setShowScrollBar] = useState(false);
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
@@ -74,7 +75,8 @@ const DefinitionPostGame = ({
   };
 
   const onPressExitGame = () => {
-    navigation.goBack();
+    changeScreen(SCREENS.MENU);
+    // TODO: is this timeout needed still since removing navigation?
     setTimeout(() => {
       onExitGame();
     }, 500);

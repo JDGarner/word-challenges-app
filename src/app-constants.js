@@ -4,4 +4,10 @@ export const ENDPOINTS = {
   HARD_DEFINITIONS: "hard-definitions",
 };
 
+export const SCREENS = {
+  MENU: "menu",
+  DEFINITIONS: "definitions",
+  RHYMES: "rhymes",
+};
+
 export const RETRY_TIMEOUT = 1000;

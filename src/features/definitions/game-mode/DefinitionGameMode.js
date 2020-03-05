@@ -5,13 +5,13 @@ import { GAME_STATES } from "../definitions-constants";
 import ConnectedDefinitionPostGame from "../post-game/ConnectedDefinitionPostGame";
 import { ScreenContainerPadded } from "../../../components/containers/Containers";
 
-const DefinitionGameMode = ({ gameState, currentWord, navigation }) => {
+const DefinitionGameMode = ({ gameState, currentWord }) => {
   const renderContent = () => {
     switch (gameState) {
       case GAME_STATES.PLAYING:
-        return <ConnectedDefinitionGame key={currentWord} navigation={navigation} />;
+        return <ConnectedDefinitionGame key={currentWord} />;
       case GAME_STATES.POSTGAME:
-        return <ConnectedDefinitionPostGame navigation={navigation} />;
+        return <ConnectedDefinitionPostGame />;
     }
 
     return null;

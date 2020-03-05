@@ -8,6 +8,7 @@ import TopBar from "../TopBar";
 import { DIFFICULTIES, DIFFICULTY_TO_INFO_MAP } from "../definitions-constants";
 import AnimatedSequence from "../../../components/animated-sequence/AnimatedSequence";
 import PopInView from "../../../components/pop-in-view/PopInView";
+import { SCREENS } from "../../../app-constants";
 
 const ContentContainer = styled(View)`
   flex: 1;
@@ -39,7 +40,7 @@ const DifficultyOption = styled(PaddedButton)`
   margin-vertical: 18;
 `;
 
-const DefinitionDifficultySelection = ({ onSelectDifficulty, onExitGame, navigation }) => {
+const DefinitionDifficultySelection = ({ onSelectDifficulty, changeScreen }) => {
   const getDifficultyOptions = () => {
     return map(DIFFICULTIES, difficulty => ({
       id: difficulty,
@@ -57,7 +58,7 @@ const DefinitionDifficultySelection = ({ onSelectDifficulty, onExitGame, navigat
 
   return (
     <Fragment>
-      <TopBar onPressExitGame={() => navigation.goBack()} />
+      <TopBar onPressExitGame={() => changeScreen(SCREENS.MENU)} />
       <ContentContainer>
         <TitleContainer>
           <PopInView pointerEvents="auto" popToSize={1} duration={300} delay={50}>

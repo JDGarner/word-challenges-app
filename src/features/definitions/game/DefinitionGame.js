@@ -17,6 +17,7 @@ import {
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import TopBar from "../TopBar";
 import AnswerFeedback from "./AnswerFeedback";
+import { SCREENS } from "../../../app-constants";
 
 const ICON_SIZE = 32;
 
@@ -144,7 +145,7 @@ const DefinitionGame = ({
   onSubmitAnswer,
   onSkipCurrentWord,
   onExitGame,
-  navigation,
+  changeScreen,
 }) => {
   const letters = useMemo(() => shuffle(word.toUpperCase().split("")), [word]);
   const freeLetters = useMemo(() => getFreeLetters(letters, word, difficulty), [word, difficulty]);
@@ -246,7 +247,7 @@ const DefinitionGame = ({
   };
 
   const onPressExitGame = () => {
-    navigation.goBack();
+    changeScreen(SCREENS.MENU);
     setTimeout(() => {
       onExitGame();
     }, 500);

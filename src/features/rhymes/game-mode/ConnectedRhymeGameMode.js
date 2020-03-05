@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { View } from "react-native";
 import { fetchRhymesRetry } from "../redux/rhymes-actions";
-import AppBackground from "../../../components/background/AppBackground";
 import RhymeGameMode from "./RhymeGameMode";
 import { LoadingScreen, ErrorScreen } from "../../../components";
 
@@ -28,16 +28,12 @@ const RhymeGameModeLoader = props => {
     return <RhymeGameMode gameState={props.gameState} />;
   };
 
-  return <AppBackground>{getContent()}</AppBackground>;
+  return <View style={{ flex: 1 }}>{getContent()}</View>;
 };
 
 const ConnectedRhymeGameMode = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(RhymeGameModeLoader);
-
-ConnectedRhymeGameMode.navigationOptions = {
-  header: null,
-};
 
 export default ConnectedRhymeGameMode;

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { View } from "react-native";
 import { fetchDefinitionsRetry } from "../redux/definitions-actions";
-import AppBackground from "../../../components/background/AppBackground";
 import { ScreenContainerPadded } from "../../../components/containers/Containers";
 import DefintionGameMode from "./DefinitionGameMode";
 import { ErrorScreen, LoadingScreen } from "../../../components";
@@ -27,7 +27,7 @@ const DefintionGameModeLoader = props => {
     if (props.gameState === GAME_STATES.DIFFICULTYSELECTION) {
       return (
         <ScreenContainerPadded>
-          <ConnectedDefinitionDifficultySelection navigation={props.navigation} />
+          <ConnectedDefinitionDifficultySelection />
         </ScreenContainerPadded>
       );
     }
@@ -42,25 +42,15 @@ const DefintionGameModeLoader = props => {
       return <LoadingScreen />;
     }
 
-    return (
-      <DefintionGameMode
-        currentWord={props.currentWord}
-        gameState={props.gameState}
-        navigation={props.navigation}
-      />
-    );
+    return <DefintionGameMode currentWord={props.currentWord} gameState={props.gameState} />;
   };
 
-  return <AppBackground>{getContent()}</AppBackground>;
+  return <View style={{ flex: 1 }}>{getContent()}</View>;
 };
 
 const ConnectedDefintionGameMode = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(DefintionGameModeLoader);
-
-ConnectedDefintionGameMode.navigationOptions = {
-  header: null,
-};
 
 export default ConnectedDefintionGameMode;

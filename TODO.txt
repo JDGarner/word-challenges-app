@@ -3,12 +3,14 @@
 ----------------------------------------
 
 - Improve App Design:
-    - For iOS add animating spheres also
-    - Refactor so that gradient/spheres don't re-render on screen switch
-    - Test out different sphere/background colour & animation combinations - randomise them a bit?
-    - add other menu UI elements - Leaderboards?
-    - Android set color of top bar?
-    - Dark theme and light theme? Or various themes in settings menu?
+  - For iOS add animating spheres also, don't use linear gradient?
+  - Test out different sphere/background colour & animation combinations - randomise them a bit?
+  - Test out different fonts
+  - Capitalise Menu buttons? Move title back to centre top position? Capitalise difficulty selection?
+  - add other menu UI elements - Leaderboards?
+  - Android set color of top bar?
+  - Set different themes in settings menu?
+
 - add difficulties to rhymes?
 - make exit X into back arrow?
 - splash screen
@@ -29,6 +31,7 @@ Definitions:
     Expert - Mostly obscure words, with some letters already filled in
     Master - Mostly obscure words, no letters filled in
 - Add more feedback text randomly
+- Fix Time and Chimera definitions
 
 Rhymes:
 - add exit game logic

@@ -2,7 +2,8 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import styled from "styled-components";
-import { LargeText, AppBackground, PaddedButton, MediumLargeText } from "../../components";
+import { LargeText, PaddedButton, MediumLargeText } from "../../components";
+import { SCREENS } from "../../app-constants";
 
 const MenuContainer = styled(View)`
   flex: 1;
@@ -31,9 +32,9 @@ const TopBar = styled(View)`
   margin-bottom: auto;
 `;
 
-const MainMenu = ({ navigation }) => {
+const MainMenu = ({ changeScreen }) => {
   return (
-    <AppBackground>
+    <View style={{ flex: 1 }}>
       <TopBar>
         <MediumLargeText>WORD MAESTRO</MediumLargeText>
         <SettingsButton>
@@ -41,22 +42,18 @@ const MainMenu = ({ navigation }) => {
         </SettingsButton>
       </TopBar>
       <MenuContainer>
-        <MenuItem onPress={() => navigation.navigate("DefinitionGame")}>
+        <MenuItem onPress={() => changeScreen(SCREENS.DEFINITIONS)}>
           <LargeText>Definitions</LargeText>
         </MenuItem>
-        <MenuItem onPress={() => navigation.navigate("RhymeGame")}>
+        <MenuItem onPress={() => changeScreen(SCREENS.RHYMES)}>
           <LargeText>Rhymes</LargeText>
         </MenuItem>
         <MenuItem disabled>
           <LargeText>Synonyms</LargeText>
         </MenuItem>
       </MenuContainer>
-    </AppBackground>
+    </View>
   );
-};
-
-MainMenu.navigationOptions = {
-  header: null,
 };
 
 export default MainMenu;

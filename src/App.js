@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
-import AppNavigator from "./navigation/AppNavigator";
 import theme from "./theme";
 import configureStore from "./store";
 import { fetchRhymes } from "./features/rhymes/redux/rhymes-actions";
 import { fetchDefinitions } from "./features/definitions/redux/definitions-actions";
 import { WORD_DIFFICULTIES } from "./features/definitions/definitions-constants";
+import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
+import { AppBackground } from "./components";
 
 const store = configureStore();
 
@@ -20,7 +21,9 @@ export default function AppProvider() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <AppNavigator />
+        <AppBackground>
+          <ConnectedAppScreens />
+        </AppBackground>
       </ThemeProvider>
     </Provider>
   );

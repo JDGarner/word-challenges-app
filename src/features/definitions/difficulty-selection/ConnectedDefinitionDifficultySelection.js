@@ -1,10 +1,11 @@
 import { connect } from "react-redux";
 import DefinitionDifficultySelection from "./DefinitionDifficultySelection";
-import { onSelectDifficulty, onExitGame } from "../redux/definitions-actions";
+import { onSelectDifficulty } from "../redux/definitions-actions";
+import { changeScreen } from "../../../redux/app-actions";
 
 const mapDispatchToProps = {
   onSelectDifficulty,
-  onExitGame,
+  changeScreen,
 };
 
 const ConnectedDefinitionDifficultySelection = connect(
