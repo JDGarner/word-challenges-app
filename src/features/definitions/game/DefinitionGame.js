@@ -172,7 +172,7 @@ const DefinitionGame = ({
 
   useEffect(() => {
     // Fade out game, show incorrect answer feedback
-    if (gameCountdown === 0) {
+    if (gameCountdown === 0 && !userActionsDisabled) {
       setUserActionsDisabled(true);
 
       Animated.timing(gameOpacity, {

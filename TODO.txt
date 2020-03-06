@@ -23,7 +23,6 @@
 
 Definitions:
 - test countdown timer bug is fixed
-- if player submits answer on 1 second then game countdown goes to 0 - what happens?
 - re-test retry logic with new difficulty levels
 - lock difficulties until completing earlier levels?
 - Info icon on each difficulty:
