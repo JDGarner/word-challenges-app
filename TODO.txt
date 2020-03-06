@@ -3,12 +3,13 @@
 ----------------------------------------
 
 - Improve App Design:
+  - Capitalise Menu buttons? Move title back to centre top position? Capitalise difficulty selection?
+  - Change X to back button?
   - For iOS add animating spheres also, don't use linear gradient?
   - Test out different sphere/background colour & animation combinations - randomise them a bit?
-  - Test out different fonts
-  - Capitalise Menu buttons? Move title back to centre top position? Capitalise difficulty selection?
-  - add other menu UI elements - Leaderboards?
   - Set different themes in settings menu?
+  - Add 'What would you like to play/train?'
+  - add other menu UI elements - Leaderboards?
 
 - add difficulties to rhymes?
 - make exit X into back arrow?
@@ -21,6 +22,8 @@
   - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 
 Definitions:
+- fix bug where game doesn't reset sometimes and it can take you straight to post game/countdown timer still running
+- fix bug where if you submit answer just before countdown end it skips the next question also
 - fix difficulty selection for smaller screens - smaller buttons for all screens?
 - re-test retry logic with new difficulty levels
 - lock difficulties until completing earlier levels?

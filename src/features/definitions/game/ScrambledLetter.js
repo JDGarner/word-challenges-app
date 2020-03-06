@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { View, Animated } from "react-native";
 import styled from "styled-components";
 import { BorderedButton, MediumText } from "../../../components";
+import { TEXT_TOP_PADDING } from "../../../components/text/Text";
 import {
   animateScrambledLetter,
   animateLetterPressIn,
@@ -19,10 +20,12 @@ const EmptyLetterPlaceHolder = styled(View)`
 
 const LetterButton = styled(BorderedButton)`
   justify-content: center;
+  align-items: center;
   margin-vertical: 6;
   margin-horizontal: 6;
   height: ${LETTER_SIZE};
   width: ${LETTER_SIZE};
+  padding-top: ${TEXT_TOP_PADDING};
 `;
 
 const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue }) => {
@@ -40,7 +43,7 @@ const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue 
           onPressOut={() => animateLetterPressOut(scaleValue)}
           onPress={onPressLetter}
           disabled={disabled}>
-          <MediumText textAlign="center">{letter}</MediumText>
+          <MediumText>{letter}</MediumText>
         </LetterButton>
       )}
     </Animated.View>

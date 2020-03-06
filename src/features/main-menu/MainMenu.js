@@ -4,6 +4,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import styled from "styled-components";
 import { LargeText, PaddedButton, MediumLargeText } from "../../components";
 import { SCREENS } from "../../app-constants";
+import { TEXT_TOP_PADDING } from "../../components/text/Text";
 
 const MenuContainer = styled(View)`
   flex: 1;
@@ -15,6 +16,8 @@ const MenuContainer = styled(View)`
 const MenuItem = styled(PaddedButton)`
   width: 240;
   align-items: center;
+  padding-top: ${TEXT_TOP_PADDING + 10};
+  padding-bottom: 10;
   margin-vertical: 24;
 `;
 
