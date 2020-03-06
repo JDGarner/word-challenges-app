@@ -1,4 +1,4 @@
-import { shuffle, cloneDeep } from "lodash";
+import { cloneDeep } from "lodash";
 import {
   FETCH_DEFINITIONS_SUCCESS,
   FETCH_DEFINITIONS_ERROR,

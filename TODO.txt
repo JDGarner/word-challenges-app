@@ -22,7 +22,7 @@
   - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 
 Definitions:
-- fix bug where game doesn't reset sometimes and it can take you straight to post game/countdown timer still running
+- test countdown timer bug is fixed
 - fix bug where if you submit answer just before countdown end it skips the next question also
 - fix difficulty selection for smaller screens - smaller buttons for all screens?
 - re-test retry logic with new difficulty levels

@@ -57,6 +57,10 @@ export default store => next => action => {
       break;
 
     case ON_BEGIN_GAME:
+      if (gameCountdownInterval) {
+        clearInterval(gameCountdownInterval);
+      }
+
       gameCountdownInterval = setInterval(() => {
         dispatch(gameCountdownTick());
       }, 1000);
