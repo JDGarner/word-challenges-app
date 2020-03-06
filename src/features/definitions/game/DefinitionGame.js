@@ -146,6 +146,7 @@ const DefinitionGame = ({
   onSkipCurrentWord,
   onExitGame,
   changeScreen,
+  onGameCountdownAtZero,
 }) => {
   const letters = useMemo(() => shuffle(word.toUpperCase().split("")), [word]);
   const freeLetters = useMemo(() => getFreeLetters(letters, word, difficulty), [word, difficulty]);
@@ -178,7 +179,9 @@ const DefinitionGame = ({
         toValue: 0,
         duration: ANSWER_FEEDBACK_ANIMATION_DURATION,
         useNativeDriver: true,
-      }).start();
+      }).start(() => {
+        onGameCountdownAtZero();
+      });
       setIsCurrentAnswerCorrect(false);
       setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
     }

@@ -8,17 +8,10 @@ import {
   ON_GAME_END,
   gameCountdownTick,
   fetchAdditionalDefinitionsSuccess,
-  gameCountdownAtZero,
-  GAME_COUNTDOWN_TICK,
 } from "./definitions-actions";
 import fetchFromApi from "../../../fetch-util";
-import { ENDPOINTS, RETRY_TIMEOUT } from "../../../app-constants";
-import {
-  DEFINITIONS_LOCAL_BUFFER,
-  ANSWER_FEEDBACK_ANIMATION_DURATION,
-  DIFFICULTY_MAP,
-  WORD_DIFFICULTIES,
-} from "../definitions-constants";
+import { RETRY_TIMEOUT } from "../../../app-constants";
+import { DEFINITIONS_LOCAL_BUFFER, WORD_DIFFICULTIES } from "../definitions-constants";
 import { getDefinitionState, getEndpointForDifficulty } from "../definitions-utils";
 
 let gameCountdownInterval = null;
@@ -45,15 +38,6 @@ export default store => next => action => {
 
     case ON_GAME_END:
       clearInterval(gameCountdownInterval);
-      break;
-
-    case GAME_COUNTDOWN_TICK:
-      const { gameCountdown } = definitions;
-      if (gameCountdown === 1) {
-        setTimeout(() => {
-          dispatch(gameCountdownAtZero());
-        }, ANSWER_FEEDBACK_ANIMATION_DURATION);
-      }
       break;
 
     case ON_BEGIN_GAME:

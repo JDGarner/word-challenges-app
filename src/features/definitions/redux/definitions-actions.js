@@ -8,7 +8,7 @@ export const FETCH_ADDITIONAL_DEFINITIONS_SUCCESS = `${NAMESPACE}/FETCH_ADDITION
 export const ON_BEGIN_GAME = `${NAMESPACE}/ON_BEGIN_GAME`;
 export const ON_GAME_END = `${NAMESPACE}/ON_GAME_END`;
 export const GAME_COUNTDOWN_TICK = `${NAMESPACE}/GAME_COUNTDOWN_TICK`;
-export const GAME_COUNTDOWN_AT_ZERO = `${NAMESPACE}/GAME_COUNTDOWN_AT_ZERO`;
+export const ON_GAME_COUNTDOWN_AT_ZERO = `${NAMESPACE}/ON_GAME_COUNTDOWN_AT_ZERO`;
 export const ON_SUBMIT_ANSWER = `${NAMESPACE}/ON_SUBMIT_ANSWER`;
 export const ON_PRESS_START_NEW_GAME = `${NAMESPACE}/ON_PRESS_START_NEW_GAME`;
 export const ON_SKIP_CURRENT_WORD = `${NAMESPACE}/ON_SKIP_CURRENT_WORD`;
@@ -54,8 +54,8 @@ export const gameCountdownTick = () => ({
   type: GAME_COUNTDOWN_TICK,
 });
 
-export const gameCountdownAtZero = () => ({
-  type: GAME_COUNTDOWN_AT_ZERO,
+export const onGameCountdownAtZero = () => ({
+  type: ON_GAME_COUNTDOWN_AT_ZERO,
 });
 
 export const onSubmitAnswer = answer => ({

@@ -9,7 +9,7 @@ import {
   ON_SUBMIT_ANSWER,
   ON_SKIP_CURRENT_WORD,
   ON_EXIT_GAME,
-  GAME_COUNTDOWN_AT_ZERO,
+  ON_GAME_COUNTDOWN_AT_ZERO,
   ON_SELECT_DIFFICULTY,
 } from "./definitions-actions";
 import {
@@ -140,7 +140,7 @@ export default (state = initialState, action) => {
       return { ...state, gameCountdown: state.gameCountdown - 1 };
 
     case ON_SKIP_CURRENT_WORD:
-    case GAME_COUNTDOWN_AT_ZERO:
+    case ON_GAME_COUNTDOWN_AT_ZERO:
       if (roundIsOver(state.questionIndex + 1)) {
         return { ...getStateForRoundEnd(state) };
       }

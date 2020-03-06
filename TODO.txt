@@ -23,8 +23,7 @@
 
 Definitions:
 - test countdown timer bug is fixed
-- fix bug where if you submit answer just before countdown end it skips the next question also
-- fix difficulty selection for smaller screens - smaller buttons for all screens?
+- if player submits answer on 1 second then game countdown goes to 0 - what happens?
 - re-test retry logic with new difficulty levels
 - lock difficulties until completing earlier levels?
 - Info icon on each difficulty:
