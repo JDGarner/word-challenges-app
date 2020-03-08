@@ -3,13 +3,11 @@
 ----------------------------------------
 
 - Improve App Design:
-  - Capitalise Menu buttons? Move title back to centre top position? Capitalise difficulty selection?
+  - Difficuly selection UI - make it more consistent with main menu
+  - Make main menu animated?
   - Change X to back button?
   - For iOS add animating spheres also, don't use linear gradient?
   - Test out different sphere/background colour & animation combinations - randomise them a bit?
-  - Set different themes in settings menu?
-  - Add 'What would you like to play/train?'
-  - add other menu UI elements - Leaderboards?
 
 - add difficulties to rhymes?
 - make exit X into back arrow?
@@ -22,7 +20,6 @@
   - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 
 Definitions:
-- test countdown timer bug is fixed
 - re-test retry logic with new difficulty levels
 - lock difficulties until completing earlier levels?
 - Info icon on each difficulty:
@@ -32,6 +29,7 @@ Definitions:
     Master - Mostly obscure words, no letters filled in
 - Add more feedback text randomly
 - Fix Time and Chimera definitions
+- test countdown timer bug is fixed
 
 Rhymes:
 - add exit game logic
@@ -56,7 +54,7 @@ Testing:
 Maybe in 1st release:
 - Add Synonyms mode
 - Add tutorial/intro?
-- Add animated background?
+- Set different themes in settings menu?
 
 
 Option 1:
@@ -123,13 +121,20 @@ Other
 ----------------------------------------
 
 Name Ideas:
-- Word master/ninja/binge/fiend
+- Word master/ninja/binge/fiend/smith
 - Wordy Something
 - Word Binge
 - Something like WordScapes/other word puns
 - Endless/Infinite Vocabulary
 - Uncommon Parlance
 - Lexical Ninja
+- Something - Vocabulary Trainer
+  The Last Word - Vocabulary Trainer
+  The Magic Word - Vocabulary Trainer
+  Word Class - Vocabulary Trainer
+  Word to the Wise - Vocabulary Trainer
+  Word for Word - Vocabulary Trainer
+  Words of Wisdom - Vocabulary Trainer
 
 2nd Version:
 - Compare users score to other players

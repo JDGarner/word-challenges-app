@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { map } from "lodash";
 import styled from "styled-components";
 
-import { PaddedButton, MediumText, MediumLargeText, MediumLargerText } from "../../../components";
+import { PaddedButton, MediumLargeText, MediumLargerText } from "../../../components";
 import TopBar from "../TopBar";
 import { DIFFICULTIES, DIFFICULTY_TO_INFO_MAP } from "../definitions-constants";
 import AnimatedSequence from "../../../components/animated-sequence/AnimatedSequence";
@@ -63,7 +63,7 @@ const DefinitionDifficultySelection = ({ onSelectDifficulty, changeScreen }) => 
         <TitleContainer>
           <PopInView pointerEvents="auto" popToSize={1} duration={300} delay={50}>
             <Title>
-              <MediumLargerText>Select a Difficulty</MediumLargerText>
+              <MediumLargeText>Select a Difficulty</MediumLargeText>
             </Title>
           </PopInView>
         </TitleContainer>
