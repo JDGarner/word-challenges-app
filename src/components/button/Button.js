@@ -4,6 +4,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { TouchableOpacity } from "react-native";
 import theme from "../../theme";
 import { TextContainer } from "../containers/Containers";
+import { TEXT_TOP_PADDING } from "../text/Text";
 
 export const BorderedButton = ({ children, style, ...buttonProps }) => {
   return (
@@ -25,3 +26,11 @@ export const CloseButton = buttonProps => {
     </TouchableOpacity>
   );
 };
+
+export const MenuButton = styled(PaddedButton)`
+  width: 240;
+  align-items: center;
+  padding-top: ${TEXT_TOP_PADDING + 10};
+  padding-bottom: 10;
+  margin-vertical: 24;
+`;

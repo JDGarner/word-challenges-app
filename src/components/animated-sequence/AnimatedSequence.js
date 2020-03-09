@@ -24,8 +24,8 @@ const AnimatedSequence = ({
 AnimatedSequence.defaultProps = {
   itemsAreButtons: true,
   popToSize: 1.1,
-  animationGapTime: 100,
-  animationStartDelay: 100,
+  animationGapTime: 75,
+  animationStartDelay: 50,
   animationAppearDuration: 500,
 };
 

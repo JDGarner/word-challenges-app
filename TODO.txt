@@ -3,7 +3,6 @@
 ----------------------------------------
 
 - Improve App Design:
-  - Difficuly selection UI - make it more consistent with main menu
   - Make main menu animated?
   - Change X to back button?
   - For iOS add animating spheres also, don't use linear gradient?

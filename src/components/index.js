@@ -1,5 +1,5 @@
 import { SmallText, MediumText, MediumLargeText, MediumLargerText, LargeText } from "./text/Text";
-import { BorderedButton, PaddedButton } from "./button/Button";
+import { BorderedButton, PaddedButton, MenuButton } from "./button/Button";
 import Countdown from "./countdown/Countdown";
 import ErrorScreen from "./error/ErrorScreen";
 import LoadingScreen from "./loading/LoadingScreen";
@@ -20,6 +20,7 @@ export {
   HideKeyboardOnTouch,
   BorderedButton,
   PaddedButton,
+  MenuButton,
   Countdown,
   LoadingScreen,
   ErrorScreen,

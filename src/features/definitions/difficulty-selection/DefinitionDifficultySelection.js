@@ -3,18 +3,12 @@ import { View } from "react-native";
 import { map } from "lodash";
 import styled from "styled-components";
 
-import { PaddedButton, MediumLargeText, MediumLargerText } from "../../../components";
+import { MediumLargeText, MediumLargerText, MenuButton } from "../../../components";
 import TopBar from "../TopBar";
-import { DIFFICULTIES, DIFFICULTY_TO_INFO_MAP } from "../definitions-constants";
+import { DIFFICULTIES } from "../definitions-constants";
 import AnimatedSequence from "../../../components/animated-sequence/AnimatedSequence";
 import PopInView from "../../../components/pop-in-view/PopInView";
 import { SCREENS } from "../../../app-constants";
-
-const ContentContainer = styled(View)`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
 
 const TitleContainer = styled(View)`
   height: 20%;
@@ -34,24 +28,14 @@ const DifficultyOptions = styled(View)`
   align-items: center;
 `;
 
-const DifficultyOption = styled(PaddedButton)`
-  width: 180;
-  align-items: center;
-  margin-vertical: 18;
-`;
-
 const DefinitionDifficultySelection = ({ onSelectDifficulty, changeScreen }) => {
   const getDifficultyOptions = () => {
     return map(DIFFICULTIES, difficulty => ({
       id: difficulty,
       component: (
-        <DifficultyOption onPress={() => onSelectDifficulty(difficulty)}>
-          <MediumLargeText>{difficulty}</MediumLargeText>
-          {/* <View>
-            <MediumLargeText>{difficulty}</MediumLargeText>
-            <MediumText>{DIFFICULTY_TO_INFO_MAP[difficulty]}</MediumText>
-          </View> */}
-        </DifficultyOption>
+        <MenuButton onPress={() => onSelectDifficulty(difficulty)}>
+          <MediumLargerText>{difficulty}</MediumLargerText>
+        </MenuButton>
       ),
     }));
   };
@@ -59,18 +43,16 @@ const DefinitionDifficultySelection = ({ onSelectDifficulty, changeScreen }) => 
   return (
     <Fragment>
       <TopBar onPressExitGame={() => changeScreen(SCREENS.MENU)} />
-      <ContentContainer>
-        <TitleContainer>
-          <PopInView pointerEvents="auto" popToSize={1} duration={300} delay={50}>
-            <Title>
-              <MediumLargeText>Select a Difficulty</MediumLargeText>
-            </Title>
-          </PopInView>
-        </TitleContainer>
-        <DifficultyOptions>
-          <AnimatedSequence items={getDifficultyOptions()} />
-        </DifficultyOptions>
-      </ContentContainer>
+      <TitleContainer>
+        <PopInView pointerEvents="auto" popToSize={1} duration={800} delay={20}>
+          <Title>
+            <MediumLargeText>Select a Difficulty</MediumLargeText>
+          </Title>
+        </PopInView>
+      </TitleContainer>
+      <DifficultyOptions>
+        <AnimatedSequence items={getDifficultyOptions()} />
+      </DifficultyOptions>
     </Fragment>
   );
 };
