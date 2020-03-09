@@ -40,20 +40,18 @@ const AnswersScrollView = styled(ScrollView)`
 const Footer = styled(View)`
   flex: 1;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 32;
+  justify-content: space-evenly;
+  margin-bottom: 5%;
 `;
 
 const ScoreContainer = styled(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12;
+  margin-bottom: 16;
 `;
 
-const PlayAgain = styled(View)`
-  margin-top: 12;
-`;
+const PlayAgain = styled(View)``;
 
 const DefinitionPostGame = ({ onPressStartNewGame, onExitGame, currentDefinitions }) => {
   const [showScrollBar, setShowScrollBar] = useState(false);
