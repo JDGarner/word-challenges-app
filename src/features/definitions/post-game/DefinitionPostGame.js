@@ -13,7 +13,6 @@ import {
 } from "../definitions-constants";
 import PopInView from "../../../components/pop-in-view/PopInView";
 import { getPraiseForScore } from "../definitions-utils";
-import { SCREENS } from "../../../app-constants";
 
 const ContentContainer = styled(View)`
   flex: 1;
@@ -56,12 +55,7 @@ const PlayAgain = styled(View)`
   margin-top: 12;
 `;
 
-const DefinitionPostGame = ({
-  onPressStartNewGame,
-  onExitGame,
-  currentDefinitions,
-  changeScreen,
-}) => {
+const DefinitionPostGame = ({ onPressStartNewGame, onExitGame, currentDefinitions }) => {
   const [showScrollBar, setShowScrollBar] = useState(false);
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
   const scrollViewRef = useRef();
@@ -74,14 +68,6 @@ const DefinitionPostGame = ({
     }
   };
 
-  const onPressExitGame = () => {
-    changeScreen(SCREENS.MENU);
-    // TODO: is this timeout needed still since removing navigation?
-    setTimeout(() => {
-      onExitGame();
-    }, 500);
-  };
-
   const score = currentDefinitions.filter(d => d.isCorrect).length;
   const praise = getPraiseForScore(score, WORDS_PER_ROUND);
   const totalAnimationTime =
@@ -92,7 +78,7 @@ const DefinitionPostGame = ({
   return (
     <Fragment>
       <TopBar
-        onPressExitGame={onPressExitGame}
+        onPressExitGame={onExitGame}
         animateDuration={500}
         animateDelay={totalAnimationTime}
         disabled={userActionsDisabled}

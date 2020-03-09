@@ -55,18 +55,23 @@ export default (state = initialState, action) => {
   switch (type) {
     case FETCH_RHYMES_SUCCESS: {
       const allRhymes = action.rhymes;
-      const { word: currentWord, rhymes: currentRhymes } = allRhymes[0];
 
-      return {
-        ...state,
-        allRhymes,
-        currentWord,
-        currentRhymes,
-        currentRhymeIndex: 0,
-        loaded: true,
-        connectionError: false,
-        gameState: GAME_STATES.PREGAME,
-      };
+      if (allRhymes && allRhymes[0] && allRhymes[0].word) {
+        const { word: currentWord, rhymes: currentRhymes } = allRhymes[0];
+
+        return {
+          ...state,
+          allRhymes,
+          currentWord,
+          currentRhymes,
+          currentRhymeIndex: 0,
+          loaded: true,
+          connectionError: false,
+          gameState: GAME_STATES.PREGAME,
+        };
+      }
+
+      return { ...state, connectionError: true, errorCode: action.errorCode };
     }
 
     case FETCH_RHYMES_RETRY: {

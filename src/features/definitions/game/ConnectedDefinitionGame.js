@@ -8,7 +8,6 @@ import {
   onExitGame,
   onGameCountdownAtZero,
 } from "../redux/definitions-actions";
-import { changeScreen } from "../../../redux/app-actions";
 import { getDefinitionState } from "../definitions-utils";
 
 const mapStateToProps = ({ definitions }) => {
@@ -30,7 +29,6 @@ const mapDispatchToProps = {
   onSubmitAnswer,
   onSkipCurrentWord,
   onExitGame,
-  changeScreen,
   onGameCountdownAtZero,
 };
 

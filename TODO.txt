@@ -3,8 +3,8 @@
 ----------------------------------------
 
 - Improve App Design:
-  - Make main menu animated?
-  - Change X to back button?
+  - Post game screen fix spacing of score/play again button
+  - Post game screen make animation consistent?
   - For iOS add animating spheres also, don't use linear gradient?
   - Test out different sphere/background colour & animation combinations - randomise them a bit?
 

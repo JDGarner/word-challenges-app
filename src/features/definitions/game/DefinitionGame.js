@@ -17,7 +17,6 @@ import {
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import TopBar from "../TopBar";
 import AnswerFeedback from "./AnswerFeedback";
-import { SCREENS } from "../../../app-constants";
 
 const ICON_SIZE = 32;
 
@@ -145,7 +144,6 @@ const DefinitionGame = ({
   onSubmitAnswer,
   onSkipCurrentWord,
   onExitGame,
-  changeScreen,
   onGameCountdownAtZero,
 }) => {
   const letters = useMemo(() => shuffle(word.toUpperCase().split("")), [word]);
@@ -249,13 +247,6 @@ const DefinitionGame = ({
     }
   };
 
-  const onPressExitGame = () => {
-    changeScreen(SCREENS.MENU);
-    setTimeout(() => {
-      onExitGame();
-    }, 500);
-  };
-
   const onPressShuffle = () => {
     // Reset answers to initial state
     setAnswerLetters(getAnswerLetters(answerLetters, freeLetters));
@@ -279,7 +270,7 @@ const DefinitionGame = ({
 
   return (
     <Fragment>
-      <TopBar onPressExitGame={onPressExitGame} gameCountdown={gameCountdown} />
+      <TopBar onPressExitGame={onExitGame} gameCountdown={gameCountdown} />
       <ContentContainer style={{ opacity: gameOpacity }}>
         <CentreContainer>
           <GameHeader definition={definition} />

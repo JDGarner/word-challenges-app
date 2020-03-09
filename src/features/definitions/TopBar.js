@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { View } from "react-native";
-import { CloseButton } from "../../components/button/Button";
+import { BackButton } from "../../components/button/Button";
 import { Countdown } from "../../components";
 import PopInView from "../../components/pop-in-view/PopInView";
 
@@ -17,10 +17,10 @@ const TopBarContainer = styled(View)`
 const TopBar = ({ gameCountdown, onPressExitGame, animateDuration, animateDelay, disabled }) => {
   const CloseComponent = animateDuration ? (
     <PopInView pointerEvents="auto" popToSize={1} duration={animateDuration} delay={animateDelay}>
-      <CloseButton onPress={onPressExitGame} disabled={disabled} />
+      <BackButton onPress={onPressExitGame} disabled={disabled} />
     </PopInView>
   ) : (
-    <CloseButton onPress={onPressExitGame} disabled={disabled} />
+    <BackButton onPress={onPressExitGame} disabled={disabled} />
   );
 
   return (
