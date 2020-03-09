@@ -9,10 +9,10 @@ const CountdownContainer = styled(Animated.View)`
 `;
 
 const Countdown = ({ gameCountdown, animatingCountdown, onAnimationEnd }) => {
-  const [scaleValue] = useState(new Animated.Value(0.8));
+  const [scaleValue] = useState(new Animated.Value(0.9));
 
   useEffect(() => {
-    if (animatingCountdown) {
+    if (animatingCountdown || gameCountdown <= 3) {
       Animated.sequence([
         Animated.timing(scaleValue, {
           toValue: 1.5,
@@ -21,7 +21,7 @@ const Countdown = ({ gameCountdown, animatingCountdown, onAnimationEnd }) => {
           useNativeDriver: true,
         }),
         Animated.timing(scaleValue, {
-          toValue: 1.0,
+          toValue: 0.9,
           duration: 200,
           easing: Easing.linear,
           useNativeDriver: true,
@@ -30,7 +30,7 @@ const Countdown = ({ gameCountdown, animatingCountdown, onAnimationEnd }) => {
         onAnimationEnd();
       });
     }
-  }, [animatingCountdown]);
+  }, [animatingCountdown, gameCountdown]);
 
   const textColor = gameCountdown <= 3 ? theme.redColor : theme.textColor;
 
@@ -39,6 +39,10 @@ const Countdown = ({ gameCountdown, animatingCountdown, onAnimationEnd }) => {
       <LargeText color={textColor}>{gameCountdown}</LargeText>
     </CountdownContainer>
   );
+};
+
+Countdown.defaultProps = {
+  onAnimationEnd: () => {},
 };
 
 export default Countdown;

@@ -3,11 +3,9 @@
 ----------------------------------------
 
 - Improve App Design:
-  - Post game screen make animation consistent?
   - For iOS add animating spheres also, don't use linear gradient?
   - Test out different sphere/background colour & animation combinations - randomise them a bit?
 
-- add difficulties to rhymes?
 - splash screen
 - add extra game mode coming soon disabled button (or add Synonyms?)
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
@@ -26,11 +24,13 @@ Definitions:
     Master - Mostly obscure words, no letters filled in
 - Add more feedback text randomly
 - Fix Time and Chimera definitions, remove Manichean
-- test countdown timer bug is fixed
 
 Rhymes:
-- add exit game logic
+- add exit game logic to Game and PostGame
+- add animation to post game screen
+- add explanation text to the % score
 - add hate to straight
+- add difficulties? - based on number of rhymes for the word?
 
 Leaderboard/Stats:
 - Leaderboard button on main menu
