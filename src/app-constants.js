@@ -5,9 +5,10 @@ export const ENDPOINTS = {
 };
 
 export const SCREENS = {
-  MENU: "menu",
-  DEFINITIONS: "definitions",
-  RHYMES: "rhymes",
+  MENU: "Menu",
+  DEFINITIONS: "Definitions",
+  RHYMES: "Rhymes",
+  SYNONYMS: "Synonyms",
 };
 
 export const RETRY_TIMEOUT = 1000;

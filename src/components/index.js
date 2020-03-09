@@ -7,6 +7,8 @@ import { CenteredContainer, SpaceAroundContainer, TextContainer } from "./contai
 import HideKeyboardOnTouch from "./keyboard/HideKeyboardOnTouch";
 import AppBackground from "./background/AppBackground";
 import Circle from "./circle/Circle";
+import PopInView from "./pop-in-view/PopInView";
+import AnimatedSequence from "./animated-sequence/AnimatedSequence";
 
 export {
   SmallText,
@@ -26,4 +28,6 @@ export {
   ErrorScreen,
   AppBackground,
   Circle,
+  PopInView,
+  AnimatedSequence,
 };

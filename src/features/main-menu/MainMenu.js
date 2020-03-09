@@ -2,7 +2,13 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import styled from "styled-components";
-import { MenuButton, MediumLargeText, MediumLargerText } from "../../components";
+import {
+  MenuButton,
+  MediumLargeText,
+  MediumLargerText,
+  PopInView,
+  AnimatedSequence,
+} from "../../components";
 import { SCREENS } from "../../app-constants";
 
 const MenuContainer = styled(View)`
@@ -32,7 +38,20 @@ const TitleContainer = styled(View)`
   padding-horizontal: 5%;
 `;
 
+const MENU_ITEMS = [SCREENS.DEFINITIONS, SCREENS.RHYMES, SCREENS.SYNONYMS];
+
 const MainMenu = ({ changeScreen }) => {
+  const getMenuItems = () => {
+    return MENU_ITEMS.map(item => ({
+      id: item,
+      component: (
+        <MenuButton onPress={() => changeScreen(item)}>
+          <MediumLargerText>{item}</MediumLargerText>
+        </MenuButton>
+      ),
+    }));
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <TopBar>
@@ -42,18 +61,12 @@ const MainMenu = ({ changeScreen }) => {
         </SettingsButton>
       </TopBar>
       <TitleContainer>
-        <MediumLargeText textAlign="center">What would you like to learn?</MediumLargeText>
+        <PopInView popToSize={1} duration={800} delay={20}>
+          <MediumLargeText textAlign="center">What would you like to learn?</MediumLargeText>
+        </PopInView>
       </TitleContainer>
       <MenuContainer>
-        <MenuButton onPress={() => changeScreen(SCREENS.DEFINITIONS)}>
-          <MediumLargerText>Definitions</MediumLargerText>
-        </MenuButton>
-        <MenuButton onPress={() => changeScreen(SCREENS.RHYMES)}>
-          <MediumLargerText>Rhymes</MediumLargerText>
-        </MenuButton>
-        <MenuButton disabled>
-          <MediumLargerText>Synonyms</MediumLargerText>
-        </MenuButton>
+        <AnimatedSequence items={getMenuItems()} />
       </MenuContainer>
     </View>
   );

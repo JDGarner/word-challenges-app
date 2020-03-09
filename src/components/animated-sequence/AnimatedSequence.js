@@ -23,10 +23,10 @@ const AnimatedSequence = ({
 
 AnimatedSequence.defaultProps = {
   itemsAreButtons: true,
-  popToSize: 1.1,
+  popToSize: 1.05,
   animationGapTime: 75,
   animationStartDelay: 50,
-  animationAppearDuration: 500,
+  animationAppearDuration: 700,
 };
 
 export default AnimatedSequence;
