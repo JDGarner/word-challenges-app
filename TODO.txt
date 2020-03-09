@@ -17,7 +17,6 @@
   - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 
 Definitions:
-- fix .toUpperCase of undefined bug (somewhere in DefinitionGame.js, after loading spinner goes away)
 - re-test retry logic with new difficulty levels
 - lock difficulties until completing earlier levels?
 - Info icon on each difficulty:
@@ -26,7 +25,7 @@ Definitions:
     Expert - Mostly obscure words, with some letters already filled in
     Master - Mostly obscure words, no letters filled in
 - Add more feedback text randomly
-- Fix Time and Chimera definitions
+- Fix Time and Chimera definitions, remove Manichean
 - test countdown timer bug is fixed
 
 Rhymes:

@@ -38,11 +38,11 @@ const DefintionGameModeLoader = props => {
       );
     }
 
-    if (!props.loaded) {
-      return <LoadingScreen />;
+    if (props.loaded && props.currentWord) {
+      return <DefintionGameMode currentWord={props.currentWord} gameState={props.gameState} />;
     }
 
-    return <DefintionGameMode currentWord={props.currentWord} gameState={props.gameState} />;
+    return <LoadingScreen />;
   };
 
   return <View style={{ flex: 1 }}>{getContent()}</View>;

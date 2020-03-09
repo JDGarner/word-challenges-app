@@ -183,9 +183,13 @@ export const getFreeLetters = (scrambledLetters, word, difficulty) => {
     let freeLetters = [];
     let assignedScrambledIndexes = [];
 
-    // get the first numOfFreeLetters letters from word, even indexes
+    // get the first numOfFreeLetters letters from word (even indexes only)
     for (let i = 0; i < numOfFreeLetters; i++) {
-      freeLetters.push({ letter: word[i * 2].toUpperCase(), index: i * 2 });
+      const letter = word[i * 2];
+
+      if (letter && letter.toUpperCase) {
+        freeLetters.push({ letter: letter.toUpperCase(), index: i * 2 });
+      }
     }
 
     return freeLetters.map(freeLetter => {
