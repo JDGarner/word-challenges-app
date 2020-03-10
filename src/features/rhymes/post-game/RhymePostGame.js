@@ -93,12 +93,12 @@ const PlayAgain = styled(View)`
   margin-top: 20px;
 `;
 
-const RhymePostGame = ({ score, totalRhymes, word, onPressStartNewGame, changeScreen }) => {
+const RhymePostGame = ({ score, totalRhymes, word, onPressStartNewGame, onExitGame }) => {
   const { praise, scoreText, percentageText } = getPostGameText(score, totalRhymes, word);
 
   return (
     <PostGameContainer>
-      <TopBar onPressExitGame={() => changeScreen(SCREENS.MENU)} />
+      <TopBar onPressExitGame={onExitGame} />
       <PostGameText textAlign="center">{praise}</PostGameText>
       <PostGameText textAlign="center">{scoreText}</PostGameText>
       <PercentageText>{percentageText}</PercentageText>

@@ -18,7 +18,7 @@ const PreGameCountdown = styled(LargeText)`
 
 let countdownInterval = null;
 
-const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, changeScreen }) => {
+const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, onExitGame }) => {
   const [countdown, setCountdown] = useState(PRE_GAME_COUNTDOWN);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, changeScreen }) => {
 
   return (
     <PreGameContainer>
-      <TopBar onPressExitGame={() => changeScreen(SCREENS.MENU)} />
+      <TopBar onPressExitGame={onExitGame} />
       <FlexCenteredContainer>
         <GameHeader word={currentWord} />
         <FlexStartContainer>

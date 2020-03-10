@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import RhymePreGame from "./RhymePreGame";
-import { onPreGameCountdownEnd } from "../redux/rhymes-actions";
-import { changeScreen } from "../../../redux/app-actions";
+import { onPreGameCountdownEnd, onExitGame } from "../redux/rhymes-actions";
 
 const mapStateToProps = ({ rhymes }) => {
   return {
@@ -11,7 +10,7 @@ const mapStateToProps = ({ rhymes }) => {
 
 const mapDispatchToProps = {
   onPreGameCountdownEnd,
-  changeScreen,
+  onExitGame,
 };
 
 const ConnectedRhymePreGame = connect(mapStateToProps, mapDispatchToProps)(RhymePreGame);

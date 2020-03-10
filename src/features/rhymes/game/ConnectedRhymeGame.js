@@ -5,8 +5,8 @@ import {
   onBeginGame,
   onGameEnd,
   onCountdownAnimationEnd,
+  onExitGame,
 } from "../redux/rhymes-actions";
-import { changeScreen } from "../../../redux/app-actions";
 
 const mapStateToProps = ({ rhymes }) => {
   const { currentWord, currentRhymes, correctAnswers, gameCountdown, animatingCountdown } = rhymes;
@@ -25,7 +25,7 @@ const mapDispatchToProps = {
   onGameEnd,
   onSubmitAnswer,
   onCountdownAnimationEnd,
-  changeScreen,
+  onExitGame,
 };
 
 const ConnectedRhymeGame = connect(mapStateToProps, mapDispatchToProps)(RhymeGame);

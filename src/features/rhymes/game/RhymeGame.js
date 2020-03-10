@@ -51,7 +51,7 @@ const RhymeGame = ({
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
-  changeScreen,
+  onExitGame,
 }) => {
   useEffect(() => {
     onBeginGame();
@@ -64,7 +64,7 @@ const RhymeGame = ({
   return (
     <Fragment>
       <TopBar
-        onPressExitGame={() => changeScreen(SCREENS.MENU)}
+        onPressExitGame={onExitGame}
         gameCountdown={gameCountdown}
         animatingCountdown={animatingCountdown}
         onAnimationEnd={onCountdownAnimationEnd}

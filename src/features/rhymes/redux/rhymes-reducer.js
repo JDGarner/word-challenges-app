@@ -10,6 +10,7 @@ import {
   FETCH_ADDITIONAL_RHYMES_SUCCESS,
   FETCH_RHYMES_ERROR,
   FETCH_RHYMES_RETRY,
+  ON_EXIT_GAME,
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
@@ -125,6 +126,7 @@ export default (state = initialState, action) => {
       return { ...state, gameCountdown };
     }
 
+    case ON_EXIT_GAME:
     case ON_PRESS_START_NEW_GAME: {
       const nextIndex = state.currentRhymeIndex + 1;
       const nextRhyme = state.allRhymes[nextIndex];

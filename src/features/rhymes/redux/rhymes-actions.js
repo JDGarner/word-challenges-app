@@ -12,6 +12,7 @@ export const GAME_COUNTDOWN_TICK = `${NAMESPACE}/GAME_COUNTDOWN_TICK`;
 export const ON_SUBMIT_ANSWER = `${NAMESPACE}/ON_SUBMIT_ANSWER`;
 export const ON_PRE_GAME_COUNTDOWN_END = `${NAMESPACE}/ON_PRE_GAME_COUNTDOWN_END`;
 export const ON_COUNTDOWN_ANIMATION_END = `${NAMESPACE}/ON_COUNTDOWN_ANIMATION_END`;
+export const ON_EXIT_GAME = `${NAMESPACE}/ON_EXIT_GAME`;
 
 export const fetchRhymes = () => ({
   type: FETCH_RHYMES,
@@ -63,4 +64,8 @@ export const onPreGameCountdownEnd = () => ({
 export const onSubmitAnswer = answer => ({
   type: ON_SUBMIT_ANSWER,
   answer,
+});
+
+export const onExitGame = () => ({
+  type: ON_EXIT_GAME,
 });
