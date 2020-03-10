@@ -27,7 +27,7 @@ Definitions:
 
 Rhymes:
 - Pre-Game:
-  - add 'Get Ready...' text or 'Get ready, set, go' that changes with countdown
+  - align What Rhymes with... with main menu text
 - Game:
   - ??
 - Post Game:

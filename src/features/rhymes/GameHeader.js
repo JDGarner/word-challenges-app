@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { View } from "react-native";
 import { capitalize } from "lodash";
-import { MediumText, LargeText, TextContainer } from "../../components";
+import { MediumLargeText, LargeText, TextContainer } from "../../components";
 
 const PreGameHeader = styled(View)`
   height: 25%;
@@ -10,7 +10,7 @@ const PreGameHeader = styled(View)`
   align-items: center;
 `;
 
-const PreGameMessage = styled(MediumText)`
+const PreGameMessage = styled(MediumLargeText)`
   margin-bottom: 20px;
 `;
 

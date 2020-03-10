@@ -5,3 +5,15 @@ export const isAnswerCorrect = (answer, rhymes) => {
 export const isNotDuplicateAnswer = (answer, answers) => {
   return !answers.some(a => a === answer);
 };
+
+export const getPreGameCountdownText = countdown => {
+  if (countdown >= 3) {
+    return "Get Ready...";
+  }
+
+  if (countdown === 2) {
+    return "Set...";
+  }
+
+  return "Go!";
+};
