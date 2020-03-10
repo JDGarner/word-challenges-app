@@ -3,15 +3,15 @@ import { View } from "react-native";
 import { map } from "lodash";
 import styled from "styled-components";
 
-import { MediumLargeText, MediumLargerText, MenuButton, TopBar } from "../../../components";
+import { MediumLargeText, MediumLargerText, MenuButton, TopBar, Spacer } from "../../../components";
 import { DIFFICULTIES } from "../definitions-constants";
 import AnimatedSequence from "../../../components/animated-sequence/AnimatedSequence";
 import PopInView from "../../../components/pop-in-view/PopInView";
 import { SCREENS } from "../../../app-constants";
 
 const TitleContainer = styled(View)`
-  height: 20%;
-  justify-content: center;
+  height: 12%;
+  justify-content: flex-end;
   align-items: center;
 `;
 
@@ -49,6 +49,7 @@ const DefinitionDifficultySelection = ({ onSelectDifficulty, changeScreen }) => 
           </Title>
         </PopInView>
       </TitleContainer>
+      <Spacer height="8%" />
       <DifficultyOptions>
         <AnimatedSequence items={getDifficultyOptions()} />
       </DifficultyOptions>

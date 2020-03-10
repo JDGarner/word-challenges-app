@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
-import {
-  TopBar,
-  FlexCenteredContainer,
-  FlexStartContainer,
-  MediumLargerText,
-} from "../../../components";
+import { TopBar, FlexStartContainer, MediumLargerText } from "../../../components";
 import GameHeader from "../GameHeader";
 import { PRE_GAME_COUNTDOWN } from "../rhymes-constants";
 import { getPreGameCountdownText } from "../rhymes-utils";
@@ -19,7 +14,7 @@ const PreGameContainer = styled(View)`
 `;
 
 const PreGameCountdown = styled(MediumLargerText)`
-  margin-top: 35%;
+  margin-top: 32%;
 `;
 
 let countdownInterval = null;
@@ -62,14 +57,12 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, onExitGame }) => {
   return (
     <PreGameContainer>
       <TopBar onPressExitGame={onExitGame} />
-      <FlexCenteredContainer>
-        <GameHeader word={currentWord} />
-        <FlexStartContainer style={{ width: "100%" }}>
-          <Animated.View style={{ opacity }}>
-            <PreGameCountdown>{getPreGameCountdownText(countdown)}</PreGameCountdown>
-          </Animated.View>
-        </FlexStartContainer>
-      </FlexCenteredContainer>
+      <GameHeader word={currentWord} />
+      <FlexStartContainer style={{ width: "100%" }}>
+        <Animated.View style={{ opacity }}>
+          <PreGameCountdown>{getPreGameCountdownText(countdown)}</PreGameCountdown>
+        </Animated.View>
+      </FlexStartContainer>
     </PreGameContainer>
   );
 };

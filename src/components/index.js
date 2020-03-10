@@ -16,6 +16,7 @@ import Circle from "./circle/Circle";
 import PopInView from "./pop-in-view/PopInView";
 import AnimatedSequence from "./animated-sequence/AnimatedSequence";
 import TopBar from "./top-bar/TopBar";
+import Spacer from "./spacer/Spacer";
 
 export {
   SmallText,
@@ -40,4 +41,5 @@ export {
   TopBar,
   FlexCenteredContainer,
   FlexStartContainer,
+  Spacer,
 };

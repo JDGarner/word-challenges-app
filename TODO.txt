@@ -26,15 +26,16 @@ Definitions:
 - Fix Time and Chimera definitions, remove Manichean
 
 Rhymes:
-- Pre-Game:
-  - align What Rhymes with... with main menu text
 - Game:
-  - ??
+  - Align header with pre game header
+  - Fix answer grid Styling
+  - think about text input placement
 - Post Game:
-  - ??
-  - add animation to post game screen
+  - fix layout
+  - add animation to post game screen?
   - add explanation text to the % score
   - replace :( with icon?
+- check rhymes on android
 - add hate to straight
 - add difficulties? - based on number of rhymes for the word?
 

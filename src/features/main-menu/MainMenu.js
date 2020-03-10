@@ -8,6 +8,7 @@ import {
   MediumLargerText,
   PopInView,
   AnimatedSequence,
+  Spacer,
 } from "../../components";
 import { SCREENS } from "../../app-constants";
 
@@ -32,8 +33,8 @@ const TopBar = styled(View)`
 `;
 
 const TitleContainer = styled(View)`
-  height: 20%;
-  justify-content: center;
+  height: 12%;
+  justify-content: flex-end;
   align-items: center;
   padding-horizontal: 5%;
 `;
@@ -62,9 +63,10 @@ const MainMenu = ({ changeScreen }) => {
       </TopBar>
       <TitleContainer>
         <PopInView popToSize={1} duration={800} delay={20}>
-          <MediumLargeText textAlign="center">What would you like to learn?</MediumLargeText>
+          <MediumLargeText>What would you like to learn?</MediumLargeText>
         </PopInView>
       </TitleContainer>
+      <Spacer height="8%" />
       <MenuContainer>
         <AnimatedSequence items={getMenuItems()} />
       </MenuContainer>
