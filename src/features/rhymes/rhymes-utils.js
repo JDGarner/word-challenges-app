@@ -7,7 +7,7 @@ export const isNotDuplicateAnswer = (answer, answers) => {
 };
 
 export const getPreGameCountdownText = countdown => {
-  if (countdown >= 3) {
+  if (countdown === 3) {
     return "Get Ready...";
   }
 
@@ -15,5 +15,9 @@ export const getPreGameCountdownText = countdown => {
     return "Set...";
   }
 
-  return "Go!";
+  if (countdown === 1) {
+    return "Go!";
+  }
+
+  return "";
 };

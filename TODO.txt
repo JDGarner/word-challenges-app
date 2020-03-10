@@ -26,6 +26,8 @@ Definitions:
 - Fix Time and Chimera definitions, remove Manichean
 
 Rhymes:
+- PreGame:
+  - fix get ready animation
 - Game:
   - Align header with pre game header
   - Fix answer grid Styling

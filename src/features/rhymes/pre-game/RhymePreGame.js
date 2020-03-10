@@ -3,7 +3,7 @@ import { View } from "react-native";
 import styled from "styled-components";
 import { TopBar, FlexStartContainer, MediumLargerText } from "../../../components";
 import GameHeader from "../GameHeader";
-import { PRE_GAME_COUNTDOWN } from "../rhymes-constants";
+import { PRE_GAME_COUNTDOWN, PRE_GAME_COUNTDOWN_DELAY } from "../rhymes-constants";
 import { getPreGameCountdownText } from "../rhymes-utils";
 import { Animated } from "react-native";
 
@@ -20,13 +20,16 @@ const PreGameCountdown = styled(MediumLargerText)`
 let countdownInterval = null;
 
 const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, onExitGame }) => {
-  const [countdown, setCountdown] = useState(PRE_GAME_COUNTDOWN);
-  const [opacity] = useState(new Animated.Value(1));
+  const [countdown, setCountdown] = useState(null);
+  const [opacity] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    countdownInterval = setInterval(() => {
-      setCountdown(c => c - 1);
-    }, 1000);
+    setTimeout(() => {
+      setCountdown(PRE_GAME_COUNTDOWN);
+      countdownInterval = setInterval(() => {
+        setCountdown(c => c - 1);
+      }, 1000);
+    }, PRE_GAME_COUNTDOWN_DELAY);
   }, []);
 
   useEffect(() => {
@@ -57,7 +60,7 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, onExitGame }) => {
   return (
     <PreGameContainer>
       <TopBar onPressExitGame={onExitGame} />
-      <GameHeader word={currentWord} />
+      <GameHeader word={currentWord} fadeIn />
       <FlexStartContainer style={{ width: "100%" }}>
         <Animated.View style={{ opacity }}>
           <PreGameCountdown>{getPreGameCountdownText(countdown)}</PreGameCountdown>

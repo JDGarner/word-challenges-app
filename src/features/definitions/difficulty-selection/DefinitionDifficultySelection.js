@@ -43,7 +43,7 @@ const DefinitionDifficultySelection = ({ onSelectDifficulty, changeScreen }) => 
     <Fragment>
       <TopBar onPressExitGame={() => changeScreen(SCREENS.MENU)} />
       <TitleContainer>
-        <PopInView pointerEvents="auto" popToSize={1} duration={800} delay={20}>
+        <PopInView popToSize={1} duration={800} delay={20}>
           <Title>
             <MediumLargeText>Select a Difficulty</MediumLargeText>
           </Title>
