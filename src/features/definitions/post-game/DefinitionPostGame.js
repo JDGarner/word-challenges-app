@@ -2,8 +2,7 @@ import React, { Fragment, useRef, useState } from "react";
 import { View, ScrollView, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components";
 
-import { LargeText, PaddedButton, MediumLargeText } from "../../../components";
-import TopBar from "../TopBar";
+import { LargeText, PaddedButton, MediumLargeText, TopBar } from "../../../components";
 import Answer from "./Answer";
 import {
   ANSWER_ANIMATION_GAP_TIME,

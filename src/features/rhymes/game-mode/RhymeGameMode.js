@@ -5,7 +5,7 @@ import { GAME_STATES } from "../rhymes-constants";
 import ConnectedRhymeGame from "../game/ConnectedRhymeGame";
 import ConnectedRhymePostGame from "../post-game/ConnectedRhymePostGame";
 import ConnectedRhymePreGame from "../pre-game/ConnectedRhymePreGame";
-import { ScreenContainer } from "../../../components/containers/Containers";
+import { ScreenContainerPadded } from "../../../components/containers/Containers";
 
 const RhymeGameMode = ({ gameState }) => {
   const renderContent = () => {
@@ -23,7 +23,7 @@ const RhymeGameMode = ({ gameState }) => {
 
   return (
     <HideKeyboardOnTouch>
-      <ScreenContainer>{renderContent()}</ScreenContainer>
+      <ScreenContainerPadded>{renderContent()}</ScreenContainerPadded>
     </HideKeyboardOnTouch>
   );
 };

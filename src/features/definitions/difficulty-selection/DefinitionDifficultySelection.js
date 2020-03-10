@@ -3,8 +3,7 @@ import { View } from "react-native";
 import { map } from "lodash";
 import styled from "styled-components";
 
-import { MediumLargeText, MediumLargerText, MenuButton } from "../../../components";
-import TopBar from "../TopBar";
+import { MediumLargeText, MediumLargerText, MenuButton, TopBar } from "../../../components";
 import { DIFFICULTIES } from "../definitions-constants";
 import AnimatedSequence from "../../../components/animated-sequence/AnimatedSequence";
 import PopInView from "../../../components/pop-in-view/PopInView";

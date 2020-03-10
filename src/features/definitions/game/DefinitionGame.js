@@ -15,8 +15,8 @@ import {
   doShuffleAnimation,
 } from "../definitions-utils";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
-import TopBar from "../TopBar";
 import AnswerFeedback from "./AnswerFeedback";
+import { TopBar } from "../../../components";
 
 const ICON_SIZE = 32;
 

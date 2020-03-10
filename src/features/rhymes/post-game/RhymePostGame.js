@@ -2,7 +2,8 @@ import React from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 
-import { MediumLargeText, LargeText, PaddedButton } from "../../../components";
+import { MediumLargeText, LargeText, PaddedButton, TopBar } from "../../../components";
+import { SCREENS } from "../../../app-constants";
 
 const getPraiseForScore = (score, percentage) => {
   if (percentage > 95) return "Wicked Sick!";
@@ -74,7 +75,7 @@ const getPostGameText = (score, totalRhymes, word) => {
 
 const PostGameContainer = styled(View)`
   flex: 1;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   margin-horizontal: 15px;
   margin-bottom: 20px;
@@ -92,11 +93,12 @@ const PlayAgain = styled(View)`
   margin-top: 20px;
 `;
 
-const RhymePostGame = ({ score, totalRhymes, word, onPressStartNewGame }) => {
+const RhymePostGame = ({ score, totalRhymes, word, onPressStartNewGame, changeScreen }) => {
   const { praise, scoreText, percentageText } = getPostGameText(score, totalRhymes, word);
 
   return (
     <PostGameContainer>
+      <TopBar onPressExitGame={() => changeScreen(SCREENS.MENU)} />
       <PostGameText textAlign="center">{praise}</PostGameText>
       <PostGameText textAlign="center">{scoreText}</PostGameText>
       <PercentageText>{percentageText}</PercentageText>

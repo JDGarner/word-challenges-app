@@ -9,6 +9,7 @@ import AppBackground from "./background/AppBackground";
 import Circle from "./circle/Circle";
 import PopInView from "./pop-in-view/PopInView";
 import AnimatedSequence from "./animated-sequence/AnimatedSequence";
+import TopBar from "./top-bar/TopBar";
 
 export {
   SmallText,
@@ -30,4 +31,5 @@ export {
   Circle,
   PopInView,
   AnimatedSequence,
+  TopBar,
 };

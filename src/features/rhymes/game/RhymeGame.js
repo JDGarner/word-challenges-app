@@ -2,10 +2,11 @@ import React, { useEffect, Fragment } from "react";
 import { View, ScrollView } from "react-native";
 import styled from "styled-components";
 
-import { SmallText, TextContainer, Countdown } from "../../../components";
+import { SmallText, TextContainer, Countdown, TopBar } from "../../../components";
 import AnswerText from "../../../components/answer-text/AnswerText";
 import PopInView from "../../../components/pop-in-view/PopInView";
 import GameHeader from "../GameHeader";
+import { SCREENS } from "../../../app-constants";
 
 const CorrectAnswersGrid = styled(View)`
   height: 40%;
@@ -44,6 +45,7 @@ const RhymeGame = ({
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
+  changeScreen,
 }) => {
   useEffect(() => {
     onBeginGame();
@@ -55,7 +57,8 @@ const RhymeGame = ({
 
   return (
     <Fragment>
-      <Countdown
+      <TopBar
+        onPressExitGame={() => changeScreen(SCREENS.MENU)}
         gameCountdown={gameCountdown}
         animatingCountdown={animatingCountdown}
         onAnimationEnd={onCountdownAnimationEnd}

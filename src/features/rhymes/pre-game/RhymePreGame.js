@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
-import { LargeText } from "../../../components";
+import { LargeText, TopBar } from "../../../components";
 import GameHeader from "../GameHeader";
+import { SCREENS } from "../../../app-constants";
+import { PRE_GAME_COUNTDOWN } from "../rhymes-constants";
 
 const PreGameContainer = styled(View)`
   flex: 1;
@@ -19,8 +21,8 @@ const PreGameCountdown = styled(LargeText)`
 
 let countdownInterval = null;
 
-const RhymePreGame = ({ currentWord, onPreGameCountdownEnd }) => {
-  const [countdown, setCountdown] = useState(3);
+const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, changeScreen }) => {
+  const [countdown, setCountdown] = useState(PRE_GAME_COUNTDOWN);
 
   useEffect(() => {
     countdownInterval = setInterval(() => {
@@ -37,6 +39,7 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd }) => {
 
   return (
     <PreGameContainer>
+      <TopBar onPressExitGame={() => changeScreen(SCREENS.MENU)} />
       <GameHeader word={currentWord} />
       <PreGameCountdown textAlign="center">{countdown}</PreGameCountdown>
     </PreGameContainer>
