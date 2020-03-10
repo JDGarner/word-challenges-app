@@ -5,6 +5,18 @@ export const CenteredContainer = styled.View`
   align-items: center;
 `;
 
+export const FlexCenteredContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const FlexStartContainer = styled.View`
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 export const SpaceAroundContainer = styled.View`
   justify-content: space-around;
   align-items: center;

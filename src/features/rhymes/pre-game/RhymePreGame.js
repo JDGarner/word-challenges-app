@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
-import { LargeText, TopBar } from "../../../components";
+import { LargeText, TopBar, FlexCenteredContainer, FlexStartContainer } from "../../../components";
 import GameHeader from "../GameHeader";
 import { SCREENS } from "../../../app-constants";
 import { PRE_GAME_COUNTDOWN } from "../rhymes-constants";
@@ -9,14 +9,11 @@ import { PRE_GAME_COUNTDOWN } from "../rhymes-constants";
 const PreGameContainer = styled(View)`
   flex: 1;
   width: 100%;
-  justify-content: flex-start;
   align-items: center;
 `;
 
 const PreGameCountdown = styled(LargeText)`
-  position: absolute;
-  top: 47%;
-  width: 100%;
+  margin-top: 30%;
 `;
 
 let countdownInterval = null;
@@ -40,8 +37,12 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, changeScreen }) => {
   return (
     <PreGameContainer>
       <TopBar onPressExitGame={() => changeScreen(SCREENS.MENU)} />
-      <GameHeader word={currentWord} />
-      <PreGameCountdown textAlign="center">{countdown}</PreGameCountdown>
+      <FlexCenteredContainer>
+        <GameHeader word={currentWord} />
+        <FlexStartContainer>
+          <PreGameCountdown textAlign="center">{countdown}</PreGameCountdown>
+        </FlexStartContainer>
+      </FlexCenteredContainer>
     </PreGameContainer>
   );
 };

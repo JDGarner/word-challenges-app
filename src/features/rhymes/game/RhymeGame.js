@@ -36,6 +36,12 @@ const GridItem = styled(View)`
   margin-bottom: 10px;
 `;
 
+const ContentContainer = styled(View)`
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 const RhymeGame = ({
   currentWord,
   correctAnswers,
@@ -63,26 +69,27 @@ const RhymeGame = ({
         animatingCountdown={animatingCountdown}
         onAnimationEnd={onCountdownAnimationEnd}
       />
+      <ContentContainer>
+        <GameHeader word={currentWord} />
 
-      <GameHeader word={currentWord} />
+        <CorrectAnswersGrid>
+          <ScrollView contentContainerStyle={answerGridStyle}>
+            {correctAnswers.map(answer => {
+              return (
+                <GridItem key={answer}>
+                  <PopInView>
+                    <CorrectAnswerContainer>
+                      <CorrectAnswer>{answer}</CorrectAnswer>
+                    </CorrectAnswerContainer>
+                  </PopInView>
+                </GridItem>
+              );
+            })}
+          </ScrollView>
+        </CorrectAnswersGrid>
 
-      <CorrectAnswersGrid>
-        <ScrollView contentContainerStyle={answerGridStyle}>
-          {correctAnswers.map(answer => {
-            return (
-              <GridItem key={answer}>
-                <PopInView>
-                  <CorrectAnswerContainer>
-                    <CorrectAnswer>{answer}</CorrectAnswer>
-                  </CorrectAnswerContainer>
-                </PopInView>
-              </GridItem>
-            );
-          })}
-        </ScrollView>
-      </CorrectAnswersGrid>
-
-      <AnswerText onSubmitAnswer={onSubmitAnswer} placeholder="Enter Rhyme" />
+        <AnswerText onSubmitAnswer={onSubmitAnswer} placeholder="Enter Rhyme" />
+      </ContentContainer>
     </Fragment>
   );
 };

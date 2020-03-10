@@ -26,9 +26,15 @@ Definitions:
 - Fix Time and Chimera definitions, remove Manichean
 
 Rhymes:
-- add exit game logic to Game and PostGame
-- add animation to post game screen
-- add explanation text to the % score
+- Pre-Game:
+  - add 'Get Ready...' text or 'Get ready, set, go' that changes with countdown
+- Game:
+  - ??
+- Post Game:
+  - ??
+  - add animation to post game screen
+  - add explanation text to the % score
+  - replace :( with icon?
 - add hate to straight
 - add difficulties? - based on number of rhymes for the word?
 
