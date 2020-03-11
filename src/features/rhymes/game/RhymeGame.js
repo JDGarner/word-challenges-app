@@ -40,6 +40,7 @@ const ContentContainer = styled(View)`
   flex: 1;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
 `;
 
 const RhymeGame = ({
@@ -69,9 +70,8 @@ const RhymeGame = ({
         animatingCountdown={animatingCountdown}
         onAnimationEnd={onCountdownAnimationEnd}
       />
+      <GameHeader word={currentWord} />
       <ContentContainer>
-        <GameHeader word={currentWord} />
-
         <CorrectAnswersGrid>
           <ScrollView contentContainerStyle={answerGridStyle}>
             {correctAnswers.map(answer => {

@@ -31,10 +31,12 @@ const TopBar = ({
     <BackButton onPress={onPressExitGame} disabled={disabled} />
   );
 
+  const showCountdown = !isNaN(gameCountdown) && gameCountdown >= 0;
+
   return (
     <TopBarContainer>
       {BackButtonComponent}
-      {!isNaN(gameCountdown) && gameCountdown >= 0 && (
+      {showCountdown && (
         <Countdown
           gameCountdown={gameCountdown}
           animatingCountdown={animatingCountdown}

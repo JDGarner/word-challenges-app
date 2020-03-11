@@ -63,7 +63,7 @@ const MainMenu = ({ changeScreen }) => {
       </TopBar>
       <TitleContainer>
         <PopInView popToSize={1} duration={800} delay={20}>
-          <MediumLargeText>What would you like to learn?</MediumLargeText>
+          <MediumLargeText>What would you like to train?</MediumLargeText>
         </PopInView>
       </TitleContainer>
       <Spacer height="8%" />

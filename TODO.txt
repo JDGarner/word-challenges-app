@@ -29,8 +29,6 @@ Rhymes:
 - PreGame:
   - fix get ready animation
 - Game:
-  - Align header with pre game header
-  - Fix answer grid Styling
   - think about text input placement
 - Post Game:
   - fix layout
@@ -39,7 +37,7 @@ Rhymes:
   - replace :( with icon?
 - check rhymes on android
 - add hate to straight
-- add difficulties? - based on number of rhymes for the word?
+- add difficulties - based on number of rhymes for the word?
 
 Leaderboard/Stats:
 - Leaderboard button on main menu
