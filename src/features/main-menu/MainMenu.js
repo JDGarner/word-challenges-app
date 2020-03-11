@@ -6,9 +6,10 @@ import {
   MenuButton,
   MediumLargeText,
   MediumLargerText,
-  PopInView,
   AnimatedSequence,
   Spacer,
+  ScreenContainerPadded,
+  Title,
 } from "../../components";
 import { SCREENS } from "../../app-constants";
 
@@ -32,13 +33,6 @@ const TopBar = styled(View)`
   margin-bottom: auto;
 `;
 
-const TitleContainer = styled(View)`
-  height: 12%;
-  justify-content: flex-end;
-  align-items: center;
-  padding-horizontal: 5%;
-`;
-
 const MENU_ITEMS = [SCREENS.DEFINITIONS, SCREENS.RHYMES, SCREENS.SYNONYMS];
 
 const MainMenu = ({ changeScreen }) => {
@@ -54,23 +48,19 @@ const MainMenu = ({ changeScreen }) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <ScreenContainerPadded>
       <TopBar>
         <MediumLargeText>WORDS OF WISDOM</MediumLargeText>
         <SettingsButton>
           <Icon name="settings" size={32} color="white" />
         </SettingsButton>
       </TopBar>
-      <TitleContainer>
-        <PopInView popToSize={1} duration={800} delay={20}>
-          <MediumLargeText>What would you like to train?</MediumLargeText>
-        </PopInView>
-      </TitleContainer>
+      <Title text="What would you like to train?" />
       <Spacer height="8%" />
       <MenuContainer>
         <AnimatedSequence items={getMenuItems()} />
       </MenuContainer>
-    </View>
+    </ScreenContainerPadded>
   );
 };
 

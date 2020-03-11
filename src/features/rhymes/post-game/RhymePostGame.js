@@ -2,45 +2,8 @@ import React from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 
-import { MediumLargeText, LargeText, PaddedButton, TopBar } from "../../../components";
-
-const getPraiseForScore = (score, percentage) => {
-  if (percentage > 95) return "Wicked Sick!";
-
-  if (percentage > 90) return "Phenomenal!";
-
-  if (percentage > 85) return "Sublime!";
-
-  if (percentage > 80) return "Magnificent!";
-
-  if (percentage > 75) return "Unparalleled!";
-
-  if (percentage > 70) return "Monumental!";
-
-  if (percentage > 50) return "Terrific!";
-
-  if (percentage > 45) return "Incredible!";
-
-  if (percentage > 40) return "Tremendous!";
-
-  if (percentage > 30) return "Super!";
-
-  if (percentage > 25) return "Remarkable!";
-
-  if (percentage > 20) return "Heroic Effort!";
-
-  if (percentage > 15) return "Wunderbar!";
-
-  if (percentage > 12) return "Muy Bien!";
-
-  if (percentage > 9) return "Valiant Effort!";
-
-  if (percentage > 6) return "Admirable Work!";
-
-  if (percentage > 3) return "Good Effort!";
-
-  return "Good Try!";
-};
+import { MediumLargeText, LargeText, PaddedButton, TopBar, Title } from "../../../components";
+import { getPraiseForScore, getPercentageText } from "../rhymes-utils";
 
 const getPostGameText = (score, totalRhymes, word) => {
   if (score === 0) {
@@ -60,9 +23,9 @@ const getPostGameText = (score, totalRhymes, word) => {
   }
 
   const percentage = Math.floor((score / totalRhymes) * 100);
-  const percentageText = `${percentage}%`;
+  const percentageText = getPercentageText(percentage);
 
-  const praise = getPraiseForScore(score, percentage);
+  const praise = getPraiseForScore(percentage);
   const rhyme = score === 1 ? "rhyme" : "rhymes";
 
   return {
@@ -96,8 +59,8 @@ const RhymePostGame = ({ score, totalRhymes, word, onPressStartNewGame, onExitGa
   return (
     <>
       <TopBar onPressExitGame={onExitGame} />
+      <Title text={praise} />
       <PostGameContainer>
-        <PostGameText textAlign="center">{praise}</PostGameText>
         <PostGameText textAlign="center">{scoreText}</PostGameText>
         <PercentageText>{percentageText}</PercentageText>
         <PlayAgain>

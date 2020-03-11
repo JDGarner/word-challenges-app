@@ -3,22 +3,10 @@ import { View } from "react-native";
 import { map } from "lodash";
 import styled from "styled-components";
 
-import { MediumLargeText, MediumLargerText, MenuButton, TopBar, Spacer } from "../../../components";
+import { MediumLargerText, MenuButton, TopBar, Spacer, Title } from "../../../components";
 import { DIFFICULTIES } from "../definitions-constants";
 import AnimatedSequence from "../../../components/animated-sequence/AnimatedSequence";
-import PopInView from "../../../components/pop-in-view/PopInView";
 import { SCREENS } from "../../../app-constants";
-
-const TitleContainer = styled(View)`
-  height: 12%;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-const Title = styled(View)`
-  justify-content: center;
-  align-items: center;
-`;
 
 const DifficultyOptions = styled(View)`
   flex: 1;
@@ -42,13 +30,7 @@ const DefinitionDifficultySelection = ({ onSelectDifficulty, changeScreen }) => 
   return (
     <Fragment>
       <TopBar onPressExitGame={() => changeScreen(SCREENS.MENU)} />
-      <TitleContainer>
-        <PopInView popToSize={1} duration={800} delay={20}>
-          <Title>
-            <MediumLargeText>Select a Difficulty</MediumLargeText>
-          </Title>
-        </PopInView>
-      </TitleContainer>
+      <Title text="Select a Difficulty" />
       <Spacer height="8%" />
       <DifficultyOptions>
         <AnimatedSequence items={getDifficultyOptions()} />

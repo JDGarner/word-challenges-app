@@ -3,7 +3,7 @@ import React from "react";
 import ConnectedDefinitionGame from "../game/ConnectedDefinitionGame";
 import { GAME_STATES } from "../definitions-constants";
 import ConnectedDefinitionPostGame from "../post-game/ConnectedDefinitionPostGame";
-import { ScreenContainerPadded } from "../../../components/containers/Containers";
+import { ScreenContainerPadded } from "../../../components";
 
 const DefinitionGameMode = ({ gameState, currentWord }) => {
   const renderContent = () => {

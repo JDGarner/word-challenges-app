@@ -15,6 +15,7 @@
   - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 
 Definitions:
+- test using Title component for post game screen
 - re-test retry logic with new difficulty levels
 - lock difficulties until completing earlier levels?
 - Info icon on each difficulty:

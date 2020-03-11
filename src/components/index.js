@@ -9,6 +9,8 @@ import {
   TextContainer,
   FlexCenteredContainer,
   FlexStartContainer,
+  ScreenContainerPadded,
+  TitleContainer,
 } from "./containers/Containers";
 import HideKeyboardOnTouch from "./keyboard/HideKeyboardOnTouch";
 import AppBackground from "./background/AppBackground";
@@ -17,6 +19,7 @@ import PopInView from "./pop-in-view/PopInView";
 import AnimatedSequence from "./animated-sequence/AnimatedSequence";
 import TopBar from "./top-bar/TopBar";
 import Spacer from "./spacer/Spacer";
+import Title from "./title/Title";
 
 export {
   SmallText,
@@ -41,5 +44,8 @@ export {
   TopBar,
   FlexCenteredContainer,
   FlexStartContainer,
+  ScreenContainerPadded,
+  TitleContainer,
+  Title,
   Spacer,
 };

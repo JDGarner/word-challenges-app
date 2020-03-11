@@ -1,11 +1,10 @@
 import React from "react";
 
-import { HideKeyboardOnTouch } from "../../../components";
+import { HideKeyboardOnTouch, ScreenContainerPadded } from "../../../components";
 import { GAME_STATES } from "../rhymes-constants";
 import ConnectedRhymeGame from "../game/ConnectedRhymeGame";
 import ConnectedRhymePostGame from "../post-game/ConnectedRhymePostGame";
 import ConnectedRhymePreGame from "../pre-game/ConnectedRhymePreGame";
-import { ScreenContainerPadded } from "../../../components/containers/Containers";
 
 const RhymeGameMode = ({ gameState }) => {
   const renderContent = () => {

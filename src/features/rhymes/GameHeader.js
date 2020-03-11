@@ -1,18 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { View } from "react-native";
 import { capitalize } from "lodash";
-import { MediumLargeText, MediumLargerText, TextContainer, PopInView } from "../../components";
+import { MediumLargerText, TextContainer, PopInView, Title } from "../../components";
 import { TEXT_TOP_PADDING } from "../../components/text/Text";
 import { PRE_GAME_COUNTDOWN_DELAY } from "./rhymes-constants";
-
-const PreGameMessageContainer = styled(View)`
-  height: 12%;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-const PreGameMessage = styled(MediumLargeText)``;
 
 const CurrentWordContainer = styled(TextContainer)`
   justify-content: center;
@@ -32,9 +23,7 @@ const GameHeader = ({ word, fadeIn }) => {
 
   return (
     <>
-      <PreGameMessageContainer>
-        <PreGameMessage>What Rhymes with...</PreGameMessage>
-      </PreGameMessageContainer>
+      <Title text="What Rhymes with..." fadeIn={fadeIn} />
       {fadeIn ? (
         <PopInView popToSize={1} duration={PRE_GAME_COUNTDOWN_DELAY}>
           {WordContainer}
