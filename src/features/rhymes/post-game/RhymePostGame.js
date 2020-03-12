@@ -4,13 +4,17 @@ import styled from "styled-components";
 
 import { MediumLargeText, LargeText, PaddedButton, TopBar, Title } from "../../../components";
 import { getPraiseForScore, getPercentageText } from "../rhymes-utils";
+import AnswerGrid from "../AnswerGrid";
 
 const getPostGameText = (score, totalRhymes, word) => {
+  const percentage = Math.floor((score / totalRhymes) * 100);
+  const percentageText = getPercentageText(percentage);
+
   if (score === 0) {
     return {
       praise: ":(",
       scoreText: `You couldn't think of any rhymes for '${word}'?`,
-      percentageText: "0%",
+      percentageText,
     };
   }
 
@@ -18,12 +22,9 @@ const getPostGameText = (score, totalRhymes, word) => {
     return {
       praise: "Godlike!",
       scoreText: `You got all the rhymes for '${word}'!`,
-      percentageText: "100%",
+      percentageText,
     };
   }
-
-  const percentage = Math.floor((score / totalRhymes) * 100);
-  const percentageText = getPercentageText(percentage);
 
   const praise = getPraiseForScore(percentage);
   const rhyme = score === 1 ? "rhyme" : "rhymes";
@@ -36,24 +37,36 @@ const getPostGameText = (score, totalRhymes, word) => {
 };
 
 const PostGameText = styled(MediumLargeText)`
-  margin-bottom: 20px;
+  margin-vertical: 30;
 `;
 
-const PercentageText = styled(LargeText)`
-  margin-bottom: 20px;
+const PercentageText = styled(MediumLargeText)``;
+
+const PlayAgain = styled(PaddedButton)`
+  margin-bottom: 60;
 `;
 
-const PlayAgain = styled(View)`
-  margin-top: 20px;
+const FooterContainer = styled(View)`
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 const PostGameContainer = styled(View)`
   flex: 1;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  width: 100%;
 `;
 
-const RhymePostGame = ({ score, totalRhymes, word, onPressStartNewGame, onExitGame }) => {
+const RhymePostGame = ({
+  score,
+  totalRhymes,
+  word,
+  correctAnswers,
+  onPressStartNewGame,
+  onExitGame,
+}) => {
   const { praise, scoreText, percentageText } = getPostGameText(score, totalRhymes, word);
 
   return (
@@ -62,12 +75,13 @@ const RhymePostGame = ({ score, totalRhymes, word, onPressStartNewGame, onExitGa
       <Title text={praise} />
       <PostGameContainer>
         <PostGameText textAlign="center">{scoreText}</PostGameText>
-        <PercentageText>{percentageText}</PercentageText>
-        <PlayAgain>
-          <PaddedButton onPress={onPressStartNewGame}>
+        <AnswerGrid answers={correctAnswers} />
+        <FooterContainer>
+          <PercentageText>{percentageText}</PercentageText>
+          <PlayAgain onPress={onPressStartNewGame}>
             <LargeText>Play Again</LargeText>
-          </PaddedButton>
-        </PlayAgain>
+          </PlayAgain>
+        </FooterContainer>
       </PostGameContainer>
     </>
   );

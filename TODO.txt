@@ -32,12 +32,13 @@ Rhymes:
 - Game:
   - think about text input placement
 - Post Game:
-  - fix layout
-  - add animation to post game screen?
-  - add explanation text to the % score
+  - add animation to post game screen
+    - animate text
+    - animate answer grid
+    - disable play again and back until animation finished?
   - replace :( with icon?
 - check rhymes on android
-- add hate to straight
+- add hate to straight, fission to division
 - add difficulties - based on number of rhymes for the word?
 
 Leaderboard/Stats:
