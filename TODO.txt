@@ -13,8 +13,11 @@
 - add different dev and prod environments with different .env files (see config github)
 - read react native docs on releasing before releasing
   - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
+- increase number of definitions/rhymes returned by API call (and buffer)
+- make sure app handles gracefully if API returns error or improper object
 
 Definitions:
+- show correct word if play is incorrect
 - test using Title component for post game screen
 - re-test retry logic with new difficulty levels
 - lock difficulties until completing earlier levels?
@@ -24,9 +27,13 @@ Definitions:
     Expert - Mostly obscure words, with some letters already filled in
     Master - Mostly obscure words, no letters filled in
 - Add more feedback text randomly
-- Fix Time and Chimera definitions, remove Manichean
 
 Rhymes:
+- Add difficulties
+  - One request to get all difficulties (e.g. 100 total, 25 for each difficulty)
+  - One index, the same for all difficulties
+  - When index gets near the end for any difficulty, make same request
+  - Look into whether this approach would be better for definitions also (would increase response size)
 - PreGame:
   - fix get ready animation
 - Game:
@@ -38,8 +45,6 @@ Rhymes:
     - disable play again and back until animation finished?
   - replace :( with icon?
 - check rhymes on android
-- add hate to straight, fission to division
-- add difficulties - based on number of rhymes for the word?
 
 Leaderboard/Stats:
 - Leaderboard button on main menu

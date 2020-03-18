@@ -13,8 +13,7 @@ import {
 } from "./rhymes-actions";
 import { RHYMES_LOCAL_BUFFER } from "../rhymes-constants";
 import fetchFromApi from "../../../fetch-util";
-import { ENDPOINTS, RETRY_TIMEOUT, SCREENS } from "../../../app-constants";
-import { changeScreen } from "../../../redux/app-actions";
+import { ENDPOINTS, RETRY_TIMEOUT } from "../../../app-constants";
 
 let gameCountdownInterval = null;
 
@@ -46,12 +45,9 @@ export default store => next => action => {
       }, 1000);
       break;
 
+    case ON_EXIT_GAME:
     case ON_GAME_END:
       clearInterval(gameCountdownInterval);
-      break;
-
-    case ON_EXIT_GAME:
-      dispatch(changeScreen(SCREENS.MENU));
       break;
 
     case ON_PRESS_START_NEW_GAME:

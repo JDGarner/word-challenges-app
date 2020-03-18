@@ -11,10 +11,12 @@ import {
   FETCH_RHYMES_ERROR,
   FETCH_RHYMES_RETRY,
   ON_EXIT_GAME,
+  ON_SELECT_DIFFICULTY,
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
+import { DIFFICULTIES } from "../../../app-constants";
 
 // const getFakeCorrectAnswers = () => {
 //   let a = [];
@@ -26,6 +28,11 @@ import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 // };
 
 const initialState = {
+  noviceRhymes: [],
+  journeymanRhymes: [],
+  expertRhymes: [],
+  masterRhymes: [],
+  difficulty: DIFFICULTIES.NOVICE,
   allRhymes: [],
   currentRhymeIndex: 0,
   currentWord: "",
@@ -34,7 +41,7 @@ const initialState = {
   loaded: false,
   gameCountdown: INITIAL_COUNTDOWN,
   animatingCountdown: false,
-  gameState: GAME_STATES.PREGAME,
+  gameState: GAME_STATES.DIFFICULTYSELECTION,
   score: 0,
   errorCode: "",
   connectionError: false,
@@ -50,6 +57,36 @@ const getBumpedCountdown = countdown => {
   return newCountdown;
 };
 
+const getStateForNewRound = state => {
+  const nextIndex = state.currentRhymeIndex + 1;
+  const nextRhyme = state.allRhymes[state.difficulty][nextIndex]; // TODO: put this into if check
+
+  // API call must have failed to fetch additional rhymes, go to error state
+  if (!nextRhyme) {
+    return {
+      ...state,
+      score: 0,
+      correctAnswers: [],
+      currentRhymeIndex: 0,
+      gameCountdown: INITIAL_COUNTDOWN,
+      errorCode: ERROR_CODES.GENERIC,
+      connectionError: true,
+    };
+  }
+
+  const { word: currentWord, rhymes: currentRhymes } = state.allRhymes[state.difficulty][nextIndex];
+
+  return {
+    ...state,
+    score: 0,
+    correctAnswers: [],
+    currentWord,
+    currentRhymes,
+    currentRhymeIndex: nextIndex,
+    gameCountdown: INITIAL_COUNTDOWN,
+  };
+};
+
 export default (state = initialState, action) => {
   const { type } = action;
 
@@ -57,8 +94,17 @@ export default (state = initialState, action) => {
     case FETCH_RHYMES_SUCCESS: {
       const allRhymes = action.rhymes;
 
-      if (allRhymes && allRhymes[0] && allRhymes[0].word) {
-        const { word: currentWord, rhymes: currentRhymes } = allRhymes[0];
+      if (
+        allRhymes &&
+        allRhymes.novice &&
+        allRhymes.journeyman &&
+        allRhymes.expert &&
+        allRhymes.master &&
+        allRhymes[state.difficulty][0] &&
+        allRhymes[state.difficulty][0].word
+      ) {
+        // TODO: update this
+        const { word: currentWord, rhymes: currentRhymes } = allRhymes.novice[0];
 
         return {
           ...state,
@@ -68,7 +114,6 @@ export default (state = initialState, action) => {
           currentRhymeIndex: 0,
           loaded: true,
           connectionError: false,
-          gameState: GAME_STATES.PREGAME,
         };
       }
 
@@ -91,7 +136,7 @@ export default (state = initialState, action) => {
 
       return {
         ...state,
-        allRhymes: [...remainingRhymes, ...action.rhymes],
+        allRhymes: [...remainingRhymes, ...action.rhymes], // TODO: update this
         currentRhymeIndex: 0,
         connectionError: false,
       };
@@ -126,34 +171,18 @@ export default (state = initialState, action) => {
       return { ...state, gameCountdown };
     }
 
-    case ON_EXIT_GAME:
-    case ON_PRESS_START_NEW_GAME: {
-      const nextIndex = state.currentRhymeIndex + 1;
-      const nextRhyme = state.allRhymes[nextIndex];
-
-      // API call must have failed to fetch additional rhymes, go to error state
-      if (!nextRhyme) {
-        return {
-          ...state,
-          score: 0,
-          correctAnswers: [],
-          currentRhymeIndex: 0,
-          gameCountdown: INITIAL_COUNTDOWN,
-          errorCode: ERROR_CODES.GENERIC,
-          connectionError: true,
-        };
-      }
-
-      const { word: currentWord, rhymes: currentRhymes } = state.allRhymes[nextIndex];
-
+    case ON_EXIT_GAME: {
       return {
         ...state,
-        score: 0,
-        correctAnswers: [],
-        currentWord,
-        currentRhymes,
-        currentRhymeIndex: nextIndex,
-        gameCountdown: INITIAL_COUNTDOWN,
+        ...getStateForNewRound(state),
+        gameState: GAME_STATES.DIFFICULTYSELECTION,
+      };
+    }
+
+    case ON_PRESS_START_NEW_GAME: {
+      return {
+        ...state,
+        ...getStateForNewRound(state),
         gameState: GAME_STATES.PREGAME,
       };
     }
@@ -165,6 +194,13 @@ export default (state = initialState, action) => {
     case ON_PRE_GAME_COUNTDOWN_END: {
       return { ...state, gameState: GAME_STATES.PLAYING };
     }
+
+    case ON_SELECT_DIFFICULTY:
+      return {
+        ...state,
+        gameState: GAME_STATES.PREGAME,
+        difficulty: action.difficulty,
+      };
 
     default:
       return state;

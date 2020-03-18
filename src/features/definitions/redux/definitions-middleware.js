@@ -8,6 +8,7 @@ import {
   ON_GAME_END,
   gameCountdownTick,
   fetchAdditionalDefinitionsSuccess,
+  ON_EXIT_GAME,
 } from "./definitions-actions";
 import fetchFromApi from "../../../fetch-util";
 import { RETRY_TIMEOUT } from "../../../app-constants";
@@ -36,6 +37,7 @@ export default store => next => action => {
       }, RETRY_TIMEOUT);
       break;
 
+    case ON_EXIT_GAME:
     case ON_GAME_END:
       clearInterval(gameCountdownInterval);
       break;

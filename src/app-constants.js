@@ -11,4 +11,11 @@ export const SCREENS = {
   SYNONYMS: "Synonyms",
 };
 
+export const DIFFICULTIES = {
+  NOVICE: "novice",
+  JOURNEYMAN: "journeyman",
+  EXPERT: "expert",
+  MASTER: "master",
+};
+
 export const RETRY_TIMEOUT = 1000;

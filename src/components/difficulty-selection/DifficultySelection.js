@@ -1,12 +1,10 @@
 import React, { Fragment } from "react";
 import { View } from "react-native";
-import { map } from "lodash";
+import { map, capitalize } from "lodash";
 import styled from "styled-components";
 
-import { MediumLargerText, MenuButton, TopBar, Spacer, Title } from "../../../components";
-import { DIFFICULTIES } from "../definitions-constants";
-import AnimatedSequence from "../../../components/animated-sequence/AnimatedSequence";
-import { SCREENS } from "../../../app-constants";
+import { MediumLargerText, MenuButton, TopBar, Spacer, Title, AnimatedSequence } from "..";
+import { SCREENS, DIFFICULTIES } from "../../app-constants";
 
 const DifficultyOptions = styled(View)`
   flex: 1;
@@ -15,13 +13,13 @@ const DifficultyOptions = styled(View)`
   align-items: center;
 `;
 
-const DefinitionDifficultySelection = ({ onSelectDifficulty, changeScreen }) => {
+const DifficultySelection = ({ onSelectDifficulty, changeScreen }) => {
   const getDifficultyOptions = () => {
     return map(DIFFICULTIES, difficulty => ({
       id: difficulty,
       component: (
         <MenuButton onPress={() => onSelectDifficulty(difficulty)}>
-          <MediumLargerText>{difficulty}</MediumLargerText>
+          <MediumLargerText>{capitalize(difficulty)}</MediumLargerText>
         </MenuButton>
       ),
     }));
@@ -39,4 +37,4 @@ const DefinitionDifficultySelection = ({ onSelectDifficulty, changeScreen }) => 
   );
 };
 
-export default DefinitionDifficultySelection;
+export default DifficultySelection;

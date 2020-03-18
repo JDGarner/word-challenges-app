@@ -16,11 +16,11 @@ import {
   GAME_STATES,
   INITIAL_COUNTDOWN,
   WORDS_PER_ROUND,
-  DIFFICULTIES,
   DIFFICULTY_MAP,
 } from "../definitions-constants";
 import { roundIsOver, getDefinitionState, getDefinitionKeys } from "../definitions-utils";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
+import { DIFFICULTIES } from "../../../app-constants";
 
 const initialState = {
   allEasyDefinitions: [],

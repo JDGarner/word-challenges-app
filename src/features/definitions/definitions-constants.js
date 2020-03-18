@@ -1,14 +1,9 @@
+import { DIFFICULTIES } from "../../app-constants";
+
 export const GAME_STATES = {
   DIFFICULTYSELECTION: "DifficultySelection",
   PLAYING: "Playing",
   POSTGAME: "PostGame",
-};
-
-export const DIFFICULTIES = {
-  NOVICE: "Novice",
-  JOURNEYMAN: "Journeyman",
-  EXPERT: "Expert",
-  MASTER: "Master",
 };
 
 export const WORD_DIFFICULTIES = {

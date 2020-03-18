@@ -1,4 +1,5 @@
 export const GAME_STATES = {
+  DIFFICULTYSELECTION: "DifficultySelection",
   PREGAME: "PreGame",
   PLAYING: "Playing",
   POSTGAME: "PostGame",

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { onSelectDifficulty } from "../redux/definitions-actions";
+import { onSelectDifficulty } from "../redux/rhymes-actions";
 import { changeScreen } from "../../../redux/app-actions";
 import DifficultySelection from "../../../components/difficulty-selection/DifficultySelection";
 
@@ -8,9 +8,6 @@ const mapDispatchToProps = {
   changeScreen,
 };
 
-const ConnectedDefinitionDifficultySelection = connect(
-  null,
-  mapDispatchToProps,
-)(DifficultySelection);
+const ConnectedRhymeDifficultySelection = connect(null, mapDispatchToProps)(DifficultySelection);
 
-export default ConnectedDefinitionDifficultySelection;
+export default ConnectedRhymeDifficultySelection;

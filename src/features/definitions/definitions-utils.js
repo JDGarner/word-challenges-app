@@ -4,12 +4,11 @@ import {
   WORDS_PER_ROUND,
   WORD_DIFFICULTIES,
   DIFFICULTY_MAP,
-  DIFFICULTIES,
   SHUFFLE_ANIMATION_TIME,
   SHUFFLE_ANIMATION_STAGGER_TIME,
   SHUFFLE_ANIMATION_REAPPEAR_BUFFER,
 } from "./definitions-constants";
-import { ENDPOINTS } from "../../app-constants";
+import { ENDPOINTS, DIFFICULTIES } from "../../app-constants";
 
 export const roundIsOver = questionIndex => {
   return questionIndex >= WORDS_PER_ROUND;
