@@ -61,31 +61,32 @@ const getBumpedCountdown = countdown => {
 
 const getStateForNewRound = state => {
   const nextIndex = state.currentRhymeIndex + 1;
-  const nextRhyme = state.allRhymes[state.difficulty][nextIndex]; // TODO: put this into if check
+  const rhymes = state.allRhymes[state.difficulty];
 
-  // API call must have failed to fetch additional rhymes, go to error state
-  if (!nextRhyme) {
+  if (rhymes && rhymes[nextIndex]) {
+    const nextRhyme = rhymes[nextIndex];
+    const { word: currentWord, rhymes: currentRhymes } = nextRhyme;
+
     return {
       ...state,
       score: 0,
       correctAnswers: [],
-      currentRhymeIndex: 0,
+      currentWord,
+      currentRhymes,
+      currentRhymeIndex: nextIndex,
       gameCountdown: INITIAL_COUNTDOWN,
-      errorCode: ERROR_CODES.GENERIC,
-      connectionError: true,
     };
   }
 
-  const { word: currentWord, rhymes: currentRhymes } = state.allRhymes[state.difficulty][nextIndex];
-
+  // API call must have failed to fetch additional rhymes, go to error state
   return {
     ...state,
     score: 0,
     correctAnswers: [],
-    currentWord,
-    currentRhymes,
-    currentRhymeIndex: nextIndex,
+    currentRhymeIndex: 0,
     gameCountdown: INITIAL_COUNTDOWN,
+    errorCode: ERROR_CODES.GENERIC,
+    connectionError: true,
   };
 };
 
