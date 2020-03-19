@@ -18,6 +18,8 @@ import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 import { DIFFICULTIES } from "../../../app-constants";
 
+const { NOVICE, JOURNEYMAN, EXPERT, MASTER } = DIFFICULTIES;
+
 // const getFakeCorrectAnswers = () => {
 //   let a = [];
 //   for (let i = 0; i < 50; i++) {
@@ -32,7 +34,7 @@ const initialState = {
   journeymanRhymes: [],
   expertRhymes: [],
   masterRhymes: [],
-  difficulty: DIFFICULTIES.NOVICE,
+  difficulty: NOVICE,
   allRhymes: [],
   currentRhymeIndex: 0,
   currentWord: "",
@@ -103,8 +105,7 @@ export default (state = initialState, action) => {
         allRhymes[state.difficulty][0] &&
         allRhymes[state.difficulty][0].word
       ) {
-        // TODO: update this
-        const { word: currentWord, rhymes: currentRhymes } = allRhymes.novice[0];
+        const { word: currentWord, rhymes: currentRhymes } = allRhymes[state.difficulty][0];
 
         return {
           ...state,
@@ -132,11 +133,19 @@ export default (state = initialState, action) => {
       // New Rhymes have arrived, get rid of the current ones before current index
       // Add the new ones on the end
       const allRhymes = cloneDeep(state.allRhymes);
-      const remainingRhymes = allRhymes.splice(state.currentRhymeIndex);
+      const { rhymes } = action;
+      const { currentRhymeIndex } = state;
+
+      const newRhymes = {
+        [NOVICE]: [...allRhymes[NOVICE].splice(currentRhymeIndex), ...rhymes[NOVICE]],
+        [JOURNEYMAN]: [...allRhymes[JOURNEYMAN].splice(currentRhymeIndex), ...rhymes[JOURNEYMAN]],
+        [EXPERT]: [...allRhymes[EXPERT].splice(currentRhymeIndex), ...rhymes[EXPERT]],
+        [MASTER]: [...allRhymes[MASTER].splice(currentRhymeIndex), ...rhymes[MASTER]],
+      };
 
       return {
         ...state,
-        allRhymes: [...remainingRhymes, ...action.rhymes], // TODO: update this
+        allRhymes: newRhymes,
         currentRhymeIndex: 0,
         connectionError: false,
       };
@@ -195,12 +204,21 @@ export default (state = initialState, action) => {
       return { ...state, gameState: GAME_STATES.PLAYING };
     }
 
-    case ON_SELECT_DIFFICULTY:
+    case ON_SELECT_DIFFICULTY: {
+      const { allRhymes, currentRhymeIndex } = state;
+
+      const { word: currentWord, rhymes: currentRhymes } = allRhymes[action.difficulty][
+        currentRhymeIndex
+      ];
+
       return {
         ...state,
+        currentWord,
+        currentRhymes,
         gameState: GAME_STATES.PREGAME,
         difficulty: action.difficulty,
       };
+    }
 
     default:
       return state;

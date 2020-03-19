@@ -6,6 +6,7 @@
   - For iOS add animating spheres also, don't use linear gradient?
   - Test out different sphere/background colour & animation combinations - randomise them a bit?
 
+- dont animate difficulty screen/menu on back?
 - splash screen
 - add extra game mode coming soon disabled button (or add Synonyms?)
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
@@ -17,6 +18,7 @@
 - make sure app handles gracefully if API returns error or improper object
 
 Definitions:
+- Look into whether rhymes all request approach would be better for definitions also (would increase response size)
 - show correct word if play is incorrect
 - test using Title component for post game screen
 - re-test retry logic with new difficulty levels
@@ -29,16 +31,13 @@ Definitions:
 - Add more feedback text randomly
 
 Rhymes:
-- Add difficulties
-  - One request to get all difficulties (e.g. 100 total, 25 for each difficulty)
-  - One index, the same for all difficulties
-  - When index gets near the end for any difficulty, make same request
-  - Look into whether this approach would be better for definitions also (would increase response size)
+
 - PreGame:
   - fix get ready animation
 - Game:
   - think about text input placement
 - Post Game:
+  - fix play again
   - add animation to post game screen
     - animate text
     - animate answer grid
