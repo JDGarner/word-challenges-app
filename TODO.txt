@@ -19,7 +19,6 @@
 - make sure app handles gracefully if API returns error or improper object
 
 Definitions:
-- Look into whether rhymes all request approach would be better for definitions also (would increase response size)
 - show correct word if play is incorrect
 - test using Title component for post game screen
 - re-test retry logic with new difficulty levels
@@ -37,9 +36,6 @@ Rhymes:
   - fix get ready animation
 - Game:
   - think about text input placement
-- Post Game:
-  - disable play again and back until animation finished?
-  - replace :( with icon?
 - check rhymes on android
 
 Leaderboard/Stats:
@@ -111,6 +107,7 @@ General:
 - look into adding reselect
 
 Definitions:
+- Look into whether rhymes all request approach would be better for definitions also (would increase response size)
 - look into performance profiling (is everything being re-rendered when countdown ticks?)
 - on shuffle fade out answer letters when they disappear?
 

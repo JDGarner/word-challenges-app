@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 
@@ -75,14 +75,24 @@ const RhymePostGame = ({
   onPressStartNewGame,
   onExitGame,
 }) => {
+  const [userActionsDisabled, setUserActionsDisabled] = useState(true);
+
   const { praise, scoreText, percentageText } = getPostGameText(score, totalRhymes, word);
-  // TODO: disable play again button until it appears
   const footerAnimationDelay =
     correctAnswers.length * ANSWER_ANIMATION_GAP_TIME + ANSWER_ANIMATION_START_DELAY_TIME + 300;
 
+  const onPlayAgainAnimationStart = () => {
+    setUserActionsDisabled(false);
+  };
+
   return (
     <>
-      <TopBar onPressExitGame={onExitGame} />
+      <TopBar
+        onPressExitGame={onExitGame}
+        animateDuration={500}
+        animateDelay={footerAnimationDelay + 300}
+        disabled={userActionsDisabled}
+      />
       <Title text={praise} />
       <PostGameContainer>
         <PopInView popToSize={1} duration={800} delay={300}>
@@ -97,8 +107,9 @@ const RhymePostGame = ({
             pointerEvents="auto"
             popToSize={1}
             duration={800}
-            delay={footerAnimationDelay + 300}>
-            <PlayAgain onPress={onPressStartNewGame}>
+            delay={footerAnimationDelay + 300}
+            onAnimationStart={onPlayAgainAnimationStart}>
+            <PlayAgain onPress={onPressStartNewGame} disabled={userActionsDisabled}>
               <LargeText>Play Again</LargeText>
             </PlayAgain>
           </PopInView>
