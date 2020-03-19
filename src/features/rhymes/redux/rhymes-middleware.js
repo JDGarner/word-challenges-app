@@ -54,7 +54,10 @@ export default store => next => action => {
     case ON_SELECT_DIFFICULTY:
     case ON_PRESS_START_NEW_GAME:
       const { currentRhymeIndex, allRhymes, difficulty } = getState().rhymes;
-      if (currentRhymeIndex > allRhymes[difficulty].length - RHYMES_LOCAL_BUFFER) {
+      if (
+        allRhymes[difficulty] &&
+        currentRhymeIndex > allRhymes[difficulty].length - RHYMES_LOCAL_BUFFER
+      ) {
         fetchFromApi(ENDPOINTS.RHYMES, data => dispatch(fetchAdditionalRhymesSuccess(data)));
       }
       break;

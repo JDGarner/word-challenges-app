@@ -7,6 +7,7 @@
   - Test out different sphere/background colour & animation combinations - randomise them a bit?
 
 - dont animate difficulty screen/menu on back?
+- back button on Loading Screen
 - splash screen
 - add extra game mode coming soon disabled button (or add Synonyms?)
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
@@ -37,11 +38,7 @@ Rhymes:
 - Game:
   - think about text input placement
 - Post Game:
-  - fix play again
-  - add animation to post game screen
-    - animate text
-    - animate answer grid
-    - disable play again and back until animation finished?
+  - disable play again and back until animation finished?
   - replace :( with icon?
 - check rhymes on android
 

@@ -207,15 +207,18 @@ export default (state = initialState, action) => {
 
     case ON_SELECT_DIFFICULTY: {
       const { allRhymes, currentRhymeIndex } = state;
+      const rhymes = allRhymes[action.difficulty];
 
-      const { word: currentWord, rhymes: currentRhymes } = allRhymes[action.difficulty][
-        currentRhymeIndex
-      ];
+      let wordState = {};
+
+      if (rhymes && rhymes[currentRhymeIndex]) {
+        const { word: currentWord, rhymes: currentRhymes } = rhymes[currentRhymeIndex];
+        wordState = { currentWord, currentRhymes };
+      }
 
       return {
         ...state,
-        currentWord,
-        currentRhymes,
+        ...wordState,
         gameState: GAME_STATES.PREGAME,
         difficulty: action.difficulty,
       };

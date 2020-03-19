@@ -2,9 +2,17 @@ import React from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 
-import { MediumLargeText, LargeText, PaddedButton, TopBar, Title } from "../../../components";
+import {
+  MediumLargeText,
+  LargeText,
+  PaddedButton,
+  TopBar,
+  Title,
+  PopInView,
+} from "../../../components";
 import { getPraiseForScore, getPercentageText } from "../rhymes-utils";
 import AnswerGrid from "../AnswerGrid";
+import { ANSWER_ANIMATION_GAP_TIME, ANSWER_ANIMATION_START_DELAY_TIME } from "../rhymes-constants";
 
 const getPostGameText = (score, totalRhymes, word) => {
   const percentage = Math.floor((score / totalRhymes) * 100);
@@ -68,19 +76,32 @@ const RhymePostGame = ({
   onExitGame,
 }) => {
   const { praise, scoreText, percentageText } = getPostGameText(score, totalRhymes, word);
+  // TODO: disable play again button until it appears
+  const footerAnimationDelay =
+    correctAnswers.length * ANSWER_ANIMATION_GAP_TIME + ANSWER_ANIMATION_START_DELAY_TIME + 300;
 
   return (
     <>
       <TopBar onPressExitGame={onExitGame} />
       <Title text={praise} />
       <PostGameContainer>
-        <PostGameText textAlign="center">{scoreText}</PostGameText>
-        <AnswerGrid answers={correctAnswers} />
+        <PopInView popToSize={1} duration={800} delay={300}>
+          <PostGameText textAlign="center">{scoreText}</PostGameText>
+        </PopInView>
+        <AnswerGrid answers={correctAnswers} postGame />
         <FooterContainer>
-          <PercentageText>{percentageText}</PercentageText>
-          <PlayAgain onPress={onPressStartNewGame}>
-            <LargeText>Play Again</LargeText>
-          </PlayAgain>
+          <PopInView popToSize={1} duration={800} delay={footerAnimationDelay}>
+            <PercentageText>{percentageText}</PercentageText>
+          </PopInView>
+          <PopInView
+            pointerEvents="auto"
+            popToSize={1}
+            duration={800}
+            delay={footerAnimationDelay + 300}>
+            <PlayAgain onPress={onPressStartNewGame}>
+              <LargeText>Play Again</LargeText>
+            </PlayAgain>
+          </PopInView>
         </FooterContainer>
       </PostGameContainer>
     </>
