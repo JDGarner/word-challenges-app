@@ -10,7 +10,7 @@ import {
   FETCH_RHYMES_RETRY,
   fetchRhymes,
   ON_EXIT_GAME,
-  ON_SELECT_DIFFICULTY,
+  ON_SELECT_DIFFICULTY_RHYMES,
 } from "./rhymes-actions";
 import { RHYMES_LOCAL_BUFFER } from "../rhymes-constants";
 import fetchFromApi from "../../../fetch-util";
@@ -51,7 +51,7 @@ export default store => next => action => {
       clearInterval(gameCountdownInterval);
       break;
 
-    case ON_SELECT_DIFFICULTY:
+    case ON_SELECT_DIFFICULTY_RHYMES:
     case ON_PRESS_START_NEW_GAME:
       const { currentRhymeIndex, allRhymes, difficulty } = getState().rhymes;
       if (

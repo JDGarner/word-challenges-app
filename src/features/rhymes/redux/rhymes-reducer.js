@@ -11,7 +11,7 @@ import {
   FETCH_RHYMES_ERROR,
   FETCH_RHYMES_RETRY,
   ON_EXIT_GAME,
-  ON_SELECT_DIFFICULTY,
+  ON_SELECT_DIFFICULTY_RHYMES,
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
@@ -205,7 +205,7 @@ export default (state = initialState, action) => {
       return { ...state, gameState: GAME_STATES.PLAYING };
     }
 
-    case ON_SELECT_DIFFICULTY: {
+    case ON_SELECT_DIFFICULTY_RHYMES: {
       const { allRhymes, currentRhymeIndex } = state;
       const rhymes = allRhymes[action.difficulty];
 

@@ -7,6 +7,7 @@ import {
   onSkipCurrentWord,
   onExitGame,
   onGameCountdownAtZero,
+  onAnswerFeedbackFinished,
 } from "../redux/definitions-actions";
 import { getDefinitionState } from "../definitions-utils";
 
@@ -30,6 +31,7 @@ const mapDispatchToProps = {
   onSkipCurrentWord,
   onExitGame,
   onGameCountdownAtZero,
+  onAnswerFeedbackFinished,
 };
 
 const ConnectedDefinitionGame = connect(mapStateToProps, mapDispatchToProps)(DefinitionGame);

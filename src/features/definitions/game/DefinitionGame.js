@@ -145,6 +145,7 @@ const DefinitionGame = ({
   onSkipCurrentWord,
   onExitGame,
   onGameCountdownAtZero,
+  onAnswerFeedbackFinished,
 }) => {
   const letters = useMemo(() => shuffle(word.toUpperCase().split("")), [word]);
   const freeLetters = useMemo(() => getFreeLetters(letters, word, difficulty), [word, difficulty]);
@@ -166,7 +167,7 @@ const DefinitionGame = ({
     return () => {
       onGameEnd();
     };
-  }, [onBeginGame, onGameEnd]);
+  }, [onBeginGame, onGameEnd, word]);
 
   useEffect(() => {
     // Fade out game, show incorrect answer feedback
@@ -205,8 +206,10 @@ const DefinitionGame = ({
       useNativeDriver: true,
     }).start();
 
+    onSubmitAnswer(answer);
+
     setTimeout(() => {
-      onSubmitAnswer(answer);
+      onAnswerFeedbackFinished(answer);
     }, ANSWER_FEEDBACK_ANIMATION_DURATION);
   };
 

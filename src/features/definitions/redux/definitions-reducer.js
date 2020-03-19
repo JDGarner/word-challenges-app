@@ -10,7 +10,8 @@ import {
   ON_SKIP_CURRENT_WORD,
   ON_EXIT_GAME,
   ON_GAME_COUNTDOWN_AT_ZERO,
-  ON_SELECT_DIFFICULTY,
+  ON_SELECT_DIFFICULTY_DEFINITIONS,
+  ON_ANSWER_FEEDBACK_FINISHED,
 } from "./definitions-actions";
 import {
   GAME_STATES,
@@ -141,6 +142,7 @@ export default (state = initialState, action) => {
 
     case ON_SKIP_CURRENT_WORD:
     case ON_GAME_COUNTDOWN_AT_ZERO:
+    case ON_ANSWER_FEEDBACK_FINISHED:
       if (roundIsOver(state.questionIndex + 1)) {
         return { ...getStateForRoundEnd(state) };
       }
@@ -168,14 +170,10 @@ export default (state = initialState, action) => {
       const currentDefinitions = cloneDeep(state[currentDefinitionsKey]);
       currentDefinitions[state.questionIndex].isCorrect = isCorrect;
 
-      if (roundIsOver(state.questionIndex + 1)) {
-        return { ...getStateForRoundEnd(state), [currentDefinitionsKey]: currentDefinitions };
-      }
-
-      return { ...getStateForNextQuestion(state), [currentDefinitionsKey]: currentDefinitions };
+      return { ...state, [currentDefinitionsKey]: currentDefinitions };
     }
 
-    case ON_SELECT_DIFFICULTY:
+    case ON_SELECT_DIFFICULTY_DEFINITIONS:
       return {
         ...state,
         gameState: GAME_STATES.PLAYING,

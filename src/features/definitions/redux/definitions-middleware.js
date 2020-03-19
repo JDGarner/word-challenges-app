@@ -9,11 +9,14 @@ import {
   gameCountdownTick,
   fetchAdditionalDefinitionsSuccess,
   ON_EXIT_GAME,
+  onRoundEnd,
+  ON_ROUND_END,
+  ON_SUBMIT_ANSWER,
 } from "./definitions-actions";
 import fetchFromApi from "../../../fetch-util";
 import { RETRY_TIMEOUT } from "../../../app-constants";
 import { DEFINITIONS_LOCAL_BUFFER, WORD_DIFFICULTIES } from "../definitions-constants";
-import { getDefinitionState, getEndpointForDifficulty } from "../definitions-utils";
+import { getDefinitionState, getEndpointForDifficulty, roundIsOver } from "../definitions-utils";
 
 let gameCountdownInterval = null;
 
@@ -38,8 +41,15 @@ export default store => next => action => {
       break;
 
     case ON_EXIT_GAME:
-    case ON_GAME_END:
       clearInterval(gameCountdownInterval);
+      break;
+
+    case ON_SUBMIT_ANSWER:
+      clearInterval(gameCountdownInterval);
+
+      if (roundIsOver(definitions.questionIndex + 1)) {
+        store.dispatch(onRoundEnd());
+      }
       break;
 
     case ON_BEGIN_GAME:
@@ -51,12 +61,16 @@ export default store => next => action => {
         dispatch(gameCountdownTick());
       }, 1000);
 
+      break;
+
+    case ON_ROUND_END:
       const { allDefinitionsIndex, allDefinitions, difficulty } = getDefinitionState(definitions);
       if (allDefinitionsIndex > allDefinitions.length - DEFINITIONS_LOCAL_BUFFER) {
         fetchFromApi(getEndpointForDifficulty(difficulty), data =>
           dispatch(fetchAdditionalDefinitionsSuccess(data, difficulty)),
         );
       }
+
       break;
 
     default:
