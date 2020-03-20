@@ -7,7 +7,6 @@ import {
   FETCH_ADDITIONAL_DEFINITIONS_SUCCESS,
   ON_PRESS_START_NEW_GAME,
   ON_SUBMIT_ANSWER,
-  ON_SKIP_CURRENT_WORD,
   ON_EXIT_GAME,
   ON_SELECT_DIFFICULTY_DEFINITIONS,
   ON_ANSWER_FEEDBACK_FINISHED,
@@ -139,7 +138,6 @@ export default (state = initialState, action) => {
     case GAME_COUNTDOWN_TICK:
       return { ...state, gameCountdown: state.gameCountdown - 1 };
 
-    case ON_SKIP_CURRENT_WORD:
     case ON_ANSWER_FEEDBACK_FINISHED:
       if (roundIsOver(state.questionIndex + 1)) {
         return { ...getStateForRoundEnd(state) };

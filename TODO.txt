@@ -21,9 +21,8 @@
 
 Definitions:
 - show correct word if play is incorrect:
-  - on submit answer, on timeout = 0
-    - make answer letters reappear in correct order, move cross/tick down a bit
-  - on skip??
+  - test on device to see if it looks ok/needs tweaking
+  - faster correct answer feedback?
 - re-test retry logic with new difficulty levels
 - lock difficulties until completing earlier levels?
 - Info icon on each difficulty:

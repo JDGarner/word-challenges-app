@@ -142,7 +142,6 @@ const DefinitionGame = ({
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
-  onSkipCurrentWord,
   onExitGame,
   onAnswerFeedbackFinished,
 }) => {
@@ -169,25 +168,6 @@ const DefinitionGame = ({
     };
   }, [onBeginGame, onGameEnd, word]);
 
-  useEffect(() => {
-    // Fade out game, show incorrect answer feedback
-    if (gameCountdown === 0 && !userActionsDisabled) {
-      setUserActionsDisabled(true);
-      setIsShowingFeedback(true);
-      setIsCurrentAnswerCorrect(false);
-      setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
-
-      Animated.timing(gameOpacity, {
-        toValue: 0,
-        duration: ANSWER_FEEDBACK_ANIMATION_DURATION,
-        useNativeDriver: true,
-      }).start(() => {
-        setIsShowingFeedback(false);
-        onAnswerFeedbackFinished();
-      });
-    }
-  }, [gameCountdown]);
-
   // Fade in game when word changes
   useEffect(() => {
     Animated.timing(gameOpacity, {
@@ -197,10 +177,11 @@ const DefinitionGame = ({
     }).start();
   }, [word]);
 
-  const onAllLettersAdded = answer => {
+  // Fade out game, show answer feedback
+  const handleGameTransition = isAnswerCorrect => {
     setUserActionsDisabled(true);
     setIsShowingFeedback(true);
-    setIsCurrentAnswerCorrect(answer.toUpperCase() === word.toUpperCase());
+    setIsCurrentAnswerCorrect(isAnswerCorrect);
     setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
 
     Animated.timing(gameOpacity, {
@@ -211,7 +192,16 @@ const DefinitionGame = ({
       setIsShowingFeedback(false);
       onAnswerFeedbackFinished();
     });
+  };
 
+  useEffect(() => {
+    if (gameCountdown === 0 && !userActionsDisabled) {
+      handleGameTransition(false);
+    }
+  }, [gameCountdown]);
+
+  const onAllLettersAdded = answer => {
+    handleGameTransition(answer.toUpperCase() === word.toUpperCase());
     onSubmitAnswer(answer);
   };
 
@@ -328,7 +318,7 @@ const DefinitionGame = ({
             <ShuffleButton onPress={onPressShuffle} disabled={userActionsDisabled}>
               <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
             </ShuffleButton>
-            <SkipButton onPress={onSkipCurrentWord} disabled={userActionsDisabled}>
+            <SkipButton onPress={() => handleGameTransition(false)} disabled={userActionsDisabled}>
               <Icon name="skip-next" size={ICON_SIZE + 4} color={theme.textColor} />
             </SkipButton>
           </FooterButtons>

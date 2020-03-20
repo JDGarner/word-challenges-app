@@ -4,7 +4,6 @@ import {
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
-  onSkipCurrentWord,
   onExitGame,
   onAnswerFeedbackFinished,
 } from "../redux/definitions-actions";
@@ -27,7 +26,6 @@ const mapDispatchToProps = {
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
-  onSkipCurrentWord,
   onExitGame,
   onAnswerFeedbackFinished,
 };
