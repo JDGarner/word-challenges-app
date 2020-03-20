@@ -6,7 +6,6 @@ import {
   onSubmitAnswer,
   onSkipCurrentWord,
   onExitGame,
-  onGameCountdownAtZero,
   onAnswerFeedbackFinished,
 } from "../redux/definitions-actions";
 import { getDefinitionState } from "../definitions-utils";
@@ -30,7 +29,6 @@ const mapDispatchToProps = {
   onSubmitAnswer,
   onSkipCurrentWord,
   onExitGame,
-  onGameCountdownAtZero,
   onAnswerFeedbackFinished,
 };
 

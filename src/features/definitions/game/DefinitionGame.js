@@ -144,7 +144,6 @@ const DefinitionGame = ({
   onSubmitAnswer,
   onSkipCurrentWord,
   onExitGame,
-  onGameCountdownAtZero,
   onAnswerFeedbackFinished,
 }) => {
   const letters = useMemo(() => shuffle(word.toUpperCase().split("")), [word]);
@@ -160,6 +159,7 @@ const DefinitionGame = ({
   const [answerFeedbackAnimationToggle, setAnswerFeedbackAnimationToggle] = useState(false);
   const [gameOpacity] = useState(new Animated.Value(0));
   const [userActionsDisabled, setUserActionsDisabled] = useState(false);
+  const [isShowingFeedback, setIsShowingFeedback] = useState(false);
 
   useEffect(() => {
     onBeginGame();
@@ -173,16 +173,18 @@ const DefinitionGame = ({
     // Fade out game, show incorrect answer feedback
     if (gameCountdown === 0 && !userActionsDisabled) {
       setUserActionsDisabled(true);
+      setIsShowingFeedback(true);
+      setIsCurrentAnswerCorrect(false);
+      setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
 
       Animated.timing(gameOpacity, {
         toValue: 0,
         duration: ANSWER_FEEDBACK_ANIMATION_DURATION,
         useNativeDriver: true,
       }).start(() => {
-        onGameCountdownAtZero();
+        setIsShowingFeedback(false);
+        onAnswerFeedbackFinished();
       });
-      setIsCurrentAnswerCorrect(false);
-      setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
     }
   }, [gameCountdown]);
 
@@ -197,20 +199,20 @@ const DefinitionGame = ({
 
   const onAllLettersAdded = answer => {
     setUserActionsDisabled(true);
+    setIsShowingFeedback(true);
     setIsCurrentAnswerCorrect(answer.toUpperCase() === word.toUpperCase());
-
     setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
+
     Animated.timing(gameOpacity, {
       toValue: 0,
       duration: ANSWER_FEEDBACK_ANIMATION_DURATION,
       useNativeDriver: true,
-    }).start();
+    }).start(() => {
+      setIsShowingFeedback(false);
+      onAnswerFeedbackFinished();
+    });
 
     onSubmitAnswer(answer);
-
-    setTimeout(() => {
-      onAnswerFeedbackFinished(answer);
-    }, ANSWER_FEEDBACK_ANIMATION_DURATION);
   };
 
   const addAnswerLetter = (scrambled, index) => {
@@ -279,18 +281,30 @@ const DefinitionGame = ({
           <GameHeader definition={definition} />
 
           <AnswersContainer>
-            {answerLetters.map((answer, i) => {
-              return (
-                <AnswerLetter
-                  key={answer.id}
-                  disabled={userActionsDisabled || answer.isFreeLetter}
-                  onPressLetter={() => removeAnswerLetter(answer, i)}
-                  letter={answer.letter}
-                  isFreeLetter={answer.isFreeLetter}
-                  {...answerTextProps}
-                />
-              );
-            })}
+            {isShowingFeedback && !isCurrentAnswerCorrect
+              ? word.split("").map((letter, i) => {
+                  return (
+                    <AnswerLetter
+                      key={`${letter}-${i}`}
+                      disabled
+                      isFeedbackLetter
+                      letter={letter.toUpperCase()}
+                      {...answerTextProps}
+                    />
+                  );
+                })
+              : answerLetters.map((answer, i) => {
+                  return (
+                    <AnswerLetter
+                      key={answer.id}
+                      disabled={userActionsDisabled || answer.isFreeLetter}
+                      onPressLetter={() => removeAnswerLetter(answer, i)}
+                      letter={answer.letter}
+                      isFreeLetter={answer.isFreeLetter}
+                      {...answerTextProps}
+                    />
+                  );
+                })}
           </AnswersContainer>
 
           <ScrambledLettersContainer>
@@ -319,12 +333,11 @@ const DefinitionGame = ({
             </SkipButton>
           </FooterButtons>
         </FooterContainer>
-
-        <AnswerFeedback
-          isCorrect={isCurrentAnswerCorrect}
-          animationToggle={answerFeedbackAnimationToggle}
-        />
       </ContentContainer>
+      <AnswerFeedback
+        isCorrect={isCurrentAnswerCorrect}
+        animationToggle={answerFeedbackAnimationToggle}
+      />
     </Fragment>
   );
 };

@@ -9,7 +9,6 @@ export const ON_BEGIN_GAME = `${NAMESPACE}/ON_BEGIN_GAME`;
 export const ON_GAME_END = `${NAMESPACE}/ON_GAME_END`;
 export const ON_ROUND_END = `${NAMESPACE}/ON_ROUND_END`;
 export const GAME_COUNTDOWN_TICK = `${NAMESPACE}/GAME_COUNTDOWN_TICK`;
-export const ON_GAME_COUNTDOWN_AT_ZERO = `${NAMESPACE}/ON_GAME_COUNTDOWN_AT_ZERO`;
 export const ON_SUBMIT_ANSWER = `${NAMESPACE}/ON_SUBMIT_ANSWER`;
 export const ON_ANSWER_FEEDBACK_FINISHED = `${NAMESPACE}/ON_ANSWER_FEEDBACK_FINISHED`;
 export const ON_PRESS_START_NEW_GAME = `${NAMESPACE}/ON_PRESS_START_NEW_GAME`;
@@ -58,10 +57,6 @@ export const onRoundEnd = () => ({
 
 export const gameCountdownTick = () => ({
   type: GAME_COUNTDOWN_TICK,
-});
-
-export const onGameCountdownAtZero = () => ({
-  type: ON_GAME_COUNTDOWN_AT_ZERO,
 });
 
 export const onSubmitAnswer = answer => ({

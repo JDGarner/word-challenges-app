@@ -6,7 +6,9 @@ import {
   animateLetterPressIn,
   animateLetterPressOut,
   animateAnswerLetter,
+  animateFeedbackLetter,
 } from "../definitions-utils";
+import AnswerGrid from "../../rhymes/AnswerGrid";
 
 const AnswerButton = styled(TouchableOpacity)`
   border-bottom-width: 2px;
@@ -19,11 +21,22 @@ const AnswerButton = styled(TouchableOpacity)`
   max-width: ${props => props.maxWidth};
 `;
 
-const AnswerLetter = ({ letter, isFreeLetter, onPressLetter, disabled, ...styleProps }) => {
-  const [scaleValue] = useState(new Animated.Value(isFreeLetter ? 1 : 0.5));
+const AnswerLetter = ({
+  letter,
+  isFreeLetter,
+  isFeedbackLetter,
+  onPressLetter,
+  disabled,
+  ...styleProps
+}) => {
+  const [scaleValue] = useState(new Animated.Value(isFreeLetter || isFeedbackLetter ? 1 : 0.5));
 
   useEffect(() => {
-    if (!isFreeLetter) {
+    if (isFeedbackLetter) {
+      animateFeedbackLetter(scaleValue, letter);
+    }
+
+    if (!isFreeLetter && !isFeedbackLetter) {
       animateAnswerLetter(scaleValue, letter);
     }
   }, [letter]);
@@ -42,6 +55,10 @@ const AnswerLetter = ({ letter, isFreeLetter, onPressLetter, disabled, ...styleP
       </Animated.View>
     </AnswerButton>
   );
+};
+
+AnswerLetter.defaultProps = {
+  onPressLetter: () => {},
 };
 
 export default AnswerLetter;

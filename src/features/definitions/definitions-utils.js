@@ -108,6 +108,23 @@ export const animateAnswerLetter = (value, letter) => {
   }
 };
 
+export const animateFeedbackLetter = value => {
+  Animated.sequence([
+    Animated.timing(value, {
+      toValue: 1.2,
+      duration: 600,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }),
+    Animated.timing(value, {
+      toValue: 1,
+      duration: 300,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    }),
+  ]).start();
+};
+
 export const getDefinitionState = state => {
   if (DIFFICULTY_MAP[state.difficulty] === WORD_DIFFICULTIES.EASY) {
     return {
