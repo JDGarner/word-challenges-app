@@ -1,19 +1,27 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import { ActivityIndicator, View } from "react-native";
 import theme from "../../theme";
+import { changeScreen } from "../../redux/app-actions";
+import { TopBar, ScreenContainerPadded } from "..";
+import { SCREENS } from "../../app-constants";
 
-const LoadingContainer = styled(View)`
-  flex: 1;
-  justify-content: center;
-`;
-
-const LoadingScreen = () => {
+const LoadingScreen = ({ changeScreen }) => {
   return (
-    <LoadingContainer>
-      <ActivityIndicator size="large" color={theme.textColor} />
-    </LoadingContainer>
+    <ScreenContainerPadded>
+      <TopBar onPressBack={() => changeScreen(SCREENS.MENU)} />
+      <View style={{ flex: 1, marginBottom: 70, justifyContent: "center" }}>
+        <ActivityIndicator size="large" color={theme.textColor} />
+      </View>
+    </ScreenContainerPadded>
   );
 };
 
-export default LoadingScreen;
+const mapDispatchToProps = {
+  changeScreen,
+};
+
+const ConnectedLoadingScreen = connect(null, mapDispatchToProps)(LoadingScreen);
+
+export default ConnectedLoadingScreen;

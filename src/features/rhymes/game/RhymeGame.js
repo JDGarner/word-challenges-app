@@ -36,7 +36,7 @@ const RhymeGame = ({
   return (
     <Fragment>
       <TopBar
-        onPressExitGame={onExitGame}
+        onPressBack={onExitGame}
         gameCountdown={gameCountdown}
         animatingCountdown={animatingCountdown}
         onAnimationEnd={onCountdownAnimationEnd}

@@ -16,7 +16,7 @@ const TopBarContainer = styled(View)`
 
 const TopBar = ({
   gameCountdown,
-  onPressExitGame,
+  onPressBack,
   animateDuration,
   animateDelay,
   animatingCountdown,
@@ -25,10 +25,10 @@ const TopBar = ({
 }) => {
   const BackButtonComponent = animateDuration ? (
     <PopInView pointerEvents="auto" popToSize={1} duration={animateDuration} delay={animateDelay}>
-      <BackButton onPress={onPressExitGame} disabled={disabled} />
+      <BackButton onPress={onPressBack} disabled={disabled} />
     </PopInView>
   ) : (
-    <BackButton onPress={onPressExitGame} disabled={disabled} />
+    <BackButton onPress={onPressBack} disabled={disabled} />
   );
 
   const showCountdown = !isNaN(gameCountdown) && gameCountdown >= 0;

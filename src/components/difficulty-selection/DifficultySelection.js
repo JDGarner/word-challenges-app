@@ -27,7 +27,7 @@ const DifficultySelection = ({ onSelectDifficulty, changeScreen }) => {
 
   return (
     <Fragment>
-      <TopBar onPressExitGame={() => changeScreen(SCREENS.MENU)} />
+      <TopBar onPressBack={() => changeScreen(SCREENS.MENU)} />
       <Title text="Select a Difficulty" />
       <Spacer height="8%" />
       <DifficultyOptions>

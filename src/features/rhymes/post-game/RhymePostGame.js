@@ -88,7 +88,7 @@ const RhymePostGame = ({
   return (
     <>
       <TopBar
-        onPressExitGame={onExitGame}
+        onPressBack={onExitGame}
         animateDuration={500}
         animateDelay={footerAnimationDelay + 300}
         disabled={userActionsDisabled}

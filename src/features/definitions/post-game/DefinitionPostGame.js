@@ -75,7 +75,7 @@ const DefinitionPostGame = ({ onPressStartNewGame, onExitGame, currentDefinition
   return (
     <Fragment>
       <TopBar
-        onPressExitGame={onExitGame}
+        onPressBack={onExitGame}
         animateDuration={500}
         animateDelay={totalAnimationTime}
         disabled={userActionsDisabled}

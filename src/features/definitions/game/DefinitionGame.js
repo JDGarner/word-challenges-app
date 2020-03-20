@@ -265,7 +265,7 @@ const DefinitionGame = ({
 
   return (
     <Fragment>
-      <TopBar onPressExitGame={onExitGame} gameCountdown={gameCountdown} />
+      <TopBar onPressBack={onExitGame} gameCountdown={gameCountdown} />
       <ContentContainer style={{ opacity: gameOpacity }}>
         <CentreContainer>
           <GameHeader definition={definition} />
