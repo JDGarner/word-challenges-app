@@ -51,6 +51,7 @@ const AnswerGrid = ({ answers, postGame = false }) => {
       containerStyle={{ width: "33.333333%", marginBottom: 10 }}
       animationGapTime={ANSWER_ANIMATION_GAP_TIME}
       animationStartDelay={ANSWER_ANIMATION_START_DELAY_TIME}
+      popToSize={1.05}
     />
   ) : (
     answers.map(answer => {
