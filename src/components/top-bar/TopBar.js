@@ -21,21 +21,38 @@ const TopBar = ({
   animateDelay,
   animatingCountdown,
   onAnimationEnd,
+  MiddleComponent,
+  RightComponent,
   disabled,
 }) => {
-  const BackButtonComponent = animateDuration ? (
-    <PopInView pointerEvents="auto" popToSize={1} duration={animateDuration} delay={animateDelay}>
-      <BackButton onPress={onPressBack} disabled={disabled} />
-    </PopInView>
-  ) : (
-    <BackButton onPress={onPressBack} disabled={disabled} />
-  );
+  const renderBackButton = () => {
+    if (!onPressBack) {
+      // Render hidden back button to keep spacing consistent
+      return <BackButton disabled style={{ opacity: 0 }} />;
+    }
+
+    if (animateDuration) {
+      return (
+        <PopInView
+          pointerEvents="auto"
+          popToSize={1}
+          duration={animateDuration}
+          delay={animateDelay}>
+          <BackButton onPress={onPressBack} disabled={disabled} />
+        </PopInView>
+      );
+    }
+
+    return <BackButton onPress={onPressBack} disabled={disabled} />;
+  };
 
   const showCountdown = !isNaN(gameCountdown) && gameCountdown >= 0;
 
   return (
     <TopBarContainer>
-      {BackButtonComponent}
+      {renderBackButton()}
+      {MiddleComponent}
+      {RightComponent}
       {showCountdown && (
         <Countdown
           gameCountdown={gameCountdown}
@@ -50,6 +67,8 @@ const TopBar = ({
 TopBar.defaultProps = {
   animatingCountdown: false,
   onAnimationEnd: () => {},
+  MiddleComponent: null,
+  RightComponent: null,
   disabled: false,
 };
 

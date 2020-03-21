@@ -20,6 +20,7 @@ import AnimatedSequence from "./animated-sequence/AnimatedSequence";
 import TopBar from "./top-bar/TopBar";
 import Spacer from "./spacer/Spacer";
 import Title from "./title/Title";
+import GameTitle from "./title/GameTitle";
 
 export {
   SmallText,
@@ -47,5 +48,6 @@ export {
   ScreenContainerPadded,
   TitleContainer,
   Title,
+  GameTitle,
   Spacer,
 };
