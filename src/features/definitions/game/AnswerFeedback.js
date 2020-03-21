@@ -11,7 +11,7 @@ const AnswerFeedbackContainer = styled(Animated.View)`
   width: 100%;
   justify-content: center;
   align-items: center;
-  top: 50%;
+  top: 20%;
 `;
 
 const AnswerFeedback = ({ isCorrect, animationToggle }) => {
@@ -19,7 +19,7 @@ const AnswerFeedback = ({ isCorrect, animationToggle }) => {
   const [opacity] = useState(new Animated.Value(0));
 
   const iconName = isCorrect ? "check" : "close";
-  const iconColor = isCorrect ? theme.correctColour : theme.incorrectColour;
+  const iconColor = isCorrect ? theme.correctColourFeedback : theme.incorrectColourFeedback;
 
   useDidUpdateEffect(() => {
     Animated.parallel([
@@ -40,18 +40,12 @@ const AnswerFeedback = ({ isCorrect, animationToggle }) => {
       Animated.sequence([
         Animated.timing(scale, {
           toValue: 1,
-          duration: ANSWER_FEEDBACK_ANIMATION_DURATION * 0.5,
+          duration: ANSWER_FEEDBACK_ANIMATION_DURATION * 0.75,
           easing: Easing.out(Easing.cubic),
           useNativeDriver: true,
         }),
         Animated.timing(scale, {
           toValue: 1,
-          duration: ANSWER_FEEDBACK_ANIMATION_DURATION * 0.25,
-          easing: Easing.linear,
-          useNativeDriver: true,
-        }),
-        Animated.timing(scale, {
-          toValue: 0.75,
           duration: ANSWER_FEEDBACK_ANIMATION_DURATION * 0.25,
           easing: Easing.linear,
           useNativeDriver: true,
@@ -65,7 +59,7 @@ const AnswerFeedback = ({ isCorrect, animationToggle }) => {
 
   return (
     <AnswerFeedbackContainer pointerEvents="none" style={{ transform: [{ scale }], opacity }}>
-      <Icon name={iconName} size={170} color={iconColor} />
+      <Icon name={iconName} size={280} color={iconColor} />
     </AnswerFeedbackContainer>
   );
 };

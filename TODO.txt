@@ -6,7 +6,6 @@
   - For iOS add animating spheres also, don't use linear gradient?
   - Test out different sphere/background colour & animation combinations - randomise them a bit?
 
-- dont animate difficulty screen/menu on back - test this out on device
 - splash screen
 - add extra game mode coming soon disabled button (or add Synonyms?)
 - add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
@@ -19,9 +18,6 @@
 - timeout on API call?
 
 Definitions:
-- show correct word if play is incorrect:
-  - test on device to see if it looks ok/needs tweaking
-  - faster correct answer feedback?
 - re-test retry logic with new difficulty levels
 - Info icon on each difficulty:
     Novice - Mostly common words, with some letters already filled in

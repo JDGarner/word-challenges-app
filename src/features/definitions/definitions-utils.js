@@ -111,14 +111,14 @@ export const animateAnswerLetter = (value, letter) => {
 export const animateFeedbackLetter = value => {
   Animated.sequence([
     Animated.timing(value, {
-      toValue: 1.2,
-      duration: 600,
+      toValue: 1.1,
+      duration: 250,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }),
     Animated.timing(value, {
       toValue: 1,
-      duration: 300,
+      duration: 250,
       easing: Easing.linear,
       useNativeDriver: true,
     }),

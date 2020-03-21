@@ -184,11 +184,18 @@ const DefinitionGame = ({
     setIsCurrentAnswerCorrect(isAnswerCorrect);
     setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
 
-    Animated.timing(gameOpacity, {
-      toValue: 0,
-      duration: ANSWER_FEEDBACK_ANIMATION_DURATION,
-      useNativeDriver: true,
-    }).start(() => {
+    Animated.sequence([
+      Animated.timing(gameOpacity, {
+        toValue: 1,
+        duration: ANSWER_FEEDBACK_ANIMATION_DURATION * 0.75,
+        useNativeDriver: true,
+      }),
+      Animated.timing(gameOpacity, {
+        toValue: 0,
+        duration: ANSWER_FEEDBACK_ANIMATION_DURATION * 0.25,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
       setIsShowingFeedback(false);
       onAnswerFeedbackFinished();
     });
@@ -271,7 +278,7 @@ const DefinitionGame = ({
           <GameHeader definition={definition} />
 
           <AnswersContainer>
-            {isShowingFeedback && !isCurrentAnswerCorrect
+            {isShowingFeedback
               ? word.split("").map((letter, i) => {
                   return (
                     <AnswerLetter

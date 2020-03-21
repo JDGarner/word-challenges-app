@@ -8,7 +8,6 @@ import {
   animateAnswerLetter,
   animateFeedbackLetter,
 } from "../definitions-utils";
-import AnswerGrid from "../../rhymes/AnswerGrid";
 
 const AnswerButton = styled(TouchableOpacity)`
   border-bottom-width: 2px;
