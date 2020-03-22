@@ -15,7 +15,8 @@
   - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 - increase number of definitions/rhymes returned by API call (and buffer)
 - make sure app handles gracefully if API returns error or improper object
-- timeout on API call?
+- add back button to error screen
+- remove components index.js to get rid of require cycle warning
 
 Definitions:
 - re-test retry logic with new difficulty levels

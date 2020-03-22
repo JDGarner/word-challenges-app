@@ -6,12 +6,14 @@ import { BorderedButton } from "../button/Button";
 
 export const ERROR_CODES = {
   CONNECTION: "CONNECTION",
+  TIMEOUT: "TIMEOUT",
   API: "API",
   GENERIC: "GENERIC",
 };
 
 const ERROR_CODES_TO_TEXT = {
   CONNECTION: "Network error, no internet connection",
+  TIMEOUT: "Network request timed out",
   API: "Oops, something went wrong, our servers may be down at the moment",
   GENERIC: "Oops, something went wrong, our servers may be down at the moment",
 };

@@ -12,9 +12,8 @@ const AnimatedSequence = ({
   containerStyle,
 }) => {
   return items.map((item, i) => (
-    <View style={containerStyle}>
+    <View key={item.id} style={containerStyle}>
       <PopInView
-        key={item.id}
         popToSize={popToSize}
         duration={animationAppearDuration}
         delay={i * animationGapTime + animationStartDelay}

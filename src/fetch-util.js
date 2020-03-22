@@ -5,6 +5,8 @@ import { ERROR_CODES } from "./components/error/ErrorScreen";
 
 const { API_URL, API_KEY } = getConfig();
 
+const FETCH_TIMEOUT = 12000;
+
 const mockFetch = endpoint => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -42,19 +44,35 @@ const fetchData = async (endpoint, onError = () => {}) => {
       return null;
     }
 
+    let didTimeOut = false;
+
+    const fetchTimeout = setTimeout(function() {
+      didTimeOut = true;
+      console.log("Network request timed out");
+      onError(ERROR_CODES.TIMEOUT);
+    }, FETCH_TIMEOUT);
+
     try {
       const response = await enhancedFetch(API_URL, endpoint);
+      clearTimeout(fetchTimeout);
+
+      if (didTimeOut) {
+        return null;
+      }
 
       if (response.status === 200) {
         return response;
       } else {
+        console.log("Error: ", response);
         onError(ERROR_CODES.API);
         return null;
       }
     } catch (error) {
-      console.error(error);
-      onError(ERROR_CODES.API);
-      return null;
+      if (!didTimeOut) {
+        console.log(error);
+        onError(ERROR_CODES.API);
+        return null;
+      }
     }
   });
 };
@@ -69,7 +87,7 @@ const fetchFromApi = async (endpoint, onSuccess, onError = () => {}) => {
       onSuccess(responseJson);
     }
   } catch (error) {
-    console.error(error);
+    console.log(error);
     onError(ERROR_CODES.GENERIC);
   }
 };
