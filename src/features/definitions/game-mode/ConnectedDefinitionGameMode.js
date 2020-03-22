@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { View } from "react-native";
-import { fetchDefinitionsRetry, onPressBackFromErrorScreen } from "../redux/definitions-actions";
+import { fetchDefinitionsRetry, goBackToDifficultySelection } from "../redux/definitions-actions";
 import DefintionGameMode from "./DefinitionGameMode";
 import { ErrorScreen, LoadingScreen, ScreenContainerPadded } from "../../../components";
 import { GAME_STATES } from "../definitions-constants";
@@ -19,7 +19,7 @@ const mapStateToProps = ({ definitions }) => {
 
 const mapDispatchToProps = {
   fetchDefinitionsRetry,
-  onPressBackFromErrorScreen,
+  goBackToDifficultySelection,
 };
 
 const DefintionGameModeLoader = props => {
@@ -37,7 +37,7 @@ const DefintionGameModeLoader = props => {
         <ErrorScreen
           onButtonPress={props.fetchDefinitionsRetry}
           errorCode={props.errorCode}
-          onPressBack={props.onPressBackFromErrorScreen}
+          onPressBack={props.goBackToDifficultySelection}
         />
       );
     }
@@ -46,7 +46,7 @@ const DefintionGameModeLoader = props => {
       return <DefintionGameMode currentWord={props.currentWord} gameState={props.gameState} />;
     }
 
-    return <LoadingScreen />;
+    return <LoadingScreen onPressBack={props.goBackToDifficultySelection} />;
   };
 
   return getContent();

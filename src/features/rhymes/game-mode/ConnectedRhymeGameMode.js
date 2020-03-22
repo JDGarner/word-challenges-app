@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { View } from "react-native";
-import { fetchRhymesRetry, onPressBackFromErrorScreen } from "../redux/rhymes-actions";
+import { fetchRhymesRetry, goBackToDifficultySelection } from "../redux/rhymes-actions";
 import RhymeGameMode from "./RhymeGameMode";
 import { LoadingScreen, ErrorScreen, ScreenContainerPadded } from "../../../components";
 import { GAME_STATES } from "../rhymes-constants";
@@ -15,7 +15,7 @@ const mapStateToProps = ({ rhymes }) => {
 
 const mapDispatchToProps = {
   fetchRhymesRetry,
-  onPressBackFromErrorScreen,
+  goBackToDifficultySelection,
 };
 
 const RhymeGameModeLoader = props => {
@@ -33,7 +33,7 @@ const RhymeGameModeLoader = props => {
         <ErrorScreen
           onButtonPress={props.fetchRhymesRetry}
           errorCode={props.errorCode}
-          onPressBack={props.onPressBackFromErrorScreen}
+          onPressBack={props.goBackToDifficultySelection}
         />
       );
     }
@@ -42,7 +42,7 @@ const RhymeGameModeLoader = props => {
       return <RhymeGameMode gameState={props.gameState} />;
     }
 
-    return <LoadingScreen />;
+    return <LoadingScreen onPressBack={props.goBackToDifficultySelection} />;
   };
 
   return <View style={{ flex: 1 }}>{getContent()}</View>;
