@@ -12,6 +12,7 @@ import {
   FETCH_RHYMES_RETRY,
   ON_EXIT_GAME,
   ON_SELECT_DIFFICULTY_RHYMES,
+  ON_PRESS_BACK_FROM_ERROR_SCREEN,
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
@@ -223,6 +224,12 @@ export default (state = initialState, action) => {
         difficulty: action.difficulty,
       };
     }
+
+    case ON_PRESS_BACK_FROM_ERROR_SCREEN:
+      return {
+        ...state,
+        gameState: GAME_STATES.DIFFICULTYSELECTION,
+      };
 
     default:
       return state;

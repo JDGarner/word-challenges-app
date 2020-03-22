@@ -14,6 +14,7 @@ export const ON_PRE_GAME_COUNTDOWN_END = `${NAMESPACE}/ON_PRE_GAME_COUNTDOWN_END
 export const ON_COUNTDOWN_ANIMATION_END = `${NAMESPACE}/ON_COUNTDOWN_ANIMATION_END`;
 export const ON_EXIT_GAME = `${NAMESPACE}/ON_EXIT_GAME`;
 export const ON_SELECT_DIFFICULTY_RHYMES = `${NAMESPACE}/ON_SELECT_DIFFICULTY_RHYMES`;
+export const ON_PRESS_BACK_FROM_ERROR_SCREEN = `${NAMESPACE}/ON_PRESS_BACK_FROM_ERROR_SCREEN`;
 
 export const fetchRhymes = () => ({
   type: FETCH_RHYMES,
@@ -74,4 +75,8 @@ export const onExitGame = () => ({
 export const onSelectDifficulty = difficulty => ({
   type: ON_SELECT_DIFFICULTY_RHYMES,
   difficulty,
+});
+
+export const onPressBackFromErrorScreen = () => ({
+  type: ON_PRESS_BACK_FROM_ERROR_SCREEN,
 });

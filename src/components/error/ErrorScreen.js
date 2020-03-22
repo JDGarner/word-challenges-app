@@ -1,8 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import { View } from "react-native";
+import styled from "styled-components";
 import { MediumText, LargeText } from "../text/Text";
-import { BorderedButton } from "../button/Button";
+import { PaddedButton } from "../button/Button";
+import { ScreenContainerPadded } from "../containers/Containers";
+import TopBar from "../top-bar/TopBar";
 
 export const ERROR_CODES = {
   CONNECTION: "CONNECTION",
@@ -18,32 +20,37 @@ const ERROR_CODES_TO_TEXT = {
   GENERIC: "Oops, something went wrong, our servers may be down at the moment",
 };
 
-const ErrorContainer = styled(View)`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  margin-horizontal: 15px;
-`;
-
 const ErrorText = styled(MediumText)`
   text-align: center;
   margin-bottom: 30px;
 `;
 
-const ErrorButton = styled(BorderedButton)`
-  margin-bottom: 20px;
+const ErrorButton = styled(PaddedButton)`
+  width: 160;
+  justify-content: center;
+  align-items: center;
 `;
 
-const ErrorScreen = ({ onButtonPress, errorCode }) => {
+const ErrorScreen = ({ onButtonPress, errorCode, onPressBack }) => {
   return (
-    <ErrorContainer>
-      <ErrorText>{ERROR_CODES_TO_TEXT[errorCode]}</ErrorText>
-      {onButtonPress && (
-        <ErrorButton style={{ paddingVertical: 4, paddingHorizontal: 12 }} onPress={onButtonPress}>
-          <LargeText>Retry</LargeText>
-        </ErrorButton>
-      )}
-    </ErrorContainer>
+    <ScreenContainerPadded>
+      <TopBar onPressBack={onPressBack} />
+      <View
+        style={{
+          flex: 1,
+          marginBottom: 120,
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+        }}>
+        <ErrorText>{ERROR_CODES_TO_TEXT[errorCode]}</ErrorText>
+        {onButtonPress && (
+          <ErrorButton onPress={onButtonPress}>
+            <LargeText>Retry</LargeText>
+          </ErrorButton>
+        )}
+      </View>
+    </ScreenContainerPadded>
   );
 };
 

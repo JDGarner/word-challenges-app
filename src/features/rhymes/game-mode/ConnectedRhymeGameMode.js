@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { View } from "react-native";
-import { fetchRhymesRetry } from "../redux/rhymes-actions";
+import { fetchRhymesRetry, onPressBackFromErrorScreen } from "../redux/rhymes-actions";
 import RhymeGameMode from "./RhymeGameMode";
 import { LoadingScreen, ErrorScreen, ScreenContainerPadded } from "../../../components";
 import { GAME_STATES } from "../rhymes-constants";
@@ -15,6 +15,7 @@ const mapStateToProps = ({ rhymes }) => {
 
 const mapDispatchToProps = {
   fetchRhymesRetry,
+  onPressBackFromErrorScreen,
 };
 
 const RhymeGameModeLoader = props => {
@@ -28,7 +29,13 @@ const RhymeGameModeLoader = props => {
     }
 
     if (props.connectionError) {
-      return <ErrorScreen onButtonPress={props.fetchRhymesRetry} errorCode={props.errorCode} />;
+      return (
+        <ErrorScreen
+          onButtonPress={props.fetchRhymesRetry}
+          errorCode={props.errorCode}
+          onPressBack={props.onPressBackFromErrorScreen}
+        />
+      );
     }
 
     if (props.loaded && props.currentWord) {

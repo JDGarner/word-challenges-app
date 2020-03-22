@@ -10,6 +10,7 @@ import {
   ON_EXIT_GAME,
   ON_SELECT_DIFFICULTY_DEFINITIONS,
   ON_ANSWER_FEEDBACK_FINISHED,
+  ON_PRESS_BACK_FROM_ERROR_SCREEN,
 } from "./definitions-actions";
 import {
   GAME_STATES,
@@ -185,6 +186,12 @@ export default (state = initialState, action) => {
         gameState: GAME_STATES.PLAYING,
       };
     }
+
+    case ON_PRESS_BACK_FROM_ERROR_SCREEN:
+      return {
+        ...state,
+        gameState: GAME_STATES.DIFFICULTYSELECTION,
+      };
 
     default:
       return state;
