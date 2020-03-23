@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { StatusBar } from "react-native";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
+import SplashScreen from "react-native-splash-screen";
 import theme from "./theme";
 import configureStore from "./store";
 import { fetchRhymes } from "./features/rhymes/redux/rhymes-actions";
@@ -14,6 +15,8 @@ const store = configureStore();
 
 export default function AppProvider() {
   useEffect(() => {
+    SplashScreen.hide();
+
     store.dispatch(fetchRhymes());
     store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.EASY));
     store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.HARD));
