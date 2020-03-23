@@ -30,11 +30,19 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, onExitGame }) => {
         setCountdown(c => c - 1);
       }, 1000);
     }, PRE_GAME_COUNTDOWN_DELAY);
+
+    return () => {
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+      }
+    };
   }, []);
 
   useEffect(() => {
-    if (countdown === 0) {
+    if (countdown === 0 && countdownInterval) {
       clearInterval(countdownInterval);
+      countdownInterval = null;
       onPreGameCountdownEnd();
     }
 
