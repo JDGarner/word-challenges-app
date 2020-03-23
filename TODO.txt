@@ -4,10 +4,12 @@
 
 - Test out different sphere/background colour & animation combinations - randomise them a bit?
 
+- add heading to each mode?
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
 - look into splash screen stuff
-- decide on colour scheme and rough design for app icon
+- decide on colour scheme and rough design for app icon & splash screen
+- note down requirements of images/sizes for icons/splash for android * ios
 - send request for app icon/splash screen design to https://www.peopleperhour.com/freelancer/design/billie_argent-argent-graphic-ui-ux-design-web-design-yvvqzvy
 
 
