@@ -10,7 +10,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-community/blur": "^3.4.1",
     "@react-native-community/netinfo": "^4.2.2",
     "lodash": "^4.17.15",
     "react": "16.9.0",
