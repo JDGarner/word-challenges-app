@@ -3,8 +3,13 @@ import { View } from "react-native";
 import { map, capitalize } from "lodash";
 import styled from "styled-components";
 
-import { MediumLargerText, MenuButton, TopBar, Spacer, Title, AnimatedSequence } from "..";
 import { SCREENS, DIFFICULTIES } from "../../app-constants";
+import { MenuButton } from "../button/Button";
+import { MediumLargerText } from "../text/Text";
+import TopBar from "../top-bar/TopBar";
+import Title from "../title/Title";
+import Spacer from "../spacer/Spacer";
+import AnimatedSequence from "../animated-sequence/AnimatedSequence";
 
 const DifficultyOptions = styled(View)`
   flex: 1;

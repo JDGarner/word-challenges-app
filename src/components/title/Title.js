@@ -1,5 +1,7 @@
 import React from "react";
-import { MediumLargeText, TitleContainer, PopInView } from "../../components";
+import { TitleContainer } from "../containers/Containers";
+import PopInView from "../pop-in-view/PopInView";
+import { MediumLargeText } from "../text/Text";
 
 const Title = ({ fadeIn, text }) => {
   if (fadeIn) {

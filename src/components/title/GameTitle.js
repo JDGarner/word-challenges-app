@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { MediumLargeText } from "..";
-import { TEXT_TOP_PADDING } from "../text/Text";
+import { TEXT_TOP_PADDING, MediumLargeText } from "../text/Text";
 
 const GameTitle = styled(MediumLargeText)`
   padding-top: ${TEXT_TOP_PADDING};

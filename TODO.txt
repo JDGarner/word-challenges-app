@@ -2,7 +2,7 @@
 1st Release
 ----------------------------------------
 
-- Test out different sphere/background colour & animation combinations - randomise them a bit?
+- Change app name to Words of Wisdom
 
 - add heading to each mode?
 - add extra game mode coming soon disabled button (or add Synonyms?)
@@ -13,7 +13,7 @@
 - send request for app icon/splash screen design to https://www.peopleperhour.com/freelancer/design/billie_argent-argent-graphic-ui-ux-design-web-design-yvvqzvy
 
 
-- add app icons and launch screen - https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
+- add app icons and launch screen - https://medium.com/handlebar-labs/how-to-add-a-splash-screen-to-a-react-native-app-ios-and-android-30a3cec835ae
   - purple to blue linear gradient with:
     - Word of Wisdom/WoW/Wisdom/Simple white logo/lines
     - Words of Wisdom - each letter in a block, one below each other
@@ -24,7 +24,7 @@
   - Android release - https://facebook.github.io/react-native/docs/signed-apk-android
 - increase number of definitions/rhymes returned by API call (and buffer)
 - make sure app handles gracefully if API returns error or improper object
-- remove components index.js to get rid of require cycle warning
+- fix memory leak on back from rhyme game
 
 Definitions:
 - re-test retry logic with new difficulty levels
