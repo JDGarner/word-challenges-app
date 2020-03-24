@@ -1,0 +1,36 @@
+
+App Icons:
+https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
+
+iOS:
+1024 * 1024 -> Put into Icon Set Creator to generate all icon sizes
+
+Android:
+1024 * 1024 -> Put into Android asset studio to generate all icon sizes
+
+
+Splash Screen:
+https://medium.com/handlebar-labs/how-to-add-a-splash-screen-to-a-react-native-app-ios-and-android-30a3cec835ae
+
+(3 Logo images to sit in the middle of splash screen)
+
+iOS: (1x, 2x, 3x)
+300 * 300, 600 * 600, 900 * 900
+
+Android:
+mdpi ~160dpi 1x 300 * 300
+hdpi ~240dpi 1.5x 450 * 450
+xhdpi ~320dpi 2x 600 * 600
+xxhdpi ~480dpi 3x 900 * 900
+xxxhdpi ~640dpi 4x 1200 * 1200
+
+
+Images needed for app icons:
+1024 * 1024
+
+Images needed for splash screen:
+300 * 300, 450 * 450, 600 * 600, 900 * 900, 1200 * 1200
+
+
+
+
