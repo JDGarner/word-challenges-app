@@ -17,6 +17,7 @@ import {
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import AnswerFeedback from "./AnswerFeedback";
 import { TopBar } from "../../../components";
+import SoundManager from "../../sound/SoundManager";
 
 const ICON_SIZE = 32;
 
@@ -182,6 +183,13 @@ const DefinitionGame = ({
     setUserActionsDisabled(true);
     setIsShowingFeedback(true);
     setIsCurrentAnswerCorrect(isAnswerCorrect);
+
+    if (isAnswerCorrect) {
+      SoundManager.getInstance().playPositiveSound();
+    } else {
+      SoundManager.getInstance().playNegativeSound();
+    }
+
     setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
 
     Animated.sequence([

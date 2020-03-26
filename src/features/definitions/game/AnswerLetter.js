@@ -8,6 +8,7 @@ import {
   animateAnswerLetter,
   animateFeedbackLetter,
 } from "../definitions-utils";
+import { TEXT_TOP_PADDING } from "../../../components/text/Text";
 
 const AnswerButton = styled(TouchableOpacity)`
   border-bottom-width: 2px;
@@ -18,6 +19,10 @@ const AnswerButton = styled(TouchableOpacity)`
   height: ${props => props.height};
   width: 28;
   max-width: ${props => props.maxWidth};
+`;
+
+const AnswerLetterText = styled(MediumText)`
+  padding-top: ${TEXT_TOP_PADDING};
 `;
 
 const AnswerLetter = ({
@@ -48,9 +53,9 @@ const AnswerLetter = ({
       disabled={disabled}
       {...styleProps}>
       <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
-        <MediumText textAlign="center" {...styleProps}>
+        <AnswerLetterText textAlign="center" {...styleProps}>
           {letter}
-        </MediumText>
+        </AnswerLetterText>
       </Animated.View>
     </AnswerButton>
   );

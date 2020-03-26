@@ -2,7 +2,7 @@ import React from "react";
 import { SafeAreaView } from "react-native";
 import AnimatedLinearGradient from "react-native-animated-linear-gradient";
 
-const appColors = ["#407891", "#5C4879", "#6F8EBE", "#67857C"];
+const appColors = ["#4e95ae", "#6c5589", "#6F8EBE", "#67857C"];
 
 const AppBackground = ({ children }) => {
   return (

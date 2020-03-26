@@ -10,6 +10,7 @@ import { fetchDefinitions } from "./features/definitions/redux/definitions-actio
 import { WORD_DIFFICULTIES } from "./features/definitions/definitions-constants";
 import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
 import { AppBackground } from "./components";
+import SoundManager from "./features/sound/SoundManager";
 
 const store = configureStore();
 
@@ -20,6 +21,8 @@ export default function AppProvider() {
     store.dispatch(fetchRhymes());
     store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.EASY));
     store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.HARD));
+
+    SoundManager.init();
   }, []);
 
   return (
