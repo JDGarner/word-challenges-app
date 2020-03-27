@@ -5,17 +5,18 @@
 - add heading to each mode?
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
-- decide on colour scheme and rough design for app icon & splash screen
-  - purple to blue linear gradient with:
-    - Word of Wisdom/WoW/Wisdom/Simple white logo/lines
-    - Words of Wisdom - each letter in a block, one below each other
-- send request for app icon/splash screen design to https://www.peopleperhour.com/freelancer/design/billie_argent-argent-graphic-ui-ux-design-web-design-yvvqzvy
+- Change display name to Words of Wisdom
 
-- Add sound effects & mute (into settings screen)
+- send request for app icon/logo to https://www.peopleperhour.com/freelancer/design/billie_argent-argent-graphic-ui-ux-design-web-design-yvvqzvy
+
+- Add sound effects:
+  - Shuffle
+- Add mute (into settings screen)
 - add different dev and prod environments with different .env files (see config github)
 - increase number of definitions/rhymes returned by API call (and buffer)
 - make sure app handles gracefully if API returns error or improper object
-- Change app name to Words of Wisdom
+- make green tick more vibrant
+
 - Release android app - https://facebook.github.io/react-native/docs/signed-apk-android
 - Release iOS app
 
