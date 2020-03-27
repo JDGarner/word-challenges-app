@@ -5,4 +5,5 @@ export default {
   correctColour: "rgba(0, 180, 0, 0.7)",
   incorrectColour: "rgba(220, 0, 0, 0.7)",
   redColor: "rgba(220, 0, 0, 0.9)",
+  switchTrackColor: "rgba(255,255,255,0.25)",
 };

@@ -39,7 +39,7 @@ const MainMenu = ({ changeScreen }) => {
       <TopBar
         MiddleComponent={<GameTitle>WORDS OF WISDOM</GameTitle>}
         RightComponent={
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => changeScreen(SCREENS.SETTINGS)}>
             <Icon name="settings" size={28} color="white" />
           </TouchableOpacity>
         }

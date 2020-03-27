@@ -1,4 +1,6 @@
 import Sound from "react-native-sound";
+import AsyncStorage from "@react-native-community/async-storage";
+import { APP_STORAGE } from "../../app-constants";
 
 Sound.setCategory("Playback", true);
 
@@ -6,8 +8,10 @@ export default class SoundManager {
   static soundManagerInstance = null;
 
   constructor() {
+    this.muted = false;
     this.positiveSound = this.initSound("positive.mp3");
     this.negativeSound = this.initSound("negative.mp3");
+    this.getMuteSetting();
   }
 
   static init() {
@@ -24,6 +28,34 @@ export default class SoundManager {
     return this.soundManagerInstance;
   }
 
+  isMuted = () => {
+    return this.muted;
+  };
+
+  toggleMute = () => {
+    this.muted = !this.muted;
+    this.saveMuteSetting(this.muted);
+  };
+
+  saveMuteSetting = async muted => {
+    try {
+      await AsyncStorage.setItem(APP_STORAGE.MUTED, muted.toString());
+    } catch (e) {
+      console.log("AsyncStorage Write Error");
+    }
+  };
+
+  getMuteSetting = async () => {
+    try {
+      const muted = await AsyncStorage.getItem(APP_STORAGE.MUTED);
+      if (muted !== null) {
+        this.muted = muted === "true";
+      }
+    } catch (e) {
+      console.log("AsyncStorage Read Error");
+    }
+  };
+
   initSound = filename => {
     return new Sound(filename, Sound.MAIN_BUNDLE, error => {
       if (error) return null;
@@ -31,7 +63,7 @@ export default class SoundManager {
   };
 
   playSound = sound => {
-    if (sound && sound.play) {
+    if (!this.muted && sound && sound.play) {
       sound.play();
     }
   };
@@ -51,6 +83,7 @@ export default class SoundManager {
 
   // play correct sound
   // Classic game sound, one up, rising, positive. Version 6/8
+  // Quiet bell hit
 
   // play incorrect sound
   // Classic game sound, one up, rising, positive. Version 3

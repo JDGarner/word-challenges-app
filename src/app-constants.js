@@ -6,6 +6,7 @@ export const ENDPOINTS = {
 
 export const SCREENS = {
   MENU: "Menu",
+  SETTINGS: "Settings",
   DEFINITIONS: "Definitions",
   RHYMES: "Rhymes",
   SYNONYMS: "Synonyms",
@@ -16,6 +17,10 @@ export const DIFFICULTIES = {
   JOURNEYMAN: "journeyman",
   EXPERT: "expert",
   MASTER: "master",
+};
+
+export const APP_STORAGE = {
+  MUTED: "app_muted",
 };
 
 export const RETRY_TIMEOUT = 1000;

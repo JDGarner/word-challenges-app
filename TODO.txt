@@ -11,7 +11,7 @@
 
 - Add sound effects:
   - Shuffle
-- Add mute (into settings screen)
+  - Post Game
 - add different dev and prod environments with different .env files (see config github)
 - increase number of definitions/rhymes returned by API call (and buffer)
 - make sure app handles gracefully if API returns error or improper object
@@ -34,6 +34,7 @@ Rhymes:
 - add shimmer animation - correct answers and new given word
 - add green tick/red cross animation
 - animate duplicate answer (shimmer?)
+- add sound effects
 
 Leaderboard/Stats:
 - Leaderboard button on main menu
