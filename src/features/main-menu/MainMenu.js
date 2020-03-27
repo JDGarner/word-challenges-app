@@ -4,7 +4,6 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import styled from "styled-components";
 import {
   MenuButton,
-  GameTitle,
   MediumLargerText,
   AnimatedSequence,
   Spacer,
@@ -37,7 +36,7 @@ const MainMenu = ({ changeScreen }) => {
   return (
     <ScreenContainerPadded>
       <TopBar
-        MiddleComponent={<GameTitle>WORDS OF WISDOM</GameTitle>}
+        titleText="WORDS OF WISDOM"
         RightComponent={
           <TouchableOpacity onPress={() => changeScreen(SCREENS.SETTINGS)}>
             <Icon name="settings" size={28} color="white" />

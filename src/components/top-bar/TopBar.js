@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { View } from "react-native";
 import { BackButton } from "../../components/button/Button";
 import Countdown from "../countdown/Countdown";
+import TopBarTitle from "../title/TopBarTitle";
+import { LargeText } from "../text/Text";
 
 const TopBarContainer = styled(View)`
   height: 70;
@@ -18,7 +20,7 @@ const TopBar = ({
   onPressBack,
   animatingCountdown,
   onAnimationEnd,
-  MiddleComponent,
+  titleText,
   RightComponent,
   disabled,
 }) => {
@@ -36,7 +38,7 @@ const TopBar = ({
   return (
     <TopBarContainer>
       {renderBackButton()}
-      {MiddleComponent}
+      {titleText && <TopBarTitle>{titleText}</TopBarTitle>}
       {RightComponent}
       {showCountdown && (
         <Countdown
@@ -52,7 +54,7 @@ const TopBar = ({
 TopBar.defaultProps = {
   animatingCountdown: false,
   onAnimationEnd: () => {},
-  MiddleComponent: null,
+  titleText: null,
   RightComponent: null,
   disabled: false,
 };
