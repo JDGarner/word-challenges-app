@@ -5,8 +5,6 @@
 - add heading to each mode?
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
-- Change display name to Words of Wisdom
-
 - send request for app icon/logo to https://www.peopleperhour.com/freelancer/design/billie_argent-argent-graphic-ui-ux-design-web-design-yvvqzvy
 
 - Add sound effects:
