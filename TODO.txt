@@ -5,6 +5,8 @@
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
 - Logo/Splash screen - waiting for logo from people per hour
+- Add Game description to google play console
+- Add Graphic assets to google play console
 
 - Add sound effects:
   - Shuffle
@@ -12,17 +14,15 @@
 - add different dev and prod environments with different .env files (see config github)
 - increase number of definitions/rhymes returned by API call (and buffer)
 - make sure app handles gracefully if API returns error or improper object
+- error reporting/tracking? (react native sentry)
 
-- Release android app - https://facebook.github.io/react-native/docs/signed-apk-android
+- Release android app:
+  - https://facebook.github.io/react-native/docs/signed-apk-android
+  - https://developer.android.com/studio/publish
 - Release iOS app
 
 Definitions:
 - re-test retry logic with new difficulty levels
-- Info icon on each difficulty:
-    Novice - Mostly common words, with some letters already filled in
-    Journeyman - Mostly common words, no letters filled in
-    Expert - Mostly obscure words, with some letters already filled in
-    Master - Mostly obscure words, no letters filled in
 - Add more feedback text randomly
 
 Rhymes:
@@ -33,6 +33,14 @@ Rhymes:
 - add sound effects
 
 Leaderboard/Stats:
+- On Submit Answer -> 
+
+- End Goals:
+  - ELO score, Rank & top X% for each mode
+
+- Screens:
+  - Link up with google play games & ios Game center
+
 - Leaderboard button on main menu
 - Maybe leaderboard button in each difficulty
 - Stats:
@@ -75,6 +83,7 @@ Future Release
 ----------------------------------------
 
 General:
+- Versus Mode
 - For iOS add animating spheres also, don't use linear gradient?
 - enableProguardInReleaseBuilds, enableSeparateBuildPerCPUArchitecture ?
   - look into how to see bundle size/app/apk size https://medium.com/@rishii.kumar.chawda/reduce-your-react-native-app-size-dramatically-5430d773c92f
