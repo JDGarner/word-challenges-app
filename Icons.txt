@@ -15,7 +15,7 @@ https://medium.com/handlebar-labs/how-to-add-a-splash-screen-to-a-react-native-a
 (3 Logo images to sit in the middle of splash screen)
 
 iOS: (1x, 2x, 3x)
-256 * 256, 512 * 512, 768 * 768
+300 * 300, 600 * 600, 900 * 900
 
 Android:
 mdpi ~160dpi 1x 300 * 300
@@ -23,13 +23,6 @@ hdpi ~240dpi 1.5x 450 * 450
 xhdpi ~320dpi 2x 600 * 600
 xxhdpi ~480dpi 3x 900 * 900
 xxxhdpi ~640dpi 4x 1200 * 1200
-
-
-Images needed for app icons:
-1024 * 1024
-
-Images needed for splash screen:
-256 * 256, 384 * 384, 512 * 512, 768 * 768, 1024 * 1024
 
 
 
