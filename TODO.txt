@@ -4,7 +4,9 @@
 
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
-- Logo/Splash screen - waiting for logo from people per hour
+- Add new app icon
+- Add image to splash screen
+- Add gradient to splash screen?
 - Add Game description to google play console
 - Add Graphic assets to google play console
 
@@ -33,21 +35,21 @@ Rhymes:
 - add sound effects
 
 Leaderboard/Stats:
-- On Submit Answer -> 
+
 
 - End Goals:
   - ELO score, Rank & top X% for each mode
+  - Leaderboard button on main screen opens leaderboards in google play services/iOS Game Center
+  - Single leaderboard for all levels -> each question gives some kind of ELO score modified by difficulty
+  - Or leaderboard for each level -> each question gives some kind of ELO score modified by difficulty
 
-- Screens:
-  - Link up with google play games & ios Game center
+- To Do:
+  - Login with google play services
+  - Show leaderboard on click menu button
+  - On Submit Answer -> call submit score to leaderboard?
+  - Determine how to assign an ELO score to each answer/round
 
-- Leaderboard button on main menu
-- Maybe leaderboard button in each difficulty
-- Stats:
-  - ELO for each difficulty level
-  - Split ELO levels into leagues - bronze -> diamond with a leaderboard on each one
-  - look into how i would add ELO? how I could track/store stats & identify users without accounts
-    - on android could use google play accounts?
+- Future Release:
   - Maybe - Other user stats - % correct, longest streak?
 
 Testing:
