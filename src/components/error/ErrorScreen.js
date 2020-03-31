@@ -34,7 +34,7 @@ const ErrorButton = styled(PaddedButton)`
 const ErrorScreen = ({ onButtonPress, errorCode, onPressBack }) => {
   return (
     <ScreenContainerPadded>
-      <TopBar onPressBack={onPressBack} />
+      <TopBar onPressLeftButton={onPressBack} />
       <View
         style={{
           flex: 1,

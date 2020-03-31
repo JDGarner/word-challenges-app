@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { TouchableOpacity } from "react-native";
 import theme from "../../theme";
 import { TextContainer } from "../containers/Containers";
@@ -19,10 +20,18 @@ export const PaddedButton = styled(BorderedButton)`
   padding-horizontal: ${props => props.paddingHorizontal || 12};
 `;
 
-export const BackButton = buttonProps => {
+export const IconButton = ({ name, size = 36, ...buttonProps }) => {
   return (
     <TouchableOpacity {...buttonProps}>
-      <Icon name="arrow-back" size={36} color={theme.textColor} />
+      <Icon name={name} size={size} color={theme.textColor} />
+    </TouchableOpacity>
+  );
+};
+
+export const FontAwesomeIconButton = ({ name, size = 36, ...buttonProps }) => {
+  return (
+    <TouchableOpacity {...buttonProps}>
+      <FontAwesomeIcon name={name} size={size} color={theme.textColor} />
     </TouchableOpacity>
   );
 };

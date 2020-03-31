@@ -4,7 +4,6 @@
 
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
-- Add new app icon
 - Add image to splash screen
 - Add gradient to splash screen?
 - Add Game description to google play console
@@ -48,6 +47,11 @@ Leaderboard/Stats:
   - Show leaderboard on click menu button
   - On Submit Answer -> call submit score to leaderboard?
   - Determine how to assign an ELO score to each answer/round
+
+Connecting with Google Play Services:
+- Handle if user doesn't have google play games
+- If user doesn't have account?
+- Silent sign in otherwise?
 
 - Future Release:
   - Maybe - Other user stats - % correct, longest streak?

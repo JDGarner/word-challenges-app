@@ -1,6 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { View } from "react-native";
 import styled from "styled-components";
 import {
   MenuButton,
@@ -12,6 +11,7 @@ import {
   TopBar,
 } from "../../components";
 import { SCREENS } from "../../app-constants";
+import { IconButton, FontAwesomeIconButton } from "../../components/button/Button";
 
 const MenuContainer = styled(View)`
   flex: 1;
@@ -36,11 +36,10 @@ const MainMenu = ({ changeScreen }) => {
   return (
     <ScreenContainerPadded>
       <TopBar
+        LeftComponent={<FontAwesomeIconButton name="trophy" size={28} onPress={() => {}} />}
         titleText="WORDS OF WISDOM"
         RightComponent={
-          <TouchableOpacity onPress={() => changeScreen(SCREENS.SETTINGS)}>
-            <Icon name="settings" size={28} color="white" />
-          </TouchableOpacity>
+          <IconButton name="settings" size={28} onPress={() => changeScreen(SCREENS.SETTINGS)} />
         }
       />
       <Title text="What would you like to train?" />

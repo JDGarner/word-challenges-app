@@ -9,7 +9,7 @@ import TopBar from "../top-bar/TopBar";
 const LoadingScreen = ({ onPressBack }) => {
   return (
     <ScreenContainerPadded>
-      <TopBar onPressBack={onPressBack} />
+      <TopBar onPressLeftButton={onPressBack} />
       <View style={{ flex: 1, marginBottom: 70, justifyContent: "center" }}>
         <ActivityIndicator size="large" color={theme.textColor} />
       </View>

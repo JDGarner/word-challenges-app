@@ -5867,6 +5867,10 @@ react-native-gesture-handler@^1.6.1:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
+"react-native-google-play-game-services@https://github.com/JDGarner/react-native-google-play-game-services":
+  version "1.0.0"
+  resolved "https://github.com/JDGarner/react-native-google-play-game-services#7fd6b4a39ffbb0c955bd9b91dc850e690d612d2b"
+
 react-native-linear-gradient@^2.5.6:
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"

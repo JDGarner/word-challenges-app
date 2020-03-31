@@ -33,7 +33,7 @@ const Settings = ({ changeScreen }) => {
 
   return (
     <ScreenContainerPadded>
-      <TopBar onPressBack={() => changeScreen(SCREENS.MENU)} />
+      <TopBar onPressLeftButton={() => changeScreen(SCREENS.MENU)} />
       <SettingsContainer>
         <SettingsRow>
           <MediumLargeText>{soundText}</MediumLargeText>

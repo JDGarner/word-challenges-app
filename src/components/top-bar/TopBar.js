@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { View } from "react-native";
-import { BackButton } from "../../components/button/Button";
+import { IconButton } from "../../components/button/Button";
 import Countdown from "../countdown/Countdown";
 import TopBarTitle from "../title/TopBarTitle";
-import { LargeText } from "../text/Text";
 
 const TopBarContainer = styled(View)`
   height: 70;
@@ -17,27 +16,27 @@ const TopBarContainer = styled(View)`
 
 const TopBar = ({
   gameCountdown,
-  onPressBack,
+  onPressLeftButton,
   animatingCountdown,
   onAnimationEnd,
   titleText,
+  LeftComponent,
   RightComponent,
   disabled,
 }) => {
-  const renderBackButton = () => {
-    if (!onPressBack) {
-      // Render hidden back button to keep spacing consistent
-      return <BackButton disabled style={{ opacity: 0 }} />;
+  const renderLeftButton = () => {
+    if (LeftComponent) {
+      return LeftComponent;
     }
 
-    return <BackButton onPress={onPressBack} disabled={disabled} />;
+    return <IconButton name="arrow-back" onPress={onPressLeftButton} disabled={disabled} />;
   };
 
   const showCountdown = !isNaN(gameCountdown) && gameCountdown >= 0;
 
   return (
     <TopBarContainer>
-      {renderBackButton()}
+      {renderLeftButton()}
       {titleText && <TopBarTitle>{titleText}</TopBarTitle>}
       {RightComponent}
       {showCountdown && (
@@ -55,6 +54,7 @@ TopBar.defaultProps = {
   animatingCountdown: false,
   onAnimationEnd: () => {},
   titleText: null,
+  LeftComponent: null,
   RightComponent: null,
   disabled: false,
 };

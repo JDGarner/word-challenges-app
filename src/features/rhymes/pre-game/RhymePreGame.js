@@ -67,7 +67,7 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, onExitGame }) => {
 
   return (
     <PreGameContainer>
-      <TopBar onPressBack={onExitGame} />
+      <TopBar onPressLeftButton={onExitGame} />
       <GameHeader word={currentWord} fadeIn />
       <FlexStartContainer style={{ width: "100%" }}>
         <Animated.View style={{ opacity }}>

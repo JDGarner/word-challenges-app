@@ -87,7 +87,7 @@ const RhymePostGame = ({
 
   return (
     <>
-      <TopBar onPressBack={onExitGame} />
+      <TopBar onPressLeftButton={onExitGame} />
       <Title text={praise} />
       <PostGameContainer>
         <PopInView popToSize={1} duration={800} delay={300}>

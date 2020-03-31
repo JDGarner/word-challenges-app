@@ -74,7 +74,7 @@ const DefinitionPostGame = ({ onPressStartNewGame, onExitGame, currentDefinition
 
   return (
     <Fragment>
-      <TopBar onPressBack={onExitGame} />
+      <TopBar onPressLeftButton={onExitGame} />
       <ContentContainer>
         <FeedbackTextContainer>
           <PopInView popToSize={1} duration={ANSWER_ANIMATION_START_DELAY_TIME} delay={150}>
