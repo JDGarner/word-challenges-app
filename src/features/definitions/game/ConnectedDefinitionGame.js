@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import DefinitionGame from "./DefinitionGame";
 import {
   onBeginGame,
-  onGameEnd,
   onSubmitAnswer,
   onExitGame,
   onAnswerFeedbackFinished,
@@ -24,7 +23,6 @@ const mapStateToProps = ({ definitions }) => {
 
 const mapDispatchToProps = {
   onBeginGame,
-  onGameEnd,
   onSubmitAnswer,
   onExitGame,
   onAnswerFeedbackFinished,

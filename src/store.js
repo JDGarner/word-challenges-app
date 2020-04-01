@@ -1,6 +1,8 @@
+import { Platform } from "react-native";
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import appReducer from "./redux/app-reducer";
+import googlePlayServicesMiddleware from "./redux/google-play-services-middleware";
 import rhymesReducer from "./features/rhymes/redux/rhymes-reducer";
 import rhymesMiddleware from "./features/rhymes/redux/rhymes-middleware";
 import definitionsReducer from "./features/definitions/redux/definitions-reducer";
@@ -15,7 +17,12 @@ export default function configureStore() {
     definitions: definitionsReducer,
   });
 
-  const middleware = applyMiddleware(rhymesMiddleware, definitionsMiddleware, thunk);
+  const middleware = [
+    rhymesMiddleware,
+    definitionsMiddleware,
+    ...(Platform.OS === "android" ? [googlePlayServicesMiddleware] : []),
+    thunk,
+  ];
 
-  return createStore(reducers, initialStore, middleware);
+  return createStore(reducers, initialStore, applyMiddleware(...middleware));
 }

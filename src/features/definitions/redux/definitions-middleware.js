@@ -5,7 +5,6 @@ import {
   FETCH_DEFINITIONS_RETRY,
   fetchDefinitions,
   ON_BEGIN_GAME,
-  ON_GAME_END,
   gameCountdownTick,
   fetchAdditionalDefinitionsSuccess,
   ON_EXIT_GAME,

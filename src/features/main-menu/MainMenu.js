@@ -21,7 +21,7 @@ const MenuContainer = styled(View)`
 
 const MENU_ITEMS = [SCREENS.DEFINITIONS, SCREENS.RHYMES, SCREENS.SYNONYMS];
 
-const MainMenu = ({ changeScreen }) => {
+const MainMenu = ({ changeScreen, showAllLeaderboards }) => {
   const getMenuItems = () => {
     return MENU_ITEMS.map(item => ({
       id: item,
@@ -36,7 +36,9 @@ const MainMenu = ({ changeScreen }) => {
   return (
     <ScreenContainerPadded>
       <TopBar
-        LeftComponent={<FontAwesomeIconButton name="trophy" size={28} onPress={() => {}} />}
+        LeftComponent={
+          <FontAwesomeIconButton name="trophy" size={28} onPress={showAllLeaderboards} />
+        }
         titleText="WORDS OF WISDOM"
         RightComponent={
           <IconButton name="settings" size={28} onPress={() => changeScreen(SCREENS.SETTINGS)} />

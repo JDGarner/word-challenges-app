@@ -3,6 +3,7 @@ import { StatusBar } from "react-native";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import SplashScreen from "react-native-splash-screen";
+
 import theme from "./theme";
 import configureStore from "./store";
 import { fetchRhymes } from "./features/rhymes/redux/rhymes-actions";

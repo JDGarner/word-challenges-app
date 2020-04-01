@@ -35,6 +35,17 @@ Rhymes:
 
 Leaderboard/Stats:
 
+Initial/First Draft To Do:
+- Login onPress showLeaderboards icon
+  - Later - decide whether to login on App load then check isSignedIn or just call signInSilently every time
+- Handle submitting score on show leaderboards or on finish game
+- Handle storing score in async storage OR getting score from API
+  (+1 for each correct answer, -1 for each wrong answer)
+
+Next To Do:
+- Change scores to ELO system (accounting for difficulty levels)
+- Add rhymes leaderboard
+- On PostGame, show ELO +/- score and add leaderboard button
 
 - End Goals:
   - ELO score, Rank & top X% for each mode

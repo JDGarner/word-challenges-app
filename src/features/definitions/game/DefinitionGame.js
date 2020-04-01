@@ -141,7 +141,6 @@ const DefinitionGame = ({
   gameCountdown,
   difficulty,
   onBeginGame,
-  onGameEnd,
   onSubmitAnswer,
   onExitGame,
   onAnswerFeedbackFinished,
@@ -163,11 +162,7 @@ const DefinitionGame = ({
 
   useEffect(() => {
     onBeginGame();
-
-    return () => {
-      onGameEnd();
-    };
-  }, [onBeginGame, onGameEnd, word]);
+  }, [onBeginGame, word]);
 
   // Fade in game when word changes
   useEffect(() => {

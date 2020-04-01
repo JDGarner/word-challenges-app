@@ -6,7 +6,6 @@ export const FETCH_DEFINITIONS_SUCCESS = `${NAMESPACE}/FETCH_DEFINITIONS_SUCCESS
 export const FETCH_DEFINITIONS_ERROR = `${NAMESPACE}/FETCH_DEFINITIONS_ERROR`;
 export const FETCH_ADDITIONAL_DEFINITIONS_SUCCESS = `${NAMESPACE}/FETCH_ADDITIONAL_DEFINITIONS_SUCCESS`;
 export const ON_BEGIN_GAME = `${NAMESPACE}/ON_BEGIN_GAME`;
-export const ON_GAME_END = `${NAMESPACE}/ON_GAME_END`;
 export const ON_ROUND_END = `${NAMESPACE}/ON_ROUND_END`;
 export const GAME_COUNTDOWN_TICK = `${NAMESPACE}/GAME_COUNTDOWN_TICK`;
 export const ON_SUBMIT_ANSWER = `${NAMESPACE}/ON_SUBMIT_ANSWER`;
@@ -45,10 +44,6 @@ export const fetchAdditionalDefinitionsSuccess = (definitions, difficulty) => ({
 
 export const onBeginGame = () => ({
   type: ON_BEGIN_GAME,
-});
-
-export const onGameEnd = () => ({
-  type: ON_GAME_END,
 });
 
 export const onRoundEnd = () => ({
