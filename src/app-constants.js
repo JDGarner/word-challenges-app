@@ -21,6 +21,7 @@ export const DIFFICULTIES = {
 
 export const APP_STORAGE = {
   MUTED: "app_muted",
+  SCORE_DEFINITIONS: "score_definitions",
 };
 
 export const RETRY_TIMEOUT = 1000;

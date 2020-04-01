@@ -10,12 +10,13 @@ import {
   ON_EXIT_GAME,
   onRoundEnd,
   ON_ROUND_END,
-  ON_SUBMIT_ANSWER,
+  ON_ANSWER_FEEDBACK_FINISHED,
 } from "./definitions-actions";
 import fetchFromApi from "../../../fetch-util";
 import { RETRY_TIMEOUT } from "../../../app-constants";
 import { DEFINITIONS_LOCAL_BUFFER, WORD_DIFFICULTIES } from "../definitions-constants";
 import { getDefinitionState, getEndpointForDifficulty, roundIsOver } from "../definitions-utils";
+import { incrementScore } from "../../../redux/leaderboards-actions";
 
 let gameCountdownInterval = null;
 
@@ -43,7 +44,7 @@ export default store => next => action => {
       clearInterval(gameCountdownInterval);
       break;
 
-    case ON_SUBMIT_ANSWER:
+    case ON_ANSWER_FEEDBACK_FINISHED:
       clearInterval(gameCountdownInterval);
 
       if (roundIsOver(definitions.questionIndex + 1)) {
@@ -63,7 +64,19 @@ export default store => next => action => {
       break;
 
     case ON_ROUND_END:
-      const { allDefinitionsIndex, allDefinitions, difficulty } = getDefinitionState(definitions);
+      const {
+        allDefinitionsIndex,
+        allDefinitions,
+        difficulty,
+        currentDefinitions,
+      } = getDefinitionState(definitions);
+
+      const netScore =
+        currentDefinitions.filter(d => d.isCorrect).length -
+        currentDefinitions.filter(d => !d.isCorrect).length;
+      store.dispatch(incrementScore(netScore));
+
+      // Fetch more definitions from API if we are running out
       if (allDefinitionsIndex > allDefinitions.length - DEFINITIONS_LOCAL_BUFFER) {
         fetchFromApi(getEndpointForDifficulty(difficulty), data =>
           dispatch(fetchAdditionalDefinitionsSuccess(data, difficulty)),

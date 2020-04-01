@@ -17,6 +17,11 @@
 - make sure app handles gracefully if API returns error or improper object
 - error reporting/tracking? (react native sentry)
 
+Design:
+- Think of new app icon and splash screen design for Monkey theme
+  - Will probably want to use it in title as well
+- Any other ways to incorporate monkey theme?
+
 - Release android app:
   - https://facebook.github.io/react-native/docs/signed-apk-android
   - https://developer.android.com/studio/publish
@@ -25,6 +30,7 @@
 Definitions:
 - re-test retry logic with new difficulty levels
 - Add more feedback text randomly
+- centre difficulty options
 
 Rhymes:
 - think about text input placement
