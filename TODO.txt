@@ -2,6 +2,7 @@
 1st Release
 ----------------------------------------
 
+kindle definition
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
 - Add image to splash screen
@@ -87,6 +88,7 @@ Maybe in 1st release:
 - Add Synonyms mode
 - Add tutorial/intro?
 - Set different themes in settings menu?
+- Handle leaderboard connection if network is down
 
 Potential Tweaks:
 - Change countdown to pie timer?

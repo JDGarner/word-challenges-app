@@ -17,7 +17,7 @@ export default store => next => async action => {
       break;
 
     case INCREMENT_SCORE:
-      const stateScore = store.getState().leaderboards.score;
+      const stateScore = store.getState().leaderboards.definitionsScore;
       const currentScore = stateScore ? Number(stateScore) : 0;
       const newScore = currentScore + action.score;
 

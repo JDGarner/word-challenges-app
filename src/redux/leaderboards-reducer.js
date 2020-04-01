@@ -1,7 +1,7 @@
 import { ON_SCORE_RETRIEVED, INCREMENT_SCORE } from "./leaderboards-actions";
 
 const initialState = {
-  score: null,
+  definitionsScore: null,
 };
 
 export default (state = initialState, action) => {
@@ -11,16 +11,16 @@ export default (state = initialState, action) => {
     case ON_SCORE_RETRIEVED: {
       return {
         ...state,
-        score: action.score,
+        definitionsScore: action.score,
       };
     }
 
     case INCREMENT_SCORE: {
-      const currentScore = state.score ? Number(state.score) : 0;
+      const currentScore = state.definitionsScore ? Number(state.definitionsScore) : 0;
 
       return {
         ...state,
-        score: currentScore + action.score,
+        definitionsScore: currentScore + action.score,
       };
     }
 

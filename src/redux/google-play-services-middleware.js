@@ -9,9 +9,10 @@ const signInAndShowLeaderboards = () => {
       RNGooglePlayGameServices.showAllLeaderboards();
     })
     .catch(() => {
-      console.log("Google Play Game Services: Silent Sign In Failed");
+      console.log("Google Play Game Services: Silent Sign In Failed, Trying Normal Sign In");
       RNGooglePlayGameServices.signInIntent()
         .then(() => {
+          console.log("Google Play Game Services: Sign In Successful");
           RNGooglePlayGameServices.showAllLeaderboards();
         })
         .catch(() => {
@@ -20,20 +21,11 @@ const signInAndShowLeaderboards = () => {
     });
 };
 
-export default store => next => async action => {
+export default store => next => action => {
   switch (action.type) {
     case SHOW_ALL_LEADERBOARDS:
-      // signInAndShowLeaderboards();
-
-      RNGooglePlayGameServices.isSignedIn()
-        .then(() => {
-          console.log("Google Play Game Services: Already Logged In");
-          RNGooglePlayGameServices.showAllLeaderboards()
-            .then(() => {})
-            .catch(() => {
-              signInAndShowLeaderboards();
-            });
-        })
+      RNGooglePlayGameServices.showAllLeaderboards()
+        .then(() => {})
         .catch(() => {
           signInAndShowLeaderboards();
         });
