@@ -38,9 +38,13 @@ Leaderboard/Stats:
 Initial/First Draft To Do:
 - Login onPress showLeaderboards icon
   - Later - decide whether to login on App load then check isSignedIn or just call signInSilently every time
-- Handle submitting score on show leaderboards or on finish game
-- Handle storing score in async storage OR getting score from API
-  (+1 for each correct answer, -1 for each wrong answer)
+- on app load:
+  - get score from storage, put in redux
+  - if score -> update in redux & storage
+- on finish game:
+  - update score in storage
+- on show leaderboards:
+  - submit score from storage? - will this update in time?
 
 Next To Do:
 - Change scores to ELO system (accounting for difficulty levels)
@@ -149,6 +153,9 @@ Name Ideas:
   Word to the Wise - Vocabulary Trainer
   Word for Word - Vocabulary Trainer
   Words of Wisdom - Vocabulary Trainer
+  Word Bird
+  Word Pig
+  Word Monkey
 
 2nd Version:
 - Compare users score to other players

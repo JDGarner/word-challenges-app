@@ -39,7 +39,7 @@ const MainMenu = ({ changeScreen, showAllLeaderboards }) => {
         LeftComponent={
           <FontAwesomeIconButton name="trophy" size={28} onPress={showAllLeaderboards} />
         }
-        titleText="WORDS OF WISDOM"
+        titleText="WORD MONKEY"
         RightComponent={
           <IconButton name="settings" size={28} onPress={() => changeScreen(SCREENS.SETTINGS)} />
         }
