@@ -1,19 +1,19 @@
 const NAMESPACE = "BOARDS";
 
-export const RETRIEVE_SCORE = `${NAMESPACE}/RETRIEVE_SCORE`;
-export const ON_SCORE_RETRIEVED = `${NAMESPACE}/ON_SCORE_RETRIEVED`;
-export const INCREMENT_SCORE = `${NAMESPACE}/INCREMENT_SCORE`;
+export const RETRIEVE_ELO = `${NAMESPACE}/RETRIEVE_ELO`;
+export const ON_ELO_RETRIEVED = `${NAMESPACE}/ON_ELO_RETRIEVED`;
+export const UPDATE_PLAYER_ELO = `${NAMESPACE}/UPDATE_PLAYER_ELO`;
 
-export const retrieveScore = () => ({
-  type: RETRIEVE_SCORE,
+export const retrieveELO = () => ({
+  type: RETRIEVE_ELO,
 });
 
-export const onScoreRetrieved = score => ({
-  type: ON_SCORE_RETRIEVED,
-  score,
+export const onELORetrieved = elo => ({
+  type: ON_ELO_RETRIEVED,
+  elo,
 });
 
-export const incrementScore = score => ({
-  type: INCREMENT_SCORE,
-  score,
+export const updatePlayerELO = eloChange => ({
+  type: UPDATE_PLAYER_ELO,
+  eloChange,
 });

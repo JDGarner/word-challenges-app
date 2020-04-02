@@ -32,6 +32,7 @@ Definitions:
 - re-test retry logic with new difficulty levels
 - Add more feedback text randomly
 - centre difficulty options
+- pressing back on DefinitionPostGame animation causes warning
 
 Rhymes:
 - think about text input placement
@@ -42,19 +43,11 @@ Rhymes:
 
 Leaderboard/Stats:
 
-Initial/First Draft To Do:
-- Login onPress showLeaderboards icon
-  - Later - decide whether to login on App load then check isSignedIn or just call signInSilently every time
-- on app load:
-  - get score from storage, put in redux
-  - if score -> update in redux & storage
-- on finish game:
-  - update score in storage
-- on show leaderboards:
-  - submit score from storage? - will this update in time?
-
 Next To Do:
+- Only post score to google play at end of round
+- Test on device
 - Change scores to ELO system (accounting for difficulty levels)
+- Display score on main menu in some way?
 - Add rhymes leaderboard
 - On PostGame, show ELO +/- score and add leaderboard button
 

@@ -18,6 +18,7 @@ import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import AnswerFeedback from "./AnswerFeedback";
 import { TopBar } from "../../../components";
 import SoundManager from "../../sound/SoundManager";
+import { getELORatingChanges } from "../../../utils/elo-utils";
 
 const ICON_SIZE = 32;
 
@@ -140,6 +141,10 @@ const DefinitionGame = ({
   definition,
   gameCountdown,
   difficulty,
+  userELO,
+  questionELO,
+  updatePlayerELO,
+  updateQuestionELO,
   onBeginGame,
   onSubmitAnswer,
   onExitGame,
@@ -175,6 +180,14 @@ const DefinitionGame = ({
 
   // Fade out game, show answer feedback
   const handleGameTransition = isAnswerCorrect => {
+    const { playerELOChange, questionELOChange } = getELORatingChanges(
+      isAnswerCorrect,
+      userELO,
+      questionELO,
+    );
+
+    // TODO: Display ELO gain/loss (as part of answer feedback?)
+
     setUserActionsDisabled(true);
     setIsShowingFeedback(true);
     setIsCurrentAnswerCorrect(isAnswerCorrect);
@@ -202,6 +215,9 @@ const DefinitionGame = ({
       setIsShowingFeedback(false);
       onAnswerFeedbackFinished();
     });
+
+    updatePlayerELO(playerELOChange);
+    // TODO: updateQuestionELO(questionELOChange);
   };
 
   useEffect(() => {

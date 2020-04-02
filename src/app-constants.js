@@ -21,7 +21,12 @@ export const DIFFICULTIES = {
 
 export const APP_STORAGE = {
   MUTED: "app_muted",
-  SCORE_DEFINITIONS: "score_definitions",
+  ELO_DEFINITIONS: "elo_definitions",
 };
 
+export const LEADERBOARD_IDS = {
+  DEFINITIONS: "CgkIu9P2ttwGEAIQAQ",
+};
+
+export const INITIAL_ELO = 800;
 export const RETRY_TIMEOUT = 1000;

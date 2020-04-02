@@ -1,26 +1,26 @@
-import { ON_SCORE_RETRIEVED, INCREMENT_SCORE } from "./leaderboards-actions";
+import { ON_ELO_RETRIEVED, UPDATE_PLAYER_ELO } from "./leaderboards-actions";
 
 const initialState = {
-  definitionsScore: null,
+  definitionsELO: null,
 };
 
 export default (state = initialState, action) => {
   const { type } = action;
 
   switch (type) {
-    case ON_SCORE_RETRIEVED: {
+    case ON_ELO_RETRIEVED: {
       return {
         ...state,
-        definitionsScore: action.score,
+        definitionsELO: action.elo,
       };
     }
 
-    case INCREMENT_SCORE: {
-      const currentScore = state.definitionsScore ? Number(state.definitionsScore) : 0;
+    case UPDATE_PLAYER_ELO: {
+      const currentELO = state.definitionsELO ? Number(state.definitionsELO) : 0;
 
       return {
         ...state,
-        definitionsScore: currentScore + action.score,
+        definitionsELO: currentELO + action.eloChange,
       };
     }
 

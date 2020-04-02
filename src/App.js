@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, Platform } from "react-native";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import SplashScreen from "react-native-splash-screen";
@@ -12,7 +12,8 @@ import { WORD_DIFFICULTIES } from "./features/definitions/definitions-constants"
 import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
 import { AppBackground } from "./components";
 import SoundManager from "./features/sound/SoundManager";
-import { retrieveScore } from "./redux/leaderboards-actions";
+import { retrieveELO } from "./redux/leaderboards-actions";
+import { googlePlaySilentSignIn } from "./redux/google-play-services-actions";
 
 const store = configureStore();
 
@@ -23,7 +24,11 @@ export default function AppProvider() {
     store.dispatch(fetchRhymes());
     store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.EASY));
     store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.HARD));
-    store.dispatch(retrieveScore());
+    store.dispatch(retrieveELO());
+
+    if (Platform.OS === "android") {
+      store.dispatch(googlePlaySilentSignIn());
+    }
 
     SoundManager.init();
   }, []);

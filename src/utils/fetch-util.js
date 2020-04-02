@@ -1,7 +1,7 @@
 import NetInfo from "@react-native-community/netinfo";
-import { MOCK_URL, getConfig } from "./Config";
-import getMockData from "./mock-data";
-import { ERROR_CODES } from "./components/error/ErrorScreen";
+import { MOCK_URL, getConfig } from "../Config";
+import getMockData from "../mock-data";
+import { ERROR_CODES } from "../components/error/ErrorScreen";
 
 const { API_URL, API_KEY } = getConfig();
 

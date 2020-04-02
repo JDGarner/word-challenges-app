@@ -12,11 +12,10 @@ import {
   ON_ROUND_END,
   ON_ANSWER_FEEDBACK_FINISHED,
 } from "./definitions-actions";
-import fetchFromApi from "../../../fetch-util";
+import fetchFromApi from "../../../utils/fetch-util";
 import { RETRY_TIMEOUT } from "../../../app-constants";
 import { DEFINITIONS_LOCAL_BUFFER, WORD_DIFFICULTIES } from "../definitions-constants";
 import { getDefinitionState, getEndpointForDifficulty, roundIsOver } from "../definitions-utils";
-import { incrementScore } from "../../../redux/leaderboards-actions";
 
 let gameCountdownInterval = null;
 
@@ -64,17 +63,7 @@ export default store => next => action => {
       break;
 
     case ON_ROUND_END:
-      const {
-        allDefinitionsIndex,
-        allDefinitions,
-        difficulty,
-        currentDefinitions,
-      } = getDefinitionState(definitions);
-
-      const netScore =
-        currentDefinitions.filter(d => d.isCorrect).length -
-        currentDefinitions.filter(d => !d.isCorrect).length;
-      store.dispatch(incrementScore(netScore));
+      const { allDefinitionsIndex, allDefinitions, difficulty } = getDefinitionState(definitions);
 
       // Fetch more definitions from API if we are running out
       if (allDefinitionsIndex > allDefinitions.length - DEFINITIONS_LOCAL_BUFFER) {

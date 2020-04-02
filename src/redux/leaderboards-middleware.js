@@ -1,28 +1,30 @@
-import { RETRIEVE_SCORE, onScoreRetrieved, INCREMENT_SCORE } from "./leaderboards-actions";
+import { RETRIEVE_ELO, onELORetrieved, UPDATE_PLAYER_ELO } from "./leaderboards-actions";
 import AsyncStorage from "@react-native-community/async-storage";
-import { APP_STORAGE } from "../app-constants";
+import { APP_STORAGE, INITIAL_ELO } from "../app-constants";
+import { googlePlaySubmitScore } from "./google-play-services-actions";
 
 export default store => next => async action => {
   switch (action.type) {
-    case RETRIEVE_SCORE:
+    case RETRIEVE_ELO:
       try {
-        const score = await AsyncStorage.getItem(APP_STORAGE.SCORE_DEFINITIONS);
-        if (score) {
-          store.dispatch(onScoreRetrieved(Number(score)));
-        }
+        const elo = await AsyncStorage.getItem(APP_STORAGE.ELO_DEFINITIONS);
+        const eloToSet = elo || INITIAL_ELO;
+        store.dispatch(onELORetrieved(Number(eloToSet)));
       } catch (e) {
         console.log("AsyncStorage Read Error");
       }
 
       break;
 
-    case INCREMENT_SCORE:
-      const stateScore = store.getState().leaderboards.definitionsScore;
-      const currentScore = stateScore ? Number(stateScore) : 0;
-      const newScore = currentScore + action.score;
+    case UPDATE_PLAYER_ELO:
+      const currentELO = Number(store.getState().leaderboards.definitionsELO);
+      const newELO = currentELO + action.eloChange;
+
+      // TODO: just do this at the end of game?
+      store.dispatch(googlePlaySubmitScore(newELO));
 
       try {
-        await AsyncStorage.setItem(APP_STORAGE.SCORE_DEFINITIONS, newScore.toString());
+        await AsyncStorage.setItem(APP_STORAGE.ELO_DEFINITIONS, newELO.toString());
       } catch (e) {
         console.log("AsyncStorage Write Error");
       }
