@@ -16,6 +16,7 @@ import fetchFromApi from "../../../utils/fetch-util";
 import { RETRY_TIMEOUT } from "../../../app-constants";
 import { DEFINITIONS_LOCAL_BUFFER, WORD_DIFFICULTIES } from "../definitions-constants";
 import { getDefinitionState, getEndpointForDifficulty, roundIsOver } from "../definitions-utils";
+import { googlePlaySubmitScore } from "../../../redux/google-play-services-actions";
 
 let gameCountdownInterval = null;
 
@@ -64,6 +65,8 @@ export default store => next => action => {
 
     case ON_ROUND_END:
       const { allDefinitionsIndex, allDefinitions, difficulty } = getDefinitionState(definitions);
+
+      store.dispatch(googlePlaySubmitScore());
 
       // Fetch more definitions from API if we are running out
       if (allDefinitionsIndex > allDefinitions.length - DEFINITIONS_LOCAL_BUFFER) {
