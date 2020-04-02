@@ -4,8 +4,9 @@ import { onPressStartNewGame, onExitGame } from "../redux/definitions-actions";
 import { getDefinitionState } from "../definitions-utils";
 
 const mapStateToProps = ({ definitions }) => {
+  const { netELOChange } = definitions;
   const { currentDefinitions } = getDefinitionState(definitions);
-  return { currentDefinitions };
+  return { currentDefinitions, netELOChange };
 };
 
 const mapDispatchToProps = {

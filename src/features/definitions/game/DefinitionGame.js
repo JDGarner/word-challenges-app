@@ -160,6 +160,7 @@ const DefinitionGame = ({
   const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters, freeLetters));
 
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
+  const [currentELOChange, setCurrentELOChange] = useState(0);
   const [answerFeedbackAnimationToggle, setAnswerFeedbackAnimationToggle] = useState(false);
   const [gameOpacity] = useState(new Animated.Value(0));
   const [userActionsDisabled, setUserActionsDisabled] = useState(false);
@@ -191,6 +192,7 @@ const DefinitionGame = ({
     setUserActionsDisabled(true);
     setIsShowingFeedback(true);
     setIsCurrentAnswerCorrect(isAnswerCorrect);
+    setCurrentELOChange(playerELOChange);
 
     if (isAnswerCorrect) {
       SoundManager.getInstance().playPositiveSound();
@@ -213,7 +215,7 @@ const DefinitionGame = ({
       }),
     ]).start(() => {
       setIsShowingFeedback(false);
-      onAnswerFeedbackFinished();
+      onAnswerFeedbackFinished(playerELOChange);
     });
 
     updatePlayerELO(playerELOChange);
@@ -352,6 +354,7 @@ const DefinitionGame = ({
       </ContentContainer>
       <AnswerFeedback
         isCorrect={isCurrentAnswerCorrect}
+        eloChange={currentELOChange}
         animationToggle={answerFeedbackAnimationToggle}
       />
     </Fragment>

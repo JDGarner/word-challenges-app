@@ -12,6 +12,7 @@ const decorateText = type => styled.Text`
   font-family: ${FONT_FAMILY};
 `;
 
+export const LargerText = decorateText("larger");
 export const LargeText = decorateText("large");
 export const MediumLargerText = decorateText("mediumlarger");
 export const MediumLargeText = decorateText("mediumlarge");

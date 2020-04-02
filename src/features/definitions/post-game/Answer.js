@@ -4,7 +4,7 @@ import { Animated, Easing } from "react-native";
 import { capitalize } from "lodash";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import theme from "../../../theme";
-import { MediumLargeText } from "../../../components";
+import { MediumText } from "../../../components";
 import { ANSWER_ANIMATION_DURATION } from "../definitions-constants";
 
 const AnswerContainer = styled(Animated.View)`
@@ -14,7 +14,7 @@ const AnswerContainer = styled(Animated.View)`
   padding-vertical: 8;
 `;
 
-const StyledDefinition = styled(MediumLargeText)`
+const StyledDefinition = styled(MediumText)`
   margin-left: 10;
   flex: 1;
 `;

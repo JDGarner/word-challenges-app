@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import theme from "../../../theme";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import { useDidUpdateEffect } from "../../../hooks/generic-hooks";
+import { LargeText } from "../../../components";
 
 const AnswerFeedbackContainer = styled(Animated.View)`
   position: absolute;
@@ -14,12 +15,12 @@ const AnswerFeedbackContainer = styled(Animated.View)`
   top: 20%;
 `;
 
-const AnswerFeedback = ({ isCorrect, animationToggle }) => {
+const AnswerFeedback = ({ isCorrect, eloChange, animationToggle }) => {
   const [scale] = useState(new Animated.Value(0.4));
   const [opacity] = useState(new Animated.Value(0));
 
   const iconName = isCorrect ? "check" : "close";
-  const iconColor = isCorrect ? theme.correctColourFeedback : theme.incorrectColourFeedback;
+  const feedbackColor = isCorrect ? theme.correctColourFeedback : theme.incorrectColourFeedback;
 
   useDidUpdateEffect(() => {
     Animated.parallel([
@@ -57,9 +58,12 @@ const AnswerFeedback = ({ isCorrect, animationToggle }) => {
     });
   }, [animationToggle]);
 
+  const eloChangeText = eloChange > 0 ? `+${eloChange}` : eloChange;
+
   return (
     <AnswerFeedbackContainer pointerEvents="none" style={{ transform: [{ scale }], opacity }}>
-      <Icon name={iconName} size={280} color={iconColor} />
+      <Icon name={iconName} size={280} color={feedbackColor} />
+      <LargeText>{eloChangeText}</LargeText>
     </AnswerFeedbackContainer>
   );
 };

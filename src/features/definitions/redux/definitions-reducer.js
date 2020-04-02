@@ -32,6 +32,7 @@ const initialState = {
   currentEasyDefinition: {},
   currentHardDefinition: {},
   questionIndex: 0,
+  netELOChange: 0,
   loaded: false,
   gameState: GAME_STATES.DIFFICULTYSELECTION,
   gameCountdown: INITIAL_COUNTDOWN,
@@ -83,6 +84,7 @@ const getStateForNewRound = (state, nextIndex, allDefinitions, difficulty) => {
       errorCode: ERROR_CODES.GENERIC,
       connectionError: true,
       gameState: GAME_STATES.PLAYING,
+      netELOChange: 0,
     };
   }
 
@@ -140,11 +142,13 @@ export default (state = initialState, action) => {
       return { ...state, gameCountdown: state.gameCountdown - 1 };
 
     case ON_ANSWER_FEEDBACK_FINISHED:
+      const netELOChange = state.netELOChange + action.eloChange;
+
       if (roundIsOver(state.questionIndex + 1)) {
-        return { ...getStateForRoundEnd(state) };
+        return { ...getStateForRoundEnd(state), netELOChange };
       }
 
-      return { ...getStateForNextQuestion(state) };
+      return { ...getStateForNextQuestion(state), netELOChange };
 
     case ON_EXIT_GAME: {
       const { allDefinitions, allDefinitionsIndex, difficulty } = getDefinitionState(state);

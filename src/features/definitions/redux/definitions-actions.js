@@ -59,8 +59,9 @@ export const onSubmitAnswer = answer => ({
   answer,
 });
 
-export const onAnswerFeedbackFinished = () => ({
+export const onAnswerFeedbackFinished = eloChange => ({
   type: ON_ANSWER_FEEDBACK_FINISHED,
+  eloChange,
 });
 
 export const onPressStartNewGame = () => ({

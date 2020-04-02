@@ -1,4 +1,8 @@
 export default {
+  larger: {
+    fontSize: 48,
+    fontWeight: "400",
+  },
   large: {
     fontSize: 36,
     fontWeight: "400",

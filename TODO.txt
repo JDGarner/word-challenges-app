@@ -44,12 +44,13 @@ Rhymes:
 Leaderboard/Stats:
 
 Next To Do:
-- Only post score to google play at end of round
-- Test on device
+- Test on device - run from Android Studio?
+- Post Game:
+  - do score increment/decrement animation
+  - add leaderboard button?
 - Change scores to ELO system (accounting for difficulty levels)
-- Display score on main menu in some way?
+- Display ELO on main menu in some way?
 - Add rhymes leaderboard
-- On PostGame, show ELO +/- score and add leaderboard button
 
 - End Goals:
   - ELO score, Rank & top X% for each mode

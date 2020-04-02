@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from "react";
 import { View, ScrollView, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components";
 
-import { LargeText, PaddedButton, MediumLargeText, TopBar } from "../../../components";
+import { MediumLargeText, MediumLargerText, PaddedButton, TopBar } from "../../../components";
 import Answer from "./Answer";
 import {
   ANSWER_ANIMATION_GAP_TIME,
@@ -21,7 +21,7 @@ const ContentContainer = styled(View)`
 `;
 
 const FeedbackTextContainer = styled(View)`
-  flex: 0.4;
+  flex: 0.3;
   align-items: center;
   justify-content: center;
 `;
@@ -52,7 +52,12 @@ const ScoreContainer = styled(View)`
 
 const PlayAgain = styled(View)``;
 
-const DefinitionPostGame = ({ onPressStartNewGame, onExitGame, currentDefinitions }) => {
+const DefinitionPostGame = ({
+  onPressStartNewGame,
+  onExitGame,
+  currentDefinitions,
+  netELOChange,
+}) => {
   const [showScrollBar, setShowScrollBar] = useState(false);
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
   const scrollViewRef = useRef();
@@ -72,13 +77,17 @@ const DefinitionPostGame = ({ onPressStartNewGame, onExitGame, currentDefinition
     WORDS_PER_ROUND * ANSWER_ANIMATION_GAP_TIME +
     ANSWER_ANIMATION_DURATION;
 
+  const netELOChangeText = netELOChange > 0 ? `+${netELOChange}` : netELOChange;
+
   return (
     <Fragment>
       <TopBar onPressLeftButton={onExitGame} />
       <ContentContainer>
         <FeedbackTextContainer>
           <PopInView popToSize={1} duration={ANSWER_ANIMATION_START_DELAY_TIME} delay={150}>
-            <MediumLargeText>{praise}</MediumLargeText>
+            <MediumLargeText>
+              {praise} - {score}/{WORDS_PER_ROUND}
+            </MediumLargeText>
           </PopInView>
         </FeedbackTextContainer>
         <ScrollViewContainer>
@@ -100,26 +109,29 @@ const DefinitionPostGame = ({ onPressStartNewGame, onExitGame, currentDefinition
           </AnswersScrollView>
         </ScrollViewContainer>
         <Footer>
-          <ScoreContainer>
+          {/* <ScoreContainer>
             <PopInView popToSize={1} duration={220} delay={totalAnimationTime}>
-              <LargeText>{score}</LargeText>
+              <MediumLargeText>{score}</MediumLargeText>
             </PopInView>
             <PopInView popToSize={1} duration={220} delay={totalAnimationTime + 60}>
-              <LargeText> / </LargeText>
+              <MediumLargeText>/</MediumLargeText>
             </PopInView>
             <PopInView popToSize={1} duration={220} delay={totalAnimationTime + 120}>
-              <LargeText>{WORDS_PER_ROUND}</LargeText>
+              <MediumLargeText>{WORDS_PER_ROUND}</MediumLargeText>
             </PopInView>
-          </ScoreContainer>
+          </ScoreContainer> */}
+          <PopInView popToSize={1} duration={220} delay={totalAnimationTime}>
+            <MediumLargeText>Points: {netELOChangeText}</MediumLargeText>
+          </PopInView>
           <PlayAgain>
             <PopInView
               pointerEvents="auto"
               popToSize={1}
               duration={1500}
-              delay={totalAnimationTime + 350}
+              delay={totalAnimationTime + 200}
               onAnimationStart={onPlayAgainAnimationStart}>
               <PaddedButton onPress={onPressStartNewGame} disabled={userActionsDisabled}>
-                <LargeText>Play Again</LargeText>
+                <MediumLargeText>Play Again</MediumLargeText>
               </PaddedButton>
             </PopInView>
           </PlayAgain>
