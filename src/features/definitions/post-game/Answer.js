@@ -27,7 +27,7 @@ const Answer = ({ word, definition, delay, isCorrect }) => {
   const [opacity] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    setTimeout(() => {
+    let animationTimeout = setTimeout(() => {
       Animated.timing(opacity, {
         toValue: 1,
         duration: ANSWER_ANIMATION_DURATION,
@@ -49,6 +49,13 @@ const Answer = ({ word, definition, delay, isCorrect }) => {
         }),
       ]).start();
     }, delay);
+
+    return () => {
+      if (animationTimeout) {
+        clearTimeout(animationTimeout);
+        animationTimeout = null;
+      }
+    };
   }, [opacity]);
 
   return (

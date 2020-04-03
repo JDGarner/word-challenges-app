@@ -21,15 +21,12 @@ const MenuContainer = styled(View)`
   align-items: center;
 `;
 
-const ScoreText = styled(SmallMediumText)`
-  width: 100%;
-  padding-top: 6;
-`;
-
 const ScoreTextContainer = styled(View)`
   border-top-width: 1;
   border-top-color: ${colors.textColorLight};
   width: 100%;
+  padding-top: 6;
+  align-items: flex-start;
 `;
 
 const MenuNameText = styled(MediumLargerText)`
@@ -61,7 +58,7 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO }) => {
           <MenuTextContainer>
             <MenuNameText>{displayName}</MenuNameText>
             <ScoreTextContainer>
-              <ScoreText>Rating: {score}</ScoreText>
+              <SmallMediumText>Rating: {score}</SmallMediumText>
             </ScoreTextContainer>
           </MenuTextContainer>
         </MenuButton>

@@ -32,7 +32,6 @@ Definitions:
 - re-test retry logic with new difficulty levels
 - Add more feedback text randomly
 - centre difficulty options
-- pressing back on DefinitionPostGame animation causes warning
 
 Rhymes:
 - think about text input placement

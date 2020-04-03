@@ -31,13 +31,22 @@ const PopInView = ({ children, popToSize, duration, delay, pointerEvents, onAnim
   };
 
   useEffect(() => {
+    let animationTimeout = null;
+
     if (delay) {
-      setTimeout(() => {
+      animationTimeout = setTimeout(() => {
         animate();
       }, delay);
     } else {
       animate();
     }
+
+    return () => {
+      if (animationTimeout) {
+        clearTimeout(animationTimeout);
+        animationTimeout = null;
+      }
+    };
   }, [scaleValue]);
 
   return (
