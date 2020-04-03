@@ -2,6 +2,7 @@ export const ENDPOINTS = {
   RHYMES: "rhymes",
   EASY_DEFINITIONS: "easy-definitions",
   HARD_DEFINITIONS: "hard-definitions",
+  DEFINITION_ELO: "definition-elo",
 };
 
 export const SCREENS = {

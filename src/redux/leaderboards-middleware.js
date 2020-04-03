@@ -1,6 +1,12 @@
-import { RETRIEVE_ELO, onELORetrieved, UPDATE_PLAYER_ELO } from "./leaderboards-actions";
+import {
+  RETRIEVE_ELO,
+  onELORetrieved,
+  UPDATE_PLAYER_ELO,
+  UPDATE_QUESTION_ELO,
+} from "./leaderboards-actions";
 import AsyncStorage from "@react-native-community/async-storage";
-import { APP_STORAGE, INITIAL_ELO } from "../app-constants";
+import { APP_STORAGE, INITIAL_ELO, ENDPOINTS } from "../app-constants";
+import { postToApi } from "../utils/api-util";
 
 export default store => next => async action => {
   switch (action.type) {
@@ -24,6 +30,11 @@ export default store => next => async action => {
       } catch (e) {
         console.log("AsyncStorage Write Error");
       }
+
+      break;
+
+    case UPDATE_QUESTION_ELO:
+      postToApi(ENDPOINTS.DEFINITION_ELO, { word: action.word, elo: action.elo });
 
       break;
 

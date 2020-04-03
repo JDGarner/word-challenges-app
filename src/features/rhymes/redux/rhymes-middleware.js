@@ -13,7 +13,7 @@ import {
   ON_SELECT_DIFFICULTY_RHYMES,
 } from "./rhymes-actions";
 import { RHYMES_LOCAL_BUFFER } from "../rhymes-constants";
-import fetchFromApi from "../../../utils/fetch-util";
+import { fetchFromApi } from "../../../utils/api-util";
 import { ENDPOINTS, RETRY_TIMEOUT } from "../../../app-constants";
 
 let gameCountdownInterval = null;

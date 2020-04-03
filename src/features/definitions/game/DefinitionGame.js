@@ -219,7 +219,7 @@ const DefinitionGame = ({
     });
 
     updatePlayerELO(playerELOChange);
-    // TODO: updateQuestionELO(questionELOChange);
+    updateQuestionELO(word, questionELOChange + questionELO);
   };
 
   useEffect(() => {

@@ -77,7 +77,7 @@ const fetchData = async (endpoint, onError = () => {}) => {
   });
 };
 
-const fetchFromApi = async (endpoint, onSuccess, onError = () => {}) => {
+export const fetchFromApi = async (endpoint, onSuccess, onError = () => {}) => {
   const response = await fetchData(endpoint, onError);
 
   try {
@@ -92,4 +92,20 @@ const fetchFromApi = async (endpoint, onSuccess, onError = () => {}) => {
   }
 };
 
-export default fetchFromApi;
+export const postToApi = async (endpoint, params) => {
+  if (API_URL === MOCK_URL) {
+    console.log(">>> Mock Post Request: ", endpoint, params);
+    return;
+  }
+
+  console.log(">>> Post Request: ", endpoint, params);
+  fetch(`${API_URL}/${endpoint}`, {
+    method: "POST",
+    headers: {
+      Authorization: API_KEY,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(params),
+  });
+};

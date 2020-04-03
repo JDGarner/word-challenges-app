@@ -12,7 +12,7 @@ import {
   ON_ROUND_END,
   ON_ANSWER_FEEDBACK_FINISHED,
 } from "./definitions-actions";
-import fetchFromApi from "../../../utils/fetch-util";
+import { fetchFromApi } from "../../../utils/api-util";
 import { RETRY_TIMEOUT } from "../../../app-constants";
 import { DEFINITIONS_LOCAL_BUFFER, WORD_DIFFICULTIES } from "../definitions-constants";
 import { getDefinitionState, getEndpointForDifficulty, roundIsOver } from "../definitions-utils";
