@@ -16,7 +16,7 @@ const PLAYER_ELO_RANGES = {
 export const getELORatingChanges = (didWin, playerELO, questionELO, difficulty) => {
   return {
     playerELOChange: getPlayerELOChange(didWin, playerELO, questionELO, difficulty),
-    newQuestionELO: getNewQuestionELO(!didWin, questionELO, playerELO, difficulty),
+    newQuestionELO: getNewQuestionELO(!didWin, playerELO, questionELO, difficulty),
   };
 };
 
@@ -34,7 +34,7 @@ const getPlayerELOChange = (didWin, playerELO, questionELO, difficulty) => {
 // Don't allow question ELO to get outside difficulty bounds
 const getNewQuestionELO = (didWin, playerELO, questionELO, difficulty) => {
   const apiDifficulty = DIFFICULTY_MAP[difficulty];
-  const eloChange = getELOChange(didWin, playerELO, questionELO);
+  const eloChange = getELOChange(didWin, questionELO, playerELO);
   const potentialNewELO = questionELO + eloChange;
   const { lower, upper } = QUESTION_ELO_RANGES[apiDifficulty];
 

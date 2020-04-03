@@ -187,12 +187,6 @@ const DefinitionGame = ({
       questionELO,
       difficulty,
     );
-    console.log(
-      ">>> playerELOChange: ",
-      playerELOChange,
-      ", questionELO change: ",
-      newQuestionELO - questionELO,
-    );
 
     setUserActionsDisabled(true);
     setIsShowingFeedback(true);

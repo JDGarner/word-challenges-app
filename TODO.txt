@@ -40,25 +40,17 @@ Rhymes:
 - add green tick/red cross animation
 - animate duplicate answer (shimmer?)
 - add sound effects
+- Make change to support rating system -> Find X Rhymes for Y
 
 Leaderboard/Stats:
 
 Next To Do:
+- Display ELO on main menu in some way?
 - Test on device - run from Android Studio?
 - Post Game:
   - do score increment/decrement animation
   - add leaderboard button?
-- Submit questionELO changes to BE
-- Change scores to ELO system (accounting for difficulty levels)
-- Display ELO on main menu in some way?
 - Add rhymes leaderboard
-
-- End Goals:
-  - ELO score, Rank & top X% for each mode
-  - Leaderboard button on main screen opens leaderboards in google play services/iOS Game Center
-  - Single leaderboard for all levels -> each question gives some kind of ELO score modified by difficulty
-  - Or leaderboard for each level -> each question gives some kind of ELO score modified by difficulty
-
 
 - Future Release:
   - Maybe - Other user stats - % correct, longest streak?
@@ -87,7 +79,6 @@ Styling To Do:
 - ellipses for long text?
 - sort out spacing for different device sizes, make gap at top %
 - countdown on iOS/android position
-- font?
 - look through each screen again carefully
 
 
