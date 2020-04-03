@@ -33,10 +33,12 @@ export default store => next => async action => {
 
       break;
 
-    case UPDATE_QUESTION_ELO:
-      postToApi(ENDPOINTS.DEFINITION_ELO, { word: action.word, elo: action.elo });
+    case UPDATE_QUESTION_ELO: {
+      const { word, elo } = action;
+      postToApi(ENDPOINTS.DEFINITION_ELO, { word, elo });
 
       break;
+    }
 
     default:
       break;

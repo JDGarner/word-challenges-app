@@ -181,13 +181,18 @@ const DefinitionGame = ({
 
   // Fade out game, show answer feedback
   const handleGameTransition = isAnswerCorrect => {
-    const { playerELOChange, questionELOChange } = getELORatingChanges(
+    const { playerELOChange, newQuestionELO } = getELORatingChanges(
       isAnswerCorrect,
       userELO,
       questionELO,
+      difficulty,
     );
-
-    // TODO: Display ELO gain/loss (as part of answer feedback?)
+    console.log(
+      ">>> playerELOChange: ",
+      playerELOChange,
+      ", questionELO change: ",
+      newQuestionELO - questionELO,
+    );
 
     setUserActionsDisabled(true);
     setIsShowingFeedback(true);
@@ -219,7 +224,7 @@ const DefinitionGame = ({
     });
 
     updatePlayerELO(playerELOChange);
-    updateQuestionELO(word, questionELOChange + questionELO);
+    updateQuestionELO(word, newQuestionELO);
   };
 
   useEffect(() => {
