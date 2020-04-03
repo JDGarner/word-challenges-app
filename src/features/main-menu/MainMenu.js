@@ -12,6 +12,8 @@ import {
 } from "../../components";
 import { SCREENS } from "../../app-constants";
 import { IconButton, FontAwesomeIconButton } from "../../components/button/Button";
+import { SmallMediumText } from "../../components/text/Text";
+import colors from "../../theme/colors";
 
 const MenuContainer = styled(View)`
   flex: 1;
@@ -19,15 +21,49 @@ const MenuContainer = styled(View)`
   align-items: center;
 `;
 
-const MENU_ITEMS = [SCREENS.DEFINITIONS, SCREENS.RHYMES, SCREENS.SYNONYMS];
+const ScoreText = styled(SmallMediumText)`
+  width: 100%;
+  padding-top: 6;
+`;
 
-const MainMenu = ({ changeScreen, showAllLeaderboards }) => {
+const ScoreTextContainer = styled(View)`
+  border-top-width: 1;
+  border-top-color: ${colors.textColorLight};
+  width: 100%;
+`;
+
+const MenuNameText = styled(MediumLargerText)`
+  padding-top: 2;
+  padding-bottom: 4;
+`;
+
+const MenuTextContainer = styled(View)`
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-vertical: 6;
+`;
+
+const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO }) => {
+  const getMenuItemsConfig = () => {
+    return [
+      { displayName: SCREENS.DEFINITIONS, score: definitionsELO },
+      { displayName: SCREENS.RHYMES, score: 800 },
+      { displayName: SCREENS.SYNONYMS, score: 800 },
+    ];
+  };
+
   const getMenuItems = () => {
-    return MENU_ITEMS.map(item => ({
-      id: item,
+    return getMenuItemsConfig().map(({ displayName, score }) => ({
+      id: displayName,
       component: (
-        <MenuButton onPress={() => changeScreen(item)}>
-          <MediumLargerText>{item}</MediumLargerText>
+        <MenuButton onPress={() => changeScreen(displayName)}>
+          <MenuTextContainer>
+            <MenuNameText>{displayName}</MenuNameText>
+            <ScoreTextContainer>
+              <ScoreText>Rating: {score}</ScoreText>
+            </ScoreTextContainer>
+          </MenuTextContainer>
         </MenuButton>
       ),
     }));
@@ -37,11 +73,11 @@ const MainMenu = ({ changeScreen, showAllLeaderboards }) => {
     <ScreenContainerPadded>
       <TopBar
         LeftComponent={
-          <FontAwesomeIconButton name="trophy" size={28} onPress={showAllLeaderboards} />
+          <IconButton name="settings" size={28} onPress={() => changeScreen(SCREENS.SETTINGS)} />
         }
         titleText="WORD MONKEY"
         RightComponent={
-          <IconButton name="settings" size={28} onPress={() => changeScreen(SCREENS.SETTINGS)} />
+          <FontAwesomeIconButton name="trophy" size={28} onPress={showAllLeaderboards} />
         }
       />
       <Title text="What would you like to train?" />

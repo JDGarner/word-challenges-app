@@ -45,11 +45,13 @@ Rhymes:
 Leaderboard/Stats:
 
 Next To Do:
-- Display ELO on main menu in some way?
+- Improve UI for displaying rating on menu
+  - maybe under button - small leaderboard icon: {score}
 - Test on device - run from Android Studio?
 - Post Game:
   - do score increment/decrement animation
   - add leaderboard button?
+- Add leaderboards button to difficulty selection?
 - Add rhymes leaderboard
 
 - Future Release:

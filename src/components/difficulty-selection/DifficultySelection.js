@@ -23,7 +23,7 @@ const DifficultySelection = ({ onSelectDifficulty, changeScreen }) => {
     return map(DIFFICULTIES, difficulty => ({
       id: difficulty,
       component: (
-        <MenuButton onPress={() => onSelectDifficulty(difficulty)}>
+        <MenuButton onPress={() => onSelectDifficulty(difficulty)} verticalPadding={10}>
           <MediumLargerText>{capitalize(difficulty)}</MediumLargerText>
         </MenuButton>
       ),

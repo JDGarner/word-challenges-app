@@ -39,7 +39,8 @@ export const FontAwesomeIconButton = ({ name, size = 36, ...buttonProps }) => {
 export const MenuButton = styled(PaddedButton)`
   width: 240;
   align-items: center;
-  padding-top: ${TEXT_TOP_PADDING + 10};
-  padding-bottom: 10;
+  padding-top: ${({ verticalPadding }) =>
+    verticalPadding ? TEXT_TOP_PADDING + verticalPadding : TEXT_TOP_PADDING};
+  padding-bottom: ${props => props.verticalPadding || 0};
   margin-vertical: 24;
 `;
