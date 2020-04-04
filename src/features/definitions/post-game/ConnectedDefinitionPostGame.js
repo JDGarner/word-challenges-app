@@ -3,10 +3,11 @@ import DefinitionPostGame from "./DefinitionPostGame";
 import { onPressStartNewGame, onExitGame } from "../redux/definitions-actions";
 import { getDefinitionState } from "../definitions-utils";
 
-const mapStateToProps = ({ definitions }) => {
+const mapStateToProps = ({ definitions, leaderboards }) => {
+  const { definitionsELO } = leaderboards;
   const { netELOChange } = definitions;
   const { currentDefinitions } = getDefinitionState(definitions);
-  return { currentDefinitions, netELOChange };
+  return { currentDefinitions, currentELO: definitionsELO, netELOChange };
 };
 
 const mapDispatchToProps = {

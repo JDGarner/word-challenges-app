@@ -12,6 +12,7 @@ import {
 } from "../definitions-constants";
 import PopInView from "../../../components/pop-in-view/PopInView";
 import { getPraiseForScore } from "../definitions-utils";
+import ScoreChange from "../../../components/score-change/ScoreChange";
 
 const ContentContainer = styled(View)`
   flex: 1;
@@ -57,6 +58,7 @@ const DefinitionPostGame = ({
   onExitGame,
   currentDefinitions,
   netELOChange,
+  currentELO,
 }) => {
   const [showScrollBar, setShowScrollBar] = useState(false);
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
@@ -123,6 +125,7 @@ const DefinitionPostGame = ({
           <PopInView popToSize={1} duration={220} delay={totalAnimationTime}>
             <MediumLargeText>Points: {netELOChangeText}</MediumLargeText>
           </PopInView>
+          <ScoreChange previousScore={currentELO - netELOChange} scoreChange={netELOChange} />
           <PlayAgain>
             <PopInView
               pointerEvents="auto"
