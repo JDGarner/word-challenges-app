@@ -4,7 +4,7 @@ import { map, capitalize } from "lodash";
 import styled from "styled-components";
 
 import { SCREENS, DIFFICULTIES } from "../../app-constants";
-import { MenuButton } from "../button/Button";
+import { MenuButton, FontAwesomeIconButton } from "../button/Button";
 import { MediumLargerText } from "../text/Text";
 import TopBar from "../top-bar/TopBar";
 import Title from "../title/Title";
@@ -18,7 +18,12 @@ const DifficultyOptions = styled(View)`
   align-items: center;
 `;
 
-const DifficultySelection = ({ onSelectDifficulty, changeScreen }) => {
+const DifficultySelection = ({
+  titleText,
+  onSelectDifficulty,
+  changeScreen,
+  showAllLeaderboards,
+}) => {
   const getDifficultyOptions = () => {
     return map(DIFFICULTIES, difficulty => ({
       id: difficulty,
@@ -32,7 +37,13 @@ const DifficultySelection = ({ onSelectDifficulty, changeScreen }) => {
 
   return (
     <Fragment>
-      <TopBar onPressLeftButton={() => changeScreen(SCREENS.MENU)} />
+      <TopBar
+        onPressLeftButton={() => changeScreen(SCREENS.MENU)}
+        titleText={titleText}
+        RightComponent={
+          <FontAwesomeIconButton name="trophy" size={28} onPress={showAllLeaderboards} />
+        }
+      />
       <Title text="Select a Difficulty" />
       <Spacer height="8%" />
       <DifficultyOptions>

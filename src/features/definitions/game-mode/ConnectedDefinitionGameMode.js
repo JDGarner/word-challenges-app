@@ -27,7 +27,7 @@ const DefintionGameModeLoader = props => {
     if (props.gameState === GAME_STATES.DIFFICULTYSELECTION) {
       return (
         <ScreenContainerPadded>
-          <ConnectedDefinitionDifficultySelection />
+          <ConnectedDefinitionDifficultySelection titleText="DEFINITIONS" />
         </ScreenContainerPadded>
       );
     }

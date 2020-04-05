@@ -23,7 +23,7 @@ const RhymeGameModeLoader = props => {
     if (props.gameState === GAME_STATES.DIFFICULTYSELECTION) {
       return (
         <ScreenContainerPadded>
-          <ConnectedRhymeDifficultySelection />
+          <ConnectedRhymeDifficultySelection titleText="RHYMES" />
         </ScreenContainerPadded>
       );
     }
