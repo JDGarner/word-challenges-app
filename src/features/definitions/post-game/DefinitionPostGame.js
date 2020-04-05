@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from "react";
 import { View, ScrollView, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components";
 
-import { MediumLargeText, MediumLargerText, PaddedButton, TopBar } from "../../../components";
+import { MediumLargeText, PaddedButton, TopBar } from "../../../components";
 import Answer from "./Answer";
 import {
   ANSWER_ANIMATION_GAP_TIME,
@@ -39,16 +39,10 @@ const AnswersScrollView = styled(ScrollView)`
 
 const Footer = styled(View)`
   flex: 1;
+  width: 100%;
   align-items: center;
   justify-content: space-evenly;
   margin-bottom: 5%;
-`;
-
-const ScoreContainer = styled(View)`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16;
 `;
 
 const PlayAgain = styled(View)``;
@@ -78,8 +72,6 @@ const DefinitionPostGame = ({
     ANSWER_ANIMATION_START_DELAY_TIME +
     WORDS_PER_ROUND * ANSWER_ANIMATION_GAP_TIME +
     ANSWER_ANIMATION_DURATION;
-
-  const netELOChangeText = netELOChange > 0 ? `+${netELOChange}` : netELOChange;
 
   return (
     <Fragment>
@@ -111,27 +103,17 @@ const DefinitionPostGame = ({
           </AnswersScrollView>
         </ScrollViewContainer>
         <Footer>
-          {/* <ScoreContainer>
-            <PopInView popToSize={1} duration={220} delay={totalAnimationTime}>
-              <MediumLargeText>{score}</MediumLargeText>
-            </PopInView>
-            <PopInView popToSize={1} duration={220} delay={totalAnimationTime + 60}>
-              <MediumLargeText>/</MediumLargeText>
-            </PopInView>
-            <PopInView popToSize={1} duration={220} delay={totalAnimationTime + 120}>
-              <MediumLargeText>{WORDS_PER_ROUND}</MediumLargeText>
-            </PopInView>
-          </ScoreContainer> */}
-          <PopInView popToSize={1} duration={220} delay={totalAnimationTime}>
-            <MediumLargeText>Points: {netELOChangeText}</MediumLargeText>
-          </PopInView>
-          <ScoreChange previousScore={currentELO - netELOChange} scoreChange={netELOChange} />
+          <ScoreChange
+            previousScore={currentELO - netELOChange}
+            scoreChange={netELOChange}
+            delay={totalAnimationTime + 150}
+          />
           <PlayAgain>
             <PopInView
               pointerEvents="auto"
               popToSize={1}
               duration={1500}
-              delay={totalAnimationTime + 200}
+              delay={totalAnimationTime + 300}
               onAnimationStart={onPlayAgainAnimationStart}>
               <PaddedButton onPress={onPressStartNewGame} disabled={userActionsDisabled}>
                 <MediumLargeText>Play Again</MediumLargeText>
