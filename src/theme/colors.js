@@ -5,6 +5,8 @@ export default {
   incorrectColourFeedback: "rgba(220, 0, 0, 0.35)",
   correctColour: "rgba(89,210,25,1)",
   incorrectColour: "rgba(220, 0, 0, 0.9)",
+  correctScoreChange: "rgba(89,210,25,1)",
+  incorrectScoreChange: "rgba(250, 0, 0, 0.85)",
   redColor: "rgba(220, 0, 0, 0.9)",
   switchTrackColor: "rgba(255,255,255,0.25)",
 };

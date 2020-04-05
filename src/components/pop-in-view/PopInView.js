@@ -9,6 +9,7 @@ const PopInView = ({
   pointerEvents,
   containerStyle,
   onAnimationStart,
+  onAnimationEnd,
 }) => {
   const [scaleValue] = useState(new Animated.Value(0.8));
   const [opacity] = useState(new Animated.Value(0));
@@ -16,26 +17,29 @@ const PopInView = ({
   const animate = () => {
     onAnimationStart();
 
-    Animated.timing(opacity, {
-      toValue: 1,
-      duration,
-      useNativeDriver: true,
-    }).start();
-
-    Animated.sequence([
-      Animated.timing(scaleValue, {
-        toValue: popToSize,
-        duration: duration * 0.4,
-        easing: Easing.linear,
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration,
         useNativeDriver: true,
       }),
-      Animated.timing(scaleValue, {
-        toValue: 1.0,
-        duration: duration * 0.6,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      }),
-    ]).start();
+      Animated.sequence([
+        Animated.timing(scaleValue, {
+          toValue: popToSize,
+          duration: duration * 0.4,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(scaleValue, {
+          toValue: 1.0,
+          duration: duration * 0.6,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+      ]),
+    ]).start(() => {
+      onAnimationEnd();
+    });
   };
 
   useEffect(() => {
@@ -71,6 +75,7 @@ PopInView.defaultProps = {
   popToSize: 1.2,
   duration: 300,
   onAnimationStart: () => {},
+  onAnimationEnd: () => {},
   containerStyle: {},
 };
 

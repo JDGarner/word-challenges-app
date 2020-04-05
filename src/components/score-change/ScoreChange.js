@@ -11,7 +11,7 @@ const ScoreChangeContainer = styled(View)`
   justify-content: center;
 `;
 
-const ScoreChangeText = styled(MediumLargeText)`
+const ScoreChangeTextContainer = styled(View)`
   position: absolute;
   left: 50%;
   padding-left: 70;
@@ -62,23 +62,29 @@ const ScoreChange = ({ previousScore, scoreChange, delay, onCountdownEnd }) => {
     };
   }, []);
 
-  const textColor = scoreChange < 0 ? theme.textColor : theme.textColor;
+  const textColor = scoreChange >= 0 ? theme.correctScoreChange : theme.incorrectScoreChange;
 
   return (
     <ScoreChangeContainer>
       <PopInView
-        pointerEvents="auto"
         popToSize={1}
         delay={delay}
-        onAnimationStart={onScoreChangeAppear}
         containerStyle={{
           width: "100%",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "row",
         }}>
-        <MediumLargeText color={textColor}>Score: {newScoreCountdown}</MediumLargeText>
-        <ScoreChangeText color={textColor}>{getScoreChangeText()}</ScoreChangeText>
+        <MediumLargeText>Score: {newScoreCountdown}</MediumLargeText>
+        <ScoreChangeTextContainer>
+          <PopInView
+            popToSize={1.5}
+            duration={700}
+            delay={delay + 350}
+            onAnimationEnd={onScoreChangeAppear}>
+            <MediumLargeText color={textColor}>{getScoreChangeText()}</MediumLargeText>
+          </PopInView>
+        </ScoreChangeTextContainer>
       </PopInView>
     </ScoreChangeContainer>
   );
