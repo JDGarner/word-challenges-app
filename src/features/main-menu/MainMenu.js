@@ -78,7 +78,7 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO }) => {
         }
       />
       <Title text="What would you like to train?" />
-      <Spacer height="8%" />
+      <Spacer height="5%" />
       <MenuContainer>
         <AnimatedSequence items={getMenuItems()} />
       </MenuContainer>

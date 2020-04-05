@@ -45,7 +45,7 @@ const DifficultySelection = ({
         }
       />
       <Title text="Select a Difficulty" />
-      <Spacer height="8%" />
+      <Spacer height="5%" />
       <DifficultyOptions>
         <AnimatedSequence items={getDifficultyOptions()} />
       </DifficultyOptions>
