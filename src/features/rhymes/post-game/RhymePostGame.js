@@ -22,12 +22,9 @@ import {
 const getPostGameText = (score, word) => {
   const percentage = Math.floor((score / ANSWERS_REQUIRED) * 100);
 
-  const praise = getPraiseForScore(percentage);
-  const rhyme = score === 1 ? "rhyme" : "rhymes";
-
   return {
-    praise,
-    scoreText: `You got ${score}/${ANSWERS_REQUIRED} ${rhyme} for '${word}'!`,
+    praise: getPraiseForScore(percentage),
+    scoreText: `You got ${score}/${ANSWERS_REQUIRED} rhymes for '${word}'!`,
   };
 };
 

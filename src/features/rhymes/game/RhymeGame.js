@@ -14,6 +14,13 @@ const ContentContainer = styled(View)`
   width: 100%;
 `;
 
+const AnswerTextContainer = styled(View)`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
 const RhymeGame = ({
   currentWord,
   correctAnswers,
@@ -44,7 +51,9 @@ const RhymeGame = ({
       <GameHeader word={currentWord} />
       <ContentContainer>
         <AnswerGrid answers={correctAnswers} />
-        <AnswerText onSubmitAnswer={onSubmitAnswer} placeholder="Enter Rhyme" />
+        <AnswerTextContainer>
+          <AnswerText onSubmitAnswer={onSubmitAnswer} placeholder="Enter Rhyme" />
+        </AnswerTextContainer>
       </ContentContainer>
     </Fragment>
   );

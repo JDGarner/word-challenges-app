@@ -15,7 +15,7 @@ import {
   GO_BACK_TO_DIFFICULTY_SELECTION,
 } from "./rhymes-actions";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
-import { INITIAL_COUNTDOWN, GAME_STATES } from "../rhymes-constants";
+import { INITIAL_COUNTDOWN, GAME_STATES, ANSWERS_REQUIRED } from "../rhymes-constants";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 import { DIFFICULTIES } from "../../../app-constants";
 
@@ -160,13 +160,24 @@ export default (state = initialState, action) => {
         isAnswerCorrect(answer, state.currentRhymes) &&
         isNotDuplicateAnswer(answer, state.correctAnswers)
       ) {
-        return {
-          ...state,
-          correctAnswers: [...state.correctAnswers, answer],
-          gameCountdown: getBumpedCountdown(state.gameCountdown),
-          score: state.score + 1,
-          animatingCountdown: true,
-        };
+        const correctAnswers = [...state.correctAnswers, answer];
+
+        if (correctAnswers.length >= ANSWERS_REQUIRED) {
+          return {
+            ...state,
+            correctAnswers,
+            score: state.score + 1,
+            gameState: GAME_STATES.POSTGAME,
+          };
+        } else {
+          return {
+            ...state,
+            correctAnswers,
+            gameCountdown: getBumpedCountdown(state.gameCountdown),
+            score: state.score + 1,
+            animatingCountdown: true,
+          };
+        }
       }
 
       return state;
