@@ -9,38 +9,25 @@ import {
   TopBar,
   Title,
   PopInView,
+  PlayAgainButton,
 } from "../../../components";
-import { getPraiseForScore, getPercentageText } from "../rhymes-utils";
+import { getPraiseForScore } from "../rhymes-utils";
 import AnswerGrid from "../AnswerGrid";
-import { ANSWER_ANIMATION_GAP_TIME, ANSWER_ANIMATION_START_DELAY_TIME } from "../rhymes-constants";
+import {
+  ANSWER_ANIMATION_GAP_TIME,
+  ANSWER_ANIMATION_START_DELAY_TIME,
+  ANSWERS_REQUIRED,
+} from "../rhymes-constants";
 
-const getPostGameText = (score, totalRhymes, word) => {
-  const percentage = Math.floor((score / totalRhymes) * 100);
-  const percentageText = getPercentageText(percentage);
-
-  if (score === 0) {
-    return {
-      praise: ":(",
-      scoreText: `You couldn't think of any rhymes for '${word}'?`,
-      percentageText,
-    };
-  }
-
-  if (score === totalRhymes) {
-    return {
-      praise: "Godlike!",
-      scoreText: `You got all the rhymes for '${word}'!`,
-      percentageText,
-    };
-  }
+const getPostGameText = (score, word) => {
+  const percentage = Math.floor((score / ANSWERS_REQUIRED) * 100);
 
   const praise = getPraiseForScore(percentage);
   const rhyme = score === 1 ? "rhyme" : "rhymes";
 
   return {
     praise,
-    scoreText: `You got ${score} ${rhyme} for '${word}'!`,
-    percentageText,
+    scoreText: `You got ${score}/${ANSWERS_REQUIRED} ${rhyme} for '${word}'!`,
   };
 };
 
@@ -49,10 +36,6 @@ const PostGameText = styled(MediumLargeText)`
 `;
 
 const PercentageText = styled(MediumLargeText)``;
-
-const PlayAgain = styled(PaddedButton)`
-  margin-bottom: 60;
-`;
 
 const FooterContainer = styled(View)`
   flex: 1;
@@ -67,17 +50,10 @@ const PostGameContainer = styled(View)`
   width: 100%;
 `;
 
-const RhymePostGame = ({
-  score,
-  totalRhymes,
-  word,
-  correctAnswers,
-  onPressStartNewGame,
-  onExitGame,
-}) => {
+const RhymePostGame = ({ score, word, correctAnswers, onPressStartNewGame, onExitGame }) => {
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
 
-  const { praise, scoreText, percentageText } = getPostGameText(score, totalRhymes, word);
+  const { praise, scoreText } = getPostGameText(score, word);
   const footerAnimationDelay =
     correctAnswers.length * ANSWER_ANIMATION_GAP_TIME + ANSWER_ANIMATION_START_DELAY_TIME + 300;
 
@@ -96,18 +72,14 @@ const RhymePostGame = ({
         <AnswerGrid answers={correctAnswers} postGame />
         <FooterContainer>
           <PopInView popToSize={1} duration={800} delay={footerAnimationDelay}>
-            <PercentageText>{percentageText}</PercentageText>
+            <PercentageText>Score Change Here...</PercentageText>
           </PopInView>
-          <PopInView
-            pointerEvents="auto"
-            popToSize={1}
-            duration={800}
-            delay={footerAnimationDelay + 300}
-            onAnimationStart={onPlayAgainAnimationStart}>
-            <PlayAgain onPress={onPressStartNewGame} disabled={userActionsDisabled}>
-              <LargeText>Play Again</LargeText>
-            </PlayAgain>
-          </PopInView>
+          <PlayAgainButton
+            onPress={onPressStartNewGame}
+            onAnimationStart={onPlayAgainAnimationStart}
+            animateDelay={footerAnimationDelay + 300}
+            disabled={userActionsDisabled}
+          />
         </FooterContainer>
       </PostGameContainer>
     </>

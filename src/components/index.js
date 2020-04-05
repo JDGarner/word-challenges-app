@@ -1,5 +1,5 @@
 import { SmallText, MediumText, MediumLargeText, MediumLargerText, LargeText } from "./text/Text";
-import { BorderedButton, PaddedButton, MenuButton } from "./button/Button";
+import { BorderedButton, PaddedButton, MenuButton, PlayAgainButton } from "./button/Button";
 import Countdown from "./countdown/Countdown";
 import ErrorScreen from "./error/ErrorScreen";
 import LoadingScreen from "./loading/LoadingScreen";
@@ -50,4 +50,5 @@ export {
   Title,
   TopBarTitle,
   Spacer,
+  PlayAgainButton,
 };

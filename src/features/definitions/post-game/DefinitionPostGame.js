@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from "react";
 import { View, ScrollView, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components";
 
-import { MediumLargeText, PaddedButton, TopBar } from "../../../components";
+import { MediumLargeText, PlayAgainButton, TopBar } from "../../../components";
 import Answer from "./Answer";
 import {
   ANSWER_ANIMATION_GAP_TIME,
@@ -115,18 +115,14 @@ const DefinitionPostGame = ({
             scoreChange={netELOChange}
             delay={totalAnimationTime + 150}
           />
-          <PlayAgain>
-            <PopInView
-              pointerEvents="auto"
-              popToSize={1}
-              duration={1500}
-              delay={totalAnimationTime + 300}
-              onAnimationStart={onPlayAgainAnimationStart}>
-              <PaddedButton onPress={onPressStartNewGame} disabled={userActionsDisabled}>
-                <MediumLargeText>Play Again</MediumLargeText>
-              </PaddedButton>
-            </PopInView>
-          </PlayAgain>
+          <View>
+            <PlayAgainButton
+              onPress={onPressStartNewGame}
+              onAnimationStart={onPlayAgainAnimationStart}
+              animateDelay={totalAnimationTime + 300}
+              disabled={userActionsDisabled}
+            />
+          </View>
         </Footer>
       </ContentContainer>
     </Fragment>

@@ -3,11 +3,10 @@ import RhymePostGame from "./RhymePostGame";
 import { onPressStartNewGame, onExitGame } from "../redux/rhymes-actions";
 
 const mapStateToProps = ({ rhymes }) => {
-  const { currentWord, currentRhymes, score, correctAnswers } = rhymes;
+  const { currentWord, score, correctAnswers } = rhymes;
 
   return {
     word: currentWord,
-    totalRhymes: currentRhymes.length,
     score,
     correctAnswers,
   };
