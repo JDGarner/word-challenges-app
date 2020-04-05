@@ -59,7 +59,7 @@ Bugs:
 - cant scroll after click on answer inside grid
 
 Styling To Do:
-- ellipses for long text?
+- ellipses for long text? - in rhymes answer grid
 - sort out spacing for different device sizes, make gap at top %
 - countdown on iOS/android position
 - look through each screen again carefully

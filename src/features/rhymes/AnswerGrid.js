@@ -2,11 +2,11 @@ import React from "react";
 import { View, ScrollView } from "react-native";
 import styled from "styled-components";
 
-import { SmallText, TextContainer, PopInView, AnimatedSequence } from "../../components";
+import { MediumText, TextContainer, PopInView, AnimatedSequence } from "../../components";
 import { ANSWER_ANIMATION_GAP_TIME, ANSWER_ANIMATION_START_DELAY_TIME } from "./rhymes-constants";
 
 const GridContainer = styled(View)`
-  height: 40%;
+  height: 30%;
   width: 100%;
   margin-bottom: 20px;
 `;
@@ -19,17 +19,17 @@ const answerGridStyle = {
   width: "100%",
 };
 
-const AnswerText = styled(SmallText)`
+const AnswerText = styled(MediumText)`
   text-align: center;
 `;
 
 const AnswerContainer = styled(TextContainer)`
-  margin-horizontal: 10px;
-  padding: 4px 2px;
+  margin-horizontal: 14px;
+  padding: 10px 2px;
 `;
 
 const GridItem = styled(View)`
-  width: 33.33333333%;
+  width: 50%;
   margin-bottom: 10px;
 `;
 
@@ -48,7 +48,7 @@ const AnswerGrid = ({ answers, postGame = false }) => {
   const gridItems = postGame ? (
     <AnimatedSequence
       items={getAnswerTiles()}
-      containerStyle={{ width: "33.333333%", marginBottom: 10 }}
+      containerStyle={{ width: "50%", marginBottom: 10 }}
       animationGapTime={ANSWER_ANIMATION_GAP_TIME}
       animationStartDelay={ANSWER_ANIMATION_START_DELAY_TIME}
       popToSize={1.05}

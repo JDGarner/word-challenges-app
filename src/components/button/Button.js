@@ -54,7 +54,11 @@ export const PlayAgainButton = ({ disabled, animateDelay, onPress, onAnimationSt
       duration={1300}
       delay={animateDelay}
       onAnimationStart={onAnimationStart}>
-      <PaddedButton onPress={onPress} disabled={disabled}>
+      <PaddedButton
+        onPress={onPress}
+        disabled={disabled}
+        paddingVertical={10}
+        paddingHorizontal={24}>
         <MediumLargeText>Play Again</MediumLargeText>
       </PaddedButton>
     </PopInView>

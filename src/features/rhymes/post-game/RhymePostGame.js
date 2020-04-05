@@ -39,8 +39,9 @@ const PercentageText = styled(MediumLargeText)``;
 
 const FooterContainer = styled(View)`
   flex: 1;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
+  margin-bottom: 80;
 `;
 
 const PostGameContainer = styled(View)`
