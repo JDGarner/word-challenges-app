@@ -12,7 +12,7 @@ import { WORD_DIFFICULTIES } from "./features/definitions/definitions-constants"
 import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
 import { AppBackground } from "./components";
 import SoundManager from "./features/sound/SoundManager";
-import { retrieveELO } from "./redux/leaderboards-actions";
+import { retrieveELOs } from "./redux/leaderboards-actions";
 import { googlePlaySilentSignIn } from "./redux/google-play-services-actions";
 
 const store = configureStore();
@@ -24,7 +24,7 @@ export default function AppProvider() {
     store.dispatch(fetchRhymes());
     store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.EASY));
     store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.HARD));
-    store.dispatch(retrieveELO());
+    store.dispatch(retrieveELOs());
 
     if (Platform.OS === "android") {
       store.dispatch(googlePlaySilentSignIn());

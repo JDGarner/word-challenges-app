@@ -1,4 +1,4 @@
-import { DIFFICULTIES } from "../app-constants";
+import { DIFFICULTIES, MODES, APP_STORAGE, ENDPOINTS } from "../app-constants";
 import { WORD_DIFFICULTIES, DIFFICULTY_MAP } from "../features/definitions/definitions-constants";
 
 const QUESTION_ELO_RANGES = {
@@ -63,3 +63,22 @@ export const getELOChange = (didWin, eloA, eloB) => {
 export const getProbabilityOfUserWin = (playerELO, questionELO) => {
   return 1 / (1 + Math.pow(10, (questionELO - playerELO) / 400));
 };
+
+export const getELOKeysForMode = mode => {
+  if (mode === MODES.DEFINITIONS) {
+    return {
+      stateKey: "definitionsELO",
+      storageKey: APP_STORAGE.DEFINITIONS_ELO,
+      endpoint: ENDPOINTS.DEFINITIONS_ELO,
+    };
+  }
+
+  return {
+    stateKey: "rhymesELO",
+    storageKey: APP_STORAGE.RHYMES_ELO,
+    endpoint: ENDPOINTS.RHYMES_ELO,
+  };
+};
+
+// For rhymes:
+// score = correct/total;

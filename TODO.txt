@@ -35,11 +35,10 @@ Definitions:
 
 Rhymes:
 - Implement rating tracking/logic
-- think about text input placement
-- add shimmer animation - correct answers and new given word
+- fix UI placement/sizing on android
 - add green tick/red cross animation
-- animate duplicate answer (shimmer?)
 - add sound effects
+- handle duplicate answer (shimmer/flash animation?)
 
 Leaderboard/Stats:
 - Improve UI for displaying rating on menu

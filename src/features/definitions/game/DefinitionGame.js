@@ -19,6 +19,7 @@ import AnswerFeedback from "./AnswerFeedback";
 import { TopBar } from "../../../components";
 import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
+import { MODES } from "../../../app-constants";
 
 const ICON_SIZE = 32;
 
@@ -217,8 +218,8 @@ const DefinitionGame = ({
       onAnswerFeedbackFinished(playerELOChange);
     });
 
-    updatePlayerELO(playerELOChange);
-    updateQuestionELO(word, newQuestionELO);
+    updatePlayerELO(MODES.DEFINITIONS, playerELOChange);
+    updateQuestionELO(MODES.DEFINITIONS, word, newQuestionELO);
   };
 
   useEffect(() => {

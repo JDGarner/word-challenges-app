@@ -1,26 +1,30 @@
-import { ON_ELO_RETRIEVED, UPDATE_PLAYER_ELO } from "./leaderboards-actions";
+import { ON_ELOS_RETRIEVED, UPDATE_PLAYER_ELO } from "./leaderboards-actions";
+import { getELOKeysForMode } from "../utils/elo-utils";
 
 const initialState = {
   definitionsELO: null,
+  rhymesELO: null,
 };
 
 export default (state = initialState, action) => {
   const { type } = action;
 
   switch (type) {
-    case ON_ELO_RETRIEVED: {
+    case ON_ELOS_RETRIEVED: {
       return {
         ...state,
-        definitionsELO: action.elo,
+        definitionsELO: action.elos.definitions,
+        rhymesELO: action.elos.rhymes,
       };
     }
 
     case UPDATE_PLAYER_ELO: {
-      const currentELO = state.definitionsELO ? Number(state.definitionsELO) : 0;
+      const { stateKey } = getELOKeysForMode(action.mode);
+      const currentELO = state[stateKey] ? Number(state[stateKey]) : 0;
 
       return {
         ...state,
-        definitionsELO: currentELO + action.eloChange,
+        [stateKey]: currentELO + action.eloChange,
       };
     }
 

@@ -2,7 +2,8 @@ export const ENDPOINTS = {
   RHYMES: "rhymes",
   EASY_DEFINITIONS: "easy-definitions",
   HARD_DEFINITIONS: "hard-definitions",
-  DEFINITION_ELO: "definition-elo",
+  DEFINITIONS_ELO: "definitions-elo",
+  RHYMES_ELO: "rhymes-elo",
 };
 
 export const SCREENS = {
@@ -22,7 +23,13 @@ export const DIFFICULTIES = {
 
 export const APP_STORAGE = {
   MUTED: "app_muted",
-  ELO_DEFINITIONS: "elo_definitions",
+  DEFINITIONS_ELO: "definitions_elo",
+  RHYMES_ELO: "rhymes_elo",
+};
+
+export const MODES = {
+  DEFINITIONS: "definitions",
+  RHYMES: "rhymes",
 };
 
 export const LEADERBOARD_IDS = {
