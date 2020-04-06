@@ -1,4 +1,4 @@
-import { capitalize, cloneDeep } from "lodash";
+import { cloneDeep } from "lodash";
 
 import {
   FETCH_RHYMES_SUCCESS,
@@ -39,9 +39,13 @@ const initialState = {
   difficulty: NOVICE,
   allRhymes: [],
   currentRhymeIndex: 0,
-  currentWord: "",
-  currentRhymes: [],
+  currentWord: {
+    word: "",
+    rhymes: null,
+    eloRating: null,
+  },
   correctAnswers: [],
+  eloChange: 0,
   loaded: false,
   gameCountdown: INITIAL_COUNTDOWN,
   animatingCountdown: false,
@@ -65,14 +69,10 @@ const getStateForNewRound = state => {
   const rhymes = state.allRhymes[state.difficulty];
 
   if (rhymes && rhymes[nextIndex]) {
-    const nextRhyme = rhymes[nextIndex];
-    const { word: currentWord, rhymes: currentRhymes } = nextRhyme;
-
     return {
       ...state,
       correctAnswers: [],
-      currentWord,
-      currentRhymes,
+      currentWord: rhymes[nextIndex],
       currentRhymeIndex: nextIndex,
       gameCountdown: INITIAL_COUNTDOWN,
     };
@@ -105,13 +105,10 @@ export default (state = initialState, action) => {
         allRhymes[state.difficulty][0] &&
         allRhymes[state.difficulty][0].word
       ) {
-        const { word: currentWord, rhymes: currentRhymes } = allRhymes[state.difficulty][0];
-
         return {
           ...state,
           allRhymes,
-          currentWord,
-          currentRhymes,
+          currentWord: allRhymes[state.difficulty][0],
           currentRhymeIndex: 0,
           loaded: true,
           connectionError: false,
@@ -220,8 +217,8 @@ export default (state = initialState, action) => {
       let wordState = {};
 
       if (rhymes && rhymes[currentRhymeIndex]) {
-        const { word: currentWord, rhymes: currentRhymes } = rhymes[currentRhymeIndex];
-        wordState = { currentWord, currentRhymes };
+        const currentWord = rhymes[currentRhymeIndex];
+        wordState = { currentWord };
       }
 
       return {

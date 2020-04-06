@@ -6,11 +6,11 @@ import {
   getMediumPraiseWord,
 } from "../../utils/common-utils";
 
-export const isAnswerCorrect = (answer, { currentRhymes, correctAnswers }) => {
+export const isAnswerCorrect = (answer, { currentWord, correctAnswers }) => {
   const formattedAnswer = capitalize(answer.trim());
 
   return (
-    currentRhymes.some(rhyme => rhyme.word === formattedAnswer.toLowerCase()) &&
+    currentWord.rhymes.some(rhyme => rhyme.word === formattedAnswer.toLowerCase()) &&
     isNotDuplicateAnswer(formattedAnswer, correctAnswers)
   );
 };

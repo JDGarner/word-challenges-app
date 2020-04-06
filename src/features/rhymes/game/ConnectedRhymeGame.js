@@ -10,11 +10,10 @@ import {
 } from "../redux/rhymes-actions";
 
 const mapStateToProps = ({ rhymes }) => {
-  const { currentWord, currentRhymes, correctAnswers, gameCountdown, animatingCountdown } = rhymes;
+  const { currentWord, correctAnswers, gameCountdown, animatingCountdown } = rhymes;
 
   return {
-    currentWord,
-    currentRhymes,
+    currentWord: currentWord.word,
     correctAnswers,
     gameCountdown,
     animatingCountdown,

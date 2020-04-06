@@ -4,7 +4,7 @@ import { onPreGameCountdownEnd, onExitGame } from "../redux/rhymes-actions";
 
 const mapStateToProps = ({ rhymes }) => {
   return {
-    currentWord: rhymes.currentWord,
+    currentWord: rhymes.currentWord.word,
   };
 };
 

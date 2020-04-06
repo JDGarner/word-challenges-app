@@ -10,7 +10,7 @@ import ConnectedRhymeDifficultySelection from "../difficulty-selection/Connected
 const mapStateToProps = ({ rhymes }) => {
   const { gameState, loaded, connectionError, errorCode, currentWord } = rhymes;
 
-  return { gameState, loaded, connectionError, errorCode, currentWord };
+  return { gameState, loaded, connectionError, errorCode, currentWord: currentWord.word };
 };
 
 const mapDispatchToProps = {

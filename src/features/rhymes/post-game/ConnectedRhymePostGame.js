@@ -6,7 +6,7 @@ const mapStateToProps = ({ rhymes }) => {
   const { currentWord, correctAnswers } = rhymes;
 
   return {
-    word: currentWord,
+    word: currentWord.word,
     score: correctAnswers.length,
     correctAnswers,
   };
