@@ -5,7 +5,7 @@ export const GAME_STATES = {
   POSTGAME: "PostGame",
 };
 
-export const PRE_GAME_COUNTDOWN_DELAY = 800;
+export const PRE_GAME_COUNTDOWN_DELAY = 1200;
 export const PRE_GAME_COUNTDOWN = 3;
 export const INITIAL_COUNTDOWN = 12;
 

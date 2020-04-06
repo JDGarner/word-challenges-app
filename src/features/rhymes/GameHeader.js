@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { capitalize } from "lodash";
 import { MediumLargerText, TextContainer, PopInView, Title } from "../../components";
 import { TEXT_TOP_PADDING } from "../../components/text/Text";
-import { PRE_GAME_COUNTDOWN_DELAY, ANSWERS_REQUIRED } from "./rhymes-constants";
+import { ANSWERS_REQUIRED } from "./rhymes-constants";
 
 const CurrentWordContainer = styled(TextContainer)`
   justify-content: center;
@@ -24,9 +24,9 @@ const GameHeader = ({ word, fadeIn }) => {
 
   return (
     <>
-      <Title text={`Find ${ANSWERS_REQUIRED} rhymes for...`} fadeIn={fadeIn} />
+      <Title text={`Find ${ANSWERS_REQUIRED} rhymes for...`} fadeIn={fadeIn} delay={null} />
       {fadeIn ? (
-        <PopInView popToSize={1} duration={PRE_GAME_COUNTDOWN_DELAY}>
+        <PopInView popToSize={1} duration={800} delay={500}>
           {WordContainer}
         </PopInView>
       ) : (

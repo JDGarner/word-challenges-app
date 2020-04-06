@@ -36,7 +36,6 @@ Definitions:
 Rhymes:
 - Make change to support rating system -> Find X Rhymes for Y:
   - Update Game screen:
-    - Find X Rhymes text
     - Answer Grid
 - Implement rating tracking/logic
 - think about text input placement
@@ -106,6 +105,7 @@ Definitions:
 Rhymes:
 - Make get ready text fade in
 - fade out countdown at end of game
+- fix title moving a tiny bit from pre game -> game
 
 Potential Features:
 - add clues? (2 clues per round? - give first X letters?, give example?, give synonym?)
