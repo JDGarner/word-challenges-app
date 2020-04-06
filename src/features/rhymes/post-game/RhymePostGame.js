@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 
@@ -42,8 +42,8 @@ const PostGameContainer = styled(View)`
 
 const RhymePostGame = ({ score, word, correctAnswers, onPressStartNewGame, onExitGame }) => {
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
+  const { praise, scoreText } = useMemo(() => getPostGameText(score, word), [word]);
 
-  const { praise, scoreText } = getPostGameText(score, word);
   const footerAnimationDelay =
     correctAnswers.length * ANSWER_ANIMATION_GAP_TIME + ANSWER_ANIMATION_START_DELAY_TIME + 300;
 

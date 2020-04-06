@@ -9,6 +9,12 @@ import {
   SHUFFLE_ANIMATION_REAPPEAR_BUFFER,
 } from "./definitions-constants";
 import { ENDPOINTS, DIFFICULTIES } from "../../app-constants";
+import {
+  getHighestPraiseWord,
+  getHighPraiseWord,
+  getMediumPraiseWord,
+  getLowPraiseWord,
+} from "../../utils/common-utils";
 
 export const roundIsOver = questionIndex => {
   return questionIndex >= WORDS_PER_ROUND;
@@ -18,26 +24,18 @@ export const getPraiseForScore = (correct, total) => {
   const percent = correct / total;
 
   if (percent === 1) {
-    return "Perfect!";
-  }
-
-  if (percent >= 0.8) {
-    return "Super!";
+    return getHighestPraiseWord();
   }
 
   if (percent >= 0.6) {
-    return "Muy Bien!";
-  }
-
-  if (percent >= 0.4) {
-    return "Not Bad!";
+    return getHighPraiseWord();
   }
 
   if (percent >= 0.2) {
-    return "Good Effort!";
+    return getMediumPraiseWord();
   }
 
-  return "Better Luck Next Round!";
+  return getLowPraiseWord();
 };
 
 export const getAnswerTextProps = letters => {
