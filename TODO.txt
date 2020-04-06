@@ -34,9 +34,6 @@ Definitions:
 - make letter buttons bigger?
 
 Rhymes:
-- Make change to support rating system -> Find X Rhymes for Y:
-  - Update Game screen:
-    - Answer Grid
 - Implement rating tracking/logic
 - think about text input placement
 - add shimmer animation - correct answers and new given word

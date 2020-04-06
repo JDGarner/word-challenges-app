@@ -23,7 +23,7 @@ const ContentContainer = styled(View)`
 
 const AnswerTextContainer = styled(View)`
   flex: 1;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
 `;

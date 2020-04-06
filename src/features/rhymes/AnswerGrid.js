@@ -6,7 +6,7 @@ import { MediumText, TextContainer, PopInView, AnimatedSequence } from "../../co
 import { ANSWER_ANIMATION_GAP_TIME, ANSWER_ANIMATION_START_DELAY_TIME } from "./rhymes-constants";
 
 const GridContainer = styled(View)`
-  height: 30%;
+  height: 40%;
   width: 100%;
   margin-bottom: 20px;
 `;
@@ -30,7 +30,7 @@ const AnswerContainer = styled(TextContainer)`
 
 const GridItem = styled(View)`
   width: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 `;
 
 const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
