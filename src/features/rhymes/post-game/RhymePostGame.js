@@ -10,6 +10,7 @@ import {
   ANSWER_ANIMATION_START_DELAY_TIME,
   ANSWERS_REQUIRED,
 } from "../rhymes-constants";
+import ScoreChange from "../../../components/score-change/ScoreChange";
 
 const getPostGameText = (score, word) => {
   const percentage = Math.floor((score / ANSWERS_REQUIRED) * 100);
@@ -24,13 +25,12 @@ const PostGameText = styled(MediumLargeText)`
   margin-vertical: 30;
 `;
 
-const PercentageText = styled(MediumLargeText)``;
-
 const FooterContainer = styled(View)`
   flex: 1;
   justify-content: space-evenly;
   align-items: center;
   margin-bottom: 80;
+  width: 100%;
 `;
 
 const PostGameContainer = styled(View)`
@@ -40,7 +40,15 @@ const PostGameContainer = styled(View)`
   width: 100%;
 `;
 
-const RhymePostGame = ({ score, word, correctAnswers, onPressStartNewGame, onExitGame }) => {
+const RhymePostGame = ({
+  score,
+  word,
+  correctAnswers,
+  currentELO,
+  eloChange,
+  onPressStartNewGame,
+  onExitGame,
+}) => {
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
   const { praise, scoreText } = useMemo(() => getPostGameText(score, word), [word]);
 
@@ -61,13 +69,15 @@ const RhymePostGame = ({ score, word, correctAnswers, onPressStartNewGame, onExi
         </PopInView>
         <AnswerGrid answers={correctAnswers} postGame />
         <FooterContainer>
-          <PopInView popToSize={1} duration={800} delay={footerAnimationDelay}>
-            <PercentageText>Score Change Here...</PercentageText>
-          </PopInView>
+          <ScoreChange
+            previousScore={currentELO - eloChange}
+            scoreChange={eloChange}
+            delay={footerAnimationDelay}
+          />
           <PlayAgainButton
             onPress={onPressStartNewGame}
             onAnimationStart={onPlayAgainAnimationStart}
-            animateDelay={footerAnimationDelay + 300}
+            animateDelay={footerAnimationDelay + 150}
             disabled={userActionsDisabled}
           />
         </FooterContainer>

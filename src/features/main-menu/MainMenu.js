@@ -41,11 +41,11 @@ const MenuTextContainer = styled(View)`
   padding-vertical: 6;
 `;
 
-const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO }) => {
+const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO }) => {
   const getMenuItemsConfig = () => {
     return [
       { displayName: SCREENS.DEFINITIONS, score: definitionsELO },
-      { displayName: SCREENS.RHYMES, score: 800 },
+      { displayName: SCREENS.RHYMES, score: rhymesELO },
       { displayName: SCREENS.SYNONYMS, score: 800 },
     ];
   };

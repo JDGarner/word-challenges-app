@@ -35,6 +35,8 @@ Definitions:
 
 Rhymes:
 - Implement rating tracking/logic
+  - ensure elo changes are made correctly on game timeout
+  - add rhyme elo backend, and google play leaderboard
 - fix UI placement/sizing on android
 - add green tick/red cross animation
 - add sound effects
@@ -71,6 +73,7 @@ Maybe in 1st release:
 - Set different themes in settings menu?
 - Handle leaderboard connection if network is down
 - look into flipper/rn 0.62
+- info about rating limits for each difficulty
 
 
 

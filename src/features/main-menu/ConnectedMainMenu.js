@@ -4,10 +4,11 @@ import { changeScreen } from "../../redux/app-actions";
 import { showAllLeaderboards } from "../../redux/google-play-services-actions";
 
 const mapStateToProps = ({ leaderboards }) => {
-  const { definitionsELO } = leaderboards;
+  const { definitionsELO, rhymesELO } = leaderboards;
 
   return {
     definitionsELO,
+    rhymesELO,
   };
 };
 

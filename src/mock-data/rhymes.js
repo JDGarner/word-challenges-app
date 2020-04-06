@@ -160,6 +160,7 @@ const rhymes = {
         { word: "krack" },
       ],
       difficulty: "novice",
+      eloRating: 1000,
     },
     {
       _id: "5e6ed68ad7af40377d04e2ff",
@@ -321,6 +322,7 @@ const rhymes = {
         { word: "ticor" },
       ],
       difficulty: "novice",
+      eloRating: 1000,
     },
     {
       _id: "5e6b11582df5fb34a91ec2af",
@@ -455,6 +457,7 @@ const rhymes = {
         { word: "strater" },
       ],
       difficulty: "novice",
+      eloRating: 1000,
     },
     {
       _id: "5e6f0868f12f4e3abf6c8913",
@@ -578,6 +581,7 @@ const rhymes = {
         { word: "unted" },
       ],
       difficulty: "novice",
+      eloRating: 1000,
     },
   ],
   journeyman: [
@@ -667,6 +671,7 @@ const rhymes = {
         { word: "uncoat" },
       ],
       difficulty: "journeyman",
+      eloRating: 1400,
     },
     {
       _id: "5e6f0ba81530d53b62a85e87",
@@ -753,6 +758,7 @@ const rhymes = {
         { word: "interlake" },
       ],
       difficulty: "journeyman",
+      eloRating: 1400,
     },
     {
       _id: "5e6ed68ad7af40377d04e372",
@@ -817,6 +823,7 @@ const rhymes = {
         { word: "lockport" },
       ],
       difficulty: "journeyman",
+      eloRating: 1400,
     },
     {
       _id: "5e6b163aefc7093554adb111",
@@ -917,6 +924,7 @@ const rhymes = {
         { word: "devaul" },
       ],
       difficulty: "journeyman",
+      eloRating: 1400,
     },
     {
       _id: "5e6f0868f12f4e3abf6c8933",
@@ -995,6 +1003,7 @@ const rhymes = {
         { word: "entex" },
       ],
       difficulty: "journeyman",
+      eloRating: 1400,
     },
     {
       _id: "5e6b14c5745bc434fa0f7aef",
@@ -1055,6 +1064,7 @@ const rhymes = {
         { word: "alltime" },
       ],
       difficulty: "journeyman",
+      eloRating: 1400,
     },
   ],
   expert: [
@@ -1082,6 +1092,7 @@ const rhymes = {
         { word: "misjudge" },
       ],
       difficulty: "expert",
+      eloRating: 1800,
     },
     {
       _id: "5e6f0868f12f4e3abf6c88f2",
@@ -1136,6 +1147,7 @@ const rhymes = {
         { word: "rahul" },
       ],
       difficulty: "expert",
+      eloRating: 1800,
     },
     {
       _id: "5e6ed68ad7af40377d04e36d",
@@ -1176,6 +1188,7 @@ const rhymes = {
         { word: "vorce" },
       ],
       difficulty: "expert",
+      eloRating: 1800,
     },
     {
       _id: "5e6b11582df5fb34a91ec26d",
@@ -1206,6 +1219,7 @@ const rhymes = {
         { word: "geter" },
       ],
       difficulty: "expert",
+      eloRating: 1800,
     },
   ],
   master: [
@@ -1222,6 +1236,7 @@ const rhymes = {
         { word: "presidentially" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0ba81530d53b62a85e5c",
@@ -1239,6 +1254,7 @@ const rhymes = {
         { word: "mispronounced" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0868f12f4e3abf6c890b",
@@ -1253,6 +1269,7 @@ const rhymes = {
         { word: "glandered" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0ba81530d53b62a85eeb",
@@ -1273,6 +1290,7 @@ const rhymes = {
         { word: "squinter" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6b14c5745bc434fa0f7ae0",
@@ -1288,6 +1306,7 @@ const rhymes = {
         { word: "nonmember" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6b14c5745bc434fa0f7b11",
@@ -1308,6 +1327,7 @@ const rhymes = {
         { word: "sinning" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0868f12f4e3abf6c88c3",
@@ -1320,6 +1340,7 @@ const rhymes = {
         { word: "rediscovery" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0ba81530d53b62a85e1b",
@@ -1334,6 +1355,7 @@ const rhymes = {
         { word: "sherer" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0868f12f4e3abf6c8892",
@@ -1346,6 +1368,7 @@ const rhymes = {
         { word: "slimming" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0868f12f4e3abf6c88b5",
@@ -1359,6 +1382,7 @@ const rhymes = {
         { word: "joice" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0ba81530d53b62a85e12",
@@ -1378,6 +1402,7 @@ const rhymes = {
         { word: "veuve" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0ba81530d53b62a85efe",
@@ -1395,6 +1420,7 @@ const rhymes = {
         { word: "twelves" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6b163aefc7093554adb0b9",
@@ -1409,6 +1435,7 @@ const rhymes = {
         { word: "warth" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0868f12f4e3abf6c88b9",
@@ -1423,6 +1450,7 @@ const rhymes = {
         { word: "haulage" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0868f12f4e3abf6c8849",
@@ -1435,6 +1463,7 @@ const rhymes = {
         { word: "tractory" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0868f12f4e3abf6c885f",
@@ -1447,6 +1476,7 @@ const rhymes = {
         { word: "phocal" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0ba81530d53b62a85e3d",
@@ -1460,6 +1490,7 @@ const rhymes = {
         { word: "songer" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6b0f3b9df1573227318f63",
@@ -1477,6 +1508,7 @@ const rhymes = {
         { word: "misgive" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0868f12f4e3abf6c8871",
@@ -1497,6 +1529,7 @@ const rhymes = {
         { word: "hocket" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6f0868f12f4e3abf6c88bf",
@@ -1515,6 +1548,7 @@ const rhymes = {
         { word: "peacher" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
     {
       _id: "5e6b14c5745bc434fa0f7b23",
@@ -1533,6 +1567,7 @@ const rhymes = {
         { word: "romine" },
       ],
       difficulty: "master",
+      eloRating: 2800,
     },
   ],
 };

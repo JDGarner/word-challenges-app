@@ -46,8 +46,6 @@ const Footer = styled(View)`
   margin-bottom: 5%;
 `;
 
-const PlayAgain = styled(View)``;
-
 const DefinitionPostGame = ({
   onPressStartNewGame,
   onExitGame,

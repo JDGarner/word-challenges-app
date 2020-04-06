@@ -1,30 +1,33 @@
 import { DIFFICULTIES, MODES, APP_STORAGE, ENDPOINTS } from "../app-constants";
 import { WORD_DIFFICULTIES, DIFFICULTY_MAP } from "../features/definitions/definitions-constants";
 
-const QUESTION_ELO_RANGES = {
+const DEFINITION_QUESTION_ELO_RANGES = {
   [WORD_DIFFICULTIES.EASY]: { lower: 800, upper: 1500 },
   [WORD_DIFFICULTIES.HARD]: { lower: 1500, upper: 3600 },
 };
 
-const PLAYER_ELO_RANGES = {
+const DIFFICULTY_ELO_RANGES = {
   [DIFFICULTIES.NOVICE]: { lower: 800, upper: 1200 },
   [DIFFICULTIES.JOURNEYMAN]: { lower: 1200, upper: 1600 },
   [DIFFICULTIES.EXPERT]: { lower: 1600, upper: 2000 },
   [DIFFICULTIES.MASTER]: { lower: 2000, upper: 3600 },
 };
 
-export const getELORatingChanges = (didWin, playerELO, questionELO, difficulty) => {
+export const getELORatingChanges = (score, playerELO, questionELO, difficulty, mode) => {
+  const newQuestionELOFn =
+    mode === MODES.DEFINITIONS ? getNewDefinitionQuestionELO : getNewRhymeQuestionELO;
+
   return {
-    playerELOChange: getPlayerELOChange(didWin, playerELO, questionELO, difficulty),
-    newQuestionELO: getNewQuestionELO(!didWin, playerELO, questionELO, difficulty),
+    playerELOChange: getPlayerELOChange(score, playerELO, questionELO, difficulty),
+    newQuestionELO: newQuestionELOFn(score, playerELO, questionELO, difficulty),
   };
 };
 
 // If player ELO is higher than upper difficulty limit, don't award any points
-const getPlayerELOChange = (didWin, playerELO, questionELO, difficulty) => {
-  const potentialELOChange = getELOChange(didWin, playerELO, questionELO);
+const getPlayerELOChange = (score, playerELO, questionELO, difficulty) => {
+  const potentialELOChange = getELOChange(score, playerELO, questionELO);
 
-  if (potentialELOChange > 0 && playerELO > PLAYER_ELO_RANGES[difficulty].upper) {
+  if (potentialELOChange > 0 && playerELO > DIFFICULTY_ELO_RANGES[difficulty].upper) {
     return 0;
   }
 
@@ -32,11 +35,29 @@ const getPlayerELOChange = (didWin, playerELO, questionELO, difficulty) => {
 };
 
 // Don't allow question ELO to get outside difficulty bounds
-const getNewQuestionELO = (didWin, playerELO, questionELO, difficulty) => {
+const getNewDefinitionQuestionELO = (score, playerELO, questionELO, difficulty) => {
   const apiDifficulty = DIFFICULTY_MAP[difficulty];
-  const eloChange = getELOChange(didWin, questionELO, playerELO);
+  const eloChange = getELOChange(score, questionELO, playerELO);
   const potentialNewELO = questionELO + eloChange;
-  const { lower, upper } = QUESTION_ELO_RANGES[apiDifficulty];
+  const { lower, upper } = DEFINITION_QUESTION_ELO_RANGES[apiDifficulty];
+
+  if (potentialNewELO < lower) {
+    return lower;
+  }
+
+  if (potentialNewELO > upper) {
+    return upper;
+  }
+
+  return potentialNewELO;
+};
+
+const getNewRhymeQuestionELO = (score, playerELO, questionELO, difficulty) => {
+  const questionScore = 1 - score;
+  const eloChange = getELOChange(questionScore, questionELO, playerELO);
+  console.log(">>> question ELO change: ", eloChange);
+  const potentialNewELO = questionELO + eloChange;
+  const { lower, upper } = DIFFICULTY_ELO_RANGES[difficulty];
 
   if (potentialNewELO < lower) {
     return lower;
@@ -50,9 +71,7 @@ const getNewQuestionELO = (didWin, playerELO, questionELO, difficulty) => {
 };
 
 // New Rating = CurrentRating + 32(score - expectedScore/probabilityOfWin)
-// score = 0 or 1 depending on win or loss
-export const getELOChange = (didWin, eloA, eloB) => {
-  const score = didWin ? 1 : 0;
+export const getELOChange = (score, eloA, eloB) => {
   const probabilityOfWin = getProbabilityOfUserWin(eloA, eloB);
 
   const eloAChange = Math.floor(32 * (score - probabilityOfWin));

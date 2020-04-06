@@ -182,11 +182,13 @@ const DefinitionGame = ({
 
   // Fade out game, show answer feedback
   const handleGameTransition = isAnswerCorrect => {
+    const score = isAnswerCorrect ? 1 : 0;
     const { playerELOChange, newQuestionELO } = getELORatingChanges(
-      isAnswerCorrect,
+      score,
       userELO,
       questionELO,
       difficulty,
+      MODES.DEFINITIONS,
     );
 
     setUserActionsDisabled(true);

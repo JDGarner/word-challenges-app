@@ -14,6 +14,7 @@ import {
   ON_SELECT_DIFFICULTY_RHYMES,
   GO_BACK_TO_DIFFICULTY_SELECTION,
   ON_GAME_FADE_OUT_END,
+  UPDATE_PLAYER_ELO_CHANGE,
 } from "./rhymes-actions";
 import { isAnswerCorrect } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES, ANSWERS_REQUIRED } from "../rhymes-constants";
@@ -72,6 +73,7 @@ const getStateForNewRound = state => {
     return {
       ...state,
       correctAnswers: [],
+      eloChange: 0,
       currentWord: rhymes[nextIndex],
       currentRhymeIndex: nextIndex,
       gameCountdown: INITIAL_COUNTDOWN,
@@ -82,6 +84,7 @@ const getStateForNewRound = state => {
   return {
     ...state,
     correctAnswers: [],
+    eloChange: 0,
     currentRhymeIndex: 0,
     gameCountdown: INITIAL_COUNTDOWN,
     errorCode: ERROR_CODES.GENERIC,
@@ -169,6 +172,12 @@ export default (state = initialState, action) => {
 
       return state;
     }
+
+    case UPDATE_PLAYER_ELO_CHANGE:
+      return {
+        ...state,
+        eloChange: action.eloChange,
+      };
 
     case ON_GAME_FADE_OUT_END:
       return {
