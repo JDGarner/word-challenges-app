@@ -1,8 +1,15 @@
-export const isAnswerCorrect = (answer, rhymes) => {
-  return rhymes.some(rhyme => rhyme.word === answer.toLowerCase());
+import { capitalize } from "lodash";
+
+export const isAnswerCorrect = (answer, { currentRhymes, correctAnswers }) => {
+  const formattedAnswer = capitalize(answer.trim());
+
+  return (
+    currentRhymes.some(rhyme => rhyme.word === formattedAnswer.toLowerCase()) &&
+    isNotDuplicateAnswer(formattedAnswer, correctAnswers)
+  );
 };
 
-export const isNotDuplicateAnswer = (answer, answers) => {
+const isNotDuplicateAnswer = (answer, answers) => {
   return !answers.some(a => a === answer);
 };
 

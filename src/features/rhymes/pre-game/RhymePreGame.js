@@ -13,6 +13,12 @@ const PreGameContainer = styled(View)`
   align-items: center;
 `;
 
+const GameContainer = styled(View)`
+  flex: 1;
+  align-items: center;
+  width: 100%;
+`;
+
 const PreGameCountdown = styled(MediumLargerText)`
   margin-top: 32%;
 `;
@@ -68,12 +74,14 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, onExitGame }) => {
   return (
     <PreGameContainer>
       <TopBar onPressLeftButton={onExitGame} />
-      <GameHeader word={currentWord} fadeIn />
-      <FlexStartContainer style={{ width: "100%" }}>
-        <Animated.View style={{ opacity }}>
-          <PreGameCountdown>{getPreGameCountdownText(countdown)}</PreGameCountdown>
-        </Animated.View>
-      </FlexStartContainer>
+      <GameContainer>
+        <GameHeader word={currentWord} fadeIn />
+        <FlexStartContainer style={{ width: "100%" }}>
+          <Animated.View style={{ opacity }}>
+            <PreGameCountdown>{getPreGameCountdownText(countdown)}</PreGameCountdown>
+          </Animated.View>
+        </FlexStartContainer>
+      </GameContainer>
     </PreGameContainer>
   );
 };

@@ -33,7 +33,7 @@ const GridItem = styled(View)`
   margin-bottom: 10px;
 `;
 
-const AnswerGrid = ({ answers, postGame = false }) => {
+const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
   const getAnswerTiles = () => {
     return answers.map(answer => ({
       id: answer,
@@ -57,7 +57,7 @@ const AnswerGrid = ({ answers, postGame = false }) => {
     answers.map(answer => {
       return (
         <GridItem key={answer}>
-          <PopInView>
+          <PopInView onAnimationEnd={onAnswerAnimationEnd}>
             <AnswerContainer>
               <AnswerText>{answer}</AnswerText>
             </AnswerContainer>

@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 
-import {
-  MediumLargeText,
-  LargeText,
-  PaddedButton,
-  TopBar,
-  Title,
-  PopInView,
-  PlayAgainButton,
-} from "../../../components";
+import { MediumLargeText, TopBar, Title, PopInView, PlayAgainButton } from "../../../components";
 import { getPraiseForScore } from "../rhymes-utils";
 import AnswerGrid from "../AnswerGrid";
 import {

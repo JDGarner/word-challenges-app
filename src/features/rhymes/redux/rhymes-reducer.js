@@ -13,8 +13,9 @@ import {
   ON_EXIT_GAME,
   ON_SELECT_DIFFICULTY_RHYMES,
   GO_BACK_TO_DIFFICULTY_SELECTION,
+  ON_GAME_FADE_OUT_END,
 } from "./rhymes-actions";
-import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
+import { isAnswerCorrect } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES, ANSWERS_REQUIRED } from "../rhymes-constants";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 import { DIFFICULTIES } from "../../../app-constants";
@@ -45,7 +46,6 @@ const initialState = {
   gameCountdown: INITIAL_COUNTDOWN,
   animatingCountdown: false,
   gameState: GAME_STATES.DIFFICULTYSELECTION,
-  score: 0,
   errorCode: "",
   connectionError: false,
 };
@@ -70,7 +70,6 @@ const getStateForNewRound = state => {
 
     return {
       ...state,
-      score: 0,
       correctAnswers: [],
       currentWord,
       currentRhymes,
@@ -82,7 +81,6 @@ const getStateForNewRound = state => {
   // API call must have failed to fetch additional rhymes, go to error state
   return {
     ...state,
-    score: 0,
     correctAnswers: [],
     currentRhymeIndex: 0,
     gameCountdown: INITIAL_COUNTDOWN,
@@ -154,34 +152,32 @@ export default (state = initialState, action) => {
     }
 
     case ON_SUBMIT_ANSWER: {
-      const answer = capitalize(action.answer.trim());
-
-      if (
-        isAnswerCorrect(answer, state.currentRhymes) &&
-        isNotDuplicateAnswer(answer, state.correctAnswers)
-      ) {
-        const correctAnswers = [...state.correctAnswers, answer];
+      if (isAnswerCorrect(action.answer, state)) {
+        const correctAnswers = [...state.correctAnswers, action.answer];
 
         if (correctAnswers.length >= ANSWERS_REQUIRED) {
           return {
             ...state,
             correctAnswers,
-            score: state.score + 1,
-            gameState: GAME_STATES.POSTGAME,
-          };
-        } else {
-          return {
-            ...state,
-            correctAnswers,
-            gameCountdown: getBumpedCountdown(state.gameCountdown),
-            score: state.score + 1,
-            animatingCountdown: true,
           };
         }
+
+        return {
+          ...state,
+          correctAnswers,
+          gameCountdown: getBumpedCountdown(state.gameCountdown),
+          animatingCountdown: true,
+        };
       }
 
       return state;
     }
+
+    case ON_GAME_FADE_OUT_END:
+      return {
+        ...state,
+        gameState: GAME_STATES.POSTGAME,
+      };
 
     case GAME_COUNTDOWN_TICK: {
       let gameCountdown = state.gameCountdown - 1;

@@ -11,12 +11,21 @@ import {
   fetchRhymes,
   ON_EXIT_GAME,
   ON_SELECT_DIFFICULTY_RHYMES,
+  ON_SUBMIT_ANSWER,
 } from "./rhymes-actions";
-import { RHYMES_LOCAL_BUFFER } from "../rhymes-constants";
+import { RHYMES_LOCAL_BUFFER, ANSWERS_REQUIRED } from "../rhymes-constants";
 import { fetchFromApi } from "../../../utils/api-util";
 import { ENDPOINTS, RETRY_TIMEOUT } from "../../../app-constants";
+import { isAnswerCorrect } from "../rhymes-utils";
 
 let gameCountdownInterval = null;
+
+const clearCountdownInterval = () => {
+  if (gameCountdownInterval) {
+    clearInterval(gameCountdownInterval);
+    gameCountdownInterval = null;
+  }
+};
 
 export default store => next => action => {
   const { dispatch, getState } = store;
@@ -37,18 +46,26 @@ export default store => next => action => {
       break;
 
     case ON_BEGIN_GAME:
-      if (gameCountdownInterval) {
-        clearInterval(gameCountdownInterval);
-      }
+      clearCountdownInterval();
 
       gameCountdownInterval = setInterval(() => {
         dispatch(gameCountdownTick());
       }, 1000);
       break;
 
+    case ON_SUBMIT_ANSWER:
+      if (
+        isAnswerCorrect(action.answer, getState().rhymes) &&
+        getState().rhymes.correctAnswers.length + 1 >= ANSWERS_REQUIRED
+      ) {
+        clearCountdownInterval();
+      }
+
+      break;
+
     case ON_EXIT_GAME:
     case ON_GAME_END:
-      clearInterval(gameCountdownInterval);
+      clearCountdownInterval();
       break;
 
     case ON_SELECT_DIFFICULTY_RHYMES:

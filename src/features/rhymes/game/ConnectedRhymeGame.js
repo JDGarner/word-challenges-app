@@ -6,6 +6,7 @@ import {
   onGameEnd,
   onCountdownAnimationEnd,
   onExitGame,
+  onGameFadeOutEnd,
 } from "../redux/rhymes-actions";
 
 const mapStateToProps = ({ rhymes }) => {
@@ -26,6 +27,7 @@ const mapDispatchToProps = {
   onSubmitAnswer,
   onCountdownAnimationEnd,
   onExitGame,
+  onGameFadeOutEnd,
 };
 
 const ConnectedRhymeGame = connect(mapStateToProps, mapDispatchToProps)(RhymeGame);

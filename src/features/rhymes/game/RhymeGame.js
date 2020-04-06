@@ -1,11 +1,18 @@
-import React, { useEffect, Fragment } from "react";
-import { View } from "react-native";
+import React, { useEffect, Fragment, useState } from "react";
+import { View, Animated } from "react-native";
 import styled from "styled-components";
 
 import { TopBar } from "../../../components";
 import AnswerText from "../../../components/answer-text/AnswerText";
 import GameHeader from "../GameHeader";
 import AnswerGrid from "../AnswerGrid";
+import { ANSWERS_REQUIRED, RHYME_GAME_FADE_OUT_DURATION } from "../rhymes-constants";
+
+const GameContainer = styled(Animated.View)`
+  flex: 1;
+  align-items: center;
+  width: 100%;
+`;
 
 const ContentContainer = styled(View)`
   flex: 1;
@@ -31,7 +38,10 @@ const RhymeGame = ({
   onGameEnd,
   onSubmitAnswer,
   onExitGame,
+  onGameFadeOutEnd,
 }) => {
+  const [gameOpacity] = useState(new Animated.Value(1));
+
   useEffect(() => {
     onBeginGame();
 
@@ -39,6 +49,25 @@ const RhymeGame = ({
       onGameEnd();
     };
   }, []);
+
+  const onAnswerAnimationEnd = () => {
+    if (correctAnswers.length >= ANSWERS_REQUIRED) {
+      Animated.sequence([
+        Animated.timing(gameOpacity, {
+          toValue: 1,
+          duration: RHYME_GAME_FADE_OUT_DURATION * 0,
+          useNativeDriver: true,
+        }),
+        Animated.timing(gameOpacity, {
+          toValue: 0,
+          duration: RHYME_GAME_FADE_OUT_DURATION * 1,
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
+        onGameFadeOutEnd();
+      });
+    }
+  };
 
   return (
     <Fragment>
@@ -48,13 +77,15 @@ const RhymeGame = ({
         animatingCountdown={animatingCountdown}
         onAnimationEnd={onCountdownAnimationEnd}
       />
-      <GameHeader word={currentWord} />
-      <ContentContainer>
-        <AnswerGrid answers={correctAnswers} />
-        <AnswerTextContainer>
-          <AnswerText onSubmitAnswer={onSubmitAnswer} placeholder="Enter Rhyme" />
-        </AnswerTextContainer>
-      </ContentContainer>
+      <GameContainer style={{ opacity: gameOpacity }}>
+        <GameHeader word={currentWord} />
+        <ContentContainer>
+          <AnswerGrid answers={correctAnswers} onAnswerAnimationEnd={onAnswerAnimationEnd} />
+          <AnswerTextContainer>
+            <AnswerText onSubmitAnswer={onSubmitAnswer} placeholder="Enter Rhyme" />
+          </AnswerTextContainer>
+        </ContentContainer>
+      </GameContainer>
     </Fragment>
   );
 };

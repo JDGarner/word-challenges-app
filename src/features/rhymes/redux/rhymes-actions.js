@@ -15,6 +15,7 @@ export const ON_COUNTDOWN_ANIMATION_END = `${NAMESPACE}/ON_COUNTDOWN_ANIMATION_E
 export const ON_EXIT_GAME = `${NAMESPACE}/ON_EXIT_GAME`;
 export const ON_SELECT_DIFFICULTY_RHYMES = `${NAMESPACE}/ON_SELECT_DIFFICULTY_RHYMES`;
 export const GO_BACK_TO_DIFFICULTY_SELECTION = `${NAMESPACE}/GO_BACK_TO_DIFFICULTY_SELECTION`;
+export const ON_GAME_FADE_OUT_END = `${NAMESPACE}/ON_GAME_FADE_OUT_END`;
 
 export const fetchRhymes = () => ({
   type: FETCH_RHYMES,
@@ -79,4 +80,8 @@ export const onSelectDifficulty = difficulty => ({
 
 export const goBackToDifficultySelection = () => ({
   type: GO_BACK_TO_DIFFICULTY_SELECTION,
+});
+
+export const onGameFadeOutEnd = () => ({
+  type: ON_GAME_FADE_OUT_END,
 });
