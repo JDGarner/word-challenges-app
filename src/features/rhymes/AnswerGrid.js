@@ -1,37 +1,38 @@
 import React from "react";
 import { capitalize } from "lodash";
-import { View, ScrollView } from "react-native";
+import { View } from "react-native";
 import styled from "styled-components";
 
 import { MediumText, TextContainer, PopInView, AnimatedSequence } from "../../components";
 import { ANSWER_ANIMATION_GAP_TIME, ANSWER_ANIMATION_START_DELAY_TIME } from "./rhymes-constants";
+import colors from "../../theme/colors";
 
 const GridContainer = styled(View)`
-  height: 40%;
+  height: 30%;
   width: 100%;
-  margin-bottom: 20px;
+  margin-top: 14px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
-
-const answerGridStyle = {
-  flexDirection: "row",
-  flexWrap: "wrap",
-  alignItems: "flex-start",
-  justifyContent: "flex-start",
-  width: "100%",
-};
 
 const AnswerText = styled(MediumText)`
   text-align: center;
 `;
 
-const AnswerContainer = styled(TextContainer)`
+const AnswerContainer = styled(View)`
   margin-horizontal: 14px;
   padding: 10px 2px;
+  background-color: ${colors.textColorLighter};
+  border-radius: 4px;
 `;
+
+const gridItemBottomMargin = 18;
 
 const GridItem = styled(View)`
   width: 50%;
-  margin-bottom: 16px;
+  margin-bottom: ${gridItemBottomMargin};
 `;
 
 const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
@@ -49,7 +50,7 @@ const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
   const gridItems = postGame ? (
     <AnimatedSequence
       items={getAnswerTiles()}
-      containerStyle={{ width: "50%", marginBottom: 10 }}
+      containerStyle={{ width: "50%", marginBottom: gridItemBottomMargin }}
       animationGapTime={ANSWER_ANIMATION_GAP_TIME}
       animationStartDelay={ANSWER_ANIMATION_START_DELAY_TIME}
       popToSize={1.05}
@@ -68,11 +69,7 @@ const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
     })
   );
 
-  return (
-    <GridContainer>
-      <ScrollView contentContainerStyle={answerGridStyle}>{gridItems}</ScrollView>
-    </GridContainer>
-  );
+  return <GridContainer>{gridItems}</GridContainer>;
 };
 
 export default AnswerGrid;

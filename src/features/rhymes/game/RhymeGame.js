@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
-import { View, Animated } from "react-native";
+import { View, Animated, Keyboard } from "react-native";
 import styled from "styled-components";
 
 import { TopBar } from "../../../components";
@@ -40,7 +40,7 @@ const RhymeGame = ({
   onExitGame,
   onGameFadeOutEnd,
 }) => {
-  const [gameOpacity] = useState(new Animated.Value(1));
+  const [gameOpacity] = useState(new Animated.Value(0.99));
   const [userActionsDisabled, setUserActionsDisabled] = useState(false);
 
   useEffect(() => {
@@ -49,22 +49,17 @@ const RhymeGame = ({
 
   const handleGameTransition = () => {
     setUserActionsDisabled(true);
-    onGameEnd();
+    Keyboard.dismiss();
 
-    Animated.sequence([
-      Animated.timing(gameOpacity, {
-        toValue: 1,
-        duration: RHYME_GAME_FADE_OUT_DURATION * 0,
-        useNativeDriver: true,
-      }),
-      Animated.timing(gameOpacity, {
-        toValue: 0,
-        duration: RHYME_GAME_FADE_OUT_DURATION * 1,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
+    Animated.timing(gameOpacity, {
+      toValue: 0,
+      duration: RHYME_GAME_FADE_OUT_DURATION,
+      useNativeDriver: true,
+    }).start(() => {
       onGameFadeOutEnd();
     });
+
+    onGameEnd();
   };
 
   useEffect(() => {

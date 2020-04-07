@@ -7,7 +7,7 @@ export const GAME_STATES = {
 
 export const PRE_GAME_COUNTDOWN_DELAY = 1200;
 export const PRE_GAME_COUNTDOWN = 3;
-export const INITIAL_COUNTDOWN = 12;
+export const INITIAL_COUNTDOWN = 24;
 
 export const RHYMES_LOCAL_BUFFER = 8;
 export const ANSWERS_REQUIRED = 4;

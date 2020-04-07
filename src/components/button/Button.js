@@ -59,7 +59,7 @@ export const PlayAgainButton = ({ disabled, animateDelay, onPress, onAnimationSt
         disabled={disabled}
         paddingVertical={10}
         paddingHorizontal={24}>
-        <MediumLargeText>Play Again</MediumLargeText>
+        <MediumLargeText>Next Round</MediumLargeText>
       </PaddedButton>
     </PopInView>
   );

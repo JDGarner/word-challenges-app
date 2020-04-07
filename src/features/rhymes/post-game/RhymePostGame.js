@@ -1,8 +1,16 @@
 import React, { useState, useMemo } from "react";
 import { View } from "react-native";
+import { capitalize } from "lodash";
 import styled from "styled-components";
 
-import { MediumLargeText, TopBar, Title, PopInView, PlayAgainButton } from "../../../components";
+import {
+  MediumLargeText,
+  TopBar,
+  Title,
+  PopInView,
+  PlayAgainButton,
+  Spacer,
+} from "../../../components";
 import { getPraiseForScore } from "../rhymes-utils";
 import AnswerGrid from "../AnswerGrid";
 import {
@@ -17,7 +25,7 @@ const getPostGameText = (score, word) => {
 
   return {
     praise: getPraiseForScore(percentage),
-    scoreText: `You got ${score}/${ANSWERS_REQUIRED} rhymes for '${word}'!`,
+    scoreText: `You got ${score}/${ANSWERS_REQUIRED} rhymes for '${capitalize(word)}'!`,
   };
 };
 
@@ -27,7 +35,7 @@ const PostGameText = styled(MediumLargeText)`
 
 const FooterContainer = styled(View)`
   flex: 1;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 80;
   width: 100%;
@@ -74,6 +82,7 @@ const RhymePostGame = ({
             scoreChange={eloChange}
             delay={footerAnimationDelay}
           />
+          <Spacer height="10%" />
           <PlayAgainButton
             onPress={onPressStartNewGame}
             onAnimationStart={onPlayAgainAnimationStart}

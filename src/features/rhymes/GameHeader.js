@@ -12,7 +12,7 @@ const CurrentWordContainer = styled(TextContainer)`
   padding-bottom: 10;
   padding-horizontal: 32;
   margin-top: 18;
-  margin-bottom: 60;
+  margin-bottom: 28;
 `;
 
 const GameHeader = ({ word, fadeIn }) => {
