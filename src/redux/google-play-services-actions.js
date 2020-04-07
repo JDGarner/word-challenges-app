@@ -12,6 +12,8 @@ export const googlePlaySilentSignIn = () => ({
   type: SILENT_SIGN_IN,
 });
 
-export const googlePlaySubmitScore = () => ({
+export const googlePlaySubmitScore = (mode, score) => ({
   type: SUBMIT_SCORE,
+  mode,
+  score,
 });

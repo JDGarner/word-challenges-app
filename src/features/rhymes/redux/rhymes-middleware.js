@@ -21,6 +21,7 @@ import { ENDPOINTS, RETRY_TIMEOUT, MODES } from "../../../app-constants";
 import { isAnswerCorrect } from "../rhymes-utils";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import { updatePlayerELO, updateQuestionELO } from "../../../redux/leaderboards-actions";
+import { googlePlaySubmitScore } from "../../../redux/google-play-services-actions";
 
 let gameCountdownInterval = null;
 
@@ -67,11 +68,12 @@ export default store => next => action => {
 
       break;
 
-    case ON_GAME_FADE_OUT_END: {
+    case ON_GAME_END: {
+      clearCountdownInterval();
+
       const playerELO = getState().leaderboards.rhymesELO;
       const { currentWord, correctAnswers, difficulty } = getState().rhymes;
       const score = correctAnswers.length / ANSWERS_REQUIRED;
-      console.log(">>> rhymes score: ", score);
 
       const { playerELOChange, newQuestionELO } = getELORatingChanges(
         score,
@@ -80,13 +82,11 @@ export default store => next => action => {
         difficulty,
         MODES.RHYMES,
       );
-      console.log(">>> playerELOChange: ", playerELOChange);
 
       store.dispatch(updatePlayerELO(MODES.RHYMES, playerELOChange));
       store.dispatch(updatePlayerELOChange(playerELOChange));
-      // TODO: - add rhyme elo backend, and google play leaderboard
-      // store.dispatch(updateQuestionELO(MODES.RHYMES, currentWord.word, newQuestionELO));
-      // store.dispatch(googlePlaySubmitScore());
+      store.dispatch(updateQuestionELO(MODES.RHYMES, currentWord.word, newQuestionELO));
+      store.dispatch(googlePlaySubmitScore(MODES.RHYMES, playerELO + playerELOChange));
       break;
     }
 

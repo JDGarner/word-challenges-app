@@ -187,11 +187,6 @@ export default (state = initialState, action) => {
 
     case GAME_COUNTDOWN_TICK: {
       let gameCountdown = state.gameCountdown - 1;
-
-      if (gameCountdown === 0) {
-        return { ...state, gameState: GAME_STATES.POSTGAME };
-      }
-
       return { ...state, gameCountdown };
     }
 

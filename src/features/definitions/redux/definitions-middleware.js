@@ -13,7 +13,7 @@ import {
   ON_ANSWER_FEEDBACK_FINISHED,
 } from "./definitions-actions";
 import { fetchFromApi } from "../../../utils/api-util";
-import { RETRY_TIMEOUT } from "../../../app-constants";
+import { RETRY_TIMEOUT, MODES } from "../../../app-constants";
 import { DEFINITIONS_LOCAL_BUFFER, WORD_DIFFICULTIES } from "../definitions-constants";
 import { getDefinitionState, getEndpointForDifficulty, roundIsOver } from "../definitions-utils";
 import { googlePlaySubmitScore } from "../../../redux/google-play-services-actions";
@@ -66,7 +66,7 @@ export default store => next => action => {
     case ON_ROUND_END:
       const { allDefinitionsIndex, allDefinitions, difficulty } = getDefinitionState(definitions);
 
-      store.dispatch(googlePlaySubmitScore());
+      store.dispatch(googlePlaySubmitScore(MODES.DEFINITIONS));
 
       // Fetch more definitions from API if we are running out
       if (allDefinitionsIndex > allDefinitions.length - DEFINITIONS_LOCAL_BUFFER) {

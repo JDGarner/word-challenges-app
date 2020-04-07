@@ -1,4 +1,4 @@
-import { DIFFICULTIES, MODES, APP_STORAGE, ENDPOINTS } from "../app-constants";
+import { DIFFICULTIES, MODES, APP_STORAGE, ENDPOINTS, LEADERBOARD_IDS } from "../app-constants";
 import { WORD_DIFFICULTIES, DIFFICULTY_MAP } from "../features/definitions/definitions-constants";
 
 const DEFINITION_QUESTION_ELO_RANGES = {
@@ -55,7 +55,6 @@ const getNewDefinitionQuestionELO = (score, playerELO, questionELO, difficulty) 
 const getNewRhymeQuestionELO = (score, playerELO, questionELO, difficulty) => {
   const questionScore = 1 - score;
   const eloChange = getELOChange(questionScore, questionELO, playerELO);
-  console.log(">>> question ELO change: ", eloChange);
   const potentialNewELO = questionELO + eloChange;
   const { lower, upper } = DIFFICULTY_ELO_RANGES[difficulty];
 
@@ -89,6 +88,7 @@ export const getELOKeysForMode = mode => {
       stateKey: "definitionsELO",
       storageKey: APP_STORAGE.DEFINITIONS_ELO,
       endpoint: ENDPOINTS.DEFINITIONS_ELO,
+      leaderboardId: LEADERBOARD_IDS.DEFINITIONS,
     };
   }
 
@@ -96,8 +96,6 @@ export const getELOKeysForMode = mode => {
     stateKey: "rhymesELO",
     storageKey: APP_STORAGE.RHYMES_ELO,
     endpoint: ENDPOINTS.RHYMES_ELO,
+    leaderboardId: LEADERBOARD_IDS.RHYMES,
   };
 };
-
-// For rhymes:
-// score = correct/total;

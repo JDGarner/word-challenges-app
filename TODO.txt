@@ -34,9 +34,10 @@ Definitions:
 - make letter buttons bigger?
 
 Rhymes:
-- Implement rating tracking/logic
-  - ensure elo changes are made correctly on game timeout
-  - add rhyme elo backend, and google play leaderboard
+- handle disabling user input on game fade out?
+  - needed for game countdown specifically - close user keyboard?
+- fix keyboard handling on android
+  - reconsider auto focus (see how duolingo handles this)
 - fix UI placement/sizing on android
 - add green tick/red cross animation
 - add sound effects
@@ -46,8 +47,8 @@ Leaderboard/Stats:
 - Improve UI for displaying rating on menu
   - maybe under button - small leaderboard icon: {score}
 - Test on device - run from Android Studio?
-- Add rhymes leaderboard:
-  - Make leaderboard buttons in difficulty selection/post game go to specific leaderboard
+- Make leaderboard buttons in difficulty selection/post game go to specific leaderboard
+- Show all leaderboards or go straight to definitions?
 
 Testing:
 - test/user test difficulty levels with different clue parameters

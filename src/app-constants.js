@@ -34,6 +34,7 @@ export const MODES = {
 
 export const LEADERBOARD_IDS = {
   DEFINITIONS: "CgkIu9P2ttwGEAIQAQ",
+  RHYMES: "CgkIu9P2ttwGEAIQAg",
 };
 
 export const INITIAL_ELO = 800;

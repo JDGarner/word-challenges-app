@@ -5,7 +5,8 @@ import {
   SUBMIT_SCORE,
   googlePlaySubmitScore,
 } from "./google-play-services-actions";
-import { LEADERBOARD_IDS } from "../app-constants";
+import { LEADERBOARD_IDS, MODES } from "../app-constants";
+import { getELOKeysForMode } from "../utils/elo-utils";
 
 const signInToGooglePlay = onSuccess => {
   console.log("Google Play Game Services: Attempting Silent Sign");
@@ -32,13 +33,14 @@ export default store => next => action => {
     case SHOW_ALL_LEADERBOARDS:
       RNGooglePlayGameServices.showAllLeaderboards()
         .then(() => {
-          store.dispatch(googlePlaySubmitScore());
+          console.log("Google Play Game Services: Showing Leaderboards");
         })
         .catch(() => {
           signInToGooglePlay(RNGooglePlayGameServices.showAllLeaderboards);
         });
 
-      store.dispatch(googlePlaySubmitScore());
+      store.dispatch(googlePlaySubmitScore(MODES.DEFINITIONS));
+      store.dispatch(googlePlaySubmitScore(MODES.RHYMES));
 
       break;
 
@@ -54,18 +56,19 @@ export default store => next => action => {
       break;
 
     case SUBMIT_SCORE:
-      const { definitionsELO } = store.getState().leaderboards;
-      const scoreToSubmit = action.score || definitionsELO;
+      const { leaderboards } = store.getState();
+      const { stateKey, leaderboardId } = getELOKeysForMode(action.mode);
+      const scoreToSubmit = action.score || leaderboards[stateKey];
 
-      RNGooglePlayGameServices.setLeaderboardScore(
-        LEADERBOARD_IDS.DEFINITIONS,
-        Number(scoreToSubmit),
-      )
+      RNGooglePlayGameServices.setLeaderboardScore(leaderboardId, Number(scoreToSubmit))
         .then(() => {
-          console.log("Google Play Game Services: Score Submit Success: ", scoreToSubmit);
+          console.log(
+            `Google Play Game Services: ${action.mode} Score Submit Success: `,
+            scoreToSubmit,
+          );
         })
         .catch(() => {
-          console.log("Google Play Game Services: Score Submit Failed");
+          console.log(`Google Play Game Services: ${action.mode} Score Submit Failed`);
         });
 
       break;

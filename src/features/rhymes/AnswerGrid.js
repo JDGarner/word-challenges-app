@@ -1,4 +1,5 @@
 import React from "react";
+import { capitalize } from "lodash";
 import { View, ScrollView } from "react-native";
 import styled from "styled-components";
 
@@ -39,7 +40,7 @@ const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
       id: answer,
       component: (
         <AnswerContainer>
-          <AnswerText>{answer}</AnswerText>
+          <AnswerText>{capitalize(answer)}</AnswerText>
         </AnswerContainer>
       ),
     }));
@@ -59,7 +60,7 @@ const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
         <GridItem key={answer}>
           <PopInView onAnimationEnd={onAnswerAnimationEnd}>
             <AnswerContainer>
-              <AnswerText>{answer}</AnswerText>
+              <AnswerText>{capitalize(answer)}</AnswerText>
             </AnswerContainer>
           </PopInView>
         </GridItem>

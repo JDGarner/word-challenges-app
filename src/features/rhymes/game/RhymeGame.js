@@ -41,31 +41,41 @@ const RhymeGame = ({
   onGameFadeOutEnd,
 }) => {
   const [gameOpacity] = useState(new Animated.Value(1));
+  const [userActionsDisabled, setUserActionsDisabled] = useState(false);
 
   useEffect(() => {
     onBeginGame();
-
-    return () => {
-      onGameEnd();
-    };
   }, []);
+
+  const handleGameTransition = () => {
+    setUserActionsDisabled(true);
+    onGameEnd();
+
+    Animated.sequence([
+      Animated.timing(gameOpacity, {
+        toValue: 1,
+        duration: RHYME_GAME_FADE_OUT_DURATION * 0,
+        useNativeDriver: true,
+      }),
+      Animated.timing(gameOpacity, {
+        toValue: 0,
+        duration: RHYME_GAME_FADE_OUT_DURATION * 1,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      onGameFadeOutEnd();
+    });
+  };
+
+  useEffect(() => {
+    if (gameCountdown === 0 && !userActionsDisabled) {
+      handleGameTransition();
+    }
+  }, [gameCountdown]);
 
   const onAnswerAnimationEnd = () => {
     if (correctAnswers.length >= ANSWERS_REQUIRED) {
-      Animated.sequence([
-        Animated.timing(gameOpacity, {
-          toValue: 1,
-          duration: RHYME_GAME_FADE_OUT_DURATION * 0,
-          useNativeDriver: true,
-        }),
-        Animated.timing(gameOpacity, {
-          toValue: 0,
-          duration: RHYME_GAME_FADE_OUT_DURATION * 1,
-          useNativeDriver: true,
-        }),
-      ]).start(() => {
-        onGameFadeOutEnd();
-      });
+      handleGameTransition();
     }
   };
 
