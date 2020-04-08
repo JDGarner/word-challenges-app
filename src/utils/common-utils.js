@@ -1,20 +1,15 @@
 import { sample } from "lodash";
 
 export const getHighestPraiseWord = () => {
-  return sample([
-    "Phenomenal!",
-    "Terrific!",
-    "Tremendous!",
-    "Magnificent!",
-    "Sublime!",
-    "Monumental!",
-    "Wunderbar!",
-    "Perfect!",
-  ]);
+  if (Math.random() < 0.05) {
+    return sample(["Godlike!"]);
+  }
+
+  return sample(["Superb!", "Wunderbar!", "Perfect!"]);
 };
 
 export const getHighPraiseWord = () => {
-  return sample(["Super!", "Impressive!", "Muy Bien!", "Superb!"]);
+  return sample(["Super!", "Impressive!", "Muy Bien!"]);
 };
 
 export const getMediumPraiseWord = () => {

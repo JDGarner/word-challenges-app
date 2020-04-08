@@ -21,7 +21,7 @@ import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import { MODES } from "../../../app-constants";
 
-const ICON_SIZE = 32;
+const ICON_SIZE = 40;
 
 const ContentContainer = styled(Animated.View)`
   flex: 1;
@@ -64,11 +64,11 @@ const FooterButtons = styled(View)`
 `;
 
 const ShuffleButton = styled(TouchableOpacity)`
-  margin-right: 16;
+  margin-right: 20;
 `;
 
 const SkipButton = styled(TouchableOpacity)`
-  margin-left: 16;
+  margin-left: 20;
 `;
 
 /**

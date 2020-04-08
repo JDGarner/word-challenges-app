@@ -29,13 +29,8 @@ Design:
 - test on ios device
 - Release iOS app
 
-General:
-- tone down the praise words, or very small chance for some words
-
 Definitions:
 - re-test retry logic with new difficulty levels
-- Add more feedback text randomly
-- make letter buttons bigger?
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
@@ -71,6 +66,8 @@ iOS Release:
 - Connect to game center for iOS
 
 Maybe in 1st release:
+- Think about splitting definitions into 4 difficulties on BE, remove free letters for expert?
+  - Words could then move fluidly between difficulty levels instead of being trapped (same for rhymes)
 - Add Synonyms mode
 - Add tutorial/intro?
 - Set different themes in settings menu?
@@ -78,6 +75,8 @@ Maybe in 1st release:
 - look into flipper/rn 0.62
 - info about rating limits for each difficulty
 - handle hardware back navigation
+- keep track of perfect streak
+  -> change praise words based on this/show streak
 
 
 

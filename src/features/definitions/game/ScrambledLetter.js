@@ -10,10 +10,11 @@ import {
 } from "../definitions-utils";
 
 const LETTER_SIZE = 46;
+const MARGIN_SIZE = 6;
 
 const EmptyLetterPlaceHolder = styled(View)`
-  margin-vertical: 6;
-  margin-horizontal: 6;
+  margin-vertical: ${MARGIN_SIZE};
+  margin-horizontal: ${MARGIN_SIZE};
   height: ${LETTER_SIZE};
   width: ${LETTER_SIZE};
 `;
@@ -21,8 +22,8 @@ const EmptyLetterPlaceHolder = styled(View)`
 const LetterButton = styled(BorderedButton)`
   justify-content: center;
   align-items: center;
-  margin-vertical: 6;
-  margin-horizontal: 6;
+  margin-vertical: ${MARGIN_SIZE};
+  margin-horizontal: ${MARGIN_SIZE};
   height: ${LETTER_SIZE};
   width: ${LETTER_SIZE};
   padding-top: ${TEXT_TOP_PADDING};
