@@ -13,6 +13,7 @@ kindle definition
 - Add sound effects:
   - Shuffle
   - Post Game
+  - Button taps (look at orixo and zentris)
 - add different dev and prod environments with different .env files (see config github)
 - increase number of definitions/rhymes returned by API call (and buffer)
 - make sure app handles gracefully if API returns error or improper object
@@ -41,8 +42,6 @@ Definitions:
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
 - review UI - answer grid item style, spacing on different screens, etc
-
-- add sound effects
 
 Leaderboard/Stats:
 - Improve UI for displaying rating on menu
