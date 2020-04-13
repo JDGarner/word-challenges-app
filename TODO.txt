@@ -23,6 +23,10 @@ Design:
   - Will probably want to use it in title as well
 - Any other ways to incorporate monkey theme?
 
+Get ui inspiration from Orixo
+ - no border radius
+ - no buttons at top of screen
+
 - Release android app:
   - https://facebook.github.io/react-native/docs/signed-apk-android
   - https://developer.android.com/studio/publish
@@ -31,14 +35,14 @@ Design:
 
 Definitions:
 - re-test retry logic with new difficulty levels
+- potential change -> add lightbulb that adds free letters
+  - disable or reduce score change if free letters were added
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
 - review UI - answer grid item style, spacing on different screens, etc
 
-- add green tick/red cross animation
 - add sound effects
-- handle duplicate answer (shimmer/flash animation?)
 
 Leaderboard/Stats:
 - Improve UI for displaying rating on menu
@@ -52,6 +56,7 @@ Testing:
 - test animation speeds/timings
 - test button placement
 - test different devices, small & big
+- Check for handle on screen background bugs
 
 Bugs:
 - cant scroll after click on answer inside grid
@@ -108,6 +113,7 @@ Rhymes:
 - Make get ready text fade in
 - fade out countdown at end of game
 - fix title moving a tiny bit from pre game -> game
+- handle duplicate answer (shimmer/flash animation?)
 
 Potential Features:
 - add clues? (2 clues per round? - give first X letters?, give example?, give synonym?)

@@ -16,7 +16,7 @@ import {
   ON_GAME_FADE_OUT_END,
   UPDATE_PLAYER_ELO_CHANGE,
 } from "./rhymes-actions";
-import { isAnswerCorrect } from "../rhymes-utils";
+import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { INITIAL_COUNTDOWN, GAME_STATES, ANSWERS_REQUIRED } from "../rhymes-constants";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 import { DIFFICULTIES } from "../../../app-constants";
@@ -50,6 +50,7 @@ const initialState = {
   loaded: false,
   gameCountdown: INITIAL_COUNTDOWN,
   animatingCountdown: false,
+  incorrectAnswerAnimationToggle: false,
   gameState: GAME_STATES.DIFFICULTYSELECTION,
   errorCode: "",
   connectionError: false,
@@ -167,6 +168,14 @@ export default (state = initialState, action) => {
           correctAnswers,
           gameCountdown: getBumpedCountdown(state.gameCountdown),
           animatingCountdown: true,
+        };
+      }
+
+      // If it is wrong and not a duplicate, do incorrect answer animation
+      if (isNotDuplicateAnswer(action.answer, state.correctAnswers)) {
+        return {
+          ...state,
+          incorrectAnswerAnimationToggle: !state.incorrectAnswerAnimationToggle,
         };
       }
 

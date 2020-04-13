@@ -30,6 +30,8 @@ const enhancedFetch = async (url, endpoint) => {
     return mockFetch(endpoint);
   }
 
+  console.log(`>>> Request: ${url}/${endpoint}`);
+
   return fetch(`${url}/${endpoint}`, {
     headers: {
       Authorization: API_KEY,

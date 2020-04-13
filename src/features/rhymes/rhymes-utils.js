@@ -15,8 +15,10 @@ export const isAnswerCorrect = (answer, { currentWord, correctAnswers }) => {
   );
 };
 
-const isNotDuplicateAnswer = (answer, answers) => {
-  return !answers.some(a => a === answer);
+export const isNotDuplicateAnswer = (answer, answers) => {
+  const formattedAnswer = capitalize(answer.trim());
+
+  return !answers.some(a => a === formattedAnswer);
 };
 
 export const getPreGameCountdownText = countdown => {

@@ -15,7 +15,7 @@ import {
   doShuffleAnimation,
 } from "../definitions-utils";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
-import AnswerFeedback from "./AnswerFeedback";
+import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
 import { TopBar } from "../../../components";
 import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";

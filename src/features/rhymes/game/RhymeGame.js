@@ -7,6 +7,7 @@ import AnswerText from "../../../components/answer-text/AnswerText";
 import GameHeader from "../GameHeader";
 import AnswerGrid from "../AnswerGrid";
 import { ANSWERS_REQUIRED, RHYME_GAME_FADE_OUT_DURATION } from "../rhymes-constants";
+import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
 
 const GameContainer = styled(Animated.View)`
   flex: 1;
@@ -33,6 +34,7 @@ const RhymeGame = ({
   correctAnswers,
   gameCountdown,
   animatingCountdown,
+  incorrectAnswerAnimationToggle,
   onCountdownAnimationEnd,
   onBeginGame,
   onGameEnd,
@@ -91,6 +93,7 @@ const RhymeGame = ({
           </AnswerTextContainer>
         </ContentContainer>
       </GameContainer>
+      <AnswerFeedback isCorrect={false} animationToggle={incorrectAnswerAnimationToggle} />
     </Fragment>
   );
 };

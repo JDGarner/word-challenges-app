@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Animated, Easing } from "react-native";
 import styled from "styled-components";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import theme from "../../../theme";
-import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
-import { useDidUpdateEffect } from "../../../hooks/generic-hooks";
-import { LargeText } from "../../../components";
+import theme from "../../theme";
+import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../../features/definitions/definitions-constants";
+import { useDidUpdateEffect } from "../../hooks/generic-hooks";
+import { LargeText } from "..";
 
 const AnswerFeedbackContainer = styled(Animated.View)`
   position: absolute;
@@ -58,12 +58,12 @@ const AnswerFeedback = ({ isCorrect, eloChange, animationToggle }) => {
     });
   }, [animationToggle]);
 
-  const eloChangeText = eloChange > 0 ? `+${eloChange}` : eloChange;
+  const eloChangeText = eloChange && eloChange > 0 ? `+${eloChange}` : eloChange;
 
   return (
     <AnswerFeedbackContainer pointerEvents="none" style={{ transform: [{ scale }], opacity }}>
       <Icon name={iconName} size={280} color={feedbackColor} />
-      <LargeText>{eloChangeText}</LargeText>
+      {eloChangeText && <LargeText>{eloChangeText}</LargeText>}
     </AnswerFeedbackContainer>
   );
 };
