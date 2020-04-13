@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import RhymePostGame from "./RhymePostGame";
 import { onPressStartNewGame, onExitGame } from "../redux/rhymes-actions";
+import { showLeaderboard } from "../../../redux/google-play-services-actions";
 
 const mapStateToProps = ({ rhymes, leaderboards }) => {
   const { rhymesELO } = leaderboards;
@@ -18,6 +19,7 @@ const mapStateToProps = ({ rhymes, leaderboards }) => {
 const mapDispatchToProps = {
   onPressStartNewGame,
   onExitGame,
+  showLeaderboard,
 };
 
 const ConnectedRhymePostGame = connect(mapStateToProps, mapDispatchToProps)(RhymePostGame);

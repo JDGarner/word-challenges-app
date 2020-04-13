@@ -19,6 +19,8 @@ import {
   ANSWERS_REQUIRED,
 } from "../rhymes-constants";
 import ScoreChange from "../../../components/score-change/ScoreChange";
+import { FontAwesomeIconButton } from "../../../components/button/Button";
+import { LEADERBOARD_IDS } from "../../../app-constants";
 
 const getPostGameText = (score, word) => {
   const percentage = Math.floor((score / ANSWERS_REQUIRED) * 100);
@@ -56,6 +58,7 @@ const RhymePostGame = ({
   eloChange,
   onPressStartNewGame,
   onExitGame,
+  showLeaderboard,
 }) => {
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
   const { praise, scoreText } = useMemo(() => getPostGameText(score, word), [word]);
@@ -69,7 +72,16 @@ const RhymePostGame = ({
 
   return (
     <>
-      <TopBar onPressLeftButton={onExitGame} />
+      <TopBar
+        onPressLeftButton={onExitGame}
+        RightComponent={
+          <FontAwesomeIconButton
+            name="trophy"
+            size={28}
+            onPress={() => showLeaderboard(LEADERBOARD_IDS.RHYMES)}
+          />
+        }
+      />
       <Title text={praise} />
       <PostGameContainer>
         <PopInView popToSize={1} duration={800} delay={300}>

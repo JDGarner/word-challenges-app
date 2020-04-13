@@ -1,6 +1,7 @@
 import RNGooglePlayGameServices from "react-native-google-play-game-services";
 import {
   SHOW_ALL_LEADERBOARDS,
+  SHOW_LEADERBOARD,
   SILENT_SIGN_IN,
   SUBMIT_SCORE,
   googlePlaySubmitScore,
@@ -37,6 +38,20 @@ export default store => next => action => {
         })
         .catch(() => {
           signInToGooglePlay(RNGooglePlayGameServices.showAllLeaderboards);
+        });
+
+      store.dispatch(googlePlaySubmitScore(MODES.DEFINITIONS));
+      store.dispatch(googlePlaySubmitScore(MODES.RHYMES));
+
+      break;
+
+    case SHOW_LEADERBOARD:
+      RNGooglePlayGameServices.showLeaderboard(action.id)
+        .then(() => {
+          console.log("Google Play Game Services: Showing Leaderboard ", action.id);
+        })
+        .catch(() => {
+          signInToGooglePlay(() => RNGooglePlayGameServices.showLeaderboard(action.id));
         });
 
       store.dispatch(googlePlaySubmitScore(MODES.DEFINITIONS));

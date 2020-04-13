@@ -6,6 +6,7 @@ import { ErrorScreen, LoadingScreen, ScreenContainerPadded } from "../../../comp
 import { GAME_STATES } from "../definitions-constants";
 import ConnectedDefinitionDifficultySelection from "../difficulty-selection/ConnectedDefinitionDifficultySelection";
 import { getDefinitionState } from "../definitions-utils";
+import { LEADERBOARD_IDS } from "../../../app-constants";
 
 const mapStateToProps = ({ definitions }) => {
   const { gameState, loaded, connectionError, errorCode } = definitions;
@@ -26,7 +27,10 @@ const DefintionGameModeLoader = props => {
     if (props.gameState === GAME_STATES.DIFFICULTYSELECTION) {
       return (
         <ScreenContainerPadded>
-          <ConnectedDefinitionDifficultySelection titleText="DEFINITIONS" />
+          <ConnectedDefinitionDifficultySelection
+            titleText="DEFINITIONS"
+            leaderboardId={LEADERBOARD_IDS.DEFINITIONS}
+          />
         </ScreenContainerPadded>
       );
     }

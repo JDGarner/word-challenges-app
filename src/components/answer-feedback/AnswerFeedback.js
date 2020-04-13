@@ -63,7 +63,7 @@ const AnswerFeedback = ({ isCorrect, eloChange, animationToggle }) => {
   return (
     <AnswerFeedbackContainer pointerEvents="none" style={{ transform: [{ scale }], opacity }}>
       <Icon name={iconName} size={280} color={feedbackColor} />
-      {eloChangeText && <LargeText>{eloChangeText}</LargeText>}
+      {!!eloChangeText && <LargeText>{eloChangeText}</LargeText>}
     </AnswerFeedbackContainer>
   );
 };

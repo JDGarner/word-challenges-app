@@ -22,7 +22,8 @@ const DifficultySelection = ({
   titleText,
   onSelectDifficulty,
   changeScreen,
-  showAllLeaderboards,
+  showLeaderboard,
+  leaderboardId,
 }) => {
   const getDifficultyOptions = () => {
     return map(DIFFICULTIES, difficulty => ({
@@ -41,7 +42,11 @@ const DifficultySelection = ({
         onPressLeftButton={() => changeScreen(SCREENS.MENU)}
         titleText={titleText}
         RightComponent={
-          <FontAwesomeIconButton name="trophy" size={28} onPress={showAllLeaderboards} />
+          <FontAwesomeIconButton
+            name="trophy"
+            size={28}
+            onPress={() => showLeaderboard(leaderboardId)}
+          />
         }
       />
       <Title text="Select a Difficulty" />

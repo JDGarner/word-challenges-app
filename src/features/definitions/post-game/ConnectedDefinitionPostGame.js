@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import DefinitionPostGame from "./DefinitionPostGame";
-import { showAllLeaderboards } from "../../../redux/leaderboards-actions";
+import { showLeaderboard } from "../../../redux/google-play-services-actions";
 import { onPressStartNewGame, onExitGame } from "../redux/definitions-actions";
 import { getDefinitionState } from "../definitions-utils";
 
@@ -14,7 +14,7 @@ const mapStateToProps = ({ definitions, leaderboards }) => {
 const mapDispatchToProps = {
   onPressStartNewGame,
   onExitGame,
-  showAllLeaderboards,
+  showLeaderboard,
 };
 
 const ConnectedDefinitionPostGame = connect(

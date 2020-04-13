@@ -6,6 +6,7 @@ import RhymeGameMode from "./RhymeGameMode";
 import { LoadingScreen, ErrorScreen, ScreenContainerPadded } from "../../../components";
 import { GAME_STATES } from "../rhymes-constants";
 import ConnectedRhymeDifficultySelection from "../difficulty-selection/ConnectedRhymeDifficultySelection";
+import { LEADERBOARD_IDS } from "../../../app-constants";
 
 const mapStateToProps = ({ rhymes }) => {
   const { gameState, loaded, connectionError, errorCode, currentWord } = rhymes;
@@ -23,7 +24,10 @@ const RhymeGameModeLoader = props => {
     if (props.gameState === GAME_STATES.DIFFICULTYSELECTION) {
       return (
         <ScreenContainerPadded>
-          <ConnectedRhymeDifficultySelection titleText="RHYMES" />
+          <ConnectedRhymeDifficultySelection
+            titleText="RHYMES"
+            leaderboardId={LEADERBOARD_IDS.RHYMES}
+          />
         </ScreenContainerPadded>
       );
     }

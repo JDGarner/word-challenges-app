@@ -47,8 +47,6 @@ Leaderboard/Stats:
 - Improve UI for displaying rating on menu
   - maybe under button - small leaderboard icon: {score}
 - Test on device - run from Android Studio?
-- Make leaderboard buttons in difficulty selection/post game go to specific leaderboard
-- Show all leaderboards or go straight to definitions?
 
 Testing:
 - test/user test difficulty levels with different clue parameters

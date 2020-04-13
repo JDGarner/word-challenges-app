@@ -14,6 +14,7 @@ import PopInView from "../../../components/pop-in-view/PopInView";
 import { getPraiseForScore } from "../definitions-utils";
 import ScoreChange from "../../../components/score-change/ScoreChange";
 import { FontAwesomeIconButton } from "../../../components/button/Button";
+import { LEADERBOARD_IDS } from "../../../app-constants";
 
 const ContentContainer = styled(View)`
   flex: 1;
@@ -52,7 +53,7 @@ const DefinitionPostGame = ({
   currentDefinitions,
   netELOChange,
   currentELO,
-  showAllLeaderboards,
+  showLeaderboard,
 }) => {
   const [showScrollBar, setShowScrollBar] = useState(false);
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
@@ -78,7 +79,11 @@ const DefinitionPostGame = ({
       <TopBar
         onPressLeftButton={onExitGame}
         RightComponent={
-          <FontAwesomeIconButton name="trophy" size={28} onPress={showAllLeaderboards} />
+          <FontAwesomeIconButton
+            name="trophy"
+            size={28}
+            onPress={() => showLeaderboard(LEADERBOARD_IDS.DEFINITIONS)}
+          />
         }
       />
       <ContentContainer>
