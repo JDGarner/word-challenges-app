@@ -11,9 +11,9 @@ kindle definition
 - Add Graphic assets to google play console
 
 - Add sound effects:
+  - Button taps (look at orixo and zentris)
   - Shuffle
   - Post Game
-  - Button taps (look at orixo and zentris)
 - add different dev and prod environments with different .env files (see config github)
 - increase number of definitions/rhymes returned by API call (and buffer)
 - make sure app handles gracefully if API returns error or improper object
@@ -36,8 +36,6 @@ Get ui inspiration from Orixo
 
 Definitions:
 - re-test retry logic with new difficulty levels
-- potential change -> add lightbulb that adds free letters
-  - disable or reduce score change if free letters were added
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
@@ -48,6 +46,16 @@ Leaderboard/Stats:
   - maybe under button - small leaderboard icon: {score}
 - Test on device - run from Android Studio?
 
+Styling To Do:
+- ellipses for long text? - in rhymes answer grid
+- sort out spacing for different device sizes, make gap at top %
+- countdown on iOS/android position
+- look through each screen again carefully
+
+
+iOS Release:
+- Connect to game center for iOS
+
 Testing:
 - test/user test difficulty levels with different clue parameters
 - test animation speeds/timings
@@ -55,23 +63,12 @@ Testing:
 - test different devices, small & big
 - Check for handle on screen background bugs
 
-Bugs:
-- cant scroll after click on answer inside grid
-
-Styling To Do:
-- ellipses for long text? - in rhymes answer grid
-- sort out spacing for different device sizes, make gap at top %
-- countdown on iOS/android position
-- look through each screen again carefully
-
-iOS Release:
-- Connect to game center for iOS
-
 Maybe in 1st release:
 - Think about splitting definitions into 4 difficulties on BE, remove free letters for expert?
   - Words could then move fluidly between difficulty levels instead of being trapped (same for rhymes)
+  - Then could also add lightbulb button to add free letters (reduces score when used)
 - Add Synonyms mode
-- Add tutorial/intro?
+- Info icons on each mode to explain (including rating system/difficulty boundaries)
 - Set different themes in settings menu?
 - Handle leaderboard connection if network is down
 - look into flipper/rn 0.62
