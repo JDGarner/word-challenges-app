@@ -89,6 +89,11 @@ project.ext.vectoricons = [
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
+project.ext.envConfigFiles = [
+  debug: ".env.dev",
+  release: ".env.prod"
+]
+
 // React Native Config plugin
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 

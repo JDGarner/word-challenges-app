@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "ios": "react-native run-ios",
-    "android": "react-native run-android",
+    "ios": "react-native run-ios --scheme \"WordChallenges.dev\"",
+    "ios:prod": "react-native run-ios --scheme \"WordChallenges.prod\"",
+    "android": "react-native run-android --variant=debug",
+    "android:prod": "react-native run-android --variant=release",
     "test": "jest",
     "lint": "eslint ."
   },
