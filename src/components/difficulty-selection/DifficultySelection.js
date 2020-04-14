@@ -4,7 +4,8 @@ import { map, capitalize } from "lodash";
 import styled from "styled-components";
 
 import { SCREENS, DIFFICULTIES } from "../../app-constants";
-import { MenuButton, FontAwesomeIconButton } from "../button/Button";
+import { FontAwesomeIconButton } from "../button/Button";
+import MenuButton from "../button/MenuButton";
 import { MediumLargerText } from "../text/Text";
 import TopBar from "../top-bar/TopBar";
 import Title from "../title/Title";

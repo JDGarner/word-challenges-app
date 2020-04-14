@@ -5,7 +5,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { TouchableOpacity } from "react-native";
 import theme from "../../theme";
 import { TextContainer } from "../containers/Containers";
-import { TEXT_TOP_PADDING, MediumLargeText } from "../text/Text";
+import { MediumLargeText } from "../text/Text";
 import PopInView from "../pop-in-view/PopInView";
 
 export const BorderedButton = ({ children, style, ...buttonProps }) => {
@@ -36,15 +36,6 @@ export const FontAwesomeIconButton = ({ name, size = 36, ...buttonProps }) => {
     </TouchableOpacity>
   );
 };
-
-export const MenuButton = styled(PaddedButton)`
-  width: 230;
-  align-items: center;
-  padding-top: ${({ verticalPadding }) =>
-    verticalPadding ? TEXT_TOP_PADDING + verticalPadding : TEXT_TOP_PADDING};
-  padding-bottom: ${props => props.verticalPadding || 0};
-  margin-vertical: 6%;
-`;
 
 export const PlayAgainButton = ({ disabled, animateDelay, onPress, onAnimationStart }) => {
   return (

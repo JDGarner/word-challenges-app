@@ -1,5 +1,6 @@
 import { SmallText, MediumText, MediumLargeText, MediumLargerText, LargeText } from "./text/Text";
-import { BorderedButton, PaddedButton, MenuButton, PlayAgainButton } from "./button/Button";
+import { BorderedButton, PaddedButton, PlayAgainButton } from "./button/Button";
+import MenuButton from "./button/MenuButton";
 import Countdown from "./countdown/Countdown";
 import ErrorScreen from "./error/ErrorScreen";
 import LoadingScreen from "./loading/LoadingScreen";

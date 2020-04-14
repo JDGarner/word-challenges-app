@@ -11,6 +11,8 @@ export default class SoundManager {
     this.muted = false;
     this.positiveSound = this.initSound("positive.mp3");
     this.negativeSound = this.initSound("negative.mp3");
+    this.menuButtonSounds = this.initSoundWithBackups("menubutton.mp3");
+    this.letterButtonSounds = this.initSoundWithBackups("letterbutton.mp3", 5);
     this.getMuteSetting();
   }
 
@@ -62,9 +64,33 @@ export default class SoundManager {
     });
   };
 
+  // Used for sounds that may need to play at the same time
+  initSoundWithBackups = (filename, numberOfBackups = 3) => {
+    const sounds = [];
+
+    for (let i = 0; i <= numberOfBackups; i++) {
+      sounds.push(
+        new Sound(filename, Sound.MAIN_BUNDLE, error => {
+          if (error) return null;
+        }),
+      );
+    }
+
+    return sounds;
+  };
+
   playSound = sound => {
     if (!this.muted && sound && sound.play) {
       sound.play();
+    }
+  };
+
+  playSoundWithBackups = sounds => {
+    for (let i = 0; i < sounds.length; i++) {
+      if (!sounds[i].isPlaying()) {
+        this.playSound(sounds[i]);
+        return;
+      }
     }
   };
 
@@ -76,8 +102,17 @@ export default class SoundManager {
     this.playSound(this.negativeSound);
   };
 
-  // play add letter
-  // play remove letter
+  playMenuButtonSound = () => {
+    this.playSoundWithBackups(this.menuButtonSounds);
+  };
+
+  playAddLetterSound = () => {
+    this.playSoundWithBackups(this.letterButtonSounds);
+  };
+
+  playRemoveLetterSound = () => {
+    this.playSoundWithBackups(this.letterButtonSounds);
+  };
 
   // play shuffle sound
 

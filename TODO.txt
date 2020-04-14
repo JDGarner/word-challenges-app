@@ -12,11 +12,9 @@ kindle definition
 
 - Add sound effects:
   - Button taps (look at orixo and zentris)
-  - Shuffle
+  - Shuffle - use letter button sound multiple times?
   - Post Game
 - increase number of definitions/rhymes returned by API call (and buffer)
-- make sure app handles gracefully if API returns error or improper object
-- error reporting/tracking? (react native sentry)
 - test on android device
 
 Design:
@@ -44,7 +42,6 @@ Rhymes:
 Leaderboard/Stats:
 - Improve UI for displaying rating on menu
   - maybe under button - small leaderboard icon: {score}
-- Test on device - run from Android Studio?
 
 Styling To Do:
 - ellipses for long text? - in rhymes answer grid
@@ -76,6 +73,7 @@ Maybe in 1st release:
 - handle hardware back navigation
 - keep track of perfect streak
   -> change praise words based on this/show streak
+- error reporting/tracking? (react native sentry)
 
 
 

@@ -9,6 +9,7 @@ import {
   animateFeedbackLetter,
 } from "../definitions-utils";
 import { TEXT_TOP_PADDING } from "../../../components/text/Text";
+import SoundManager from "../../sound/SoundManager";
 
 const AnswerButton = styled(TouchableOpacity)`
   border-bottom-width: 2px;
@@ -45,11 +46,16 @@ const AnswerLetter = ({
     }
   }, [letter]);
 
+  const onPressLetterButton = () => {
+    SoundManager.getInstance().playRemoveLetterSound();
+    onPressLetter();
+  };
+
   return (
     <AnswerButton
       onPressIn={() => animateLetterPressIn(scaleValue)}
       onPressOut={() => animateLetterPressOut(scaleValue)}
-      onPress={onPressLetter}
+      onPress={onPressLetterButton}
       disabled={disabled}
       {...styleProps}>
       <Animated.View style={{ transform: [{ scale: scaleValue }] }}>

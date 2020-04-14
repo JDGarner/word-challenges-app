@@ -8,6 +8,7 @@ import {
   animateLetterPressIn,
   animateLetterPressOut,
 } from "../definitions-utils";
+import SoundManager from "../../sound/SoundManager";
 
 const LETTER_SIZE = 46;
 const MARGIN_SIZE = 6;
@@ -34,6 +35,11 @@ const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue 
     animateScrambledLetter(scaleValue, showing);
   }, [showing]);
 
+  const onPressLetterButton = () => {
+    SoundManager.getInstance().playAddLetterSound();
+    onPressLetter();
+  };
+
   return (
     <Animated.View style={{ transform: [{ scale: scaleValue }], opacity: scaleValue }}>
       {showing === false ? (
@@ -42,7 +48,7 @@ const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue 
         <LetterButton
           onPressIn={() => animateLetterPressIn(scaleValue)}
           onPressOut={() => animateLetterPressOut(scaleValue)}
-          onPress={onPressLetter}
+          onPress={onPressLetterButton}
           disabled={disabled}>
           <MediumText>{letter}</MediumText>
         </LetterButton>
