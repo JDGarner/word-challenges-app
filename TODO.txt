@@ -11,11 +11,12 @@ kindle definition
 - Add Graphic assets to google play console
 
 - Add sound effects:
-  - Button taps (look at orixo and zentris)
+  - add button tap sound to other buttons
   - Shuffle - use letter button sound multiple times?
-  - Post Game
+  - Skip
+  - Post Game sounds
+  - Rhyme game sounds
 - increase number of definitions/rhymes returned by API call (and buffer)
-- test on android device
 
 Design:
 - Think of new app icon and splash screen design for Monkey theme
@@ -49,6 +50,8 @@ Styling To Do:
 - countdown on iOS/android position
 - look through each screen again carefully
 
+Bugs:
+- see if it works running on device via android studio
 
 iOS Release:
 - Connect to game center for iOS
