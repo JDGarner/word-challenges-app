@@ -12,8 +12,6 @@ kindle definition
 
 - Add sound effects:
   - add button tap sound to other buttons
-  - Shuffle - use letter button sound multiple times?
-  - Skip
   - Post Game sounds
   - Rhyme game sounds
 - increase number of definitions/rhymes returned by API call (and buffer)

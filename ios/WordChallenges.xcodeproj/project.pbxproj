@@ -14,6 +14,7 @@
 		7D11D1AE2445C60A00BA373E /* menubutton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7D11D1AC2445C60A00BA373E /* menubutton.mp3 */; };
 		7D11D1B02445C7CB00BA373E /* positive.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7D11D1AF2445C7CB00BA373E /* positive.mp3 */; };
 		7D11D1B22445CBF200BA373E /* letterbutton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7D11D1B12445CBF200BA373E /* letterbutton.mp3 */; };
+		7D49DA172445E9FC004CF49E /* shuffle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7D49DA162445E9FC004CF49E /* shuffle.mp3 */; };
 		7DFA6E1B242D7A8C00D73F17 /* negative.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7DFA6E19242D7A8C00D73F17 /* negative.mp3 */; };
 		C30F1251C5C5F82A68B61899 /* libPods-WordChallenges.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B58FE6FE13E82EB825535C5E /* libPods-WordChallenges.a */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,7 @@
 		7D11D1AC2445C60A00BA373E /* menubutton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menubutton.mp3; sourceTree = "<group>"; };
 		7D11D1AF2445C7CB00BA373E /* positive.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = positive.mp3; sourceTree = "<group>"; };
 		7D11D1B12445CBF200BA373E /* letterbutton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = letterbutton.mp3; sourceTree = "<group>"; };
+		7D49DA162445E9FC004CF49E /* shuffle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shuffle.mp3; sourceTree = "<group>"; };
 		7DFA6E19242D7A8C00D73F17 /* negative.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = negative.mp3; sourceTree = "<group>"; };
 		98DEF581AFE8361CBCCB6225 /* Pods-WordChallenges.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordChallenges.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordChallenges/Pods-WordChallenges.release.xcconfig"; sourceTree = "<group>"; };
 		B58FE6FE13E82EB825535C5E /* libPods-WordChallenges.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WordChallenges.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,7 @@
 			children = (
 				7D11D1B12445CBF200BA373E /* letterbutton.mp3 */,
 				7D11D1AC2445C60A00BA373E /* menubutton.mp3 */,
+				7D49DA162445E9FC004CF49E /* shuffle.mp3 */,
 				7D11D1AF2445C7CB00BA373E /* positive.mp3 */,
 				7DFA6E19242D7A8C00D73F17 /* negative.mp3 */,
 			);
@@ -182,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				7D49DA172445E9FC004CF49E /* shuffle.mp3 in Resources */,
 				7D11D1B22445CBF200BA373E /* letterbutton.mp3 in Resources */,
 				7DFA6E1B242D7A8C00D73F17 /* negative.mp3 in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,

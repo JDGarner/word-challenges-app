@@ -13,6 +13,7 @@ export default class SoundManager {
     this.negativeSound = this.initSound("negative.mp3");
     this.menuButtonSounds = this.initSoundWithBackups("menubutton.mp3");
     this.letterButtonSounds = this.initSoundWithBackups("letterbutton.mp3", 5);
+    this.shuffleSounds = this.initSoundWithBackups("shuffle.mp3", 2);
     this.getMuteSetting();
   }
 
@@ -114,15 +115,7 @@ export default class SoundManager {
     this.playSoundWithBackups(this.letterButtonSounds);
   };
 
-  // play shuffle sound
-
-  // play correct sound
-  // Classic game sound, one up, rising, positive. Version 6/8
-  // Quiet bell hit
-
-  // play incorrect sound
-  // Classic game sound, one up, rising, positive. Version 3
-  // Game tone, retro, error 1
-
-  // play feedback (for each definition/rhyme showing up?)
+  playShuffleSound = () => {
+    this.playSoundWithBackups(this.shuffleSounds);
+  };
 }
