@@ -278,6 +278,8 @@ const DefinitionGame = ({
 
     doShuffleAnimation(scrambledLetterScales, false);
 
+    SoundManager.getInstance().playShuffleSound();
+
     setTimeout(() => {
       // Re-shuffle the letters, reset scrambled/answers to initial state
       // Need to recompute freeLetters also because scrambled letters have changed position
