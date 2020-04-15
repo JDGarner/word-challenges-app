@@ -81,13 +81,6 @@ export const easyDefinitions = [
     eloRating: 800,
   },
   {
-    _id: "123behavior",
-    word: "behavior",
-    definition: "the way that someone behaves.",
-    difficulty: "easy",
-    eloRating: 800,
-  },
-  {
     _id: "123belief",
     word: "belief",
     definition:

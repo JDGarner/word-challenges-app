@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useRef, useState, useMemo } from "react";
 import { View, ScrollView, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components";
 
@@ -59,6 +59,14 @@ const DefinitionPostGame = ({
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
   const scrollViewRef = useRef();
 
+  const score = currentDefinitions.filter(d => d.isCorrect).length;
+  const praise = useMemo(() => getPraiseForScore(score, WORDS_PER_ROUND), [currentDefinitions]);
+
+  const totalAnimationTime =
+    ANSWER_ANIMATION_START_DELAY_TIME +
+    WORDS_PER_ROUND * ANSWER_ANIMATION_GAP_TIME +
+    ANSWER_ANIMATION_DURATION;
+
   const onPlayAgainAnimationStart = () => {
     setUserActionsDisabled(false);
     setShowScrollBar(true);
@@ -66,13 +74,6 @@ const DefinitionPostGame = ({
       scrollViewRef.current.flashScrollIndicators();
     }
   };
-
-  const score = currentDefinitions.filter(d => d.isCorrect).length;
-  const praise = getPraiseForScore(score, WORDS_PER_ROUND);
-  const totalAnimationTime =
-    ANSWER_ANIMATION_START_DELAY_TIME +
-    WORDS_PER_ROUND * ANSWER_ANIMATION_GAP_TIME +
-    ANSWER_ANIMATION_DURATION;
 
   return (
     <Fragment>
