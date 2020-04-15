@@ -13,7 +13,7 @@ import {
 import PopInView from "../../../components/pop-in-view/PopInView";
 import { getPraiseForScore } from "../definitions-utils";
 import ScoreChange from "../../../components/score-change/ScoreChange";
-import { FontAwesomeIconButton } from "../../../components/button/Button";
+import { LeaderboardButton } from "../../../components/button/Button";
 import { LEADERBOARD_IDS } from "../../../app-constants";
 
 const ContentContainer = styled(View)`
@@ -80,11 +80,7 @@ const DefinitionPostGame = ({
       <TopBar
         onPressLeftButton={onExitGame}
         RightComponent={
-          <FontAwesomeIconButton
-            name="trophy"
-            size={28}
-            onPress={() => showLeaderboard(LEADERBOARD_IDS.DEFINITIONS)}
-          />
+          <LeaderboardButton onPress={() => showLeaderboard(LEADERBOARD_IDS.DEFINITIONS)} />
         }
       />
       <ContentContainer>

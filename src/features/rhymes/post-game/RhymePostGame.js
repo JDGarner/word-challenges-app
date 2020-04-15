@@ -19,7 +19,7 @@ import {
   ANSWERS_REQUIRED,
 } from "../rhymes-constants";
 import ScoreChange from "../../../components/score-change/ScoreChange";
-import { FontAwesomeIconButton } from "../../../components/button/Button";
+import { LeaderboardButton } from "../../../components/button/Button";
 import { LEADERBOARD_IDS } from "../../../app-constants";
 
 const getPostGameText = (score, word) => {
@@ -75,11 +75,7 @@ const RhymePostGame = ({
       <TopBar
         onPressLeftButton={onExitGame}
         RightComponent={
-          <FontAwesomeIconButton
-            name="trophy"
-            size={28}
-            onPress={() => showLeaderboard(LEADERBOARD_IDS.RHYMES)}
-          />
+          <LeaderboardButton onPress={() => showLeaderboard(LEADERBOARD_IDS.RHYMES)} />
         }
       />
       <Title text={praise} />

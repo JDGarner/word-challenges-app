@@ -11,7 +11,7 @@ kindle definition
 - Add Graphic assets to google play console
 
 - Add sound effects:
-  - add button tap sound to other buttons
+  - test out different button sounds
   - Post Game sounds
   - Rhyme game sounds
 - increase number of definitions/rhymes returned by API call (and buffer)

@@ -7,6 +7,7 @@ import theme from "../../theme";
 import { TextContainer } from "../containers/Containers";
 import { MediumLargeText } from "../text/Text";
 import PopInView from "../pop-in-view/PopInView";
+import SoundManager from "../../features/sound/SoundManager";
 
 export const BorderedButton = ({ children, style, ...buttonProps }) => {
   return (
@@ -37,7 +38,30 @@ export const FontAwesomeIconButton = ({ name, size = 36, ...buttonProps }) => {
   );
 };
 
+export const LeaderboardButton = ({ onPress }) => {
+  const onPressLeaderboardButton = () => {
+    SoundManager.getInstance().playMenuButtonSound();
+    onPress();
+  };
+
+  return <FontAwesomeIconButton name="trophy" size={28} onPress={onPressLeaderboardButton} />;
+};
+
+export const SettingsButton = ({ onPress }) => {
+  const onPressSettingsButton = () => {
+    SoundManager.getInstance().playMenuButtonSound();
+    onPress();
+  };
+
+  return <IconButton name="settings" size={28} onPress={onPressSettingsButton} />;
+};
+
 export const PlayAgainButton = ({ disabled, animateDelay, onPress, onAnimationStart }) => {
+  const onPressPlayAgainButton = () => {
+    SoundManager.getInstance().playMenuButtonSound();
+    onPress();
+  };
+
   return (
     <PopInView
       pointerEvents="auto"
@@ -46,7 +70,7 @@ export const PlayAgainButton = ({ disabled, animateDelay, onPress, onAnimationSt
       delay={animateDelay}
       onAnimationStart={onAnimationStart}>
       <PaddedButton
-        onPress={onPress}
+        onPress={onPressPlayAgainButton}
         disabled={disabled}
         paddingVertical={10}
         paddingHorizontal={24}>

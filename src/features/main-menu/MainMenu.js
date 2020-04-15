@@ -11,7 +11,7 @@ import {
   TopBar,
 } from "../../components";
 import { SCREENS } from "../../app-constants";
-import { IconButton, FontAwesomeIconButton } from "../../components/button/Button";
+import { SettingsButton, LeaderboardButton } from "../../components/button/Button";
 import { SmallMediumText } from "../../components/text/Text";
 import colors from "../../theme/colors";
 
@@ -69,13 +69,9 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
   return (
     <ScreenContainerPadded>
       <TopBar
-        LeftComponent={
-          <IconButton name="settings" size={28} onPress={() => changeScreen(SCREENS.SETTINGS)} />
-        }
+        LeftComponent={<SettingsButton onPress={() => changeScreen(SCREENS.SETTINGS)} />}
         titleText="WORD MONKEY"
-        RightComponent={
-          <FontAwesomeIconButton name="trophy" size={28} onPress={showAllLeaderboards} />
-        }
+        RightComponent={<LeaderboardButton onPress={showAllLeaderboards} />}
       />
       <Title text="What would you like to train?" />
       <Spacer height="5%" />

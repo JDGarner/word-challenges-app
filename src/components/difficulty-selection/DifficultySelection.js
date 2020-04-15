@@ -4,7 +4,7 @@ import { map, capitalize } from "lodash";
 import styled from "styled-components";
 
 import { SCREENS, DIFFICULTIES } from "../../app-constants";
-import { FontAwesomeIconButton } from "../button/Button";
+import { LeaderboardButton } from "../button/Button";
 import MenuButton from "../button/MenuButton";
 import { MediumLargerText } from "../text/Text";
 import TopBar from "../top-bar/TopBar";
@@ -42,13 +42,7 @@ const DifficultySelection = ({
       <TopBar
         onPressLeftButton={() => changeScreen(SCREENS.MENU)}
         titleText={titleText}
-        RightComponent={
-          <FontAwesomeIconButton
-            name="trophy"
-            size={28}
-            onPress={() => showLeaderboard(leaderboardId)}
-          />
-        }
+        RightComponent={<LeaderboardButton onPress={() => showLeaderboard(leaderboardId)} />}
       />
       <Title text="Select a Difficulty" />
       <Spacer height="5%" />

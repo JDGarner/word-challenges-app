@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { IconButton } from "../../components/button/Button";
 import Countdown from "../countdown/Countdown";
 import TopBarTitle from "../title/TopBarTitle";
+import SoundManager from "../../features/sound/SoundManager";
 
 const TopBarContainer = styled(View)`
   height: 70;
@@ -24,12 +25,17 @@ const TopBar = ({
   RightComponent,
   disabled,
 }) => {
+  const handlePressLeftButton = () => {
+    SoundManager.getInstance().playMenuButtonSound();
+    onPressLeftButton();
+  };
+
   const renderLeftButton = () => {
     if (LeftComponent) {
       return LeftComponent;
     }
 
-    return <IconButton name="arrow-back" onPress={onPressLeftButton} disabled={disabled} />;
+    return <IconButton name="arrow-back" onPress={handlePressLeftButton} disabled={disabled} />;
   };
 
   const showCountdown = !isNaN(gameCountdown) && gameCountdown >= 0;
