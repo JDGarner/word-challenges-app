@@ -19,8 +19,11 @@ import { fetchFromApi } from "../../../utils/api-util";
 import { ENDPOINTS, RETRY_TIMEOUT, MODES } from "../../../app-constants";
 import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
 import { getELORatingChanges } from "../../../utils/elo-utils";
-import { updatePlayerELO, updateQuestionELO } from "../../../redux/leaderboards-actions";
-import { googlePlaySubmitScore } from "../../../redux/google-play-services-actions";
+import {
+  updatePlayerELO,
+  updateQuestionELO,
+} from "../../../redux/leaderboards/leaderboards-actions";
+import { googlePlaySubmitScore } from "../../../redux/google-play/google-play-services-actions";
 import SoundManager from "../../sound/SoundManager";
 
 let gameCountdownInterval = null;

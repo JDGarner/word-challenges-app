@@ -7,7 +7,10 @@ import {
   onAnswerFeedbackFinished,
 } from "../redux/definitions-actions";
 import { getDefinitionState } from "../definitions-utils";
-import { updatePlayerELO, updateQuestionELO } from "../../../redux/leaderboards-actions";
+import {
+  updatePlayerELO,
+  updateQuestionELO,
+} from "../../../redux/leaderboards/leaderboards-actions";
 
 const mapStateToProps = ({ definitions, leaderboards }) => {
   const { gameCountdown, difficulty } = definitions;

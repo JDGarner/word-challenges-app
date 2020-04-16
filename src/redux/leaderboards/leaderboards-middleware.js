@@ -5,9 +5,9 @@ import {
   UPDATE_QUESTION_ELO,
 } from "./leaderboards-actions";
 import AsyncStorage from "@react-native-community/async-storage";
-import { APP_STORAGE, INITIAL_ELO } from "../app-constants";
-import { postToApi } from "../utils/api-util";
-import { getELOKeysForMode } from "../utils/elo-utils";
+import { APP_STORAGE, INITIAL_ELO } from "../../app-constants";
+import { postToApi } from "../../utils/api-util";
+import { getELOKeysForMode } from "../../utils/elo-utils";
 
 export default store => next => async action => {
   switch (action.type) {

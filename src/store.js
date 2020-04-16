@@ -1,10 +1,10 @@
 import { Platform } from "react-native";
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import appReducer from "./redux/app-reducer";
-import leaderboardsReducer from "./redux/leaderboards-reducer";
-import leaderboardsMiddleware from "./redux/leaderboards-middleware";
-import googlePlayServicesMiddleware from "./redux/google-play-services-middleware";
+import navigationReducer from "./redux/navigation-reducer";
+import leaderboardsReducer from "./redux/leaderboards/leaderboards-reducer";
+import leaderboardsMiddleware from "./redux/leaderboards/leaderboards-middleware";
+import googlePlayServicesMiddleware from "./redux/google-play/google-play-services-middleware";
 import rhymesReducer from "./features/rhymes/redux/rhymes-reducer";
 import rhymesMiddleware from "./features/rhymes/redux/rhymes-middleware";
 import definitionsReducer from "./features/definitions/redux/definitions-reducer";
@@ -14,7 +14,7 @@ const initialStore = {};
 
 export default function configureStore() {
   const reducers = combineReducers({
-    app: appReducer,
+    navigation: navigationReducer,
     rhymes: rhymesReducer,
     definitions: definitionsReducer,
     leaderboards: leaderboardsReducer,

@@ -1,5 +1,5 @@
 import { ON_ELOS_RETRIEVED, UPDATE_PLAYER_ELO } from "./leaderboards-actions";
-import { getELOKeysForMode } from "../utils/elo-utils";
+import { getELOKeysForMode } from "../../utils/elo-utils";
 
 const initialState = {
   definitionsELO: null,

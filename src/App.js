@@ -12,8 +12,8 @@ import { WORD_DIFFICULTIES } from "./features/definitions/definitions-constants"
 import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
 import { AppBackground } from "./components";
 import SoundManager from "./features/sound/SoundManager";
-import { retrieveELOs } from "./redux/leaderboards-actions";
-import { googlePlaySilentSignIn } from "./redux/google-play-services-actions";
+import { retrieveELOs } from "./redux/leaderboards/leaderboards-actions";
+import { googlePlaySilentSignIn } from "./redux/google-play/google-play-services-actions";
 
 const store = configureStore();
 

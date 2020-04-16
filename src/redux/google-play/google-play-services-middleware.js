@@ -6,8 +6,8 @@ import {
   SUBMIT_SCORE,
   googlePlaySubmitScore,
 } from "./google-play-services-actions";
-import { LEADERBOARD_IDS, MODES } from "../app-constants";
-import { getELOKeysForMode } from "../utils/elo-utils";
+import { MODES } from "../../app-constants";
+import { getELOKeysForMode } from "../../utils/elo-utils";
 
 const signInToGooglePlay = onSuccess => {
   console.log("Google Play Game Services: Attempting Silent Sign");

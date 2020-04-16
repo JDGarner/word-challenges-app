@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import AppScreens from "./AppScreens";
 
-const mapStateToProps = ({ app }) => {
-  const { currentScreen } = app;
+const mapStateToProps = ({ navigation }) => {
+  const { currentScreen } = navigation;
   return { currentScreen };
 };
 

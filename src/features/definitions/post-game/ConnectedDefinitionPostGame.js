@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import DefinitionPostGame from "./DefinitionPostGame";
-import { showLeaderboard } from "../../../redux/google-play-services-actions";
+import { showLeaderboard } from "../../../redux/google-play/google-play-services-actions";
 import { onPressStartNewGame, onExitGame } from "../redux/definitions-actions";
 import { getDefinitionState } from "../definitions-utils";
 

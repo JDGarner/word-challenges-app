@@ -16,7 +16,7 @@ import { fetchFromApi } from "../../../utils/api-util";
 import { RETRY_TIMEOUT, MODES } from "../../../app-constants";
 import { DEFINITIONS_LOCAL_BUFFER, WORD_DIFFICULTIES } from "../definitions-constants";
 import { getDefinitionState, getEndpointForDifficulty, roundIsOver } from "../definitions-utils";
-import { googlePlaySubmitScore } from "../../../redux/google-play-services-actions";
+import { googlePlaySubmitScore } from "../../../redux/google-play/google-play-services-actions";
 
 let gameCountdownInterval = null;
 

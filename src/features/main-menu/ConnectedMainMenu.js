@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import MainMenu from "./MainMenu";
-import { changeScreen } from "../../redux/app-actions";
-import { showAllLeaderboards } from "../../redux/google-play-services-actions";
+import { changeScreen } from "../../redux/navigation/navigation-actions";
+import { showAllLeaderboards } from "../../redux/google-play/google-play-services-actions";
 
 const mapStateToProps = ({ leaderboards }) => {
   const { definitionsELO, rhymesELO } = leaderboards;

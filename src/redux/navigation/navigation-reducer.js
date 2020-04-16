@@ -1,5 +1,5 @@
-import { SCREENS } from "../app-constants";
-import { CHANGE_SCREEN } from "./app-actions";
+import { SCREENS } from "../../app-constants";
+import { CHANGE_SCREEN } from "./navigation-actions";
 
 const initialState = {
   currentScreen: SCREENS.MENU,
