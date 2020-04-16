@@ -1,12 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchDefinitionsRetry, goBackToDifficultySelection } from "../redux/definitions-actions";
+import { fetchDefinitionsRetry, onExitGame } from "../redux/definitions-actions";
+import { onNavigateBack } from "../../../redux/navigation/navigation-actions";
 import DefintionGameMode from "./DefinitionGameMode";
-import { ErrorScreen, LoadingScreen, ScreenContainerPadded } from "../../../components";
-import { GAME_STATES } from "../definitions-constants";
-import ConnectedDefinitionDifficultySelection from "../difficulty-selection/ConnectedDefinitionDifficultySelection";
+import { ErrorScreen, LoadingScreen } from "../../../components";
 import { getDefinitionState } from "../definitions-utils";
-import { LEADERBOARD_IDS } from "../../../app-constants";
 
 const mapStateToProps = ({ definitions }) => {
   const { gameState, loaded, connectionError, errorCode } = definitions;
@@ -19,37 +17,33 @@ const mapStateToProps = ({ definitions }) => {
 
 const mapDispatchToProps = {
   fetchDefinitionsRetry,
-  goBackToDifficultySelection,
+  onNavigateBack,
+  onExitGame,
 };
 
 const DefintionGameModeLoader = props => {
   const getContent = () => {
-    if (props.gameState === GAME_STATES.DIFFICULTYSELECTION) {
-      return (
-        <ScreenContainerPadded>
-          <ConnectedDefinitionDifficultySelection
-            titleText="DEFINITIONS"
-            leaderboardId={LEADERBOARD_IDS.DEFINITIONS}
-          />
-        </ScreenContainerPadded>
-      );
-    }
-
     if (props.connectionError) {
       return (
         <ErrorScreen
           onButtonPress={props.fetchDefinitionsRetry}
           errorCode={props.errorCode}
-          onPressBack={props.goBackToDifficultySelection}
+          onPressBack={props.onNavigateBack}
         />
       );
     }
 
     if (props.loaded && props.currentWord) {
-      return <DefintionGameMode currentWord={props.currentWord} gameState={props.gameState} />;
+      return (
+        <DefintionGameMode
+          currentWord={props.currentWord}
+          gameState={props.gameState}
+          onExitGame={props.onExitGame}
+        />
+      );
     }
 
-    return <LoadingScreen onPressBack={props.goBackToDifficultySelection} />;
+    return <LoadingScreen onPressBack={props.onNavigateBack} />;
   };
 
   return getContent();

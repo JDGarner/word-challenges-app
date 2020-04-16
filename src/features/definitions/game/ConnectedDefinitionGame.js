@@ -3,7 +3,6 @@ import DefinitionGame from "./DefinitionGame";
 import {
   onBeginGame,
   onSubmitAnswer,
-  onExitGame,
   onAnswerFeedbackFinished,
 } from "../redux/definitions-actions";
 import { getDefinitionState } from "../definitions-utils";
@@ -33,7 +32,6 @@ const mapDispatchToProps = {
   updateQuestionELO,
   onBeginGame,
   onSubmitAnswer,
-  onExitGame,
   onAnswerFeedbackFinished,
 };
 

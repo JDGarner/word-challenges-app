@@ -10,7 +10,6 @@ import {
   ON_EXIT_GAME,
   ON_SELECT_DIFFICULTY_DEFINITIONS,
   ON_ANSWER_FEEDBACK_FINISHED,
-  GO_BACK_TO_DIFFICULTY_SELECTION,
 } from "./definitions-actions";
 import {
   GAME_STATES,
@@ -34,7 +33,7 @@ const initialState = {
   questionIndex: 0,
   netELOChange: 0,
   loaded: false,
-  gameState: GAME_STATES.DIFFICULTYSELECTION,
+  gameState: GAME_STATES.PLAYING,
   gameCountdown: INITIAL_COUNTDOWN,
   difficulty: DIFFICULTIES.NOVICE,
   errorCode: "",
@@ -157,7 +156,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         ...getStateForNewRound(state, nextIndex, allDefinitions, difficulty),
-        gameState: GAME_STATES.DIFFICULTYSELECTION,
+        gameState: GAME_STATES.PLAYING,
       };
     }
 
@@ -190,12 +189,6 @@ export default (state = initialState, action) => {
         gameState: GAME_STATES.PLAYING,
       };
     }
-
-    case GO_BACK_TO_DIFFICULTY_SELECTION:
-      return {
-        ...state,
-        gameState: GAME_STATES.DIFFICULTYSELECTION,
-      };
 
     default:
       return state;

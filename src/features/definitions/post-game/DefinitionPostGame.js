@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState, useMemo } from "react";
 import { View, ScrollView, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components";
 
-import { MediumLargeText, PlayAgainButton, TopBar } from "../../../components";
+import { MediumLargeText, PlayAgainButton, ConnectedTopBar } from "../../../components";
 import Answer from "./Answer";
 import {
   ANSWER_ANIMATION_GAP_TIME,
@@ -49,7 +49,6 @@ const Footer = styled(View)`
 
 const DefinitionPostGame = ({
   onPressStartNewGame,
-  onExitGame,
   currentDefinitions,
   netELOChange,
   currentELO,
@@ -77,8 +76,7 @@ const DefinitionPostGame = ({
 
   return (
     <Fragment>
-      <TopBar
-        onPressLeftButton={onExitGame}
+      <ConnectedTopBar
         RightComponent={
           <LeaderboardButton onPress={() => showLeaderboard(LEADERBOARD_IDS.DEFINITIONS)} />
         }

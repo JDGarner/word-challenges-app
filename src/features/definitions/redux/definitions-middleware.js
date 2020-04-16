@@ -11,12 +11,14 @@ import {
   onRoundEnd,
   ON_ROUND_END,
   ON_ANSWER_FEEDBACK_FINISHED,
+  ON_SELECT_DIFFICULTY_DEFINITIONS,
 } from "./definitions-actions";
 import { fetchFromApi } from "../../../utils/api-util";
-import { RETRY_TIMEOUT, MODES } from "../../../app-constants";
+import { RETRY_TIMEOUT, MODES, SCREENS } from "../../../app-constants";
 import { DEFINITIONS_LOCAL_BUFFER, WORD_DIFFICULTIES } from "../definitions-constants";
 import { getDefinitionState, getEndpointForDifficulty, roundIsOver } from "../definitions-utils";
 import { googlePlaySubmitScore } from "../../../redux/google-play/google-play-services-actions";
+import { changeScreen } from "../../../redux/navigation/navigation-actions";
 
 let gameCountdownInterval = null;
 
@@ -62,6 +64,11 @@ export default store => next => action => {
       }, 1000);
 
       break;
+
+    case ON_SELECT_DIFFICULTY_DEFINITIONS: {
+      dispatch(changeScreen(SCREENS.DEFINITIONS));
+      break;
+    }
 
     case ON_ROUND_END:
       const { allDefinitionsIndex, allDefinitions, difficulty } = getDefinitionState(definitions);

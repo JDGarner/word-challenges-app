@@ -1,7 +1,6 @@
 import { DIFFICULTIES } from "../../app-constants";
 
 export const GAME_STATES = {
-  DIFFICULTYSELECTION: "DifficultySelection",
   PLAYING: "Playing",
   POSTGAME: "PostGame",
 };

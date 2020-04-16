@@ -16,7 +16,7 @@ import {
 } from "../definitions-utils";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
-import { TopBar } from "../../../components";
+import { ConnectedTopBar } from "../../../components";
 import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import { MODES } from "../../../app-constants";
@@ -148,7 +148,6 @@ const DefinitionGame = ({
   updateQuestionELO,
   onBeginGame,
   onSubmitAnswer,
-  onExitGame,
   onAnswerFeedbackFinished,
 }) => {
   const letters = useMemo(() => shuffle(word.toUpperCase().split("")), [word]);
@@ -297,7 +296,7 @@ const DefinitionGame = ({
 
   return (
     <Fragment>
-      <TopBar onPressLeftButton={onExitGame} gameCountdown={gameCountdown} />
+      <ConnectedTopBar gameCountdown={gameCountdown} />
       <ContentContainer style={{ opacity: gameOpacity }}>
         <CentreContainer>
           <GameHeader definition={definition} />
