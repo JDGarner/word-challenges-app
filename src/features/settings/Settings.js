@@ -20,7 +20,7 @@ const SettingsRow = styled(View)`
   padding-horizontal: 8;
 `;
 
-const Settings = ({ changeScreen }) => {
+const Settings = ({ onNavigateBack }) => {
   const soundManager = SoundManager.getInstance();
   const [muted, setMuted] = useState(soundManager.isMuted());
 
@@ -33,7 +33,7 @@ const Settings = ({ changeScreen }) => {
 
   return (
     <ScreenContainerPadded>
-      <TopBar onPressLeftButton={() => changeScreen(SCREENS.MENU)} />
+      <TopBar onPressLeftButton={onNavigateBack} />
       <SettingsContainer>
         <SettingsRow>
           <MediumLargeText>{soundText}</MediumLargeText>

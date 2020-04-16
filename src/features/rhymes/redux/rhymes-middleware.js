@@ -16,8 +16,8 @@ import {
 } from "./rhymes-actions";
 import { RHYMES_LOCAL_BUFFER, ANSWERS_REQUIRED } from "../rhymes-constants";
 import { fetchFromApi } from "../../../utils/api-util";
-import { ENDPOINTS, RETRY_TIMEOUT, MODES } from "../../../app-constants";
-import { isAnswerCorrect, isNotDuplicateAnswer } from "../rhymes-utils";
+import { ENDPOINTS, RETRY_TIMEOUT, MODES, SCREENS } from "../../../app-constants";
+import { isAnswerCorrect } from "../rhymes-utils";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import {
   updatePlayerELO,
@@ -25,6 +25,7 @@ import {
 } from "../../../redux/leaderboards/leaderboards-actions";
 import { googlePlaySubmitScore } from "../../../redux/google-play/google-play-services-actions";
 import SoundManager from "../../sound/SoundManager";
+import { changeScreen } from "../../../redux/navigation/navigation-actions";
 
 let gameCountdownInterval = null;
 
@@ -32,6 +33,16 @@ const clearCountdownInterval = () => {
   if (gameCountdownInterval) {
     clearInterval(gameCountdownInterval);
     gameCountdownInterval = null;
+  }
+};
+
+const potentiallyFetchMoreRhymes = (getState, dispatch) => {
+  const { currentRhymeIndex, allRhymes, difficulty } = getState().rhymes;
+  if (
+    allRhymes[difficulty] &&
+    currentRhymeIndex > allRhymes[difficulty].length - RHYMES_LOCAL_BUFFER
+  ) {
+    fetchFromApi(ENDPOINTS.RHYMES, data => dispatch(fetchAdditionalRhymesSuccess(data)));
   }
 };
 
@@ -97,19 +108,18 @@ export default store => next => action => {
     }
 
     case ON_EXIT_GAME:
-    case ON_GAME_END:
       clearCountdownInterval();
       break;
 
-    case ON_SELECT_DIFFICULTY_RHYMES:
+    case ON_SELECT_DIFFICULTY_RHYMES: {
+      dispatch(changeScreen(SCREENS.RHYMES));
+
+      potentiallyFetchMoreRhymes(getState, dispatch);
+      break;
+    }
+
     case ON_PRESS_START_NEW_GAME: {
-      const { currentRhymeIndex, allRhymes, difficulty } = getState().rhymes;
-      if (
-        allRhymes[difficulty] &&
-        currentRhymeIndex > allRhymes[difficulty].length - RHYMES_LOCAL_BUFFER
-      ) {
-        fetchFromApi(ENDPOINTS.RHYMES, data => dispatch(fetchAdditionalRhymesSuccess(data)));
-      }
+      potentiallyFetchMoreRhymes(getState, dispatch);
       break;
     }
 

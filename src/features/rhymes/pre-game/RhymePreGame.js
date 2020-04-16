@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import styled from "styled-components";
-import { TopBar, FlexStartContainer, MediumLargerText } from "../../../components";
+import { ConnectedTopBar, FlexStartContainer, MediumLargerText } from "../../../components";
 import GameHeader from "../GameHeader";
 import { PRE_GAME_COUNTDOWN, PRE_GAME_COUNTDOWN_DELAY } from "../rhymes-constants";
 import { getPreGameCountdownText } from "../rhymes-utils";
@@ -25,7 +25,7 @@ const PreGameCountdown = styled(MediumLargerText)`
 
 let countdownInterval = null;
 
-const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, onExitGame }) => {
+const RhymePreGame = ({ currentWord, onPreGameCountdownEnd }) => {
   const [countdown, setCountdown] = useState(null);
   const [opacity] = useState(new Animated.Value(0));
 
@@ -73,7 +73,7 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd, onExitGame }) => {
 
   return (
     <PreGameContainer>
-      <TopBar onPressLeftButton={onExitGame} />
+      <ConnectedTopBar />
       <GameContainer>
         <GameHeader word={currentWord} fadeIn />
         <FlexStartContainer style={{ width: "100%" }}>

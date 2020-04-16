@@ -5,7 +5,6 @@ import {
   onBeginGame,
   onGameEnd,
   onCountdownAnimationEnd,
-  onExitGame,
   onGameFadeOutEnd,
 } from "../redux/rhymes-actions";
 
@@ -32,7 +31,6 @@ const mapDispatchToProps = {
   onGameEnd,
   onSubmitAnswer,
   onCountdownAnimationEnd,
-  onExitGame,
   onGameFadeOutEnd,
 };
 

@@ -2,7 +2,7 @@ import React, { useEffect, Fragment, useState } from "react";
 import { View, Animated, Keyboard } from "react-native";
 import styled from "styled-components";
 
-import { TopBar } from "../../../components";
+import { ConnectedTopBar } from "../../../components";
 import AnswerText from "../../../components/answer-text/AnswerText";
 import GameHeader from "../GameHeader";
 import AnswerGrid from "../AnswerGrid";
@@ -39,7 +39,6 @@ const RhymeGame = ({
   onBeginGame,
   onGameEnd,
   onSubmitAnswer,
-  onExitGame,
   onGameFadeOutEnd,
 }) => {
   const [gameOpacity] = useState(new Animated.Value(0.99));
@@ -78,8 +77,7 @@ const RhymeGame = ({
 
   return (
     <Fragment>
-      <TopBar
-        onPressLeftButton={onExitGame}
+      <ConnectedTopBar
         gameCountdown={gameCountdown}
         animatingCountdown={animatingCountdown}
         onAnimationEnd={onCountdownAnimationEnd}

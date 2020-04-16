@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { HideKeyboardOnTouch, ScreenContainerPadded } from "../../../components";
 import { GAME_STATES } from "../rhymes-constants";
@@ -6,7 +6,13 @@ import ConnectedRhymeGame from "../game/ConnectedRhymeGame";
 import ConnectedRhymePostGame from "../post-game/ConnectedRhymePostGame";
 import ConnectedRhymePreGame from "../pre-game/ConnectedRhymePreGame";
 
-const RhymeGameMode = ({ gameState }) => {
+const RhymeGameMode = ({ gameState, onExitGame }) => {
+  useEffect(() => {
+    return () => {
+      onExitGame();
+    };
+  }, []);
+
   const renderContent = () => {
     switch (gameState) {
       case GAME_STATES.PREGAME:

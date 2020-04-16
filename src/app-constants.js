@@ -10,8 +10,11 @@ export const SCREENS = {
   MENU: "Menu",
   SETTINGS: "Settings",
   DEFINITIONS: "Definitions",
+  DEFINITIONS_DIFFICULTY: "DefinitionsDifficulty",
   RHYMES: "Rhymes",
+  RHYMES_DIFFICULTY: "RhymesDifficulty",
   SYNONYMS: "Synonyms",
+  SYNONYMS_DIFFICULTY: "SynonymsDifficulty",
 };
 
 export const DIFFICULTIES = {

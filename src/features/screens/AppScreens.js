@@ -4,6 +4,8 @@ import ConnectedDefinitionGameMode from "../definitions/game-mode/ConnectedDefin
 import { SCREENS } from "../../app-constants";
 import ConnectedMainMenu from "../main-menu/ConnectedMainMenu";
 import ConnectedSettings from "../settings/ConnectedSettings.js";
+import ConnectedDefinitionDifficultySelection from "../definitions/difficulty-selection/ConnectedDefinitionDifficultySelection";
+import ConnectedRhymeDifficultySelection from "../rhymes/difficulty-selection/ConnectedRhymeDifficultySelection";
 
 export default function AppScreens({ currentScreen }) {
   if (currentScreen === SCREENS.DEFINITIONS) {
@@ -12,6 +14,14 @@ export default function AppScreens({ currentScreen }) {
 
   if (currentScreen === SCREENS.RHYMES) {
     return <ConnectedRhymeGameMode />;
+  }
+
+  if (currentScreen === SCREENS.DEFINITIONS_DIFFICULTY) {
+    return <ConnectedDefinitionDifficultySelection />;
+  }
+
+  if (currentScreen === SCREENS.RHYMES_DIFFICULTY) {
+    return <ConnectedRhymeDifficultySelection />;
   }
 
   if (currentScreen === SCREENS.SETTINGS) {

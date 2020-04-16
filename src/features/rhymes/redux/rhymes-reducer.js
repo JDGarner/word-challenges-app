@@ -12,7 +12,6 @@ import {
   FETCH_RHYMES_RETRY,
   ON_EXIT_GAME,
   ON_SELECT_DIFFICULTY_RHYMES,
-  GO_BACK_TO_DIFFICULTY_SELECTION,
   ON_GAME_FADE_OUT_END,
   UPDATE_PLAYER_ELO_CHANGE,
 } from "./rhymes-actions";
@@ -51,7 +50,7 @@ const initialState = {
   gameCountdown: INITIAL_COUNTDOWN,
   animatingCountdown: false,
   incorrectAnswerAnimationToggle: false,
-  gameState: GAME_STATES.DIFFICULTYSELECTION,
+  gameState: GAME_STATES.PREGAME,
   errorCode: "",
   connectionError: false,
 };
@@ -78,6 +77,7 @@ const getStateForNewRound = state => {
       currentWord: rhymes[nextIndex],
       currentRhymeIndex: nextIndex,
       gameCountdown: INITIAL_COUNTDOWN,
+      gameState: GAME_STATES.PREGAME,
     };
   }
 
@@ -88,6 +88,7 @@ const getStateForNewRound = state => {
     eloChange: 0,
     currentRhymeIndex: 0,
     gameCountdown: INITIAL_COUNTDOWN,
+    gameState: GAME_STATES.PREGAME,
     errorCode: ERROR_CODES.GENERIC,
     connectionError: true,
   };
@@ -199,19 +200,11 @@ export default (state = initialState, action) => {
       return { ...state, gameCountdown };
     }
 
+    case ON_PRESS_START_NEW_GAME:
     case ON_EXIT_GAME: {
       return {
         ...state,
         ...getStateForNewRound(state),
-        gameState: GAME_STATES.DIFFICULTYSELECTION,
-      };
-    }
-
-    case ON_PRESS_START_NEW_GAME: {
-      return {
-        ...state,
-        ...getStateForNewRound(state),
-        gameState: GAME_STATES.PREGAME,
       };
     }
 
@@ -241,12 +234,6 @@ export default (state = initialState, action) => {
         difficulty: action.difficulty,
       };
     }
-
-    case GO_BACK_TO_DIFFICULTY_SELECTION:
-      return {
-        ...state,
-        gameState: GAME_STATES.DIFFICULTYSELECTION,
-      };
 
     default:
       return state;

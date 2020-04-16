@@ -44,17 +44,25 @@ const MenuTextContainer = styled(View)`
 const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO }) => {
   const getMenuItemsConfig = () => {
     return [
-      { displayName: SCREENS.DEFINITIONS, score: definitionsELO },
-      { displayName: SCREENS.RHYMES, score: rhymesELO },
-      { displayName: SCREENS.SYNONYMS, score: 800 },
+      {
+        displayName: SCREENS.DEFINITIONS,
+        initialScreen: SCREENS.DEFINITIONS_DIFFICULTY,
+        score: definitionsELO,
+      },
+      {
+        displayName: SCREENS.RHYMES,
+        initialScreen: SCREENS.RHYMES_DIFFICULTY,
+        score: rhymesELO,
+      },
+      { displayName: SCREENS.SYNONYMS, initialScreen: SCREENS.SYNONYMS_DIFFICULTY, score: 800 },
     ];
   };
 
   const getMenuItems = () => {
-    return getMenuItemsConfig().map(({ displayName, score }) => ({
+    return getMenuItemsConfig().map(({ displayName, initialScreen, score }) => ({
       id: displayName,
       component: (
-        <MenuButton onPress={() => changeScreen(displayName)}>
+        <MenuButton onPress={() => changeScreen(initialScreen)}>
           <MenuTextContainer>
             <MenuNameText>{displayName}</MenuNameText>
             <ScoreTextContainer>

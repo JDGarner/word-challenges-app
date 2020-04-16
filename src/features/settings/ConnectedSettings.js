@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import Settings from "./Settings";
-import { changeScreen } from "../../redux/navigation/navigation-actions";
+import { onNavigateBack } from "../../redux/navigation/navigation-actions";
 
 const mapDispatchToProps = {
-  changeScreen,
+  onNavigateBack,
 };
 
 const ConnectedSettings = connect(null, mapDispatchToProps)(Settings);

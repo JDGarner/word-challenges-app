@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import {
   MediumLargeText,
-  TopBar,
+  ConnectedTopBar,
   Title,
   PopInView,
   PlayAgainButton,
@@ -57,7 +57,6 @@ const RhymePostGame = ({
   currentELO,
   eloChange,
   onPressStartNewGame,
-  onExitGame,
   showLeaderboard,
 }) => {
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
@@ -72,8 +71,7 @@ const RhymePostGame = ({
 
   return (
     <>
-      <TopBar
-        onPressLeftButton={onExitGame}
+      <ConnectedTopBar
         RightComponent={
           <LeaderboardButton onPress={() => showLeaderboard(LEADERBOARD_IDS.RHYMES)} />
         }

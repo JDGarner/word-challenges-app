@@ -59,6 +59,7 @@ const TopBar = ({
 TopBar.defaultProps = {
   animatingCountdown: false,
   onAnimationEnd: () => {},
+  onPressLeftButton: () => {},
   titleText: null,
   LeftComponent: null,
   RightComponent: null,

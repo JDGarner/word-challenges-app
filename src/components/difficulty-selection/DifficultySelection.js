@@ -3,11 +3,11 @@ import { View } from "react-native";
 import { map, capitalize } from "lodash";
 import styled from "styled-components";
 
-import { SCREENS, DIFFICULTIES } from "../../app-constants";
+import { DIFFICULTIES } from "../../app-constants";
 import { LeaderboardButton } from "../button/Button";
 import MenuButton from "../button/MenuButton";
 import { MediumLargerText } from "../text/Text";
-import TopBar from "../top-bar/TopBar";
+import ConnectedTopBar from "../top-bar/ConnectedTopBar";
 import Title from "../title/Title";
 import Spacer from "../spacer/Spacer";
 import AnimatedSequence from "../animated-sequence/AnimatedSequence";
@@ -19,13 +19,7 @@ const DifficultyOptions = styled(View)`
   align-items: center;
 `;
 
-const DifficultySelection = ({
-  titleText,
-  onSelectDifficulty,
-  changeScreen,
-  showLeaderboard,
-  leaderboardId,
-}) => {
+const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, leaderboardId }) => {
   const getDifficultyOptions = () => {
     return map(DIFFICULTIES, difficulty => ({
       id: difficulty,
@@ -39,8 +33,7 @@ const DifficultySelection = ({
 
   return (
     <Fragment>
-      <TopBar
-        onPressLeftButton={() => changeScreen(SCREENS.MENU)}
+      <ConnectedTopBar
         titleText={titleText}
         RightComponent={<LeaderboardButton onPress={() => showLeaderboard(leaderboardId)} />}
       />

@@ -1,8 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
 import { ActivityIndicator, View } from "react-native";
 import theme from "../../theme";
-import { changeScreen } from "../../redux/navigation/navigation-actions";
 import { ScreenContainerPadded } from "../containers/Containers";
 import TopBar from "../top-bar/TopBar";
 
@@ -17,10 +15,4 @@ const LoadingScreen = ({ onPressBack }) => {
   );
 };
 
-const mapDispatchToProps = {
-  changeScreen,
-};
-
-const ConnectedLoadingScreen = connect(null, mapDispatchToProps)(LoadingScreen);
-
-export default ConnectedLoadingScreen;
+export default LoadingScreen;

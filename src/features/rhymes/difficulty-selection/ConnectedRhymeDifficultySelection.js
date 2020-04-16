@@ -1,15 +1,16 @@
 import { connect } from "react-redux";
 import { onSelectDifficulty } from "../redux/rhymes-actions";
-import { changeScreen } from "../../../redux/navigation/navigation-actions";
 import { showLeaderboard } from "../../../redux/google-play/google-play-services-actions";
-import DifficultySelection from "../../../components/difficulty-selection/DifficultySelection";
+import RhymeDifficultySelection from "./RhymeDifficultySelection";
 
 const mapDispatchToProps = {
   onSelectDifficulty,
-  changeScreen,
   showLeaderboard,
 };
 
-const ConnectedRhymeDifficultySelection = connect(null, mapDispatchToProps)(DifficultySelection);
+const ConnectedRhymeDifficultySelection = connect(
+  null,
+  mapDispatchToProps,
+)(RhymeDifficultySelection);
 
 export default ConnectedRhymeDifficultySelection;

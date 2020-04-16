@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import RhymePostGame from "./RhymePostGame";
-import { onPressStartNewGame, onExitGame } from "../redux/rhymes-actions";
+import { onPressStartNewGame } from "../redux/rhymes-actions";
 import { showLeaderboard } from "../../../redux/google-play/google-play-services-actions";
 
 const mapStateToProps = ({ rhymes, leaderboards }) => {
@@ -18,7 +18,6 @@ const mapStateToProps = ({ rhymes, leaderboards }) => {
 
 const mapDispatchToProps = {
   onPressStartNewGame,
-  onExitGame,
   showLeaderboard,
 };
 

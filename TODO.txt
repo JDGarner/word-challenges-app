@@ -2,7 +2,6 @@
 1st Release
 ----------------------------------------
 
-kindle definition
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
 - Add image to splash screen
@@ -18,6 +17,8 @@ kindle definition
   - Rhyme game sounds
 
 - have the screen flash when new screen appears
+- handle hardware back navigation
+  - refactor so that exit game logic happens separately from back button, e.g. on unmount
 
 - increase number of definitions/rhymes returned by API call (and buffer)
 
@@ -50,6 +51,7 @@ Styling To Do:
 - look through each screen again carefully
 
 Bugs:
+- rhyme pre game navigate back memory leak
 - see if it works running on device via android studio
 
 iOS Release:
@@ -72,7 +74,6 @@ Maybe in 1st release:
 - Handle leaderboard connection if network is down
 - look into flipper/rn 0.62
 - info about rating limits for each difficulty
-- handle hardware back navigation
 - keep track of perfect streak
   -> change praise words based on this/show streak
 - error reporting/tracking? (react native sentry)
