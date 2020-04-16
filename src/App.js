@@ -14,6 +14,7 @@ import { AppBackground } from "./components";
 import SoundManager from "./features/sound/SoundManager";
 import { retrieveELOs } from "./redux/leaderboards/leaderboards-actions";
 import { googlePlaySilentSignIn } from "./redux/google-play/google-play-services-actions";
+import { onNavigateBack } from "./redux/navigation/navigation-actions";
 
 const store = configureStore();
 
