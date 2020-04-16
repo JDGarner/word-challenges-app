@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StatusBar, Platform } from "react-native";
+import { StatusBar, Platform, BackHandler } from "react-native";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import SplashScreen from "react-native-splash-screen";
@@ -31,7 +31,18 @@ export default function AppProvider() {
     }
 
     SoundManager.init();
+
+    BackHandler.addEventListener("hardwareBackPress", onHardwareBackPress);
   }, []);
+
+  const onHardwareBackPress = () => {
+    if (store.getState().navigation.screenStack.length > 1) {
+      store.dispatch(onNavigateBack());
+      return true;
+    }
+
+    return false;
+  };
 
   return (
     <Provider store={store}>

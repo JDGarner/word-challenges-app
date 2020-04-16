@@ -1,7 +1,7 @@
 import { Platform } from "react-native";
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import navigationReducer from "./redux/navigation-reducer";
+import navigationReducer from "./redux/navigation/navigation-reducer";
 import leaderboardsReducer from "./redux/leaderboards/leaderboards-reducer";
 import leaderboardsMiddleware from "./redux/leaderboards/leaderboards-middleware";
 import googlePlayServicesMiddleware from "./redux/google-play/google-play-services-middleware";
