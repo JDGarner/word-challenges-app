@@ -24,13 +24,14 @@ const PreGameCountdown = styled(MediumLargerText)`
 `;
 
 let countdownInterval = null;
+let preCountdownTimeout = null;
 
 const RhymePreGame = ({ currentWord, onPreGameCountdownEnd }) => {
   const [countdown, setCountdown] = useState(null);
   const [opacity] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    setTimeout(() => {
+    preCountdownTimeout = setTimeout(() => {
       setCountdown(PRE_GAME_COUNTDOWN);
       countdownInterval = setInterval(() => {
         setCountdown(c => c - 1);
@@ -41,6 +42,11 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd }) => {
       if (countdownInterval) {
         clearInterval(countdownInterval);
         countdownInterval = null;
+      }
+
+      if (preCountdownTimeout) {
+        clearTimeout(preCountdownTimeout);
+        preCountdownTimeout = null;
       }
     };
   }, []);

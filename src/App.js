@@ -38,6 +38,7 @@ export default function AppProvider() {
 
   const onHardwareBackPress = () => {
     if (store.getState().navigation.screenStack.length > 1) {
+      SoundManager.getInstance().playMenuButtonSound();
       store.dispatch(onNavigateBack());
       return true;
     }

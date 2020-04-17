@@ -2,39 +2,12 @@
 1st Release
 ----------------------------------------
 
+General
 - add extra game mode coming soon disabled button (or add Synonyms?)
-
-- Add image to splash screen
-- Add gradient to splash screen?
-- Add Game description to google play console
-- Add Graphic assets to google play console
-
-- Add sound effects:
-  - test out different button sounds for menu buttons, short organic tap?
-  - test out different sounds for negative feedback
-  - normalize sounds
-  - Post Game sounds
-  - Rhyme game sounds
-
-- have the screen flash when new screen appears
-- handle hardware back navigation
-  - refactor so that exit game logic happens separately from back button, e.g. on unmount
-
-- increase number of definitions/rhymes returned by API call (and buffer)
-
-Design:
-- Think of new app icon and splash screen design for Monkey theme
-  - Will probably want to use it in title as well
-- Any other ways to incorporate monkey theme?
-
-- Release android app:
-  - https://facebook.github.io/react-native/docs/signed-apk-android
-  - https://developer.android.com/studio/publish
-- test on ios device
-- Release iOS app
+- make it so buttons scale animate on press rather than opacity
 
 Definitions:
-- re-test retry logic with new difficulty levels
+-
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
@@ -44,18 +17,40 @@ Leaderboard/Stats:
 - Improve UI for displaying rating on menu
   - maybe under button - small leaderboard icon: {score}
 
-Styling To Do:
-- ellipses for long text? - in rhymes answer grid
-- sort out spacing for different device sizes, make gap at top %
-- countdown on iOS/android position
-- look through each screen again carefully
-
 Bugs:
-- rhyme pre game navigate back memory leak
+- rhyme pre game and post game navigate back memory leak
 - see if it works running on device via android studio
+
+Sound Effects:
+  - test out different button sounds for menu buttons, short organic tap?
+  - test out different sounds for negative feedback
+  - different button for back button vs menu buttons?
+  - sound for settings butotn?
+  - normalize sounds
+  - Post Game sounds
+  - Rhyme game sounds
+
+Design:
+- Decide on colours/rough design before request
+- Request:
+  - App Icon - Gradient + white monkey icon
+  - Image/Icon for splash screen - App Icon + Word Monkey Text?
+  - Top Bar Title - White monkey icon next to text?
+  - Google play store feature image (1024w * 500h) - App Icon + Word monkey on one side, game screenshot on the other
+
+- Think about other ways to incorporate monkey theme:
+  - ?
+
+Android Release:
+  - https://facebook.github.io/react-native/docs/signed-apk-android
+  - https://developer.android.com/studio/publish
+  - Add Game description to google play console
+
 
 iOS Release:
 - Connect to game center for iOS
+- test on ios device
+
 
 Testing:
 - test/user test difficulty levels with different clue parameters
@@ -63,6 +58,9 @@ Testing:
 - test button placement
 - test different devices, small & big
 - Check for handle on screen background bugs
+- test offline play
+- re-test retry logic with new difficulty levels
+- look through each screen again carefully/critically
 
 Maybe in 1st release:
 - Think about splitting definitions into 4 difficulties on BE, remove free letters for expert?
@@ -70,10 +68,7 @@ Maybe in 1st release:
   - Then could also add lightbulb button to add free letters (reduces score when used)
 - Add Synonyms mode
 - Info icons on each mode to explain (including rating system/difficulty boundaries)
-- Set different themes in settings menu?
 - Handle leaderboard connection if network is down
-- look into flipper/rn 0.62
-- info about rating limits for each difficulty
 - keep track of perfect streak
   -> change praise words based on this/show streak
 - error reporting/tracking? (react native sentry)
@@ -98,6 +93,9 @@ General:
 - add X to loading state
 - look into adding reselect
 - look into making splash screen a gradient
+- look into flipper/rn 0.62
+- Set different themes in settings menu?
+- Add gradient to splash screen?
 
 Definitions:
 - Look into whether rhymes all request approach would be better for definitions also (would increase response size)

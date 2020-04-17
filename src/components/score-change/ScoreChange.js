@@ -47,7 +47,7 @@ const ScoreChange = ({ previousScore, scoreChange, delay, onCountdownEnd }) => {
   }
 
   const onScoreChangeAppear = () => {
-    if (scoreChange !== 0) {
+    if (scoreChange !== 0 && !!countdownInterval) {
       countdownInterval = setInterval(() => {
         setNewScoreCountdown(prevNewCount => prevNewCount + countIncrement);
         setScoreChangeCountdown(prevScoreChange => prevScoreChange - countIncrement);
@@ -56,6 +56,10 @@ const ScoreChange = ({ previousScore, scoreChange, delay, onCountdownEnd }) => {
   };
 
   useEffect(() => {
+    // Weird timing issue can occur where the interval gets set after unmounting
+    // causing a memory leak. Only set it to null on unmount to prevent this
+    countdownInterval = 1;
+
     return () => {
       clearInterval(countdownInterval);
       countdownInterval = null;

@@ -3,7 +3,7 @@ import { capitalize } from "lodash";
 import { View } from "react-native";
 import styled from "styled-components";
 
-import { MediumText, TextContainer, PopInView, AnimatedSequence } from "../../components";
+import { MediumText, PopInView, AnimatedSequence } from "../../components";
 import { ANSWER_ANIMATION_GAP_TIME, ANSWER_ANIMATION_START_DELAY_TIME } from "./rhymes-constants";
 import colors from "../../theme/colors";
 
