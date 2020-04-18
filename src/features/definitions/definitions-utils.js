@@ -58,22 +58,6 @@ export const getAnswerTextProps = letters => {
   return { fontSize: 18, height: 24, maxWidth: 24, marginHorizontal: 2 };
 };
 
-export const animateLetterPressIn = value => {
-  Animated.spring(value, {
-    toValue: 0.8,
-    useNativeDriver: true,
-  }).start();
-};
-
-export const animateLetterPressOut = value => {
-  Animated.spring(value, {
-    toValue: 1,
-    speed: 16,
-    bounciness: 16,
-    useNativeDriver: true,
-  }).start();
-};
-
 const animateLetterSpring = value => {
   Animated.spring(value, {
     toValue: 1,

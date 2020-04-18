@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import { TouchableOpacity, TouchableWithoutFeedback, Animated } from "react-native";
 import styled from "styled-components";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import { TouchableOpacity } from "react-native";
 import theme from "../../theme";
 import { TextContainer } from "../containers/Containers";
 import { MediumLargeText } from "../text/Text";
 import PopInView from "../pop-in-view/PopInView";
 import SoundManager from "../../features/sound/SoundManager";
+import { animateButtonPressIn, animateButtonPressOut } from "./button-utils";
 
-export const BorderedButton = ({ children, style, ...buttonProps }) => {
+export const BorderedButton = ({ children, style, reduceScaleFactor = 0.95, ...buttonProps }) => {
+  const [scaleValue] = useState(new Animated.Value(1));
+
   return (
-    <TouchableOpacity {...buttonProps}>
-      <TextContainer style={style}>{children}</TextContainer>
-    </TouchableOpacity>
+    <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
+      <TouchableWithoutFeedback
+        onPressIn={() => animateButtonPressIn(scaleValue, reduceScaleFactor)}
+        onPressOut={() => animateButtonPressOut(scaleValue)}
+        {...buttonProps}>
+        <TextContainer style={style}>{children}</TextContainer>
+      </TouchableWithoutFeedback>
+    </Animated.View>
   );
 };
 

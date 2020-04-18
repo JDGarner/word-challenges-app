@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Animated, TouchableOpacity } from "react-native";
 import styled from "styled-components";
 import { MediumText } from "../../../components";
-import {
-  animateLetterPressIn,
-  animateLetterPressOut,
-  animateAnswerLetter,
-  animateFeedbackLetter,
-} from "../definitions-utils";
+import { animateAnswerLetter, animateFeedbackLetter } from "../definitions-utils";
 import { TEXT_TOP_PADDING } from "../../../components/text/Text";
 import SoundManager from "../../sound/SoundManager";
 
@@ -53,8 +48,7 @@ const AnswerLetter = ({
 
   return (
     <AnswerButton
-      onPressIn={() => animateLetterPressIn(scaleValue)}
-      onPressOut={() => animateLetterPressOut(scaleValue)}
+      reduceScaleFactor={0.8}
       onPress={onPressLetterButton}
       disabled={disabled}
       {...styleProps}>

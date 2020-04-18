@@ -4,7 +4,6 @@
 
 General
 - add extra game mode coming soon disabled button (or add Synonyms?)
-- make it so buttons scale animate on press rather than opacity
 
 Definitions:
 -
@@ -18,7 +17,6 @@ Leaderboard/Stats:
   - maybe under button - small leaderboard icon: {score}
 
 Bugs:
-- rhyme pre game and post game navigate back memory leak
 - see if it works running on device via android studio
 
 Sound Effects:
@@ -69,8 +67,6 @@ Maybe in 1st release:
 - Add Synonyms mode
 - Info icons on each mode to explain (including rating system/difficulty boundaries)
 - Handle leaderboard connection if network is down
-- keep track of perfect streak
-  -> change praise words based on this/show streak
 - error reporting/tracking? (react native sentry)
 
 
@@ -96,6 +92,8 @@ General:
 - look into flipper/rn 0.62
 - Set different themes in settings menu?
 - Add gradient to splash screen?
+- keep track of perfect streak
+  -> change praise words based on this/show streak
 
 Definitions:
 - Look into whether rhymes all request approach would be better for definitions also (would increase response size)

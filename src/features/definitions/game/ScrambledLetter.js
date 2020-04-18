@@ -3,11 +3,7 @@ import { View, Animated } from "react-native";
 import styled from "styled-components";
 import { BorderedButton, MediumText } from "../../../components";
 import { TEXT_TOP_PADDING } from "../../../components/text/Text";
-import {
-  animateScrambledLetter,
-  animateLetterPressIn,
-  animateLetterPressOut,
-} from "../definitions-utils";
+import { animateScrambledLetter } from "../definitions-utils";
 import SoundManager from "../../sound/SoundManager";
 
 const LETTER_SIZE = 46;
@@ -45,11 +41,7 @@ const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue 
       {showing === false ? (
         <EmptyLetterPlaceHolder />
       ) : (
-        <LetterButton
-          onPressIn={() => animateLetterPressIn(scaleValue)}
-          onPressOut={() => animateLetterPressOut(scaleValue)}
-          onPress={onPressLetterButton}
-          disabled={disabled}>
+        <LetterButton onPress={onPressLetterButton} reduceScaleFactor={0.8} disabled={disabled}>
           <MediumText>{letter}</MediumText>
         </LetterButton>
       )}
