@@ -22,6 +22,17 @@ import { changeScreen } from "../../../redux/navigation/navigation-actions";
 
 let gameCountdownInterval = null;
 
+const potentiallyFetchMoreDefinitions = (definitions, dispatch) => {
+  const { allDefinitionsIndex, allDefinitions, difficulty } = definitions;
+  if (
+    allDefinitions &&
+    allDefinitions[difficulty] &&
+    allDefinitionsIndex > allDefinitions[difficulty].length - DEFINITIONS_LOCAL_BUFFER
+  ) {
+    fetchFromApi(ENDPOINTS.DEFINITIONS, data => dispatch(fetchAdditionalDefinitionsSuccess(data)));
+  }
+};
+
 export default store => next => action => {
   const { dispatch, getState } = store;
   const { definitions } = getState();
@@ -66,19 +77,14 @@ export default store => next => action => {
 
     case ON_SELECT_DIFFICULTY_DEFINITIONS: {
       dispatch(changeScreen(SCREENS.DEFINITIONS));
+      potentiallyFetchMoreDefinitions(definitions, dispatch);
+
       break;
     }
 
     case ON_ROUND_END:
       store.dispatch(googlePlaySubmitScore(MODES.DEFINITIONS));
-
-      // Fetch more definitions from API if we are running out
-      const { allDefinitionsIndex, allDefinitions } = definitions;
-      if (allDefinitionsIndex > allDefinitions.length - DEFINITIONS_LOCAL_BUFFER) {
-        fetchFromApi(ENDPOINTS.DEFINITIONS, data =>
-          dispatch(fetchAdditionalDefinitionsSuccess(data)),
-        );
-      }
+      potentiallyFetchMoreDefinitions(definitions, dispatch);
 
       break;
 

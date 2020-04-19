@@ -6,9 +6,6 @@ General
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
 Definitions Refactor:
-- Request definitions in one block, like rhymes works
-  - get it working locally then commit and deploy on BE and update server dbs
-  - check retry/additional fetch logic works
 - update mock data
 - Change ELO question rating change to work like rhymes
 - Remove free letters on Novice and Expert
@@ -64,7 +61,6 @@ Testing:
 - test different devices, small & big
 - Check for handle on screen background bugs
 - test offline play
-- re-test retry logic with new difficulty levels
 - look through each screen again carefully/critically
 
 Maybe in 1st release:
