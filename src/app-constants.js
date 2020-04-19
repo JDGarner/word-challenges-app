@@ -1,9 +1,8 @@
 export const ENDPOINTS = {
   RHYMES: "rhymes",
-  EASY_DEFINITIONS: "easy-definitions",
-  HARD_DEFINITIONS: "hard-definitions",
-  DEFINITIONS_ELO: "definitions-elo",
   RHYMES_ELO: "rhymes-elo",
+  DEFINITIONS: "definitions",
+  DEFINITIONS_ELO: "definitions-elo",
 };
 
 export const SCREENS = {

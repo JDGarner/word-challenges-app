@@ -14,9 +14,9 @@ import {
   ON_SELECT_DIFFICULTY_DEFINITIONS,
 } from "./definitions-actions";
 import { fetchFromApi } from "../../../utils/api-util";
-import { RETRY_TIMEOUT, MODES, SCREENS } from "../../../app-constants";
-import { DEFINITIONS_LOCAL_BUFFER, WORD_DIFFICULTIES } from "../definitions-constants";
-import { getDefinitionState, getEndpointForDifficulty, roundIsOver } from "../definitions-utils";
+import { RETRY_TIMEOUT, MODES, SCREENS, ENDPOINTS } from "../../../app-constants";
+import { DEFINITIONS_LOCAL_BUFFER } from "../definitions-constants";
+import { roundIsOver } from "../definitions-utils";
 import { googlePlaySubmitScore } from "../../../redux/google-play/google-play-services-actions";
 import { changeScreen } from "../../../redux/navigation/navigation-actions";
 
@@ -29,16 +29,15 @@ export default store => next => action => {
   switch (action.type) {
     case FETCH_DEFINITIONS:
       fetchFromApi(
-        getEndpointForDifficulty(action.difficulty),
-        data => dispatch(fetchDefinitionsSuccess(data, action.difficulty)),
-        code => dispatch(fetchDefinitionsError(code, action.difficulty)),
+        ENDPOINTS.DEFINITIONS,
+        data => dispatch(fetchDefinitionsSuccess(data)),
+        code => dispatch(fetchDefinitionsError(code)),
       );
       break;
 
     case FETCH_DEFINITIONS_RETRY:
       setTimeout(() => {
-        store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.EASY));
-        store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.HARD));
+        store.dispatch(fetchDefinitions());
       }, RETRY_TIMEOUT);
       break;
 
@@ -71,14 +70,13 @@ export default store => next => action => {
     }
 
     case ON_ROUND_END:
-      const { allDefinitionsIndex, allDefinitions, difficulty } = getDefinitionState(definitions);
-
       store.dispatch(googlePlaySubmitScore(MODES.DEFINITIONS));
 
       // Fetch more definitions from API if we are running out
+      const { allDefinitionsIndex, allDefinitions } = definitions;
       if (allDefinitionsIndex > allDefinitions.length - DEFINITIONS_LOCAL_BUFFER) {
-        fetchFromApi(getEndpointForDifficulty(difficulty), data =>
-          dispatch(fetchAdditionalDefinitionsSuccess(data, difficulty)),
+        fetchFromApi(ENDPOINTS.DEFINITIONS, data =>
+          dispatch(fetchAdditionalDefinitionsSuccess(data)),
         );
       }
 

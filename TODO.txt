@@ -5,8 +5,15 @@
 General
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
-Definitions:
--
+Definitions Refactor:
+- Request definitions in one block, like rhymes works
+  - get it working locally then commit and deploy on BE and update server dbs
+  - check retry/additional fetch logic works
+- update mock data
+- Change ELO question rating change to work like rhymes
+- Remove free letters on Novice and Expert
+  - replace with free letter lightbulb button (limited amount, reduce score on use?)
+
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
@@ -61,13 +68,11 @@ Testing:
 - look through each screen again carefully/critically
 
 Maybe in 1st release:
-- Think about splitting definitions into 4 difficulties on BE, remove free letters for expert?
-  - Words could then move fluidly between difficulty levels instead of being trapped (same for rhymes)
-  - Then could also add lightbulb button to add free letters (reduces score when used)
 - Add Synonyms mode
 - Info icons on each mode to explain (including rating system/difficulty boundaries)
 - Handle leaderboard connection if network is down
 - error reporting/tracking? (react native sentry)
+- force players to unlock harder difficulties?
 
 
 

@@ -5,15 +5,13 @@ import {
   onSubmitAnswer,
   onAnswerFeedbackFinished,
 } from "../redux/definitions-actions";
-import { getDefinitionState } from "../definitions-utils";
 import {
   updatePlayerELO,
   updateQuestionELO,
 } from "../../../redux/leaderboards/leaderboards-actions";
 
 const mapStateToProps = ({ definitions, leaderboards }) => {
-  const { gameCountdown, difficulty } = definitions;
-  const { currentDefinition } = getDefinitionState(definitions);
+  const { gameCountdown, difficulty, currentDefinition } = definitions;
   const { definition, word, eloRating } = currentDefinition;
   const { definitionsELO } = leaderboards;
 

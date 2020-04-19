@@ -2,13 +2,11 @@ import { Animated, Easing } from "react-native";
 import { shuffle } from "lodash";
 import {
   WORDS_PER_ROUND,
-  WORD_DIFFICULTIES,
-  DIFFICULTY_MAP,
   SHUFFLE_ANIMATION_TIME,
   SHUFFLE_ANIMATION_STAGGER_TIME,
   SHUFFLE_ANIMATION_REAPPEAR_BUFFER,
 } from "./definitions-constants";
-import { ENDPOINTS, DIFFICULTIES } from "../../app-constants";
+import { DIFFICULTIES } from "../../app-constants";
 import {
   getHighestPraiseWord,
   getHighPraiseWord,
@@ -105,50 +103,6 @@ export const animateFeedbackLetter = value => {
       useNativeDriver: true,
     }),
   ]).start();
-};
-
-export const getDefinitionState = state => {
-  if (DIFFICULTY_MAP[state.difficulty] === WORD_DIFFICULTIES.EASY) {
-    return {
-      allDefinitions: state.allEasyDefinitions,
-      allDefinitionsIndex: state.allEasyDefinitionsIndex,
-      currentDefinitions: state.currentEasyDefinitions,
-      currentDefinition: state.currentEasyDefinition,
-      difficulty: DIFFICULTY_MAP[state.difficulty],
-    };
-  }
-
-  return {
-    allDefinitions: state.allHardDefinitions,
-    allDefinitionsIndex: state.allHardDefinitionsIndex,
-    currentDefinitions: state.currentHardDefinitions,
-    currentDefinition: state.currentHardDefinition,
-    difficulty: DIFFICULTY_MAP[state.difficulty],
-  };
-};
-
-export const getEndpointForDifficulty = difficulty => {
-  return difficulty === WORD_DIFFICULTIES.EASY
-    ? ENDPOINTS.EASY_DEFINITIONS
-    : ENDPOINTS.HARD_DEFINITIONS;
-};
-
-export const getDefinitionKeys = difficulty => {
-  if (difficulty === WORD_DIFFICULTIES.EASY) {
-    return {
-      allDefinitionsKey: "allEasyDefinitions",
-      allDefinitionsIndexKey: "allEasyDefinitionsIndex",
-      currentDefinitionsKey: "currentEasyDefinitions",
-      currentDefinitionKey: "currentEasyDefinition",
-    };
-  }
-
-  return {
-    allDefinitionsKey: "allHardDefinitions",
-    allDefinitionsIndexKey: "allHardDefinitionsIndex",
-    currentDefinitionsKey: "currentHardDefinitions",
-    currentDefinitionKey: "currentHardDefinition",
-  };
 };
 
 const shouldGiveFreeLetters = difficulty => {

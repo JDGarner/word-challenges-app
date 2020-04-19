@@ -1,10 +1,4 @@
 import { DIFFICULTIES, MODES, APP_STORAGE, ENDPOINTS, LEADERBOARD_IDS } from "../app-constants";
-import { WORD_DIFFICULTIES, DIFFICULTY_MAP } from "../features/definitions/definitions-constants";
-
-const DEFINITION_QUESTION_ELO_RANGES = {
-  [WORD_DIFFICULTIES.EASY]: { lower: 800, upper: 1500 },
-  [WORD_DIFFICULTIES.HARD]: { lower: 1500, upper: 3600 },
-};
 
 const DIFFICULTY_ELO_RANGES = {
   [DIFFICULTIES.NOVICE]: { lower: 800, upper: 1200 },
@@ -36,10 +30,9 @@ const getPlayerELOChange = (score, playerELO, questionELO, difficulty) => {
 
 // Don't allow question ELO to get outside difficulty bounds
 const getNewDefinitionQuestionELO = (score, playerELO, questionELO, difficulty) => {
-  const apiDifficulty = DIFFICULTY_MAP[difficulty];
   const eloChange = getELOChange(score, questionELO, playerELO);
   const potentialNewELO = questionELO + eloChange;
-  const { lower, upper } = DEFINITION_QUESTION_ELO_RANGES[apiDifficulty];
+  const { lower, upper } = DIFFICULTY_ELO_RANGES[difficulty];
 
   if (potentialNewELO < lower) {
     return lower;

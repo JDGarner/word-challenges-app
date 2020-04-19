@@ -8,7 +8,6 @@ import theme from "./theme";
 import configureStore from "./store";
 import { fetchRhymes } from "./features/rhymes/redux/rhymes-actions";
 import { fetchDefinitions } from "./features/definitions/redux/definitions-actions";
-import { WORD_DIFFICULTIES } from "./features/definitions/definitions-constants";
 import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
 import { AppBackground } from "./components";
 import SoundManager from "./features/sound/SoundManager";
@@ -23,8 +22,7 @@ export default function AppProvider() {
     SplashScreen.hide();
 
     store.dispatch(fetchRhymes());
-    store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.EASY));
-    store.dispatch(fetchDefinitions(WORD_DIFFICULTIES.HARD));
+    store.dispatch(fetchDefinitions());
     store.dispatch(retrieveELOs());
 
     if (Platform.OS === "android") {

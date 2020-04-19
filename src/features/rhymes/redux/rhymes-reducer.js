@@ -32,10 +32,6 @@ const { NOVICE, JOURNEYMAN, EXPERT, MASTER } = DIFFICULTIES;
 // };
 
 const initialState = {
-  noviceRhymes: [],
-  journeymanRhymes: [],
-  expertRhymes: [],
-  masterRhymes: [],
   difficulty: NOVICE,
   allRhymes: [],
   currentRhymeIndex: 0,
