@@ -3,6 +3,7 @@ import { cloneDeep, shuffle } from "lodash";
 import styled from "styled-components";
 import { View, TouchableOpacity, Animated } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import CommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import GameHeader from "../GameHeader";
 import theme from "../../../theme";
@@ -16,10 +17,11 @@ import {
 } from "../definitions-utils";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
-import { ConnectedTopBar } from "../../../components";
+import { ConnectedTopBar, SmallText } from "../../../components";
 import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import { MODES } from "../../../app-constants";
+import colors from "../../../theme/colors";
 
 const ICON_SIZE = 40;
 
@@ -59,16 +61,28 @@ const FooterContainer = styled(View)`
 const FooterButtons = styled(View)`
   padding-top: 16;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
 `;
 
+const FreeLetterCountText = styled(SmallText)`
+  position: absolute;
+  right: 2;
+  bottom: 0;
+`;
+
+const FreeLetterButton = styled(TouchableOpacity)`
+  margin-right: 30;
+  margin-top: 1;
+`;
+
 const ShuffleButton = styled(TouchableOpacity)`
-  margin-right: 20;
+  margin-horizontal: 22;
+  margin-top: 2;
 `;
 
 const SkipButton = styled(TouchableOpacity)`
-  margin-left: 20;
+  margin-left: 23;
 `;
 
 /**
@@ -146,12 +160,16 @@ const DefinitionGame = ({
   questionELO,
   updatePlayerELO,
   updateQuestionELO,
+  freeLettersRemaining,
   onBeginGame,
   onSubmitAnswer,
   onAnswerFeedbackFinished,
+  onFreeLetterAdded,
 }) => {
   const letters = useMemo(() => shuffle(word.toUpperCase().split("")), [word]);
-  const freeLetters = useMemo(() => getFreeLetters(letters, word, difficulty), [word, difficulty]);
+  const freeLetters = useMemo(() => {
+    return [];
+  }, [word, difficulty]);
   const scrambledLetterScales = useMemo(() => letters.map(() => new Animated.Value(1)), [word]);
 
   const [scrambledLetters, setScrambledLetters] = useState(
@@ -292,7 +310,17 @@ const DefinitionGame = ({
     }, getShuffleReappearDelay(scrambledLetterScales));
   };
 
+  const onPressAddFreeLetter = () => {
+    onFreeLetterAdded();
+    // increase number of free letters in this game by one
+    // decrease number of free letters available in this round by one
+    // re-get/set free letters
+    // re-get/set scrambled letters
+    // re-get/set answer letters
+  };
+
   const answerTextProps = getAnswerTextProps(answerLetters);
+  const freeLetterColor = freeLettersRemaining <= 0 ? colors.textColorDisabled : colors.textColor;
 
   return (
     <Fragment>
@@ -346,11 +374,23 @@ const DefinitionGame = ({
 
         <FooterContainer>
           <FooterButtons>
+            <FreeLetterButton
+              onPress={onPressAddFreeLetter}
+              disabled={userActionsDisabled || freeLettersRemaining <= 0}>
+              <CommunityIcon
+                name="lightbulb-on-outline"
+                size={ICON_SIZE - 2}
+                color={freeLetterColor}
+              />
+              <FreeLetterCountText color={freeLetterColor}>
+                {freeLettersRemaining}
+              </FreeLetterCountText>
+            </FreeLetterButton>
             <ShuffleButton onPress={onPressShuffle} disabled={userActionsDisabled}>
               <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
             </ShuffleButton>
             <SkipButton onPress={() => handleGameTransition(false)} disabled={userActionsDisabled}>
-              <Icon name="skip-next" size={ICON_SIZE + 4} color={theme.textColor} />
+              <Icon name="skip-next" size={ICON_SIZE + 6} color={theme.textColor} />
             </SkipButton>
           </FooterButtons>
         </FooterContainer>

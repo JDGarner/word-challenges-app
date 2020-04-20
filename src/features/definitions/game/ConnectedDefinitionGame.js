@@ -4,6 +4,7 @@ import {
   onBeginGame,
   onSubmitAnswer,
   onAnswerFeedbackFinished,
+  onFreeLetterAdded,
 } from "../redux/definitions-actions";
 import {
   updatePlayerELO,
@@ -11,7 +12,7 @@ import {
 } from "../../../redux/leaderboards/leaderboards-actions";
 
 const mapStateToProps = ({ definitions, leaderboards }) => {
-  const { gameCountdown, difficulty, currentDefinition } = definitions;
+  const { gameCountdown, difficulty, currentDefinition, freeLettersRemaining } = definitions;
   const { definition, word, eloRating } = currentDefinition;
   const { definitionsELO } = leaderboards;
 
@@ -22,6 +23,7 @@ const mapStateToProps = ({ definitions, leaderboards }) => {
     difficulty,
     questionELO: eloRating,
     userELO: definitionsELO,
+    freeLettersRemaining,
   };
 };
 
@@ -31,6 +33,7 @@ const mapDispatchToProps = {
   onBeginGame,
   onSubmitAnswer,
   onAnswerFeedbackFinished,
+  onFreeLetterAdded,
 };
 
 const ConnectedDefinitionGame = connect(mapStateToProps, mapDispatchToProps)(DefinitionGame);

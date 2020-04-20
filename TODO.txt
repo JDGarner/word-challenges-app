@@ -6,7 +6,6 @@ General
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
 Definitions Refactor:
-- Change ELO question rating change to work like rhymes
 - Remove free letters on Novice and Expert
   - replace with free letter lightbulb button (limited amount, reduce score on use?)
 

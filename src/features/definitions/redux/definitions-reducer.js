@@ -10,8 +10,14 @@ import {
   ON_EXIT_GAME,
   ON_SELECT_DIFFICULTY_DEFINITIONS,
   ON_ANSWER_FEEDBACK_FINISHED,
+  ON_FREE_LETTER_ADDED,
 } from "./definitions-actions";
-import { GAME_STATES, INITIAL_COUNTDOWN, WORDS_PER_ROUND } from "../definitions-constants";
+import {
+  GAME_STATES,
+  INITIAL_COUNTDOWN,
+  WORDS_PER_ROUND,
+  FREE_LETTER_INITIAL_COUNT,
+} from "../definitions-constants";
 import { roundIsOver } from "../definitions-utils";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 import { DIFFICULTIES } from "../../../app-constants";
@@ -25,6 +31,7 @@ const initialState = {
   allDefinitionsIndex: 0,
   questionIndex: 0,
   netELOChange: 0,
+  freeLettersRemaining: FREE_LETTER_INITIAL_COUNT,
   gameState: GAME_STATES.PLAYING,
   gameCountdown: INITIAL_COUNTDOWN,
   difficulty: DIFFICULTIES.NOVICE,
@@ -77,6 +84,7 @@ const getStateForNewRound = (state, nextIndex, allDefinitions) => {
       currentDefinition,
       currentDefinitions,
       questionIndex: 0,
+      freeLettersRemaining: FREE_LETTER_INITIAL_COUNT,
       gameCountdown: INITIAL_COUNTDOWN,
       connectionError: false,
       loaded: true,
@@ -91,6 +99,7 @@ const getStateForNewRound = (state, nextIndex, allDefinitions) => {
     loaded: false,
     allDefinitionsIndex: 0,
     netELOChange: 0,
+    freeLettersRemaining: FREE_LETTER_INITIAL_COUNT,
     gameCountdown: INITIAL_COUNTDOWN,
     gameState: GAME_STATES.PLAYING,
   };
@@ -198,6 +207,13 @@ export default (state = initialState, action) => {
         ...state,
         ...getStateForNewRound(state, state.allDefinitionsIndex, state.allDefinitions),
         gameState: GAME_STATES.PLAYING,
+      };
+    }
+
+    case ON_FREE_LETTER_ADDED: {
+      return {
+        ...state,
+        freeLettersRemaining: state.freeLettersRemaining - 1,
       };
     }
 

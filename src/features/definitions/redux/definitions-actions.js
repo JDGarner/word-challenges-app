@@ -13,6 +13,7 @@ export const ON_ANSWER_FEEDBACK_FINISHED = `${NAMESPACE}/ON_ANSWER_FEEDBACK_FINI
 export const ON_PRESS_START_NEW_GAME = `${NAMESPACE}/ON_PRESS_START_NEW_GAME`;
 export const ON_EXIT_GAME = `${NAMESPACE}/ON_EXIT_GAME`;
 export const ON_SELECT_DIFFICULTY_DEFINITIONS = `${NAMESPACE}/ON_SELECT_DIFFICULTY_DEFINITIONS`;
+export const ON_FREE_LETTER_ADDED = `${NAMESPACE}/ON_FREE_LETTER_ADDED`;
 
 export const fetchDefinitions = () => ({
   type: FETCH_DEFINITIONS,
@@ -70,4 +71,8 @@ export const onExitGame = () => ({
 export const onSelectDifficulty = difficulty => ({
   type: ON_SELECT_DIFFICULTY_DEFINITIONS,
   difficulty,
+});
+
+export const onFreeLetterAdded = () => ({
+  type: ON_FREE_LETTER_ADDED,
 });
