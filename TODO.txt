@@ -6,8 +6,10 @@ General
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
 Definitions Refactor:
-- Remove free letters on Novice and Expert
-  - replace with free letter lightbulb button (limited amount, reduce score on use?)
+- Free letter logic:
+  - if only 1 empty space remaining - disable free letter button
+  - reduce score on use?
+  - change colour of free letter?
 
 
 Rhymes:

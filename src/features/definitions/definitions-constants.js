@@ -5,7 +5,7 @@ export const GAME_STATES = {
 
 export const WORDS_PER_ROUND = 5;
 export const INITIAL_COUNTDOWN = 20;
-export const FREE_LETTER_INITIAL_COUNT = 5;
+export const FREE_LETTER_INITIAL_COUNT = 6;
 export const DEFINITIONS_LOCAL_BUFFER = 25;
 
 export const SHUFFLE_ANIMATION_TIME = 200;

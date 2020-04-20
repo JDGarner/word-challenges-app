@@ -6,7 +6,6 @@ import {
   SHUFFLE_ANIMATION_STAGGER_TIME,
   SHUFFLE_ANIMATION_REAPPEAR_BUFFER,
 } from "./definitions-constants";
-import { DIFFICULTIES } from "../../app-constants";
 import {
   getHighestPraiseWord,
   getHighPraiseWord,
@@ -105,63 +104,38 @@ export const animateFeedbackLetter = value => {
   ]).start();
 };
 
-const shouldGiveFreeLetters = difficulty => {
-  return difficulty === DIFFICULTIES.NOVICE || difficulty === DIFFICULTIES.EXPERT;
+export const getLetters = scrambledLetters => {
+  return scrambledLetters.map(s => s.letter);
 };
 
-const getNumberOfFreeLetters = size => {
-  if (size <= 3) {
-    return 0;
-  }
+export const getFreeLetters = (scrambledLetters, word, numOfFreeLetters) => {
+  let freeLetters = [];
+  let assignedScrambledIndexes = [];
 
-  if (size <= 6) {
-    return 1;
-  }
+  // get the first numOfFreeLetters letters from word
+  for (let i = 0; i < numOfFreeLetters; i++) {
+    const letter = word[i];
 
-  if (size <= 8) {
-    return 2;
-  }
-
-  if (size <= 11) {
-    return 3;
-  }
-
-  return 4;
-};
-
-export const getFreeLetters = (scrambledLetters, word, difficulty) => {
-  if (shouldGiveFreeLetters(difficulty)) {
-    const numOfFreeLetters = getNumberOfFreeLetters(scrambledLetters.length);
-    let freeLetters = [];
-    let assignedScrambledIndexes = [];
-
-    // get the first numOfFreeLetters letters from word (even indexes only)
-    for (let i = 0; i < numOfFreeLetters; i++) {
-      const letter = word[i * 2];
-
-      if (letter && letter.toUpperCase) {
-        freeLetters.push({ letter: letter.toUpperCase(), index: i * 2 });
-      }
+    if (letter && letter.toUpperCase) {
+      freeLetters.push({ letter: letter.toUpperCase(), index: i });
     }
-
-    return freeLetters.map(freeLetter => {
-      const scrambledIndex = scrambledLetters.findIndex(
-        (s, i) => s === freeLetter.letter && !assignedScrambledIndexes.includes(i),
-      );
-
-      // In case freeLetters contains some of the same letters, don't allow them to be set
-      // with the same scrambled index (get the next one)
-      assignedScrambledIndexes.push(scrambledIndex);
-
-      return {
-        letter: freeLetter.letter,
-        scrambledIndex,
-        correctIndex: freeLetter.index,
-      };
-    });
   }
 
-  return [];
+  return freeLetters.map(freeLetter => {
+    const scrambledIndex = scrambledLetters.findIndex(
+      (s, i) => s === freeLetter.letter && !assignedScrambledIndexes.includes(i),
+    );
+
+    // In case freeLetters contains some of the same letters, don't allow them to be set
+    // with the same scrambled index (get the next one)
+    assignedScrambledIndexes.push(scrambledIndex);
+
+    return {
+      letter: freeLetter.letter,
+      scrambledIndex,
+      correctIndex: freeLetter.index,
+    };
+  });
 };
 
 export const doShuffleAnimation = (letterScale, appear = true) => {

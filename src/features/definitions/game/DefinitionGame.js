@@ -14,6 +14,7 @@ import {
   getFreeLetters,
   getShuffleReappearDelay,
   doShuffleAnimation,
+  getLetters,
 } from "../definitions-utils";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
@@ -22,6 +23,7 @@ import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import { MODES } from "../../../app-constants";
 import colors from "../../../theme/colors";
+import { useDidUpdateEffect } from "../../../hooks/generic-hooks";
 
 const ICON_SIZE = 40;
 
@@ -118,18 +120,13 @@ const freeLetters = [
  */
 
 const getScrambledLetters = (letters, freeLetters) => {
-  return letters
-    .map((l, i) => {
-      return {
-        id: i,
-        letter: l,
-        showing: true,
-      };
-    })
-    .filter((s, i) => {
-      // Filter out any free letters
-      return !freeLetters.some(f => f.scrambledIndex === i);
-    });
+  return letters.map((l, i) => {
+    return {
+      id: i,
+      letter: l,
+      showing: !freeLetters.some(f => f.scrambledIndex === i),
+    };
+  });
 };
 
 const getAnswerLetters = (letters, freeLetters) => {
@@ -167,15 +164,11 @@ const DefinitionGame = ({
   onFreeLetterAdded,
 }) => {
   const letters = useMemo(() => shuffle(word.toUpperCase().split("")), [word]);
-  const freeLetters = useMemo(() => {
-    return [];
-  }, [word, difficulty]);
   const scrambledLetterScales = useMemo(() => letters.map(() => new Animated.Value(1)), [word]);
 
-  const [scrambledLetters, setScrambledLetters] = useState(
-    getScrambledLetters(letters, freeLetters),
-  );
-  const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters, freeLetters));
+  const [numOfFreeLetters, setNumOfFreeLetters] = useState(0);
+  const [scrambledLetters, setScrambledLetters] = useState(getScrambledLetters(letters, []));
+  const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters, []));
 
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
   const [currentELOChange, setCurrentELOChange] = useState(0);
@@ -196,6 +189,21 @@ const DefinitionGame = ({
       useNativeDriver: true,
     }).start();
   }, [word]);
+
+  // Game countdown ticked down
+  useEffect(() => {
+    if (gameCountdown === 0 && !userActionsDisabled) {
+      handleGameTransition(false);
+    }
+  }, [gameCountdown]);
+
+  // Free letter added
+  useDidUpdateEffect(() => {
+    const newFreeLetters = getFreeLetters(getLetters(scrambledLetters), word, numOfFreeLetters);
+
+    setScrambledLetters(getScrambledLetters(getLetters(scrambledLetters), newFreeLetters));
+    setAnswerLetters(getAnswerLetters(answerLetters, newFreeLetters));
+  }, [numOfFreeLetters]);
 
   // Fade out game, show answer feedback
   const handleGameTransition = isAnswerCorrect => {
@@ -241,12 +249,6 @@ const DefinitionGame = ({
     updateQuestionELO(MODES.DEFINITIONS, word, newQuestionELO);
   };
 
-  useEffect(() => {
-    if (gameCountdown === 0 && !userActionsDisabled) {
-      handleGameTransition(false);
-    }
-  }, [gameCountdown]);
-
   const onAllLettersAdded = answer => {
     handleGameTransition(answer.toUpperCase() === word.toUpperCase());
     onSubmitAnswer(answer);
@@ -291,6 +293,7 @@ const DefinitionGame = ({
 
   const onPressShuffle = () => {
     // Reset answers to initial state
+    const freeLetters = getFreeLetters(getLetters(scrambledLetters), word, numOfFreeLetters);
     setAnswerLetters(getAnswerLetters(answerLetters, freeLetters));
 
     doShuffleAnimation(scrambledLetterScales, false);
@@ -301,7 +304,7 @@ const DefinitionGame = ({
       // Re-shuffle the letters, reset scrambled/answers to initial state
       // Need to recompute freeLetters also because scrambled letters have changed position
       const shuffledLetters = shuffle(word.toUpperCase().split(""));
-      const newFreeLetters = getFreeLetters(shuffledLetters, word, difficulty);
+      const newFreeLetters = getFreeLetters(shuffledLetters, word, numOfFreeLetters);
 
       setScrambledLetters(getScrambledLetters(shuffledLetters, newFreeLetters));
       setAnswerLetters(getAnswerLetters(answerLetters, newFreeLetters));
@@ -311,12 +314,8 @@ const DefinitionGame = ({
   };
 
   const onPressAddFreeLetter = () => {
+    setNumOfFreeLetters(current => current + 1);
     onFreeLetterAdded();
-    // increase number of free letters in this game by one
-    // decrease number of free letters available in this round by one
-    // re-get/set free letters
-    // re-get/set scrambled letters
-    // re-get/set answer letters
   };
 
   const answerTextProps = getAnswerTextProps(answerLetters);
