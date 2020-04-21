@@ -21,6 +21,22 @@ const AnswerLetterText = styled(MediumText)`
   padding-top: ${TEXT_TOP_PADDING};
 `;
 
+const animateLetterPressIn = value => {
+  Animated.spring(value, {
+    toValue: 0.8,
+    useNativeDriver: true,
+  }).start();
+};
+
+const animateLetterPressOut = value => {
+  Animated.spring(value, {
+    toValue: 1,
+    speed: 16,
+    bounciness: 16,
+    useNativeDriver: true,
+  }).start();
+};
+
 const AnswerLetter = ({
   letter,
   isFreeLetter,
@@ -29,14 +45,12 @@ const AnswerLetter = ({
   disabled,
   ...styleProps
 }) => {
-  const [scaleValue] = useState(new Animated.Value(isFreeLetter || isFeedbackLetter ? 1 : 0.5));
+  const [scaleValue] = useState(new Animated.Value(isFeedbackLetter ? 1 : 0.5));
 
   useEffect(() => {
     if (isFeedbackLetter) {
       animateFeedbackLetter(scaleValue, letter);
-    }
-
-    if (!isFreeLetter && !isFeedbackLetter) {
+    } else {
       animateAnswerLetter(scaleValue, letter);
     }
   }, [letter]);
@@ -48,7 +62,8 @@ const AnswerLetter = ({
 
   return (
     <AnswerButton
-      reduceScaleFactor={0.8}
+      onPressIn={() => animateLetterPressIn(scaleValue)}
+      onPressOut={() => animateLetterPressOut(scaleValue)}
       onPress={onPressLetterButton}
       disabled={disabled}
       {...styleProps}>

@@ -35,24 +35,38 @@ export const getPraiseForScore = (correct, total) => {
   return getLowPraiseWord();
 };
 
-export const getAnswerTextProps = letters => {
-  if (letters.length < 7) {
+export const getAnswerTextProps = wordLength => {
+  if (wordLength < 7) {
     return { fontSize: 26, height: 36, maxWidth: 34, marginHorizontal: 5 };
   }
 
-  if (letters.length < 10) {
+  if (wordLength < 10) {
     return { fontSize: 24, height: 34, maxWidth: 30, marginHorizontal: 4 };
   }
 
-  if (letters.length < 12) {
+  if (wordLength < 12) {
     return { fontSize: 22, height: 32, maxWidth: 28, marginHorizontal: 3 };
   }
 
-  if (letters.length < 14) {
+  if (wordLength < 14) {
     return { fontSize: 20, height: 28, maxWidth: 28, marginHorizontal: 3 };
   }
 
   return { fontSize: 18, height: 24, maxWidth: 24, marginHorizontal: 2 };
+};
+
+// [3, null, null, 5, null, null] -> [3, 5] -> [null, null, null, 3, null, 5]
+export const getCurrentAnswerIndexes = lettersState => {
+  const answerIndexes = lettersState.map(ls => ls.answerIndex).filter(pl => pl !== null);
+  const currentAnswerIndexes = [];
+  for (let i = 0; i < lettersState.length; i++) {
+    currentAnswerIndexes[i] = answerIndexes.includes(i) ? i : null;
+  }
+  return currentAnswerIndexes;
+};
+
+export const getFirstEmptyAnswerIndex = lettersState => {
+  return getCurrentAnswerIndexes(lettersState).findIndex(a => a === null);
 };
 
 const animateLetterSpring = value => {
@@ -102,40 +116,6 @@ export const animateFeedbackLetter = value => {
       useNativeDriver: true,
     }),
   ]).start();
-};
-
-export const getLetters = scrambledLetters => {
-  return scrambledLetters.map(s => s.letter);
-};
-
-export const getFreeLetters = (scrambledLetters, word, numOfFreeLetters) => {
-  let freeLetters = [];
-  let assignedScrambledIndexes = [];
-
-  // get the first numOfFreeLetters letters from word
-  for (let i = 0; i < numOfFreeLetters; i++) {
-    const letter = word[i];
-
-    if (letter && letter.toUpperCase) {
-      freeLetters.push({ letter: letter.toUpperCase(), index: i });
-    }
-  }
-
-  return freeLetters.map(freeLetter => {
-    const scrambledIndex = scrambledLetters.findIndex(
-      (s, i) => s === freeLetter.letter && !assignedScrambledIndexes.includes(i),
-    );
-
-    // In case freeLetters contains some of the same letters, don't allow them to be set
-    // with the same scrambled index (get the next one)
-    assignedScrambledIndexes.push(scrambledIndex);
-
-    return {
-      letter: freeLetter.letter,
-      scrambledIndex,
-      correctIndex: freeLetter.index,
-    };
-  });
 };
 
 export const doShuffleAnimation = (letterScale, appear = true) => {

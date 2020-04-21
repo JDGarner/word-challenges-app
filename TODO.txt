@@ -7,7 +7,8 @@ General
 
 Definitions Refactor:
 - Free letter logic:
-  - if only 1 empty space remaining - disable free letter button
+  - make it add the first letter that is not already added (or first incorrect one?)
+  - add sound effect
   - reduce score on use?
   - change colour of free letter?
 

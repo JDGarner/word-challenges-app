@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, Fragment } from "react";
-import { cloneDeep, shuffle } from "lodash";
+import { cloneDeep, shuffle, sortBy } from "lodash";
 import styled from "styled-components";
 import { View, TouchableOpacity, Animated } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -8,13 +8,10 @@ import CommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import GameHeader from "../GameHeader";
 import theme from "../../../theme";
 import ScrambledLetter from "./ScrambledLetter";
-import AnswerLetter from "./AnswerLetter";
 import {
-  getAnswerTextProps,
-  getFreeLetters,
   getShuffleReappearDelay,
   doShuffleAnimation,
-  getLetters,
+  getFirstEmptyAnswerIndex,
 } from "../definitions-utils";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
@@ -23,7 +20,7 @@ import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import { MODES } from "../../../app-constants";
 import colors from "../../../theme/colors";
-import { useDidUpdateEffect } from "../../../hooks/generic-hooks";
+import AnswerLetters from "./AnswerLetters";
 
 const ICON_SIZE = 40;
 
@@ -45,12 +42,6 @@ const CentreContainer = styled(View)`
 const ScrambledLettersContainer = styled(View)`
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
-  justify-content: center;
-`;
-
-const AnswersContainer = styled(View)`
-  flex-direction: row;
   width: 100%;
   justify-content: center;
 `;
@@ -90,60 +81,34 @@ const SkipButton = styled(TouchableOpacity)`
 /**
 State Structure Example:
 
-const scrambledLetters = [
-  {
-    id: "1",
-    letter: "H"
-    showing: false,
-  }
-]
-
-const answerLetters = [
-  {
-    id: "1",
-    letter: "H"
-  },
-  {
-    id: "2-placeholder",
-    letter: ""
-  },
-]
-
-const freeLetters = [
+const lettersState = [
   {
     letter: "H"
-    scrambledIndex: 2,
     correctIndex: 0,
+    answerIndex: null,
+    scrambledIndex: 2,
+    letterStateIndex: 0,
+    isPlaced: true,
+    isFreeLetter: false
   }
 ]
 
  */
 
-const getScrambledLetters = (letters, freeLetters) => {
-  return letters.map((l, i) => {
+const getShuffledIndexes = word => shuffle(word.split("").map((l, i) => i));
+
+const getInitialLettersState = word => {
+  const letters = word.toUpperCase().split("");
+  const shuffledIndexes = getShuffledIndexes(word);
+
+  return letters.map((letter, i) => {
     return {
-      id: i,
-      letter: l,
-      showing: !freeLetters.some(f => f.scrambledIndex === i),
-    };
-  });
-};
-
-const getAnswerLetters = (letters, freeLetters) => {
-  return letters.map((l, i) => {
-    const freeLetter = freeLetters.find(f => f.correctIndex === i);
-
-    if (freeLetter) {
-      return {
-        id: freeLetter.scrambledIndex,
-        letter: freeLetter.letter,
-        isFreeLetter: true,
-      };
-    }
-
-    return {
-      id: `${i}-placeholder`,
-      letter: "",
+      letter,
+      correctIndex: i,
+      answerIndex: null,
+      scrambledIndex: shuffledIndexes[i],
+      isPlaced: false,
+      isFreeLetter: false,
     };
   });
 };
@@ -163,17 +128,18 @@ const DefinitionGame = ({
   onAnswerFeedbackFinished,
   onFreeLetterAdded,
 }) => {
-  const letters = useMemo(() => shuffle(word.toUpperCase().split("")), [word]);
-  const scrambledLetterScales = useMemo(() => letters.map(() => new Animated.Value(1)), [word]);
+  const [lettersState, setLettersState] = useState(getInitialLettersState(word));
+  const letterStateScrambledOrder = useMemo(() => sortBy(lettersState, ["scrambledIndex"]), [
+    lettersState,
+  ]);
 
-  const [numOfFreeLetters, setNumOfFreeLetters] = useState(0);
-  const [scrambledLetters, setScrambledLetters] = useState(getScrambledLetters(letters, []));
-  const [answerLetters, setAnswerLetters] = useState(getAnswerLetters(letters, []));
-
+  const [gameOpacity] = useState(new Animated.Value(0));
+  const scrambledLetterScales = useMemo(() => word.split("").map(() => new Animated.Value(1)), [
+    word,
+  ]);
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
   const [currentELOChange, setCurrentELOChange] = useState(0);
   const [answerFeedbackAnimationToggle, setAnswerFeedbackAnimationToggle] = useState(false);
-  const [gameOpacity] = useState(new Animated.Value(0));
   const [userActionsDisabled, setUserActionsDisabled] = useState(false);
   const [isShowingFeedback, setIsShowingFeedback] = useState(false);
 
@@ -196,14 +162,6 @@ const DefinitionGame = ({
       handleGameTransition(false);
     }
   }, [gameCountdown]);
-
-  // Free letter added
-  useDidUpdateEffect(() => {
-    const newFreeLetters = getFreeLetters(getLetters(scrambledLetters), word, numOfFreeLetters);
-
-    setScrambledLetters(getScrambledLetters(getLetters(scrambledLetters), newFreeLetters));
-    setAnswerLetters(getAnswerLetters(answerLetters, newFreeLetters));
-  }, [numOfFreeLetters]);
 
   // Fade out game, show answer feedback
   const handleGameTransition = isAnswerCorrect => {
@@ -254,47 +212,50 @@ const DefinitionGame = ({
     onSubmitAnswer(answer);
   };
 
-  const addAnswerLetter = (scrambled, index) => {
-    if (scrambled.showing) {
+  const addAnswerLetter = letterState => {
+    if (!letterState.isPlaced) {
       // Add letter to first empty answer space
-      const firstEmptyIndex = answerLetters.findIndex(a => a.letter === "");
-      const clonedAnswers = cloneDeep(answerLetters);
-      clonedAnswers[firstEmptyIndex] = {
-        id: scrambled.id,
-        letter: scrambled.letter,
-      };
-      setAnswerLetters(clonedAnswers);
+      const firstEmptyAnswerIndex = getFirstEmptyAnswerIndex(lettersState);
+      const newLettersState = cloneDeep(lettersState);
 
-      // Hide letter from scrambled letter choices
-      const clonedScrambled = cloneDeep(scrambledLetters);
-      clonedScrambled[index].showing = false;
-      setScrambledLetters(clonedScrambled);
+      // correctIndex is same as index within lettersState
+      newLettersState[letterState.correctIndex].isPlaced = true;
+      newLettersState[letterState.correctIndex].answerIndex = firstEmptyAnswerIndex;
 
-      // If all letter choices are hidden, submit answer
-      if (clonedScrambled.every(s => !s.showing)) {
-        onAllLettersAdded(clonedAnswers.map(a => a.letter).join(""));
+      setLettersState(newLettersState);
+
+      // If all letters are now placed, submit answer
+      if (newLettersState.every(ls => ls.isPlaced)) {
+        const answer = sortBy(newLettersState, ["answerIndex"])
+          .map(ls => ls.letter)
+          .join("");
+        onAllLettersAdded(answer);
       }
     }
   };
 
-  const removeAnswerLetter = (answer, index) => {
-    if (answer.letter !== "") {
-      // Set scrambled letter with matching id of removed answer letter to show
-      const matchingIndex = scrambledLetters.findIndex(s => s.id === answer.id);
-      const clonedScrambled = cloneDeep(scrambledLetters);
-      clonedScrambled[matchingIndex].showing = true;
-      setScrambledLetters(clonedScrambled);
+  const removeAnswerLetter = letterState => {
+    if (letterState.isPlaced) {
+      const newLettersState = cloneDeep(lettersState);
 
-      const clonedAnswers = cloneDeep(answerLetters);
-      clonedAnswers[index] = { id: `${index}-placeholder`, letter: "" };
-      setAnswerLetters(clonedAnswers);
+      // correctIndex is same as index within lettersState
+      newLettersState[letterState.correctIndex].isPlaced = false;
+      newLettersState[letterState.correctIndex].answerIndex = null;
+
+      setLettersState(newLettersState);
     }
   };
 
   const onPressShuffle = () => {
-    // Reset answers to initial state
-    const freeLetters = getFreeLetters(getLetters(scrambledLetters), word, numOfFreeLetters);
-    setAnswerLetters(getAnswerLetters(answerLetters, freeLetters));
+    // Reset letters to initial state
+    const initialLettersState = cloneDeep(lettersState);
+    initialLettersState.forEach(ls => {
+      if (!ls.isFreeLetter) {
+        ls.isPlaced = false;
+        ls.answerIndex = null;
+      }
+    });
+    setLettersState(initialLettersState);
 
     doShuffleAnimation(scrambledLetterScales, false);
 
@@ -302,24 +263,38 @@ const DefinitionGame = ({
 
     setTimeout(() => {
       // Re-shuffle the letters, reset scrambled/answers to initial state
-      // Need to recompute freeLetters also because scrambled letters have changed position
-      const shuffledLetters = shuffle(word.toUpperCase().split(""));
-      const newFreeLetters = getFreeLetters(shuffledLetters, word, numOfFreeLetters);
+      const newLettersState = cloneDeep(lettersState);
+      const shuffledIndexes = getShuffledIndexes(word);
 
-      setScrambledLetters(getScrambledLetters(shuffledLetters, newFreeLetters));
-      setAnswerLetters(getAnswerLetters(answerLetters, newFreeLetters));
+      newLettersState.forEach((ls, i) => {
+        if (!ls.isFreeLetter) {
+          ls.isPlaced = false;
+          ls.answerIndex = null;
+          ls.scrambledIndex = shuffledIndexes[i];
+        }
+      });
+      setLettersState(newLettersState);
 
       doShuffleAnimation(scrambledLetterScales, true);
     }, getShuffleReappearDelay(scrambledLetterScales));
   };
 
   const onPressAddFreeLetter = () => {
-    setNumOfFreeLetters(current => current + 1);
+    // Find first letter that isn't placed or already a free letter
+    const firstFreeIndex = lettersState.findIndex(s => !s.isPlaced && !s.isFreeLetter);
+    const newLettersState = cloneDeep(lettersState);
+
+    newLettersState[firstFreeIndex].isPlaced = true;
+    newLettersState[firstFreeIndex].isFreeLetter = true;
+    newLettersState[firstFreeIndex].answerIndex = lettersState[firstFreeIndex].correctIndex;
+
+    setLettersState(newLettersState);
     onFreeLetterAdded();
   };
 
-  const answerTextProps = getAnswerTextProps(answerLetters);
-  const freeLetterColor = freeLettersRemaining <= 0 ? colors.textColorDisabled : colors.textColor;
+  const freeLetterEnabled =
+    freeLettersRemaining > 0 && lettersState.filter(l => !l.isPlaced).length > 1;
+  const freeLetterColor = freeLetterEnabled ? colors.textColor : colors.textColorDisabled;
 
   return (
     <Fragment>
@@ -328,43 +303,24 @@ const DefinitionGame = ({
         <CentreContainer>
           <GameHeader definition={definition} />
 
-          <AnswersContainer>
-            {isShowingFeedback
-              ? word.split("").map((letter, i) => {
-                  return (
-                    <AnswerLetter
-                      key={`${letter}-${i}`}
-                      disabled
-                      isFeedbackLetter
-                      letter={letter.toUpperCase()}
-                      {...answerTextProps}
-                    />
-                  );
-                })
-              : answerLetters.map((answer, i) => {
-                  return (
-                    <AnswerLetter
-                      key={answer.id}
-                      disabled={userActionsDisabled || answer.isFreeLetter}
-                      onPressLetter={() => removeAnswerLetter(answer, i)}
-                      letter={answer.letter}
-                      isFreeLetter={answer.isFreeLetter}
-                      {...answerTextProps}
-                    />
-                  );
-                })}
-          </AnswersContainer>
+          <AnswerLetters
+            word={word}
+            lettersState={lettersState}
+            isShowingFeedback={isShowingFeedback}
+            userActionsDisabled={userActionsDisabled}
+            removeAnswerLetter={removeAnswerLetter}
+          />
 
           <ScrambledLettersContainer>
-            {scrambledLetters.map((scrambled, i) => {
+            {letterStateScrambledOrder.map((ls, i) => {
               return (
                 <ScrambledLetter
-                  key={scrambled.id}
-                  showing={scrambled.showing}
-                  letter={scrambled.letter}
+                  key={ls.correctIndex}
+                  showing={!ls.isPlaced}
+                  letter={ls.letter}
                   disabled={userActionsDisabled}
                   scaleValue={scrambledLetterScales[i]}
-                  onPressLetter={() => addAnswerLetter(scrambled, i)}
+                  onPressLetter={() => addAnswerLetter(ls)}
                 />
               );
             })}
@@ -375,7 +331,7 @@ const DefinitionGame = ({
           <FooterButtons>
             <FreeLetterButton
               onPress={onPressAddFreeLetter}
-              disabled={userActionsDisabled || freeLettersRemaining <= 0}>
+              disabled={userActionsDisabled || !freeLetterEnabled}>
               <CommunityIcon
                 name="lightbulb-on-outline"
                 size={ICON_SIZE - 2}
