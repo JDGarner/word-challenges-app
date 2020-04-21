@@ -15,7 +15,15 @@ const AnswerFeedbackContainer = styled(Animated.View)`
   top: 20%;
 `;
 
-const AnswerFeedback = ({ isCorrect, eloChange, animationToggle }) => {
+const FeedbackContainer = styled(Animated.View)`
+  position: absolute;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  top: 40%;
+`;
+
+const AnswerFeedback = ({ isCorrect, eloChange, isShowingAnswerFeedback, animationToggle }) => {
   const [scale] = useState(new Animated.Value(0.4));
   const [opacity] = useState(new Animated.Value(0));
 
@@ -60,12 +68,24 @@ const AnswerFeedback = ({ isCorrect, eloChange, animationToggle }) => {
 
   const eloChangeText = eloChange && eloChange > 0 ? `+${eloChange}` : eloChange;
 
+  if (isShowingAnswerFeedback) {
+    return (
+      <AnswerFeedbackContainer pointerEvents="none" style={{ transform: [{ scale }], opacity }}>
+        <Icon name={iconName} size={280} color={feedbackColor} />
+        {!!eloChangeText && <LargeText>{eloChangeText}</LargeText>}
+      </AnswerFeedbackContainer>
+    );
+  }
+
   return (
-    <AnswerFeedbackContainer pointerEvents="none" style={{ transform: [{ scale }], opacity }}>
-      <Icon name={iconName} size={280} color={feedbackColor} />
+    <FeedbackContainer pointerEvents="none" style={{ transform: [{ scale }], opacity }}>
       {!!eloChangeText && <LargeText>{eloChangeText}</LargeText>}
-    </AnswerFeedbackContainer>
+    </FeedbackContainer>
   );
+};
+
+AnswerFeedback.defaultProps = {
+  isShowingAnswerFeedback: true,
 };
 
 export default AnswerFeedback;

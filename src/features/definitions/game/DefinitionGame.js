@@ -9,7 +9,10 @@ import GameHeader from "../GameHeader";
 import theme from "../../../theme";
 import ScrambledLetter from "./ScrambledLetter";
 import { getShuffleReappearDelay, doShuffleAnimation, getAnswersState } from "../definitions-utils";
-import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
+import {
+  ANSWER_FEEDBACK_ANIMATION_DURATION,
+  FREE_LETTER_SCORE_COST,
+} from "../definitions-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
 import { ConnectedTopBar, SmallText } from "../../../components";
 import SoundManager from "../../sound/SoundManager";
@@ -135,9 +138,9 @@ const DefinitionGame = ({
   ]);
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
   const [currentELOChange, setCurrentELOChange] = useState(0);
-  const [answerFeedbackAnimationToggle, setAnswerFeedbackAnimationToggle] = useState(false);
+  const [feedbackAnimationToggle, setFeedbackAnimationToggle] = useState(false);
   const [userActionsDisabled, setUserActionsDisabled] = useState(false);
-  const [isShowingFeedback, setIsShowingFeedback] = useState(false);
+  const [isShowingAnswerFeedback, setIsShowingAnswerFeedback] = useState(false);
 
   useEffect(() => {
     onBeginGame();
@@ -171,7 +174,7 @@ const DefinitionGame = ({
     );
 
     setUserActionsDisabled(true);
-    setIsShowingFeedback(true);
+    setIsShowingAnswerFeedback(true);
     setIsCurrentAnswerCorrect(isAnswerCorrect);
     setCurrentELOChange(playerELOChange);
 
@@ -181,7 +184,7 @@ const DefinitionGame = ({
       SoundManager.getInstance().playNegativeSound();
     }
 
-    setAnswerFeedbackAnimationToggle(!answerFeedbackAnimationToggle);
+    setFeedbackAnimationToggle(!feedbackAnimationToggle);
 
     Animated.sequence([
       Animated.timing(gameOpacity, {
@@ -195,7 +198,7 @@ const DefinitionGame = ({
         useNativeDriver: true,
       }),
     ]).start(() => {
-      setIsShowingFeedback(false);
+      setIsShowingAnswerFeedback(false);
       onAnswerFeedbackFinished(playerELOChange);
     });
 
@@ -302,6 +305,8 @@ const DefinitionGame = ({
     SoundManager.getInstance().playAddLetterSound();
 
     setLettersState(newLettersState);
+    setCurrentELOChange(FREE_LETTER_SCORE_COST);
+    setFeedbackAnimationToggle(!feedbackAnimationToggle);
     onFreeLetterAdded();
   };
 
@@ -319,7 +324,7 @@ const DefinitionGame = ({
           <AnswerLetters
             word={word}
             answersState={answersState}
-            isShowingFeedback={isShowingFeedback}
+            isShowingFeedback={isShowingAnswerFeedback}
             userActionsDisabled={userActionsDisabled}
             removeAnswerLetter={removeAnswerLetter}
           />
@@ -366,7 +371,8 @@ const DefinitionGame = ({
       <AnswerFeedback
         isCorrect={isCurrentAnswerCorrect}
         eloChange={currentELOChange}
-        animationToggle={answerFeedbackAnimationToggle}
+        isShowingAnswerFeedback={isShowingAnswerFeedback}
+        animationToggle={feedbackAnimationToggle}
       />
     </Fragment>
   );

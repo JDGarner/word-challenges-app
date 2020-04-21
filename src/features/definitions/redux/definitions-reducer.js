@@ -17,6 +17,7 @@ import {
   INITIAL_COUNTDOWN,
   WORDS_PER_ROUND,
   FREE_LETTER_INITIAL_COUNT,
+  FREE_LETTER_SCORE_COST,
 } from "../definitions-constants";
 import { roundIsOver } from "../definitions-utils";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
@@ -214,6 +215,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         freeLettersRemaining: state.freeLettersRemaining - 1,
+        netELOChange: state.netELOChange + FREE_LETTER_SCORE_COST,
       };
     }
 

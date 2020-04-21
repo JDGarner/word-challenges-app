@@ -12,13 +12,15 @@ import {
   ON_ROUND_END,
   ON_ANSWER_FEEDBACK_FINISHED,
   ON_SELECT_DIFFICULTY_DEFINITIONS,
+  ON_FREE_LETTER_ADDED,
 } from "./definitions-actions";
 import { fetchFromApi } from "../../../utils/api-util";
 import { RETRY_TIMEOUT, MODES, SCREENS, ENDPOINTS } from "../../../app-constants";
-import { DEFINITIONS_LOCAL_BUFFER } from "../definitions-constants";
+import { DEFINITIONS_LOCAL_BUFFER, FREE_LETTER_SCORE_COST } from "../definitions-constants";
 import { roundIsOver } from "../definitions-utils";
 import { googlePlaySubmitScore } from "../../../redux/google-play/google-play-services-actions";
 import { changeScreen } from "../../../redux/navigation/navigation-actions";
+import { updatePlayerELO } from "../../../redux/leaderboards/leaderboards-actions";
 
 let gameCountdownInterval = null;
 
@@ -85,6 +87,11 @@ export default store => next => action => {
     case ON_ROUND_END:
       store.dispatch(googlePlaySubmitScore(MODES.DEFINITIONS));
       potentiallyFetchMoreDefinitions(definitions, dispatch);
+
+      break;
+
+    case ON_FREE_LETTER_ADDED:
+      store.dispatch(updatePlayerELO(MODES.DEFINITIONS, FREE_LETTER_SCORE_COST));
 
       break;
 

@@ -5,11 +5,8 @@
 General
 - add extra game mode coming soon disabled button (or add Synonyms?)
 
-Definitions Refactor:
-- Free letter logic:
-  - add sound effect
-  - reduce score on use?
-
+Definitions:
+-
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
@@ -21,6 +18,7 @@ Leaderboard/Stats:
 
 Bugs:
 - see if it works running on device via android studio
+- Look into shuffle again - is timing still ok?
 
 Sound Effects:
   - test out different button sounds for menu buttons, short organic tap?
