@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View } from "react-native";
 import styled from "styled-components";
-import { MediumText } from "../../../components";
 import { getAnswerTextProps, getCurrentAnswerIndexes } from "../definitions-utils";
 import AnswerLetter from "./AnswerLetter";
 
@@ -36,10 +35,7 @@ const AnswerLetters = ({
         ));
     }
 
-    const answerIndexes = getCurrentAnswerIndexes(lettersState);
-    console.log(">>> answerIndexes: ", answerIndexes);
-
-    return answerIndexes.map((answerIndex, i) => {
+    return getCurrentAnswerIndexes(lettersState).map((answerIndex, i) => {
       if (answerIndex !== null) {
         const letterState = lettersState.find(ls => ls.answerIndex === answerIndex);
 

@@ -7,7 +7,6 @@ General
 
 Definitions Refactor:
 - Free letter logic:
-  - make it add the first letter that is not already added (or first incorrect one?)
   - add sound effect
   - reduce score on use?
   - change colour of free letter?

@@ -284,9 +284,16 @@ const DefinitionGame = ({
     const firstFreeIndex = lettersState.findIndex(s => !s.isPlaced && !s.isFreeLetter);
     const newLettersState = cloneDeep(lettersState);
 
+    // If there is already a letter at that position, put it back
+    const displacedLetterIndex = newLettersState.findIndex(ls => ls.answerIndex === firstFreeIndex);
+    if (displacedLetterIndex > -1) {
+      newLettersState[displacedLetterIndex].isPlaced = false;
+      newLettersState[displacedLetterIndex].answerIndex = null;
+    }
+
     newLettersState[firstFreeIndex].isPlaced = true;
     newLettersState[firstFreeIndex].isFreeLetter = true;
-    newLettersState[firstFreeIndex].answerIndex = lettersState[firstFreeIndex].correctIndex;
+    newLettersState[firstFreeIndex].answerIndex = firstFreeIndex;
 
     setLettersState(newLettersState);
     onFreeLetterAdded();
