@@ -9,7 +9,6 @@ Definitions Refactor:
 - Free letter logic:
   - add sound effect
   - reduce score on use?
-  - change colour of free letter?
 
 
 Rhymes:

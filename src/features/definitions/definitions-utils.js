@@ -65,6 +65,15 @@ export const getCurrentAnswerIndexes = lettersState => {
   return currentAnswerIndexes;
 };
 
+export const getAnswersState = lettersState => {
+  const answersState = [];
+  for (let i = 0; i < lettersState.length; i++) {
+    const answer = lettersState.find(ls => ls.answerIndex === i);
+    answersState[i] = answer ? answer : null;
+  }
+  return answersState;
+};
+
 export const getFirstEmptyAnswerIndex = lettersState => {
   return getCurrentAnswerIndexes(lettersState).findIndex(a => a === null);
 };

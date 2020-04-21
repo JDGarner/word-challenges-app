@@ -1,17 +1,17 @@
 export const definitions = {
   novice: [
     {
-      _id: "5e93c7880a9cb363c896a4e0",
-      word: "cunning",
-      definition: "Shrewdness as demonstrated by being skilled in deception",
-      difficulty: "novice",
-      eloRating: 1000,
-    },
-    {
       _id: "5e93c7880a9cb363c896a4ea",
       word: "regret",
       definition:
         "A feeling of sadness about something sad or wrong, or about a mistake that you have made",
+      difficulty: "novice",
+      eloRating: 1000,
+    },
+    {
+      _id: "5e93c7880a9cb363c896a4e0",
+      word: "cunning",
+      definition: "Shrewdness as demonstrated by being skilled in deception",
       difficulty: "novice",
       eloRating: 1000,
     },

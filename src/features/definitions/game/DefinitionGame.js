@@ -12,6 +12,7 @@ import {
   getShuffleReappearDelay,
   doShuffleAnimation,
   getFirstEmptyAnswerIndex,
+  getAnswersState,
 } from "../definitions-utils";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
@@ -83,11 +84,10 @@ State Structure Example:
 
 const lettersState = [
   {
+    index: 0,
     letter: "H"
-    correctIndex: 0,
     answerIndex: null,
     scrambledIndex: 2,
-    letterStateIndex: 0,
     isPlaced: true,
     isFreeLetter: false
   }
@@ -104,7 +104,7 @@ const getInitialLettersState = word => {
   return letters.map((letter, i) => {
     return {
       letter,
-      correctIndex: i,
+      index: i,
       answerIndex: null,
       scrambledIndex: shuffledIndexes[i],
       isPlaced: false,
@@ -218,9 +218,8 @@ const DefinitionGame = ({
       const firstEmptyAnswerIndex = getFirstEmptyAnswerIndex(lettersState);
       const newLettersState = cloneDeep(lettersState);
 
-      // correctIndex is same as index within lettersState
-      newLettersState[letterState.correctIndex].isPlaced = true;
-      newLettersState[letterState.correctIndex].answerIndex = firstEmptyAnswerIndex;
+      newLettersState[letterState.index].isPlaced = true;
+      newLettersState[letterState.index].answerIndex = firstEmptyAnswerIndex;
 
       setLettersState(newLettersState);
 
@@ -238,9 +237,8 @@ const DefinitionGame = ({
     if (letterState.isPlaced) {
       const newLettersState = cloneDeep(lettersState);
 
-      // correctIndex is same as index within lettersState
-      newLettersState[letterState.correctIndex].isPlaced = false;
-      newLettersState[letterState.correctIndex].answerIndex = null;
+      newLettersState[letterState.index].isPlaced = false;
+      newLettersState[letterState.index].answerIndex = null;
 
       setLettersState(newLettersState);
     }
@@ -280,20 +278,33 @@ const DefinitionGame = ({
   };
 
   const onPressAddFreeLetter = () => {
-    // Find first letter that isn't placed or already a free letter
-    const firstFreeIndex = lettersState.findIndex(s => !s.isPlaced && !s.isFreeLetter);
+    // Get the first answerIndex that either has no letter or an incorrect letter
+    const correctLetters = word.toUpperCase().split("");
+    const answersState = getAnswersState(lettersState);
+    const firstIncorrectIndex = answersState.findIndex(
+      (ans, i) => ans === null || ans.letter !== correctLetters[i],
+    );
+
+    // Find letter in lettersState that is the correct letter for this index and not already placed
+    const letterStateToUse = lettersState.find(
+      ls => ls.letter === correctLetters[firstIncorrectIndex] && !ls.isPlaced,
+    );
+
     const newLettersState = cloneDeep(lettersState);
 
     // If there is already a letter at that position, put it back
-    const displacedLetterIndex = newLettersState.findIndex(ls => ls.answerIndex === firstFreeIndex);
-    if (displacedLetterIndex > -1) {
-      newLettersState[displacedLetterIndex].isPlaced = false;
-      newLettersState[displacedLetterIndex].answerIndex = null;
+    const letterToDisplace = answersState[firstIncorrectIndex];
+    if (letterToDisplace) {
+      newLettersState[letterToDisplace.index].isPlaced = false;
+      newLettersState[letterToDisplace.index].answerIndex = null;
     }
 
-    newLettersState[firstFreeIndex].isPlaced = true;
-    newLettersState[firstFreeIndex].isFreeLetter = true;
-    newLettersState[firstFreeIndex].answerIndex = firstFreeIndex;
+    const letterStateIndexToUse = letterStateToUse.index;
+    newLettersState[letterStateIndexToUse].isPlaced = true;
+    newLettersState[letterStateIndexToUse].isFreeLetter = true;
+    newLettersState[letterStateIndexToUse].answerIndex = firstIncorrectIndex;
+
+    SoundManager.getInstance().playAddLetterSound();
 
     setLettersState(newLettersState);
     onFreeLetterAdded();
@@ -322,7 +333,7 @@ const DefinitionGame = ({
             {letterStateScrambledOrder.map((ls, i) => {
               return (
                 <ScrambledLetter
-                  key={ls.correctIndex}
+                  key={i}
                   showing={!ls.isPlaced}
                   letter={ls.letter}
                   disabled={userActionsDisabled}

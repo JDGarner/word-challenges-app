@@ -5,6 +5,7 @@ import { MediumText } from "../../../components";
 import { animateAnswerLetter, animateFeedbackLetter } from "../definitions-utils";
 import { TEXT_TOP_PADDING } from "../../../components/text/Text";
 import SoundManager from "../../sound/SoundManager";
+import colors from "../../../theme/colors";
 
 const AnswerButton = styled(TouchableOpacity)`
   border-bottom-width: 2px;
@@ -60,6 +61,8 @@ const AnswerLetter = ({
     onPressLetter();
   };
 
+  const color = isFreeLetter ? colors.textColorBright : colors.textColor;
+
   return (
     <AnswerButton
       onPressIn={() => animateLetterPressIn(scaleValue)}
@@ -68,7 +71,7 @@ const AnswerLetter = ({
       disabled={disabled}
       {...styleProps}>
       <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
-        <AnswerLetterText textAlign="center" {...styleProps}>
+        <AnswerLetterText textAlign="center" color={color} {...styleProps}>
           {letter}
         </AnswerLetterText>
       </Animated.View>
