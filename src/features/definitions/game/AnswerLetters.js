@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import styled from "styled-components";
-import { getAnswerTextProps, getCurrentAnswerIndexes } from "../definitions-utils";
+import { getAnswerTextProps } from "../definitions-utils";
 import AnswerLetter from "./AnswerLetter";
 
 const AnswersContainer = styled(View)`
@@ -12,12 +12,12 @@ const AnswersContainer = styled(View)`
 
 const AnswerLetters = ({
   word,
-  lettersState,
+  answersState,
   isShowingFeedback,
   userActionsDisabled,
   removeAnswerLetter,
 }) => {
-  const answerTextProps = getAnswerTextProps(lettersState.length);
+  const answerTextProps = getAnswerTextProps(answersState.length);
 
   const renderAnswerLetters = () => {
     if (isShowingFeedback) {
@@ -35,17 +35,15 @@ const AnswerLetters = ({
         ));
     }
 
-    return getCurrentAnswerIndexes(lettersState).map((answerIndex, i) => {
-      if (answerIndex !== null) {
-        const letterState = lettersState.find(ls => ls.answerIndex === answerIndex);
-
+    return answersState.map((answer, i) => {
+      if (answer) {
         return (
           <AnswerLetter
             key={i}
-            disabled={userActionsDisabled || letterState.isFreeLetter}
-            onPressLetter={() => removeAnswerLetter(letterState)}
-            letter={letterState.letter}
-            isFreeLetter={letterState.isFreeLetter}
+            disabled={userActionsDisabled || answer.isFreeLetter}
+            onPressLetter={() => removeAnswerLetter(answer)}
+            letter={answer.letter}
+            isFreeLetter={answer.isFreeLetter}
             {...answerTextProps}
           />
         );

@@ -8,12 +8,7 @@ import CommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import GameHeader from "../GameHeader";
 import theme from "../../../theme";
 import ScrambledLetter from "./ScrambledLetter";
-import {
-  getShuffleReappearDelay,
-  doShuffleAnimation,
-  getFirstEmptyAnswerIndex,
-  getAnswersState,
-} from "../definitions-utils";
+import { getShuffleReappearDelay, doShuffleAnimation, getAnswersState } from "../definitions-utils";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../definitions-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
 import { ConnectedTopBar, SmallText } from "../../../components";
@@ -132,6 +127,7 @@ const DefinitionGame = ({
   const letterStateScrambledOrder = useMemo(() => sortBy(lettersState, ["scrambledIndex"]), [
     lettersState,
   ]);
+  const answersState = useMemo(() => getAnswersState(lettersState), [lettersState]);
 
   const [gameOpacity] = useState(new Animated.Value(0));
   const scrambledLetterScales = useMemo(() => word.split("").map(() => new Animated.Value(1)), [
@@ -215,7 +211,7 @@ const DefinitionGame = ({
   const addAnswerLetter = letterState => {
     if (!letterState.isPlaced) {
       // Add letter to first empty answer space
-      const firstEmptyAnswerIndex = getFirstEmptyAnswerIndex(lettersState);
+      const firstEmptyAnswerIndex = answersState.findIndex(ans => ans === null);
       const newLettersState = cloneDeep(lettersState);
 
       newLettersState[letterState.index].isPlaced = true;
@@ -280,7 +276,6 @@ const DefinitionGame = ({
   const onPressAddFreeLetter = () => {
     // Get the first answerIndex that either has no letter or an incorrect letter
     const correctLetters = word.toUpperCase().split("");
-    const answersState = getAnswersState(lettersState);
     const firstIncorrectIndex = answersState.findIndex(
       (ans, i) => ans === null || ans.letter !== correctLetters[i],
     );
@@ -323,7 +318,7 @@ const DefinitionGame = ({
 
           <AnswerLetters
             word={word}
-            lettersState={lettersState}
+            answersState={answersState}
             isShowingFeedback={isShowingFeedback}
             userActionsDisabled={userActionsDisabled}
             removeAnswerLetter={removeAnswerLetter}

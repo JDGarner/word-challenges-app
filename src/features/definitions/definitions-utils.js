@@ -55,16 +55,7 @@ export const getAnswerTextProps = wordLength => {
   return { fontSize: 18, height: 24, maxWidth: 24, marginHorizontal: 2 };
 };
 
-// [3, null, null, 5, null, null] -> [3, 5] -> [null, null, null, 3, null, 5]
-export const getCurrentAnswerIndexes = lettersState => {
-  const answerIndexes = lettersState.map(ls => ls.answerIndex).filter(pl => pl !== null);
-  const currentAnswerIndexes = [];
-  for (let i = 0; i < lettersState.length; i++) {
-    currentAnswerIndexes[i] = answerIndexes.includes(i) ? i : null;
-  }
-  return currentAnswerIndexes;
-};
-
+// Example return: [null, { ...ls }, { ...ls }, null, null, null]
 export const getAnswersState = lettersState => {
   const answersState = [];
   for (let i = 0; i < lettersState.length; i++) {
@@ -72,10 +63,6 @@ export const getAnswersState = lettersState => {
     answersState[i] = answer ? answer : null;
   }
   return answersState;
-};
-
-export const getFirstEmptyAnswerIndex = lettersState => {
-  return getCurrentAnswerIndexes(lettersState).findIndex(a => a === null);
 };
 
 const animateLetterSpring = value => {
