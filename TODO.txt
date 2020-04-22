@@ -3,19 +3,20 @@
 ----------------------------------------
 
 General
-- add extra game mode coming soon disabled button (or add Synonyms?)
+- add Synonyms coming soon label and disable button
+- move question elo range limiting onto BE
+- add ranks onto main menu, with info screen to explain boundaries?
+- Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
+- If elo change === 0 still show +0
 
 Design:
-- Decide on colours/rough design before request
-  - Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
-- Request:
-  - App Icon - Gradient + white monkey icon
-  - Image/Icon for splash screen - App Icon + Word Monkey Text?
-  - Top Bar Title - White monkey icon next to text?
-  - Google play store feature image (1024w * 500h) - App Icon + Word monkey on one side, game screenshot on the other
+- Add new app icon
+- Add new splash screen icon
+- Add logo to title on main menu?
+- Google play store feature image
 
 Definitions:
-- 
+- Fix shuffle - it broke on 'Deride'
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
@@ -60,7 +61,6 @@ Testing:
 - look through each screen again carefully/critically
 
 Maybe in 1st release:
-- Add Synonyms mode
 - Info icons on each mode to explain (including rating system/difficulty boundaries)
 - Handle leaderboard connection if network is down
 - error reporting/tracking? (react native sentry)
@@ -74,6 +74,7 @@ Future Release
 ----------------------------------------
 
 General:
+- Add Synonyms mode
 - Versus Mode
 - For iOS add animating spheres also, don't use linear gradient?
 - enableProguardInReleaseBuilds, enableSeparateBuildPerCPUArchitecture ?

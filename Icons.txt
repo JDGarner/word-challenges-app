@@ -18,12 +18,62 @@ iOS: (1x, 2x, 3x)
 300 * 300, 600 * 600, 900 * 900
 
 Android:
-mdpi ~160dpi 1x 300 * 300
-hdpi ~240dpi 1.5x 450 * 450
-xhdpi ~320dpi 2x 600 * 600
-xxhdpi ~480dpi 3x 900 * 900
-xxxhdpi ~640dpi 4x 1200 * 1200
+mdpi ~160dpi 1x 256 * 256
+hdpi ~240dpi 1.5x 384 * 384
+xhdpi ~320dpi 2x 512 * 512
+xxhdpi ~480dpi 3x 768 * 768
+xxxhdpi ~640dpi 4x 1024 * 1024
 
 
 
+What I need:
+- App Icon - gradient + white monkey icon
+- Image/Icon for splash screen - App Icon
+- Top Bar Title - Monkey Icon bit bigger than left and right icons
+- Google play store feature image (1024w * 500h) - App Icon + Word monkey on one side, game screenshot on the other
 
+Request:
+- App Icon -> Some kind of monkey icon with a purple -> blue gradient
+  1024 * 1024
+
+- Splash Screen -> Same Icon with no background
+  256 * 256
+  384 * 384
+  512 * 512
+  768 * 768
+  1024 * 1024
+
+- Icon file on it's own -> white with transparent background
+
+Theme - monkey icon, minimalist style. Perhaps could try monkey wearing glasses also.
+Monkey should look happy/friendly
+Similar to food panda logo
+
+
+Request Message:
+
+Hi Muhammad,
+
+I'm looking for a logo to use as the app icon and for the splash screen for an iOS & Android game I'm developing.
+
+The game is a word puzzle game in which the player has to work out the
+correct word from jumbled up letters given the definition of the word.
+And there are also other modes involving rhyming and synonyms.
+
+The name of the app is 'Word Monkey'.
+
+For the logo/app icon I'm thinking it should be a monkey face, with minimalist design.
+The monkey should look happy/friendly ideally.
+The monkey could also be wearing glasses maybe, if that looks good, not sure.
+
+The colour palette of the app is white text with purple/blue background so I think
+the app icon should be like this too.
+Though I may change the background colour so I would like the source file image of just the monkey
+face logo with transparent background in case I need to change in future.
+
+I will send some screenshots of the app as it currently looks for design inspiration.
+
+Let me know if you need any more info about the app or anything else!
+
+Thanks,
+Jamie

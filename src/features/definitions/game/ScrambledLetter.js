@@ -26,9 +26,11 @@ const LetterButton = styled(BorderedButton)`
   padding-top: ${TEXT_TOP_PADDING};
 `;
 
-const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue }) => {
+const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue, isShuffling }) => {
   useEffect(() => {
-    animateScrambledLetter(scaleValue, showing);
+    if (!isShuffling) {
+      animateScrambledLetter(scaleValue, showing);
+    }
   }, [showing]);
 
   const onPressLetterButton = () => {

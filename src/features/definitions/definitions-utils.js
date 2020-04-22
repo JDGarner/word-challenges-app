@@ -114,10 +114,10 @@ export const animateFeedbackLetter = value => {
   ]).start();
 };
 
-export const doShuffleAnimation = (letterScale, appear = true) => {
+export const doShuffleAnimation = (letterScales, appear, onAnimationEnd = () => {}) => {
   Animated.stagger(
     SHUFFLE_ANIMATION_STAGGER_TIME,
-    shuffle(letterScale).map(scale => {
+    shuffle(letterScales).map(scale => {
       return Animated.timing(scale, {
         toValue: appear ? 1 : 0,
         duration: SHUFFLE_ANIMATION_TIME,
@@ -125,7 +125,9 @@ export const doShuffleAnimation = (letterScale, appear = true) => {
         useNativeDriver: true,
       });
     }),
-  ).start();
+  ).start(() => {
+    onAnimationEnd();
+  });
 };
 
 export const getShuffleReappearDelay = letters => {

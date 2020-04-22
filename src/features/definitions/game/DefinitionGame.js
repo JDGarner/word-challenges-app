@@ -141,6 +141,7 @@ const DefinitionGame = ({
   const [feedbackAnimationToggle, setFeedbackAnimationToggle] = useState(false);
   const [userActionsDisabled, setUserActionsDisabled] = useState(false);
   const [isShowingAnswerFeedback, setIsShowingAnswerFeedback] = useState(false);
+  const [isShuffling, setIsShuffling] = useState(false);
 
   useEffect(() => {
     onBeginGame();
@@ -244,6 +245,8 @@ const DefinitionGame = ({
   };
 
   const onPressShuffle = () => {
+    setIsShuffling(true);
+
     // Reset letters to initial state
     const initialLettersState = cloneDeep(lettersState);
     initialLettersState.forEach(ls => {
@@ -264,15 +267,16 @@ const DefinitionGame = ({
       const shuffledIndexes = getShuffledIndexes(word);
 
       newLettersState.forEach((ls, i) => {
+        ls.scrambledIndex = shuffledIndexes[i];
+
         if (!ls.isFreeLetter) {
           ls.isPlaced = false;
           ls.answerIndex = null;
-          ls.scrambledIndex = shuffledIndexes[i];
         }
       });
       setLettersState(newLettersState);
 
-      doShuffleAnimation(scrambledLetterScales, true);
+      doShuffleAnimation(scrambledLetterScales, true, () => setIsShuffling(false));
     }, getShuffleReappearDelay(scrambledLetterScales));
   };
 
@@ -336,6 +340,7 @@ const DefinitionGame = ({
                   key={i}
                   showing={!ls.isPlaced}
                   letter={ls.letter}
+                  isShuffling={isShuffling}
                   disabled={userActionsDisabled}
                   scaleValue={scrambledLetterScales[i]}
                   onPressLetter={() => addAnswerLetter(ls)}
