@@ -30,12 +30,11 @@ Bugs:
 - Look into shuffle again - is timing still ok?
 
 Sound Effects:
-  - test out different button sounds for menu buttons, short organic tap?
-  - different button for back button vs menu buttons?
-  - sound for settings button?
-  - normalize sounds - negative a bit quieter
+  - tweak menu button sound - amplitude/pitch
+  - look into different negative sounds - maybe need matching positive and negative?
   - Post Game sounds
   - Rhyme game sounds
+  - normalize sounds - negative a bit quieter
 
 - Think about other ways to incorporate monkey theme:
   - ?

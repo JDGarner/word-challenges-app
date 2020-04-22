@@ -25,8 +25,8 @@ const TopBar = ({
   RightComponent,
   disabled,
 }) => {
-  const handlePressLeftButton = () => {
-    SoundManager.getInstance().playMenuButtonSound();
+  const handlePressBackButton = () => {
+    SoundManager.getInstance().playMenuNegativeButtonSound();
     onPressLeftButton();
   };
 
@@ -35,7 +35,7 @@ const TopBar = ({
       return LeftComponent;
     }
 
-    return <IconButton name="arrow-back" onPress={handlePressLeftButton} disabled={disabled} />;
+    return <IconButton name="arrow-back" onPress={handlePressBackButton} disabled={disabled} />;
   };
 
   const showCountdown = !isNaN(gameCountdown) && gameCountdown >= 0;

@@ -12,6 +12,7 @@ export default class SoundManager {
     this.positiveSound = this.initSound("positive.mp3");
     this.negativeSound = this.initSound("negative.mp3");
     this.menuButtonSounds = this.initSoundWithBackups("menubutton.mp3");
+    this.menuButtonNegativeSounds = this.initSoundWithBackups("menubuttonnegative.mp3", 2);
     this.letterButtonSounds = this.initSoundWithBackups("letterbutton.mp3", 5);
     this.shuffleSounds = this.initSoundWithBackups("shuffle.mp3", 2);
     this.getMuteSetting();
@@ -105,6 +106,10 @@ export default class SoundManager {
 
   playMenuButtonSound = () => {
     this.playSoundWithBackups(this.menuButtonSounds);
+  };
+
+  playMenuNegativeButtonSound = () => {
+    this.playSoundWithBackups(this.menuButtonNegativeSounds);
   };
 
   playAddLetterSound = () => {
