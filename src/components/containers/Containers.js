@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, Animated } from "react-native";
 import styled from "styled-components";
 
 export const CenteredContainer = styled(View)`
@@ -21,6 +21,11 @@ export const FlexStartContainer = styled(View)`
 export const SpaceAroundContainer = styled(View)`
   justify-content: space-around;
   align-items: center;
+`;
+
+export const AnimatedTextContainer = styled(Animated.View)`
+  border-radius: 4px;
+  border: 2px solid ${props => props.theme.textColor};
 `;
 
 export const TextContainer = styled(View)`

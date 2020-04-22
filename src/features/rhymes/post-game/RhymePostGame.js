@@ -8,7 +8,7 @@ import {
   ConnectedTopBar,
   Title,
   PopInView,
-  PlayAgainButton,
+  NextRoundButton,
   Spacer,
 } from "../../../components";
 import { getPraiseForScore } from "../rhymes-utils";
@@ -89,7 +89,7 @@ const RhymePostGame = ({
             delay={footerAnimationDelay}
           />
           <Spacer height="10%" />
-          <PlayAgainButton
+          <NextRoundButton
             onPress={onPressStartNewGame}
             onAnimationStart={onPlayAgainAnimationStart}
             animateDelay={footerAnimationDelay + 150}

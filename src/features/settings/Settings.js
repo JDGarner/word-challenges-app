@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Switch } from "react-native";
 import styled from "styled-components";
 import { ScreenContainerPadded, TopBar, TextContainer, MediumLargeText } from "../../components";
-import { SCREENS } from "../../app-constants";
 import SoundManager from "../sound/SoundManager";
 import colors from "../../theme/colors";
 

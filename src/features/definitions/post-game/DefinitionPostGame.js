@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState, useMemo } from "react";
 import { View, ScrollView, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components";
 
-import { MediumLargeText, PlayAgainButton, ConnectedTopBar } from "../../../components";
+import { MediumLargeText, NextRoundButton, ConnectedTopBar } from "../../../components";
 import Answer from "./Answer";
 import {
   ANSWER_ANIMATION_GAP_TIME,
@@ -114,7 +114,7 @@ const DefinitionPostGame = ({
             delay={totalAnimationTime + 150}
           />
           <View>
-            <PlayAgainButton
+            <NextRoundButton
               onPress={onPressStartNewGame}
               onAnimationStart={onPlayAgainAnimationStart}
               animateDelay={totalAnimationTime + 300}

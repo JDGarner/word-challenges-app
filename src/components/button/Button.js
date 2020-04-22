@@ -5,13 +5,12 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import theme from "../../theme";
 import { TextContainer } from "../containers/Containers";
-import { MediumLargeText } from "../text/Text";
-import PopInView from "../pop-in-view/PopInView";
 import SoundManager from "../../features/sound/SoundManager";
 import { animateButtonPressIn, animateButtonPressOut } from "./button-utils";
 
 export const BorderedButton = ({ children, style, reduceScaleFactor = 0.95, ...buttonProps }) => {
   const [scaleValue] = useState(new Animated.Value(1));
+  const textContainerStyle = [...style];
 
   return (
     <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
@@ -19,7 +18,7 @@ export const BorderedButton = ({ children, style, reduceScaleFactor = 0.95, ...b
         onPressIn={() => animateButtonPressIn(scaleValue, reduceScaleFactor)}
         onPressOut={() => animateButtonPressOut(scaleValue)}
         {...buttonProps}>
-        <TextContainer style={style}>{children}</TextContainer>
+        <TextContainer style={textContainerStyle}>{children}</TextContainer>
       </TouchableWithoutFeedback>
     </Animated.View>
   );
@@ -62,28 +61,4 @@ export const SettingsButton = ({ onPress }) => {
   };
 
   return <IconButton name="settings" size={28} onPress={onPressSettingsButton} />;
-};
-
-export const PlayAgainButton = ({ disabled, animateDelay, onPress, onAnimationStart }) => {
-  const onPressPlayAgainButton = () => {
-    SoundManager.getInstance().playMenuButtonSound();
-    onPress();
-  };
-
-  return (
-    <PopInView
-      pointerEvents="auto"
-      popToSize={1}
-      duration={1300}
-      delay={animateDelay}
-      onAnimationStart={onAnimationStart}>
-      <PaddedButton
-        onPress={onPressPlayAgainButton}
-        disabled={disabled}
-        paddingVertical={10}
-        paddingHorizontal={24}>
-        <MediumLargeText>Next Round</MediumLargeText>
-      </PaddedButton>
-    </PopInView>
-  );
 };

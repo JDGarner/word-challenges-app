@@ -4,9 +4,10 @@
 
 General
 - add extra game mode coming soon disabled button (or add Synonyms?)
+- animate buttons on press in and on press out to change background color
 
 Definitions:
--
+- 
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
@@ -22,10 +23,9 @@ Bugs:
 
 Sound Effects:
   - test out different button sounds for menu buttons, short organic tap?
-  - test out different sounds for negative feedback
   - different button for back button vs menu buttons?
-  - sound for settings butotn?
-  - normalize sounds
+  - sound for settings button?
+  - normalize sounds - negative a bit quieter
   - Post Game sounds
   - Rhyme game sounds
 
