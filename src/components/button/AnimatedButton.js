@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableWithoutFeedback, Animated } from "react-native";
+import { TouchableWithoutFeedback, Animated, Easing } from "react-native";
 import { AnimatedTextContainer } from "../containers/Containers";
 
 const AnimatedButton = ({ children, style, ...buttonProps }) => {
@@ -8,14 +8,15 @@ const AnimatedButton = ({ children, style, ...buttonProps }) => {
   const onPressIn = () => {
     Animated.timing(colorValue, {
       toValue: 150,
-      duration: 100,
+      duration: 150,
     }).start();
   };
 
   const onPressOut = () => {
     Animated.timing(colorValue, {
       toValue: 0,
-      duration: 100,
+      duration: 500,
+      easing: Easing.quad,
     }).start();
   };
 

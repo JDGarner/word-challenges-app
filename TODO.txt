@@ -4,7 +4,15 @@
 
 General
 - add extra game mode coming soon disabled button (or add Synonyms?)
-- animate buttons on press in and on press out to change background color
+
+Design:
+- Decide on colours/rough design before request
+  - Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
+- Request:
+  - App Icon - Gradient + white monkey icon
+  - Image/Icon for splash screen - App Icon + Word Monkey Text?
+  - Top Bar Title - White monkey icon next to text?
+  - Google play store feature image (1024w * 500h) - App Icon + Word monkey on one side, game screenshot on the other
 
 Definitions:
 - 
@@ -28,14 +36,6 @@ Sound Effects:
   - normalize sounds - negative a bit quieter
   - Post Game sounds
   - Rhyme game sounds
-
-Design:
-- Decide on colours/rough design before request
-- Request:
-  - App Icon - Gradient + white monkey icon
-  - Image/Icon for splash screen - App Icon + Word Monkey Text?
-  - Top Bar Title - White monkey icon next to text?
-  - Google play store feature image (1024w * 500h) - App Icon + Word monkey on one side, game screenshot on the other
 
 - Think about other ways to incorporate monkey theme:
   - ?

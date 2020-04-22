@@ -21,7 +21,7 @@ const AnswerLetters = ({
 
   const renderAnswerLetters = () => {
     if (isShowingFeedback) {
-      word
+      return word
         .toUpperCase()
         .split("")
         .map((letter, i) => (
