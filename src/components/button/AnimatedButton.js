@@ -8,7 +8,7 @@ const AnimatedButton = ({ children, style, ...buttonProps }) => {
   const onPressIn = () => {
     Animated.timing(colorValue, {
       toValue: 150,
-      duration: 150,
+      duration: 75,
     }).start();
   };
 

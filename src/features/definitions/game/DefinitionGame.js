@@ -246,17 +246,6 @@ const DefinitionGame = ({
 
   const onPressShuffle = () => {
     setIsShuffling(true);
-
-    // Reset letters to initial state
-    const initialLettersState = cloneDeep(lettersState);
-    initialLettersState.forEach(ls => {
-      if (!ls.isFreeLetter) {
-        ls.isPlaced = false;
-        ls.answerIndex = null;
-      }
-    });
-    setLettersState(initialLettersState);
-
     doShuffleAnimation(scrambledLetterScales, false);
 
     SoundManager.getInstance().playShuffleSound();

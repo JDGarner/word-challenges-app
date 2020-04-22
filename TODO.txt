@@ -16,7 +16,7 @@ Design:
 - Google play store feature image
 
 Definitions:
-- Fix shuffle - it broke on 'Deride'
+-
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
@@ -28,7 +28,6 @@ Leaderboard/Stats:
 
 Bugs:
 - see if it works running on device via android studio
-- Look into shuffle again - is timing still ok?
 
 Sound Effects:
   - tweak menu button sound - amplitude/pitch
