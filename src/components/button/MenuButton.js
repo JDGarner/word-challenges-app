@@ -5,7 +5,7 @@ import { TEXT_TOP_PADDING } from "../text/Text";
 import AnimatedButton from "./AnimatedButton";
 
 const MenuPaddedButton = styled(AnimatedButton)`
-  width: 230;
+  width: 260;
   align-items: center;
   padding-top: ${({ verticalPadding }) =>
     verticalPadding ? TEXT_TOP_PADDING + verticalPadding : TEXT_TOP_PADDING};

@@ -8,3 +8,14 @@ For example, "sky" and "high"; "skylight" and "highlight".
 For example, "bean" and "green" is a perfect rhyme, while "leave" and "believe" is not.
 
 https://en.wikipedia.org/wiki/Perfect_and_imperfect_rhymes
+
+
+
+Rating Info:
+
+Rating boundaries
+How many you need until next rank
+You can still play other difficulties at any rank but score will be limited
+Explain how ratings are calculated
+
+Info about rhyming/perfect rhymes?

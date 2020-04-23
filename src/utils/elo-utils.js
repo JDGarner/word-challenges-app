@@ -1,10 +1,28 @@
 import { DIFFICULTIES, MODES, APP_STORAGE, ENDPOINTS, LEADERBOARD_IDS } from "../app-constants";
 
+const { NOVICE, JOURNEYMAN, EXPERT, MASTER } = DIFFICULTIES;
+
 const DIFFICULTY_ELO_RANGES = {
-  [DIFFICULTIES.NOVICE]: { lower: 800, upper: 1200 },
-  [DIFFICULTIES.JOURNEYMAN]: { lower: 1200, upper: 1600 },
-  [DIFFICULTIES.EXPERT]: { lower: 1600, upper: 2000 },
-  [DIFFICULTIES.MASTER]: { lower: 2000, upper: 3600 },
+  [NOVICE]: { lower: 800, upper: 1200 },
+  [JOURNEYMAN]: { lower: 1200, upper: 1600 },
+  [EXPERT]: { lower: 1600, upper: 2000 },
+  [MASTER]: { lower: 2000, upper: 3600 },
+};
+
+export const getRankForScore = score => {
+  if (score < DIFFICULTY_ELO_RANGES[NOVICE].upper) {
+    return NOVICE;
+  }
+
+  if (score < DIFFICULTY_ELO_RANGES[JOURNEYMAN].upper) {
+    return JOURNEYMAN;
+  }
+
+  if (score < DIFFICULTY_ELO_RANGES[EXPERT].upper) {
+    return EXPERT;
+  }
+
+  return MASTER;
 };
 
 export const getELORatingChanges = (score, playerELO, questionELO, difficulty, mode) => {
