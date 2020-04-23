@@ -13,7 +13,7 @@ export const getELORatingChanges = (score, playerELO, questionELO, difficulty, m
 
   return {
     playerELOChange: getPlayerELOChange(score, playerELO, questionELO, difficulty),
-    newQuestionELO: newQuestionELOFn(score, playerELO, questionELO, difficulty),
+    newQuestionELO: newQuestionELOFn(score, playerELO, questionELO),
   };
 };
 
@@ -28,38 +28,15 @@ const getPlayerELOChange = (score, playerELO, questionELO, difficulty) => {
   return potentialELOChange;
 };
 
-// Don't allow question ELO to get outside difficulty bounds
-const getNewDefinitionQuestionELO = (score, playerELO, questionELO, difficulty) => {
+const getNewDefinitionQuestionELO = (score, playerELO, questionELO) => {
   const eloChange = getELOChange(score, questionELO, playerELO);
-  const potentialNewELO = questionELO + eloChange;
-  const { lower, upper } = DIFFICULTY_ELO_RANGES[difficulty];
-
-  if (potentialNewELO < lower) {
-    return lower;
-  }
-
-  if (potentialNewELO > upper) {
-    return upper;
-  }
-
-  return potentialNewELO;
+  return questionELO + eloChange;
 };
 
-const getNewRhymeQuestionELO = (score, playerELO, questionELO, difficulty) => {
+const getNewRhymeQuestionELO = (score, playerELO, questionELO) => {
   const questionScore = 1 - score;
   const eloChange = getELOChange(questionScore, questionELO, playerELO);
-  const potentialNewELO = questionELO + eloChange;
-  const { lower, upper } = DIFFICULTY_ELO_RANGES[difficulty];
-
-  if (potentialNewELO < lower) {
-    return lower;
-  }
-
-  if (potentialNewELO > upper) {
-    return upper;
-  }
-
-  return potentialNewELO;
+  return questionELO + eloChange;
 };
 
 // New Rating = CurrentRating + 32(score - expectedScore/probabilityOfWin)

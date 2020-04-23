@@ -66,7 +66,7 @@ const AnswerFeedback = ({ isCorrect, eloChange, isShowingAnswerFeedback, animati
     });
   }, [animationToggle]);
 
-  const eloChangeText = eloChange && eloChange > 0 ? `+${eloChange}` : eloChange;
+  const eloChangeText = eloChange !== null && eloChange >= 0 ? `+${eloChange}` : eloChange;
 
   if (isShowingAnswerFeedback) {
     return (
@@ -86,6 +86,7 @@ const AnswerFeedback = ({ isCorrect, eloChange, isShowingAnswerFeedback, animati
 
 AnswerFeedback.defaultProps = {
   isShowingAnswerFeedback: true,
+  eloChange: null,
 };
 
 export default AnswerFeedback;
