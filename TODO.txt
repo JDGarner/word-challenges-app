@@ -16,7 +16,6 @@ Design:
 - Add @2x and 3x monkeylogo.png
 
 Definitions:
-- Move letters up to more finger appropriate place
 - difficulty option text size?
 
 Rhymes:

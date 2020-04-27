@@ -4,16 +4,16 @@ import { View } from "react-native";
 import { capitalize } from "lodash";
 import { MediumLargeText } from "../../components";
 
-const PreGameHeader = styled(View)`
+const GameHeaderContainer = styled(View)`
   justify-content: center;
   align-items: center;
 `;
 
 const GameHeader = ({ definition }) => {
   return (
-    <PreGameHeader>
+    <GameHeaderContainer>
       <MediumLargeText textAlign="center">{capitalize(definition)}</MediumLargeText>
-    </PreGameHeader>
+    </GameHeaderContainer>
   );
 };
 

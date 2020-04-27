@@ -43,10 +43,11 @@ const ScrambledLettersContainer = styled(View)`
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
+  margin-bottom: 6%;
 `;
 
 const FooterContainer = styled(View)`
-  height: 16%;
+  height: 28%;
   margin-top: auto;
 `;
 
