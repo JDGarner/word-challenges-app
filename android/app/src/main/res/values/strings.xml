@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Word Monkey</string>
-    <color name="blue">#617DB6</color>
+    <color name="white">#FFF</color>
 </resources>

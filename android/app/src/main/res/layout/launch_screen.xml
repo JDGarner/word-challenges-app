@@ -3,6 +3,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/white"
     android:gravity="center">
+    <ImageView
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:src="@mipmap/splashimage"
+    />
 </LinearLayout>
