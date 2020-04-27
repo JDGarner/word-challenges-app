@@ -7,7 +7,7 @@ export const ENDPOINTS = {
 
 export const SCREENS = {
   MENU: "Menu",
-  SETTINGS: "Settings",
+  INFO: "Info",
   DEFINITIONS: "Definitions",
   DEFINITIONS_DIFFICULTY: "DefinitionsDifficulty",
   RHYMES: "Rhymes",

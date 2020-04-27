@@ -6,16 +6,18 @@ import {
   MenuButton,
   MediumLargerText,
   AnimatedSequence,
-  Spacer,
+  HeightSpacer,
+  WidthSpacer,
   ScreenContainerPadded,
   Title,
   TopBar,
 } from "../../components";
 import { SCREENS } from "../../app-constants";
-import { SettingsButton, LeaderboardButton } from "../../components/button/Button";
+import { LeaderboardButton } from "../../components/button/Button";
 import { SmallMediumText } from "../../components/text/Text";
 import colors from "../../theme/colors";
 import { getRankForScore } from "../../utils/elo-utils";
+import MenuOptions from "./MenuOptions";
 
 const MenuContainer = styled(View)`
   flex: 1;
@@ -63,7 +65,7 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
   };
 
   const getMenuItems = () => {
-    return getMenuItemsConfig().map(({ displayName, initialScreen, score }) => ({
+    const menuItems = getMenuItemsConfig().map(({ displayName, initialScreen, score }) => ({
       id: displayName,
       component: (
         <MenuButton onPress={() => changeScreen(initialScreen)}>
@@ -77,17 +79,24 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
         </MenuButton>
       ),
     }));
+
+    menuItems.push({
+      id: "menu-options",
+      component: <MenuOptions changeScreen={changeScreen} />,
+    });
+
+    return menuItems;
   };
 
   return (
     <ScreenContainerPadded>
       <TopBar
-        LeftComponent={<SettingsButton onPress={() => changeScreen(SCREENS.SETTINGS)} />}
+        LeftComponent={<WidthSpacer width={36.5} />}
         RightComponent={<LeaderboardButton onPress={showAllLeaderboards} />}
         displayLogo
       />
       <Title text="What would you like to train?" />
-      <Spacer height="5%" />
+      <HeightSpacer height="5%" />
       <MenuContainer>
         <AnimatedSequence items={getMenuItems()} />
       </MenuContainer>

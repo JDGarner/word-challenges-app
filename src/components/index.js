@@ -21,7 +21,7 @@ import PopInView from "./pop-in-view/PopInView";
 import AnimatedSequence from "./animated-sequence/AnimatedSequence";
 import TopBar from "./top-bar/TopBar";
 import ConnectedTopBar from "./top-bar/ConnectedTopBar";
-import Spacer from "./spacer/Spacer";
+import { HeightSpacer, WidthSpacer } from "./spacer/Spacer";
 import Title from "./title/Title";
 import TopBarTitle from "./title/TopBarTitle";
 
@@ -53,6 +53,7 @@ export {
   TitleContainer,
   Title,
   TopBarTitle,
-  Spacer,
+  HeightSpacer,
+  WidthSpacer,
   NextRoundButton,
 };

@@ -9,7 +9,7 @@ import {
   Title,
   PopInView,
   NextRoundButton,
-  Spacer,
+  HeightSpacer,
 } from "../../../components";
 import { getPraiseForScore } from "../rhymes-utils";
 import AnswerGrid from "../AnswerGrid";
@@ -88,7 +88,7 @@ const RhymePostGame = ({
             scoreChange={eloChange}
             delay={footerAnimationDelay}
           />
-          <Spacer height="10%" />
+          <HeightSpacer height="10%" />
           <NextRoundButton
             onPress={onPressStartNewGame}
             onAnimationStart={onPlayAgainAnimationStart}

@@ -8,14 +8,14 @@ const AnimatedButton = ({ children, style, ...buttonProps }) => {
   const onPressIn = () => {
     Animated.timing(colorValue, {
       toValue: 150,
-      duration: 75,
+      duration: 35,
     }).start();
   };
 
   const onPressOut = () => {
     Animated.timing(colorValue, {
       toValue: 0,
-      duration: 500,
+      duration: 400,
       easing: Easing.quad,
     }).start();
   };
@@ -31,6 +31,10 @@ const AnimatedButton = ({ children, style, ...buttonProps }) => {
       <AnimatedTextContainer style={textContainerStyle}>{children}</AnimatedTextContainer>
     </TouchableWithoutFeedback>
   );
+};
+
+AnimatedButton.defaultProps = {
+  style: [],
 };
 
 export default AnimatedButton;

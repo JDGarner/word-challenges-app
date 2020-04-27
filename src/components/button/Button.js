@@ -60,14 +60,3 @@ export const LeaderboardButton = ({ onPress }) => {
     />
   );
 };
-
-export const SettingsButton = ({ onPress }) => {
-  const onPressSettingsButton = () => {
-    SoundManager.getInstance().playMenuButtonSound();
-    onPress();
-  };
-
-  return (
-    <IconButton name="settings" size={28} style={{ width: 36.5 }} onPress={onPressSettingsButton} />
-  );
-};

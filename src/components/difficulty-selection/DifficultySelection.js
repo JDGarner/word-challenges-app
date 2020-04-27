@@ -9,7 +9,7 @@ import MenuButton from "../button/MenuButton";
 import { MediumLargerText } from "../text/Text";
 import ConnectedTopBar from "../top-bar/ConnectedTopBar";
 import Title from "../title/Title";
-import Spacer from "../spacer/Spacer";
+import { HeightSpacer } from "../spacer/Spacer";
 import AnimatedSequence from "../animated-sequence/AnimatedSequence";
 
 const DifficultyOptions = styled(View)`
@@ -38,7 +38,7 @@ const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, l
         RightComponent={<LeaderboardButton onPress={() => showLeaderboard(leaderboardId)} />}
       />
       <Title text="Select a Difficulty" />
-      <Spacer height="5%" />
+      <HeightSpacer height="5%" />
       <DifficultyOptions>
         <AnimatedSequence items={getDifficultyOptions()} />
       </DifficultyOptions>
