@@ -9,7 +9,7 @@ import colors from "../../theme/colors";
 import { SCREENS } from "../../app-constants";
 
 const MenuOptionsContainer = styled(View)`
-  margin-top: 14;
+  margin-top: 60%;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;

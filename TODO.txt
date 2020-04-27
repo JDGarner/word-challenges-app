@@ -12,10 +12,6 @@ Info Screen:
   - how many you need until next rank?
   - stuff about perfect rhymes with link to wiki
 
-Muting:
-- hook muted flag into redux somehow - make SoundManager into SoundProvider?
-  - or just dispatch action to store in redux when it is changed in soundmanager
-
 Definitions:
 -
 
