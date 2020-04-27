@@ -24,7 +24,7 @@ const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, l
     return map(DIFFICULTIES, difficulty => ({
       id: difficulty,
       component: (
-        <MenuButton onPress={() => onSelectDifficulty(difficulty)} width={230} verticalPadding={13}>
+        <MenuButton onPress={() => onSelectDifficulty(difficulty)} width={230} verticalPadding={14}>
           <MediumLargerText>{capitalize(difficulty)}</MediumLargerText>
         </MenuButton>
       ),

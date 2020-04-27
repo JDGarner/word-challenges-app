@@ -16,7 +16,7 @@ Design:
 - Add @2x and 3x monkeylogo.png
 
 Definitions:
-- difficulty option text size?
+-
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
