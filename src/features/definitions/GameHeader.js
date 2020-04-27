@@ -5,7 +5,6 @@ import { capitalize } from "lodash";
 import { MediumLargeText } from "../../components";
 
 const PreGameHeader = styled(View)`
-  height: 15%;
   justify-content: center;
   align-items: center;
 `;

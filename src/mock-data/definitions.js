@@ -1,6 +1,14 @@
 export const definitions = {
   novice: [
     {
+      _id: "5e93c7880a9cb363c896a4eb",
+      word: "desk",
+      definition:
+        "A piece of furniture with a flat or sloping surface and typically with drawers, at which one can read, write, or do other work",
+      difficulty: "novice",
+      eloRating: 1000,
+    },
+    {
       _id: "5e93c7880a9cb363c896a4ea",
       word: "regret",
       definition:

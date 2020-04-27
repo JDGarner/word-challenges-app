@@ -16,6 +16,7 @@ Design:
 
 Definitions:
 - Move letters up to more finger appropriate place
+- difficulty option text size?
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
@@ -58,6 +59,7 @@ Maybe in 1st release:
 - Handle leaderboard connection if network is down
 - error reporting/tracking? (react native sentry)
 - force players to unlock harder difficulties, limit based on elo?
+- use monkey face for positive and negative feedback, make negative smile upside down
 
 
 
