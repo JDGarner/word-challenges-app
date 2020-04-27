@@ -8,6 +8,7 @@ General
   - where to add info screen, add mute buttons with it?
 - Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
 - Add mute buttons to bottom of screen (in all screens?)
+Potential Solution - Settings is replaced with info icon, mute button is added to bottom left
 
 Design:
 - Add new splash screen icon
