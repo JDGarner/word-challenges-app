@@ -7,15 +7,15 @@ General
 - Info screen to explain rating boundaries? - or to say how many you need until next rank
   - where to add info screen, add mute buttons with it?
 - Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
+- Add mute buttons to bottom of screen (in all screens?)
 
 Design:
-- Add new app icon
 - Add new splash screen icon
-- Add logo to title on main menu?
+- Add @2x and 3x monkeylogo.png
 - Google play store feature image
 
 Definitions:
--
+- Move letters up to more finger appropriate place
 
 Rhymes:
 - add info popup/tooltip about perfect rhymes with link to wiki
@@ -23,6 +23,7 @@ Rhymes:
 
 Bugs:
 - see if it works running on device via android studio
+- score in post game always 800
 
 Sound Effects:
   - tweak menu button sound? - amplitude/pitch

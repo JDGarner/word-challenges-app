@@ -7,7 +7,7 @@ const DefinitionDifficultySelection = ({ onSelectDifficulty, showLeaderboard }) 
   return (
     <ScreenContainerPadded>
       <DifficultySelection
-        titleText="DEFINITIONS"
+        titleText="Definitions"
         leaderboardId={LEADERBOARD_IDS.DEFINITIONS}
         onSelectDifficulty={onSelectDifficulty}
         showLeaderboard={showLeaderboard}

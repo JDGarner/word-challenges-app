@@ -51,7 +51,14 @@ export const LeaderboardButton = ({ onPress }) => {
     onPress();
   };
 
-  return <FontAwesomeIconButton name="trophy" size={28} onPress={onPressLeaderboardButton} />;
+  return (
+    <FontAwesomeIconButton
+      name="trophy"
+      size={28}
+      style={{ width: 36.5, alignItems: "flex-end" }}
+      onPress={onPressLeaderboardButton}
+    />
+  );
 };
 
 export const SettingsButton = ({ onPress }) => {
@@ -60,5 +67,7 @@ export const SettingsButton = ({ onPress }) => {
     onPress();
   };
 
-  return <IconButton name="settings" size={28} onPress={onPressSettingsButton} />;
+  return (
+    <IconButton name="settings" size={28} style={{ width: 36.5 }} onPress={onPressSettingsButton} />
+  );
 };

@@ -83,8 +83,8 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
     <ScreenContainerPadded>
       <TopBar
         LeftComponent={<SettingsButton onPress={() => changeScreen(SCREENS.SETTINGS)} />}
-        titleText="WORD MONKEY"
         RightComponent={<LeaderboardButton onPress={showAllLeaderboards} />}
+        displayLogo
       />
       <Title text="What would you like to train?" />
       <Spacer height="5%" />

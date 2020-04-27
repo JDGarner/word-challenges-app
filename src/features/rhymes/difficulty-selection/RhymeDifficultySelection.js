@@ -7,7 +7,7 @@ const RhymeDifficultySelection = ({ onSelectDifficulty, showLeaderboard }) => {
   return (
     <ScreenContainerPadded>
       <DifficultySelection
-        titleText="RHYMES"
+        titleText="Rhymes"
         leaderboardId={LEADERBOARD_IDS.RHYMES}
         onSelectDifficulty={onSelectDifficulty}
         showLeaderboard={showLeaderboard}
