@@ -23,13 +23,9 @@ const MenuOptionButton = styled(AnimatedButton)`
   justify-content: center;
 `;
 
-const MenuOptions = ({ changeScreen }) => {
-  const soundManager = SoundManager.getInstance();
-  const [muted, setMuted] = useState(soundManager.isMuted());
-
+const MenuOptions = ({ changeScreen, muted }) => {
   const onPressToggleMute = () => {
-    soundManager.toggleMute();
-    setMuted(!muted);
+    SoundManager.getInstance().toggleMute();
   };
 
   const iconName = muted ? "volume-off" : "volume-up";

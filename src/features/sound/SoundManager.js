@@ -1,13 +1,15 @@
 import Sound from "react-native-sound";
 import AsyncStorage from "@react-native-community/async-storage";
 import { APP_STORAGE } from "../../app-constants";
+import { updateMutedSetting } from "../../redux/settings/settings-actions";
 
 Sound.setCategory("Playback", true);
 
 export default class SoundManager {
   static soundManagerInstance = null;
 
-  constructor() {
+  constructor(store) {
+    this.store = store;
     this.muted = false;
     this.positiveSound = this.initSound("positive.mp3");
     this.negativeSound = this.initSound("negative.mp3");
@@ -18,9 +20,9 @@ export default class SoundManager {
     this.getMuteSetting();
   }
 
-  static init() {
+  static init(store) {
     if (SoundManager.soundManagerInstance == null) {
-      SoundManager.soundManagerInstance = new SoundManager();
+      SoundManager.soundManagerInstance = new SoundManager(store);
     }
   }
 
@@ -38,6 +40,7 @@ export default class SoundManager {
 
   toggleMute = () => {
     this.muted = !this.muted;
+    this.store.dispatch(updateMutedSetting(this.muted));
     this.saveMuteSetting(this.muted);
   };
 
@@ -54,6 +57,7 @@ export default class SoundManager {
       const muted = await AsyncStorage.getItem(APP_STORAGE.MUTED);
       if (muted !== null) {
         this.muted = muted === "true";
+        this.store.dispatch(updateMutedSetting(this.muted));
       }
     } catch (e) {
       console.log("AsyncStorage Read Error");

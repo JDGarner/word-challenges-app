@@ -18,6 +18,8 @@ import { onNavigateBack } from "./redux/navigation/navigation-actions";
 const store = configureStore();
 
 export default function AppProvider() {
+  SoundManager.init(store);
+
   useEffect(() => {
     SplashScreen.hide();
 
@@ -28,8 +30,6 @@ export default function AppProvider() {
     if (Platform.OS === "android") {
       store.dispatch(googlePlaySilentSignIn());
     }
-
-    SoundManager.init();
 
     BackHandler.addEventListener("hardwareBackPress", onHardwareBackPress);
   }, []);

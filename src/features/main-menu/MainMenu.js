@@ -17,7 +17,7 @@ import { LeaderboardButton } from "../../components/button/Button";
 import { SmallMediumText } from "../../components/text/Text";
 import colors from "../../theme/colors";
 import { getRankForScore } from "../../utils/elo-utils";
-import MenuOptions from "./MenuOptions";
+import ConnectedMenuOptions from "./ConnectedMenuOptions";
 
 const MenuContainer = styled(View)`
   flex: 1;
@@ -82,7 +82,7 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
 
     menuItems.push({
       id: "menu-options",
-      component: <MenuOptions changeScreen={changeScreen} />,
+      component: <ConnectedMenuOptions changeScreen={changeScreen} />,
     });
 
     return menuItems;

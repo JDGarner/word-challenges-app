@@ -1,4 +1,4 @@
-const NAMESPACE = "APP";
+const NAMESPACE = "NAV";
 
 export const CHANGE_SCREEN = `${NAMESPACE}/CHANGE_SCREEN`;
 export const ON_NAVIGATE_BACK = `${NAMESPACE}/ON_NAVIGATE_BACK`;

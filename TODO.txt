@@ -6,17 +6,20 @@ General
 - add Synonyms coming soon label and disable button
 - Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
 
-Info/Muting:
-- Info screen to explain rating boundaries? - or to say how many you need until next rank
-  - where to add info screen, add mute buttons with it?
-- Add mute buttons to bottom of screen (in all screens?)
-Potential Solution 2 - remove settings, 2 buttons below main menu - mute, info (bordered buttons)
+Info Screen:
+- Add text:
+  - explain rating boundaries?
+  - how many you need until next rank?
+  - stuff about perfect rhymes with link to wiki
+
+Muting:
+- hook muted flag into redux somehow - make SoundManager into SoundProvider?
+  - or just dispatch action to store in redux when it is changed in soundmanager
 
 Definitions:
 -
 
 Rhymes:
-- add info popup/tooltip about perfect rhymes with link to wiki
 - review UI - answer grid item style, spacing on different screens, etc
 
 Bugs:
@@ -87,6 +90,7 @@ General:
   -> change praise words based on this/show streak
 - get elo boundaries from BE?
 - Add Word Monkey title to launch screen
+- refactor soundmanager into SoundProvider?
 
 Definitions:
 - Look into whether rhymes all request approach would be better for definitions also (would increase response size)
