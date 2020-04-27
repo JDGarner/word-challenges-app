@@ -4,16 +4,16 @@
 
 General
 - add Synonyms coming soon label and disable button
+- Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
+
+Info/Muting:
 - Info screen to explain rating boundaries? - or to say how many you need until next rank
   - where to add info screen, add mute buttons with it?
-- Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
 - Add mute buttons to bottom of screen (in all screens?)
 Potential Solution - Settings is replaced with info icon, mute button is added to bottom left
 
 Design:
-- Add new splash screen icon
 - Add @2x and 3x monkeylogo.png
-- Google play store feature image
 
 Definitions:
 - Move letters up to more finger appropriate place
@@ -25,7 +25,6 @@ Rhymes:
 
 Bugs:
 - see if it works running on device via android studio
-- score in post game always 800
 
 Sound Effects:
   - tweak menu button sound? - amplitude/pitch
@@ -40,6 +39,7 @@ Android Release:
   - https://facebook.github.io/react-native/docs/signed-apk-android
   - https://developer.android.com/studio/publish
   - Add Game description to google play console
+  - Google play store feature image
 
 
 iOS Release:

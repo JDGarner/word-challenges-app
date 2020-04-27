@@ -85,6 +85,7 @@ const getStateForNewRound = (state, nextIndex, allDefinitions) => {
       currentDefinition,
       currentDefinitions,
       questionIndex: 0,
+      netELOChange: 0,
       freeLettersRemaining: FREE_LETTER_INITIAL_COUNT,
       gameCountdown: INITIAL_COUNTDOWN,
       connectionError: false,
