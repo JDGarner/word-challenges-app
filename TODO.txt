@@ -5,15 +5,14 @@
 General
 - add Synonyms coming soon label and disable button
 - Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
+- Try screen flash on transition instead of buttons animating
+
 
 Info/Muting:
 - Info screen to explain rating boundaries? - or to say how many you need until next rank
   - where to add info screen, add mute buttons with it?
 - Add mute buttons to bottom of screen (in all screens?)
 Potential Solution - Settings is replaced with info icon, mute button is added to bottom left
-
-Design:
-- Add @2x and 3x monkeylogo.png
 
 Definitions:
 -

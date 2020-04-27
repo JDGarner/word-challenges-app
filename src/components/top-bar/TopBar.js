@@ -15,7 +15,7 @@ const TopBarContainer = styled(View)`
   margin-bottom: auto;
 `;
 
-const imageStyles = { width: 76, height: 76, opacity: 0.8, marginTop: 4 };
+const imageStyles = { width: 58, height: 58, opacity: 0.8, marginTop: 4 };
 
 const TopBar = ({
   gameCountdown,
@@ -47,7 +47,7 @@ const TopBar = ({
     <TopBarContainer>
       {renderLeftButton()}
       {titleText && <TopBarTitle>{titleText}</TopBarTitle>}
-      {displayLogo && <Image style={imageStyles} source={require("../../assets/monkeylogo.png")} />}
+      {displayLogo && <Image style={imageStyles} source={require("../../assets/menuimage.png")} />}
       {RightComponent}
       {showCountdown && (
         <Countdown
