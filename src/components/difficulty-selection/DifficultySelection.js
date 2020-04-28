@@ -37,7 +37,7 @@ const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, l
         titleText={titleText}
         RightComponent={<LeaderboardButton onPress={() => showLeaderboard(leaderboardId)} />}
       />
-      <Title text="Select a Difficulty" />
+      <Title text="Select a difficulty" />
       <HeightSpacer height="5%" />
       <DifficultyOptions>
         <AnimatedSequence items={getDifficultyOptions()} />

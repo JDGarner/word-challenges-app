@@ -14,11 +14,12 @@ import SoundManager from "./features/sound/SoundManager";
 import { retrieveELOs } from "./redux/leaderboards/leaderboards-actions";
 import { googlePlaySilentSignIn } from "./redux/google-play/google-play-services-actions";
 import { onNavigateBack } from "./redux/navigation/navigation-actions";
+import { updateMutedSetting } from "./redux/settings/settings-actions";
 
 const store = configureStore();
 
 export default function AppProvider() {
-  SoundManager.init(store);
+  SoundManager.init(m => onUpdateMuteSetting(m));
 
   useEffect(() => {
     SplashScreen.hide();
@@ -33,6 +34,10 @@ export default function AppProvider() {
 
     BackHandler.addEventListener("hardwareBackPress", onHardwareBackPress);
   }, []);
+
+  const onUpdateMuteSetting = muted => {
+    store.dispatch(updateMutedSetting(muted));
+  };
 
   const onHardwareBackPress = () => {
     if (store.getState().navigation.screenStack.length > 1) {

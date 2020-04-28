@@ -10,7 +10,6 @@ Rhymes:
 
 Bugs:
 - see if it works running on device via android studio
-- toggle mute stopped working after a long time
 
 Sound Effects:
 - tweak menu button sound? - amplitude/pitch
@@ -78,7 +77,6 @@ General:
   -> change praise words based on this/show streak
 - get elo boundaries from BE?
 - Add Word Monkey title to launch screen
-- refactor soundmanager into SoundProvider?
 
 Definitions:
 - Look into whether rhymes all request approach would be better for definitions also (would increase response size)

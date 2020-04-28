@@ -23,6 +23,9 @@ const MenuOptionButton = styled(AnimatedButton)`
   justify-content: center;
 `;
 
+const VolumeOff = <Icon name="volume-off" size={32} color={colors.textColor} />;
+const VolumeOn = <Icon name="volume-up" size={32} color={colors.textColor} />;
+
 const MenuOptions = ({ changeScreen, muted }) => {
   const onPressToggleMute = () => {
     SoundManager.getInstance().toggleMute();
@@ -33,13 +36,11 @@ const MenuOptions = ({ changeScreen, muted }) => {
     changeScreen(SCREENS.INFO);
   };
 
-  const iconName = muted ? "volume-off" : "volume-up";
+  const VolumeIcon = muted ? VolumeOff : VolumeOn;
 
   return (
     <MenuOptionsContainer>
-      <MenuOptionButton onPress={onPressToggleMute}>
-        <Icon name={iconName} size={32} color={colors.textColor} />
-      </MenuOptionButton>
+      <MenuOptionButton onPress={onPressToggleMute}>{VolumeIcon}</MenuOptionButton>
       <MenuOptionButton onPress={onPressInfoButton}>
         <CommunityIcon name="information-variant" size={32} color={colors.textColor} />
       </MenuOptionButton>
