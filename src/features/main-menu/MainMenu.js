@@ -1,6 +1,5 @@
 import React from "react";
 import { View } from "react-native";
-import { capitalize } from "lodash";
 import styled from "styled-components";
 import {
   MenuButton,
@@ -61,25 +60,41 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
         initialScreen: SCREENS.RHYMES_DIFFICULTY,
         score: rhymesELO,
       },
-      { displayName: SCREENS.SYNONYMS, initialScreen: SCREENS.SYNONYMS_DIFFICULTY, score: 800 },
+      { displayName: SCREENS.SYNONYMS, initialScreen: SCREENS.SYNONYMS_DIFFICULTY, score: "N/A" },
     ];
   };
 
   const getMenuItems = () => {
-    const menuItems = getMenuItemsConfig().map(({ displayName, initialScreen, score }) => ({
-      id: displayName,
-      component: (
-        <MenuButton onPress={() => changeScreen(initialScreen)}>
-          <MenuTextContainer>
-            <MenuNameText>{displayName}</MenuNameText>
-            <ScoreTextContainer>
-              <SmallMediumText>{capitalize(getRankForScore(score))}</SmallMediumText>
-              <SmallMediumText>Rating: {score}</SmallMediumText>
-            </ScoreTextContainer>
-          </MenuTextContainer>
-        </MenuButton>
-      ),
-    }));
+    const menuItems = getMenuItemsConfig().map(({ displayName, initialScreen, score }) => {
+      const isSynonyms = displayName === SCREENS.SYNONYMS;
+      const color = isSynonyms ? colors.textColorDisabled : colors.textColor;
+
+      const ItemFooter = isSynonyms ? (
+        <ScoreTextContainer style={{ justifyContent: "center" }}>
+          <SmallMediumText color={color}>Coming Soon</SmallMediumText>
+        </ScoreTextContainer>
+      ) : (
+        <ScoreTextContainer>
+          <SmallMediumText>{getRankForScore(score)}</SmallMediumText>
+          <SmallMediumText>Rating: {score}</SmallMediumText>
+        </ScoreTextContainer>
+      );
+
+      return {
+        id: displayName,
+        component: (
+          <MenuButton
+            onPress={() => changeScreen(initialScreen)}
+            disabled={isSynonyms}
+            style={{ borderColor: color }}>
+            <MenuTextContainer>
+              <MenuNameText color={color}>{displayName}</MenuNameText>
+              {ItemFooter}
+            </MenuTextContainer>
+          </MenuButton>
+        ),
+      };
+    });
 
     menuItems.push({
       id: "menu-options",

@@ -1,3 +1,4 @@
+import { capitalize } from "lodash";
 import { DIFFICULTIES, MODES, APP_STORAGE, ENDPOINTS, LEADERBOARD_IDS } from "../app-constants";
 
 const { NOVICE, JOURNEYMAN, EXPERT, MASTER } = DIFFICULTIES;
@@ -10,19 +11,23 @@ const DIFFICULTY_ELO_RANGES = {
 };
 
 export const getRankForScore = score => {
+  if (score === "N/A") {
+    return "N/A";
+  }
+
   if (score < DIFFICULTY_ELO_RANGES[NOVICE].upper) {
-    return NOVICE;
+    return capitalize(NOVICE);
   }
 
   if (score < DIFFICULTY_ELO_RANGES[JOURNEYMAN].upper) {
-    return JOURNEYMAN;
+    return capitalize(JOURNEYMAN);
   }
 
   if (score < DIFFICULTY_ELO_RANGES[EXPERT].upper) {
-    return EXPERT;
+    return capitalize(EXPERT);
   }
 
-  return MASTER;
+  return capitalize(MASTER);
 };
 
 export const getELORatingChanges = (score, playerELO, questionELO, difficulty, mode) => {

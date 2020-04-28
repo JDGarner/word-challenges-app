@@ -3,17 +3,14 @@
 ----------------------------------------
 
 General
-- add Synonyms coming soon label and disable button
-- Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
-
-Definitions:
-- 
+- Change menu intro text?
 
 Rhymes:
 - review UI - answer grid item style, spacing on different screens, etc
 
 Bugs:
 - see if it works running on device via android studio
+- toggle mute stopped working after a long time
 
 Sound Effects:
 - tweak menu button sound? - amplitude/pitch
@@ -50,6 +47,7 @@ Maybe in 1st release:
 - error reporting/tracking? (react native sentry)
 - force players to unlock harder difficulties, limit based on elo?
 - use monkey face for positive and negative feedback, make negative smile upside down
+- Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
 
 
 
