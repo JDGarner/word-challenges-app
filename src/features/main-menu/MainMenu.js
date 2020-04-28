@@ -30,6 +30,7 @@ const ScoreTextContainer = styled(View)`
   border-top-color: ${colors.textColorLight};
   width: 100%;
   padding-top: 8;
+  padding-bottom: 2;
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: row;
@@ -72,8 +73,8 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
           <MenuTextContainer>
             <MenuNameText>{displayName}</MenuNameText>
             <ScoreTextContainer>
+              <SmallMediumText>{capitalize(getRankForScore(score))}</SmallMediumText>
               <SmallMediumText>Rating: {score}</SmallMediumText>
-              <SmallMediumText>Rank: {capitalize(getRankForScore(score))}</SmallMediumText>
             </ScoreTextContainer>
           </MenuTextContainer>
         </MenuButton>

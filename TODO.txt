@@ -6,9 +6,6 @@ General
 - add Synonyms coming soon label and disable button
 - Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
 
-Info Screen:
-- contact details
-
 Definitions:
 - 
 

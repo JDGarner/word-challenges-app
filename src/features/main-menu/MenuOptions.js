@@ -28,6 +28,11 @@ const MenuOptions = ({ changeScreen, muted }) => {
     SoundManager.getInstance().toggleMute();
   };
 
+  const onPressInfoButton = () => {
+    SoundManager.getInstance().playMenuButtonSound();
+    changeScreen(SCREENS.INFO);
+  };
+
   const iconName = muted ? "volume-off" : "volume-up";
 
   return (
@@ -35,7 +40,7 @@ const MenuOptions = ({ changeScreen, muted }) => {
       <MenuOptionButton onPress={onPressToggleMute}>
         <Icon name={iconName} size={32} color={colors.textColor} />
       </MenuOptionButton>
-      <MenuOptionButton onPress={() => changeScreen(SCREENS.INFO)}>
+      <MenuOptionButton onPress={onPressInfoButton}>
         <CommunityIcon name="information-variant" size={32} color={colors.textColor} />
       </MenuOptionButton>
     </MenuOptionsContainer>
