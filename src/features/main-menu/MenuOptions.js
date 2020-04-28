@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { View } from "react-native";
 import AnimatedButton from "../../components/button/AnimatedButton";

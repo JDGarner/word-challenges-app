@@ -7,13 +7,11 @@ General
 - Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
 
 Info Screen:
-- Add text:
-  - explain rating boundaries?
-  - how many you need until next rank?
-  - stuff about perfect rhymes with link to wiki
+- rhyming
+- contact details
 
 Definitions:
--
+- 
 
 Rhymes:
 - review UI - answer grid item style, spacing on different screens, etc
