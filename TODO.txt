@@ -7,7 +7,6 @@ General
 - Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
 
 Info Screen:
-- rhyming
 - contact details
 
 Definitions:

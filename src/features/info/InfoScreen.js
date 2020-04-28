@@ -110,6 +110,32 @@ const InfoScreen = ({ onNavigateBack }) => {
             {showRhymingInfo ? UpIcon : DownIcon}
           </InfoScreenRow>
         </AnimatedButton>
+        {showRhymingInfo && (
+          <InfoTextContainer>
+            <InfoTextWithLink pad>
+              <MediumText>For a rhyme to be considered a </MediumText>
+              <TouchableOpacity
+                onPress={() =>
+                  openURL("https://en.wikipedia.org/wiki/Perfect_and_imperfect_rhymes")
+                }>
+                <LinkText>perfect rhyme</LinkText>
+              </TouchableOpacity>
+              <MediumText> the following must be true:</MediumText>
+            </InfoTextWithLink>
+            <InfoText pad>
+              1) The stressed vowel sound in both words must be identical, as well as any subsequent
+              sounds. For example, "sky" and "high"; "skylight" and "highlight".
+            </InfoText>
+            <InfoText pad>
+              2) The onset of the stressed syllable in the words must differ. For example, "bean"
+              and "green" is a perfect rhyme, while "leave" and "believe" is not.
+            </InfoText>
+            <InfoText>
+              The rhyming data we use is not perfect; there may be perfect rhymes missing or
+              imperfect rhymes present. We are continuing to improve this dataset.
+            </InfoText>
+          </InfoTextContainer>
+        )}
       </InfoScreenContainer>
     </ScreenContainerPadded>
   );
