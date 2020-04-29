@@ -72,9 +72,11 @@ export default store => next => action => {
       }, 1000);
       break;
 
-    case ON_SUBMIT_ANSWER:
-      if (isAnswerCorrect(action.answer, getState().rhymes)) {
-        SoundManager.getInstance().playPositiveSound();
+    case ON_SUBMIT_ANSWER: {
+      const { rhymes } = getState();
+
+      if (isAnswerCorrect(action.answer, rhymes)) {
+        SoundManager.getInstance().playPositiveTone(rhymes.correctAnswers.length + 1);
 
         if (getState().rhymes.correctAnswers.length + 1 >= ANSWERS_REQUIRED) {
           clearCountdownInterval();
@@ -84,6 +86,7 @@ export default store => next => action => {
       }
 
       break;
+    }
 
     case ON_GAME_END: {
       clearCountdownInterval();

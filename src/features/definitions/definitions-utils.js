@@ -12,7 +12,6 @@ import {
   getMediumPraiseWord,
   getLowPraiseWord,
 } from "../../utils/common-utils";
-import SoundManager from "../sound/SoundManager";
 
 export const roundIsOver = questionIndex => {
   return questionIndex >= WORDS_PER_ROUND;
@@ -137,9 +136,4 @@ export const getShuffleReappearDelay = letters => {
     letters.length * SHUFFLE_ANIMATION_STAGGER_TIME +
     SHUFFLE_ANIMATION_REAPPEAR_BUFFER
   );
-};
-
-export const playPositiveTone = correctSoFar => {
-  const index = Math.min(5, correctSoFar);
-  SoundManager.getInstance().playPositiveTone(index);
 };

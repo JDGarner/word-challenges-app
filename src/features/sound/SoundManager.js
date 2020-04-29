@@ -4,20 +4,23 @@ import { APP_STORAGE } from "../../app-constants";
 
 Sound.setCategory("Playback", true);
 
+const NUM_POSITIVE_TONES = 5;
+const NUM_FLUB_TONES = 5;
+
 export default class SoundManager {
   static soundManagerInstance = null;
 
   constructor(onUpdateMuteSetting) {
     this.onUpdateMuteSetting = onUpdateMuteSetting;
     this.muted = false;
-    this.positiveSound = this.initSound("positive.mp3");
-    this.positiveTones = this.initSoundSet("positivetone", 5);
+    this.positiveTones = this.initSoundSet("positivetone", NUM_POSITIVE_TONES);
     this.negativeSound = this.initSound("negative.mp3");
     this.menuButtonSounds = this.initSoundWithBackups("menubutton.mp3");
     this.menuButtonNegativeSounds = this.initSoundWithBackups("menubuttonnegative.mp3", 2);
     this.letterButtonSounds = this.initSoundWithBackups("letterbutton.mp3", 5);
+    this.letterButtonRemoveSounds = this.initSoundWithBackups("letterbuttonremove.mp3", 5);
     this.shuffleSounds = this.initSoundWithBackups("shuffle.mp3", 2);
-    this.flubSounds = this.initSoundSet("flub", 5);
+    this.flubSounds = this.initSoundSet("flub", NUM_FLUB_TONES);
     this.flubFirstSounds = this.initSoundWithBackups("flub0.mp3", 6);
     this.flubLastSounds = this.initSoundWithBackups("flub4.mp3", 6);
     this.getMuteSetting();
@@ -117,12 +120,9 @@ export default class SoundManager {
     }
   };
 
-  playPositiveSound = () => {
-    this.playSound(this.positiveSound);
-  };
-
   playPositiveTone = index => {
-    this.playSound(this.positiveTones[index]);
+    const indexToPlay = Math.min(NUM_POSITIVE_TONES, index);
+    this.playSound(this.positiveTones[indexToPlay]);
   };
 
   playNegativeSound = () => {
@@ -142,7 +142,7 @@ export default class SoundManager {
   };
 
   playRemoveLetterSound = () => {
-    this.playSoundWithBackups(this.letterButtonSounds);
+    this.playSoundWithBackups(this.letterButtonRemoveSounds);
   };
 
   playShuffleSound = () => {
@@ -158,6 +158,7 @@ export default class SoundManager {
   };
 
   playFlubSound = index => {
-    this.playSound(this.flubSounds[index]);
+    const indexToPlay = Math.min(NUM_FLUB_TONES, index);
+    this.playSound(this.flubSounds[indexToPlay]);
   };
 }

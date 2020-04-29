@@ -21,6 +21,7 @@ import {
 import ScoreChange from "../../../components/score-change/ScoreChange";
 import { LeaderboardButton } from "../../../components/button/Button";
 import { LEADERBOARD_IDS } from "../../../app-constants";
+import SoundManager from "../../sound/SoundManager";
 
 const getPostGameText = (score, word) => {
   const percentage = Math.floor((score / ANSWERS_REQUIRED) * 100);
@@ -65,6 +66,10 @@ const RhymePostGame = ({
   const footerAnimationDelay =
     correctAnswers.length * ANSWER_ANIMATION_GAP_TIME + ANSWER_ANIMATION_START_DELAY_TIME + 300;
 
+  const onPraiseAnimationStart = () => {
+    SoundManager.getInstance().playCorrectScoreChange();
+  };
+
   const onPlayAgainAnimationStart = () => {
     setUserActionsDisabled(false);
   };
@@ -78,7 +83,11 @@ const RhymePostGame = ({
       />
       <Title text={praise} />
       <PostGameContainer>
-        <PopInView popToSize={1} duration={800} delay={300}>
+        <PopInView
+          popToSize={1}
+          duration={300}
+          delay={300}
+          onAnimationStart={onPraiseAnimationStart}>
           <PostGameText textAlign="center">{scoreText}</PostGameText>
         </PopInView>
         <AnswerGrid answers={correctAnswers} postGame />

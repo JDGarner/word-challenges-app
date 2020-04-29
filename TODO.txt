@@ -4,15 +4,13 @@
 
 General
 - use monkey face for positive and negative feedback, make negative smile upside down
+  - add monkey face to rhymes also
 - Change menu intro text?
 
 Bugs:
 - see if it works running on device via android studio
 
 Sound Effects:
-- Rhyme game & post game sounds
-- remove letter button tone down
-- make flub sounds in scale F-C
 - normalize sounds:
   - negative a bit quieter
   - flub bit louder?

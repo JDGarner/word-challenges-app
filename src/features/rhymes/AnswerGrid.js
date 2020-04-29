@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { MediumText, PopInView, AnimatedSequence } from "../../components";
 import { ANSWER_ANIMATION_GAP_TIME, ANSWER_ANIMATION_START_DELAY_TIME } from "./rhymes-constants";
 import colors from "../../theme/colors";
+import SoundManager from "../sound/SoundManager";
 
 const GridContainer = styled(View)`
   height: 30%;
@@ -36,6 +37,10 @@ const GridItem = styled(View)`
 `;
 
 const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
+  const onAnswerAnimationStart = index => {
+    SoundManager.getInstance().playFlubSound(index + 1);
+  };
+
   const getAnswerTiles = () => {
     return answers.map(answer => ({
       id: answer,
@@ -53,7 +58,9 @@ const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
       containerStyle={{ width: "50%", marginBottom: gridItemBottomMargin }}
       animationGapTime={ANSWER_ANIMATION_GAP_TIME}
       animationStartDelay={ANSWER_ANIMATION_START_DELAY_TIME}
-      popToSize={1.05}
+      onAnimationStart={onAnswerAnimationStart}
+      popToSize={1.1}
+      animationAppearDuration={300}
     />
   ) : (
     answers.map(answer => {
