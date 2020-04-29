@@ -9,12 +9,13 @@ Bugs:
 - see if it works running on device via android studio
 
 Sound Effects:
-- tweak menu button sound? - amplitude/pitch
-- look into different negative sounds - maybe need matching positive and negative?
+- make positive notes rise in scale for each correct answer
 - Rhyme game & post game sounds
 - remove letter button tone down
-- normalize sounds - negative a bit quieter, flub bit louder?
-- ambient music?
+- normalize sounds:
+  - negative a bit quieter
+  - flub bit louder?
+  - tweak menu button sound? - amplitude quieter, pitch down?
 
 Android Release:
   - https://facebook.github.io/react-native/docs/signed-apk-android
@@ -73,6 +74,7 @@ General:
   -> change praise words based on this/show streak
 - get elo boundaries from BE?
 - Add Word Monkey title to launch screen
+- ambient music?
 
 Definitions:
 - Look into whether rhymes all request approach would be better for definitions also (would increase response size)
@@ -101,25 +103,6 @@ Potential Refactors:
 ----------------------------------------
 Other
 ----------------------------------------
-
-Name Ideas:
-- Word master/ninja/binge/fiend/smith
-- Wordy Something
-- Word Binge
-- Something like WordScapes/other word puns
-- Endless/Infinite Vocabulary
-- Uncommon Parlance
-- Lexical Ninja
-- Something - Vocabulary Trainer
-  The Last Word - Vocabulary Trainer
-  The Magic Word - Vocabulary Trainer
-  Word Class - Vocabulary Trainer
-  Word to the Wise - Vocabulary Trainer
-  Word for Word - Vocabulary Trainer
-  Words of Wisdom - Vocabulary Trainer
-  Word Bird
-  Word Pig
-  Word Monkey
 
 2nd Version:
 - Compare users score to other players

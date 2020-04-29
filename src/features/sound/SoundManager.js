@@ -17,6 +17,8 @@ export default class SoundManager {
     this.letterButtonSounds = this.initSoundWithBackups("letterbutton.mp3", 5);
     this.shuffleSounds = this.initSoundWithBackups("shuffle.mp3", 2);
     this.flubSounds = this.initSoundSet("flub", 5);
+    this.flubFirstSounds = this.initSoundWithBackups("flub0.mp3", 6);
+    this.flubLastSounds = this.initSoundWithBackups("flub4.mp3", 6);
     this.getMuteSetting();
   }
 
@@ -89,7 +91,11 @@ export default class SoundManager {
     const sounds = [];
 
     for (let i = 0; i < size; i++) {
-      sounds.push(this.initSoundWithBackups(`${name}${i}.mp3`, 4));
+      sounds.push(
+        new Sound(`${name}${i}.mp3`, Sound.MAIN_BUNDLE, error => {
+          if (error) return null;
+        }),
+      );
     }
 
     return sounds;
@@ -138,9 +144,17 @@ export default class SoundManager {
     this.playSoundWithBackups(this.shuffleSounds);
   };
 
+  playCorrectScoreChange = () => {
+    this.playSoundWithBackups(this.flubLastSounds);
+  };
+
+  playIncorrectScoreChange = () => {
+    this.playSoundWithBackups(this.flubFirstSounds);
+  };
+
   playFlubSound = index => {
     if (this.flubSounds[index]) {
-      this.playSoundWithBackups(this.flubSounds[index]);
+      this.playSound(this.flubSounds[index]);
     }
   };
 }

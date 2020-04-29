@@ -68,7 +68,7 @@ const DefinitionPostGame = ({
     ANSWER_ANIMATION_DURATION;
 
   const onPraiseAnimationStart = () => {
-    SoundManager.getInstance().playFlubSound(4);
+    SoundManager.getInstance().playCorrectScoreChange();
   };
 
   const onPlayAgainAnimationStart = () => {
@@ -91,7 +91,7 @@ const DefinitionPostGame = ({
           <PopInView
             popToSize={1}
             duration={ANSWER_ANIMATION_START_DELAY_TIME}
-            delay={150}
+            delay={220}
             onAnimationStart={onPraiseAnimationStart}>
             <MediumLargeText>
               {praise} - {score}/{WORDS_PER_ROUND}

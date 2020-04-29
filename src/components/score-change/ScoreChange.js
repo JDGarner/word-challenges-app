@@ -49,13 +49,15 @@ const ScoreChange = ({ previousScore, scoreChange, delay, onCountdownEnd }) => {
 
   const onScoreChangeAppear = () => {
     if (scoreChange !== 0 && !!countdownInterval) {
-      const soundManager = SoundManager.getInstance();
-      const soundIndex = scoreChange >= 0 ? 4 : 0;
+      const soundFn =
+        scoreChange >= 0
+          ? SoundManager.getInstance().playCorrectScoreChange
+          : SoundManager.getInstance().playIncorrectScoreChange;
 
       countdownInterval = setInterval(() => {
         setNewScoreCountdown(prevNewCount => prevNewCount + countIncrement);
         setScoreChangeCountdown(prevScoreChange => prevScoreChange - countIncrement);
-        soundManager.playFlubSound(soundIndex);
+        soundFn();
       }, 40);
     }
   };
