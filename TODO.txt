@@ -5,20 +5,16 @@
 General
 - Change menu intro text?
 
-Rhymes:
-- review UI - answer grid item style, spacing on different screens, etc
-
 Bugs:
 - see if it works running on device via android studio
 
 Sound Effects:
 - tweak menu button sound? - amplitude/pitch
 - look into different negative sounds - maybe need matching positive and negative?
-- Post Game sounds
-- Rhyme game sounds
-- normalize sounds - negative a bit quieter
+- Rhyme game & post game sounds
+- remove letter button tone down
+- normalize sounds - negative a bit quieter, flub bit louder?
 - ambient music?
-- Add mute button? (decide after music decision)
 
 Android Release:
   - https://facebook.github.io/react-native/docs/signed-apk-android

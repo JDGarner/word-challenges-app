@@ -16,6 +16,7 @@ export default class SoundManager {
     this.menuButtonNegativeSounds = this.initSoundWithBackups("menubuttonnegative.mp3", 2);
     this.letterButtonSounds = this.initSoundWithBackups("letterbutton.mp3", 5);
     this.shuffleSounds = this.initSoundWithBackups("shuffle.mp3", 2);
+    this.flubSounds = this.initSoundSet("flub", 5);
     this.getMuteSetting();
   }
 
@@ -84,6 +85,16 @@ export default class SoundManager {
     return sounds;
   };
 
+  initSoundSet = (name, size) => {
+    const sounds = [];
+
+    for (let i = 0; i < size; i++) {
+      sounds.push(this.initSoundWithBackups(`${name}${i}.mp3`, 4));
+    }
+
+    return sounds;
+  };
+
   playSound = sound => {
     if (!this.muted && sound && sound.play) {
       sound.play();
@@ -125,5 +136,11 @@ export default class SoundManager {
 
   playShuffleSound = () => {
     this.playSoundWithBackups(this.shuffleSounds);
+  };
+
+  playFlubSound = index => {
+    if (this.flubSounds[index]) {
+      this.playSoundWithBackups(this.flubSounds[index]);
+    }
   };
 }

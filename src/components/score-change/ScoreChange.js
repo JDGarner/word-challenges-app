@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { MediumLargeText } from "../text/Text";
 import theme from "../../theme";
 import PopInView from "../pop-in-view/PopInView";
+import SoundManager from "../../features/sound/SoundManager";
 
 const ScoreChangeContainer = styled(View)`
   width: 100%;
@@ -48,9 +49,13 @@ const ScoreChange = ({ previousScore, scoreChange, delay, onCountdownEnd }) => {
 
   const onScoreChangeAppear = () => {
     if (scoreChange !== 0 && !!countdownInterval) {
+      const soundManager = SoundManager.getInstance();
+      const soundIndex = scoreChange >= 0 ? 4 : 0;
+
       countdownInterval = setInterval(() => {
         setNewScoreCountdown(prevNewCount => prevNewCount + countIncrement);
         setScoreChangeCountdown(prevScoreChange => prevScoreChange - countIncrement);
+        soundManager.playFlubSound(soundIndex);
       }, 40);
     }
   };

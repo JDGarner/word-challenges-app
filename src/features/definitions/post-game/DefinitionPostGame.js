@@ -15,6 +15,7 @@ import { getPraiseForScore } from "../definitions-utils";
 import ScoreChange from "../../../components/score-change/ScoreChange";
 import { LeaderboardButton } from "../../../components/button/Button";
 import { LEADERBOARD_IDS } from "../../../app-constants";
+import SoundManager from "../../sound/SoundManager";
 
 const ContentContainer = styled(View)`
   flex: 1;
@@ -66,6 +67,10 @@ const DefinitionPostGame = ({
     WORDS_PER_ROUND * ANSWER_ANIMATION_GAP_TIME +
     ANSWER_ANIMATION_DURATION;
 
+  const onPraiseAnimationStart = () => {
+    SoundManager.getInstance().playFlubSound(4);
+  };
+
   const onPlayAgainAnimationStart = () => {
     setUserActionsDisabled(false);
     setShowScrollBar(true);
@@ -83,7 +88,11 @@ const DefinitionPostGame = ({
       />
       <ContentContainer>
         <FeedbackTextContainer>
-          <PopInView popToSize={1} duration={ANSWER_ANIMATION_START_DELAY_TIME} delay={150}>
+          <PopInView
+            popToSize={1}
+            duration={ANSWER_ANIMATION_START_DELAY_TIME}
+            delay={150}
+            onAnimationStart={onPraiseAnimationStart}>
             <MediumLargeText>
               {praise} - {score}/{WORDS_PER_ROUND}
             </MediumLargeText>
@@ -99,6 +108,7 @@ const DefinitionPostGame = ({
                 {currentDefinitions.map((def, i) => (
                   <Answer
                     key={def._id}
+                    index={i}
                     delay={i * ANSWER_ANIMATION_GAP_TIME + ANSWER_ANIMATION_START_DELAY_TIME}
                     {...def}
                   />

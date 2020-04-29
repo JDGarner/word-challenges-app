@@ -6,6 +6,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import theme from "../../../theme";
 import { MediumText } from "../../../components";
 import { ANSWER_ANIMATION_DURATION } from "../definitions-constants";
+import SoundManager from "../../sound/SoundManager";
 
 const AnswerContainer = styled(Animated.View)`
   flex-direction: row;
@@ -19,7 +20,7 @@ const StyledDefinition = styled(MediumText)`
   flex: 1;
 `;
 
-const Answer = ({ word, definition, delay, isCorrect }) => {
+const Answer = ({ word, definition, delay, index, isCorrect }) => {
   const iconName = isCorrect ? "check" : "close";
   const iconColor = isCorrect ? theme.correctColour : theme.incorrectColour;
 
@@ -33,6 +34,8 @@ const Answer = ({ word, definition, delay, isCorrect }) => {
         duration: ANSWER_ANIMATION_DURATION,
         useNativeDriver: true,
       }).start();
+
+      SoundManager.getInstance().playFlubSound(index);
 
       Animated.sequence([
         Animated.timing(scale, {
