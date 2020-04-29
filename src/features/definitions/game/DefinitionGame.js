@@ -8,7 +8,7 @@ import CommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import GameHeader from "../GameHeader";
 import theme from "../../../theme";
 import ScrambledLetter from "./ScrambledLetter";
-import { getShuffleReappearDelay, doShuffleAnimation, getAnswersState } from "../definitions-utils";
+import { getShuffleReappearDelay, doShuffleAnimation, getAnswersState, playPositiveTone } from "../definitions-utils";
 import {
   ANSWER_FEEDBACK_ANIMATION_DURATION,
   FREE_LETTER_SCORE_COST,
@@ -117,6 +117,7 @@ const DefinitionGame = ({
   definition,
   gameCountdown,
   difficulty,
+  correctSoFar,
   userELO,
   questionELO,
   updatePlayerELO,
@@ -181,7 +182,7 @@ const DefinitionGame = ({
     setCurrentELOChange(playerELOChange);
 
     if (isAnswerCorrect) {
-      SoundManager.getInstance().playPositiveSound();
+      playPositiveTone(correctSoFar);
     } else {
       SoundManager.getInstance().playNegativeSound();
     }

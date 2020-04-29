@@ -32,6 +32,7 @@ const initialState = {
   allDefinitionsIndex: 0,
   questionIndex: 0,
   netELOChange: 0,
+  correctSoFar: 0,
   freeLettersRemaining: FREE_LETTER_INITIAL_COUNT,
   gameState: GAME_STATES.PLAYING,
   gameCountdown: INITIAL_COUNTDOWN,
@@ -86,6 +87,7 @@ const getStateForNewRound = (state, nextIndex, allDefinitions) => {
       currentDefinitions,
       questionIndex: 0,
       netELOChange: 0,
+      correctSoFar: 0,
       freeLettersRemaining: FREE_LETTER_INITIAL_COUNT,
       gameCountdown: INITIAL_COUNTDOWN,
       connectionError: false,
@@ -176,8 +178,9 @@ export default (state = initialState, action) => {
       const isCorrect = action.answer.toUpperCase() === state.currentDefinition.word.toUpperCase();
       const currentDefinitions = cloneDeep(state.currentDefinitions);
       currentDefinitions[state.questionIndex].isCorrect = isCorrect;
+      const correctSoFar = isCorrect ? state.correctSoFar + 1 : state.correctSoFar;
 
-      return { ...state, currentDefinitions: currentDefinitions };
+      return { ...state, currentDefinitions: currentDefinitions, correctSoFar };
     }
 
     case ON_SELECT_DIFFICULTY_DEFINITIONS: {

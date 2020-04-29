@@ -11,6 +11,7 @@ export default class SoundManager {
     this.onUpdateMuteSetting = onUpdateMuteSetting;
     this.muted = false;
     this.positiveSound = this.initSound("positive.mp3");
+    this.positiveTones = this.initSoundSet("positivetone", 5);
     this.negativeSound = this.initSound("negative.mp3");
     this.menuButtonSounds = this.initSoundWithBackups("menubutton.mp3");
     this.menuButtonNegativeSounds = this.initSoundWithBackups("menubuttonnegative.mp3", 2);
@@ -120,6 +121,10 @@ export default class SoundManager {
     this.playSound(this.positiveSound);
   };
 
+  playPositiveTone = index => {
+    this.playSound(this.positiveTones[index]);
+  };
+
   playNegativeSound = () => {
     this.playSound(this.negativeSound);
   };
@@ -153,8 +158,6 @@ export default class SoundManager {
   };
 
   playFlubSound = index => {
-    if (this.flubSounds[index]) {
-      this.playSound(this.flubSounds[index]);
-    }
+    this.playSound(this.flubSounds[index]);
   };
 }

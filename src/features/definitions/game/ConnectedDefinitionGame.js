@@ -12,7 +12,13 @@ import {
 } from "../../../redux/leaderboards/leaderboards-actions";
 
 const mapStateToProps = ({ definitions, leaderboards }) => {
-  const { gameCountdown, difficulty, currentDefinition, freeLettersRemaining } = definitions;
+  const {
+    gameCountdown,
+    difficulty,
+    currentDefinition,
+    freeLettersRemaining,
+    correctSoFar,
+  } = definitions;
   const { definition, word, eloRating } = currentDefinition;
   const { definitionsELO } = leaderboards;
 
@@ -24,6 +30,7 @@ const mapStateToProps = ({ definitions, leaderboards }) => {
     questionELO: eloRating,
     userELO: definitionsELO,
     freeLettersRemaining,
+    correctSoFar,
   };
 };
 
