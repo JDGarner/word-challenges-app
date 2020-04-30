@@ -8,6 +8,7 @@ import {
 } from "./google-play-services-actions";
 import { MODES } from "../../app-constants";
 import { getELOKeysForMode } from "../../utils/elo-utils";
+import { getConfig } from "../../Config";
 
 const signInToGooglePlay = onSuccess => {
   console.log("Google Play Game Services: Attempting Silent Sign");
@@ -75,16 +76,21 @@ export default store => next => action => {
       const { stateKey, leaderboardId } = getELOKeysForMode(action.mode);
       const scoreToSubmit = action.score || leaderboards[stateKey];
 
-      RNGooglePlayGameServices.setLeaderboardScore(leaderboardId, Number(scoreToSubmit))
-        .then(() => {
-          console.log(
-            `Google Play Game Services: ${action.mode} Score Submit Success: `,
-            scoreToSubmit,
-          );
-        })
-        .catch(() => {
-          console.log(`Google Play Game Services: ${action.mode} Score Submit Failed`);
-        });
+      const { IS_PROD } = getConfig();
+      if (IS_PROD === "true") {
+        RNGooglePlayGameServices.setLeaderboardScore(leaderboardId, Number(scoreToSubmit))
+          .then(() => {
+            console.log(
+              `Google Play Game Services: ${action.mode} Score Submit Success: `,
+              scoreToSubmit,
+            );
+          })
+          .catch(() => {
+            console.log(`Google Play Game Services: ${action.mode} Score Submit Failed`);
+          });
+      } else {
+        console.log(">>> DEV: Submitting ", scoreToSubmit, " to Google Play");
+      }
 
       break;
 

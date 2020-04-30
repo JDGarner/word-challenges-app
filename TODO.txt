@@ -2,14 +2,12 @@
 1st Release
 ----------------------------------------
 
-Bugs:
-- see if it works running on device via android studio
-
 Android Release:
   - https://facebook.github.io/react-native/docs/signed-apk-android
   - https://developer.android.com/studio/publish
   - Add Game description to google play console
   - Google play store feature image
+  - enable API_KEY on BE
 
 
 iOS Release:
