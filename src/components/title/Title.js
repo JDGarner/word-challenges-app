@@ -8,7 +8,7 @@ const Title = ({ fadeIn, text, delay }) => {
     return (
       <TitleContainer>
         <PopInView popToSize={1} duration={800} delay={delay}>
-          <MediumLargeText>{text}</MediumLargeText>
+          <MediumLargeText textAlign="center">{text}</MediumLargeText>
         </PopInView>
       </TitleContainer>
     );
@@ -16,7 +16,7 @@ const Title = ({ fadeIn, text, delay }) => {
 
   return (
     <TitleContainer>
-      <MediumLargeText>{text}</MediumLargeText>
+      <MediumLargeText textAlign="center">{text}</MediumLargeText>
     </TitleContainer>
   );
 };

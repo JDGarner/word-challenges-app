@@ -2,19 +2,8 @@
 1st Release
 ----------------------------------------
 
-General
-- use monkey face for positive and negative feedback, make negative smile upside down
-  - add monkey face to rhymes also
-- Change menu intro text?
-
 Bugs:
 - see if it works running on device via android studio
-
-Sound Effects:
-- normalize sounds:
-  - negative a bit quieter
-  - flub bit louder?
-  - tweak menu button sound? - amplitude quieter, pitch down?
 
 Android Release:
   - https://facebook.github.io/react-native/docs/signed-apk-android
