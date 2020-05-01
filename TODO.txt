@@ -25,10 +25,8 @@ Testing:
 - look through each screen again carefully/critically
 
 Maybe in 1st release:
-- Handle leaderboard connection if network is down
 - error reporting/tracking/analytics? (react native sentry)
 - force players to unlock harder difficulties, limit based on elo?
-- Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
 
 
 
@@ -36,6 +34,10 @@ Maybe in 1st release:
 ----------------------------------------
 Future Release
 ----------------------------------------
+
+Minor:
+- Handle leaderboard connection if network is down
+- Think about changing background to be two separate interpolating colours (rather than moving from bottom to top)
 
 General:
 - Add Synonyms mode

@@ -443,6 +443,20 @@ export const definitions = {
   ],
   journeyman: [
     {
+      _id: "5e93c7880a9cb363c896a502",
+      word: "monkey",
+      definition: "A small to medium-sized primate that typically has a long tail",
+      difficulty: "journeyman",
+      eloRating: 1400,
+    },
+    {
+      _id: "5e93c7880a9cb363c896a50b",
+      word: "recluse",
+      definition: "One who lives in solitude",
+      difficulty: "journeyman",
+      eloRating: 1400,
+    },
+    {
       _id: "5e93c7880a9cb363c896a4fe",
       word: "serenity",
       definition: "The absence of mental stress or anxiety",
@@ -587,13 +601,6 @@ export const definitions = {
       _id: "5e93c7880a9cb363c896a519",
       word: "ominous",
       definition: "Threatening or foreshadowing evil or tragic developments",
-      difficulty: "journeyman",
-      eloRating: 1400,
-    },
-    {
-      _id: "5e93c7880a9cb363c896a50b",
-      word: "recluse",
-      definition: "One who lives in solitude",
       difficulty: "journeyman",
       eloRating: 1400,
     },
@@ -795,6 +802,13 @@ export const definitions = {
     },
   ],
   expert: [
+    {
+      _id: "5e93c7880a9cb363c896a39c",
+      word: "eloquent",
+      definition: "Expressing yourself readily, clearly, effectively",
+      difficulty: "expert",
+      eloRating: 1800,
+    },
     {
       _id: "5e93c7880a9cb363c896a3a0",
       word: "impudent",
@@ -1256,13 +1270,6 @@ export const definitions = {
       _id: "5e93c7880a9cb363c896a384",
       word: "alias",
       definition: "A name that has been assumed temporarily",
-      difficulty: "expert",
-      eloRating: 1800,
-    },
-    {
-      _id: "5e93c7880a9cb363c896a39c",
-      word: "eloquent",
-      definition: "Expressing yourself readily, clearly, effectively",
       difficulty: "expert",
       eloRating: 1800,
     },

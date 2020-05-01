@@ -278,31 +278,38 @@ const DefinitionGame = ({
       (ans, i) => ans === null || ans.letter !== correctLetters[i],
     );
 
-    // Find letter in lettersState that is the correct letter for this index and not already placed
-    const letterStateToUse = lettersState.find(
-      ls => ls.letter === correctLetters[firstIncorrectIndex] && !ls.isPlaced,
+    // Find all letters in lettersState that have the correct letter for this index
+    const matchingLetterStates = lettersState.filter(
+      ls => ls.letter === correctLetters[firstIncorrectIndex],
     );
 
-    const newLettersState = cloneDeep(lettersState);
+    // Find the first matching letter that is either not placed or in the wrong place
+    const letterStateToUse = matchingLetterStates.find(
+      ls => !ls.isPlaced || ls.letter !== correctLetters[ls.answerIndex],
+    );
 
-    // If there is already a letter at that position, put it back
-    const letterToDisplace = answersState[firstIncorrectIndex];
-    if (letterToDisplace) {
-      newLettersState[letterToDisplace.index].isPlaced = false;
-      newLettersState[letterToDisplace.index].answerIndex = null;
+    if (letterStateToUse) {
+      const newLettersState = cloneDeep(lettersState);
+
+      // If there is already a letter at that position, put it back
+      const letterToDisplace = answersState[firstIncorrectIndex];
+      if (letterToDisplace) {
+        newLettersState[letterToDisplace.index].isPlaced = false;
+        newLettersState[letterToDisplace.index].answerIndex = null;
+      }
+
+      const letterStateIndexToUse = letterStateToUse.index;
+      newLettersState[letterStateIndexToUse].isPlaced = true;
+      newLettersState[letterStateIndexToUse].isFreeLetter = true;
+      newLettersState[letterStateIndexToUse].answerIndex = firstIncorrectIndex;
+
+      SoundManager.getInstance().playAddLetterSound();
+
+      setLettersState(newLettersState);
+      setCurrentELOChange(FREE_LETTER_SCORE_COST);
+      setFeedbackAnimationToggle(!feedbackAnimationToggle);
+      onFreeLetterAdded();
     }
-
-    const letterStateIndexToUse = letterStateToUse.index;
-    newLettersState[letterStateIndexToUse].isPlaced = true;
-    newLettersState[letterStateIndexToUse].isFreeLetter = true;
-    newLettersState[letterStateIndexToUse].answerIndex = firstIncorrectIndex;
-
-    SoundManager.getInstance().playAddLetterSound();
-
-    setLettersState(newLettersState);
-    setCurrentELOChange(FREE_LETTER_SCORE_COST);
-    setFeedbackAnimationToggle(!feedbackAnimationToggle);
-    onFreeLetterAdded();
   };
 
   const freeLetterEnabled =
