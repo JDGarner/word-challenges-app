@@ -9,9 +9,9 @@ import {
 import {
   updatePlayerELO,
   updateQuestionELO,
-} from "../../../redux/leaderboards/leaderboards-actions";
+} from "../../../redux/elo-tracking/elo-tracking-actions";
 
-const mapStateToProps = ({ definitions, leaderboards }) => {
+const mapStateToProps = ({ definitions, eloTracking }) => {
   const {
     gameCountdown,
     difficulty,
@@ -20,7 +20,7 @@ const mapStateToProps = ({ definitions, leaderboards }) => {
     correctSoFar,
   } = definitions;
   const { definition, word, eloRating } = currentDefinition;
-  const { definitionsELO } = leaderboards;
+  const { definitionsELO } = eloTracking;
 
   return {
     word,
@@ -43,6 +43,9 @@ const mapDispatchToProps = {
   onFreeLetterAdded,
 };
 
-const ConnectedDefinitionGame = connect(mapStateToProps, mapDispatchToProps)(DefinitionGame);
+const ConnectedDefinitionGame = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DefinitionGame);
 
 export default ConnectedDefinitionGame;

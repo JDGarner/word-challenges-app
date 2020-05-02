@@ -20,7 +20,7 @@ import { DEFINITIONS_LOCAL_BUFFER, FREE_LETTER_SCORE_COST } from "../definitions
 import { roundIsOver } from "../definitions-utils";
 import { googlePlaySubmitScore } from "../../../redux/google-play/google-play-services-actions";
 import { changeScreen } from "../../../redux/navigation/navigation-actions";
-import { updatePlayerELO } from "../../../redux/leaderboards/leaderboards-actions";
+import { updatePlayerELO } from "../../../redux/elo-tracking/elo-tracking-actions";
 
 let gameCountdownInterval = null;
 

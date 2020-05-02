@@ -22,7 +22,7 @@ import { getELORatingChanges } from "../../../utils/elo-utils";
 import {
   updatePlayerELO,
   updateQuestionELO,
-} from "../../../redux/leaderboards/leaderboards-actions";
+} from "../../../redux/elo-tracking/elo-tracking-actions";
 import { googlePlaySubmitScore } from "../../../redux/google-play/google-play-services-actions";
 import SoundManager from "../../sound/SoundManager";
 import { changeScreen } from "../../../redux/navigation/navigation-actions";
@@ -91,7 +91,7 @@ export default store => next => action => {
     case ON_GAME_END: {
       clearCountdownInterval();
 
-      const playerELO = getState().leaderboards.rhymesELO;
+      const playerELO = getState().eloTracking.rhymesELO;
       const { currentWord, correctAnswers, difficulty } = getState().rhymes;
       const score = correctAnswers.length / ANSWERS_REQUIRED;
 

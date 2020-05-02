@@ -11,10 +11,11 @@ import { fetchDefinitions } from "./features/definitions/redux/definitions-actio
 import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
 import { AppBackground } from "./components";
 import SoundManager from "./features/sound/SoundManager";
-import { retrieveELOs } from "./redux/leaderboards/leaderboards-actions";
+import { retrieveELOs } from "./redux/elo-tracking/elo-tracking-actions";
 import { googlePlaySilentSignIn } from "./redux/google-play/google-play-services-actions";
 import { onNavigateBack } from "./redux/navigation/navigation-actions";
 import { updateMutedSetting } from "./redux/settings/settings-actions";
+import { gameCenterInit } from "./redux/game-center/game-center-actions";
 
 const store = configureStore();
 

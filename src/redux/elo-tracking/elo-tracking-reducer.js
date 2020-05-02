@@ -1,4 +1,4 @@
-import { ON_ELOS_RETRIEVED, UPDATE_PLAYER_ELO } from "./leaderboards-actions";
+import { ON_ELOS_RETRIEVED, UPDATE_PLAYER_ELO } from "./elo-tracking-actions";
 import { getELOKeysForMode } from "../../utils/elo-utils";
 
 const initialState = {

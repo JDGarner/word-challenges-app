@@ -3,8 +3,8 @@ import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import settingsReducer from "./redux/settings/settings-reducer";
 import navigationReducer from "./redux/navigation/navigation-reducer";
-import leaderboardsReducer from "./redux/leaderboards/leaderboards-reducer";
-import leaderboardsMiddleware from "./redux/leaderboards/leaderboards-middleware";
+import eloTrackingReducer from "./redux/elo-tracking/elo-tracking-reducer";
+import eloTrackingMiddleware from "./redux/elo-tracking/elo-tracking-middleware";
 import googlePlayServicesMiddleware from "./redux/google-play/google-play-services-middleware";
 import rhymesReducer from "./features/rhymes/redux/rhymes-reducer";
 import rhymesMiddleware from "./features/rhymes/redux/rhymes-middleware";
@@ -19,13 +19,13 @@ export default function configureStore() {
     settings: settingsReducer,
     rhymes: rhymesReducer,
     definitions: definitionsReducer,
-    leaderboards: leaderboardsReducer,
+    eloTracking: eloTrackingReducer,
   });
 
   const middleware = [
     rhymesMiddleware,
     definitionsMiddleware,
-    leaderboardsMiddleware,
+    eloTrackingMiddleware,
     ...(Platform.OS === "android" ? [googlePlayServicesMiddleware] : []),
     thunk,
   ];

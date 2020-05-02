@@ -72,9 +72,9 @@ export default store => next => action => {
       break;
 
     case SUBMIT_SCORE:
-      const { leaderboards } = store.getState();
+      const { eloTracking } = store.getState();
       const { stateKey, leaderboardId } = getELOKeysForMode(action.mode);
-      const scoreToSubmit = action.score || leaderboards[stateKey];
+      const scoreToSubmit = action.score || eloTracking[stateKey];
 
       const { IS_PROD } = getConfig();
       if (IS_PROD === "true") {

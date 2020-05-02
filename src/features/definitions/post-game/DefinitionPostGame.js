@@ -14,7 +14,7 @@ import PopInView from "../../../components/pop-in-view/PopInView";
 import { getPraiseForScore } from "../definitions-utils";
 import ScoreChange from "../../../components/score-change/ScoreChange";
 import { LeaderboardButton } from "../../../components/button/Button";
-import { LEADERBOARD_IDS } from "../../../app-constants";
+import { ANDROID_LEADERBOARD_IDS } from "../../../app-constants";
 import SoundManager from "../../sound/SoundManager";
 
 const ContentContainer = styled(View)`
@@ -83,7 +83,7 @@ const DefinitionPostGame = ({
     <Fragment>
       <ConnectedTopBar
         RightComponent={
-          <LeaderboardButton onPress={() => showLeaderboard(LEADERBOARD_IDS.DEFINITIONS)} />
+          <LeaderboardButton onPress={() => showLeaderboard(ANDROID_LEADERBOARD_IDS.DEFINITIONS)} />
         }
       />
       <ContentContainer>

@@ -3,7 +3,7 @@ import {
   onELOsRetrieved,
   UPDATE_PLAYER_ELO,
   UPDATE_QUESTION_ELO,
-} from "./leaderboards-actions";
+} from "./elo-tracking-actions";
 import AsyncStorage from "@react-native-community/async-storage";
 import { APP_STORAGE, INITIAL_ELO } from "../../app-constants";
 import { postToApi } from "../../utils/api-util";
@@ -31,7 +31,7 @@ export default store => next => async action => {
 
     case UPDATE_PLAYER_ELO:
       const { stateKey, storageKey } = getELOKeysForMode(action.mode);
-      const currentELO = Number(store.getState().leaderboards[stateKey]);
+      const currentELO = Number(store.getState().eloTracking[stateKey]);
       const newELO = currentELO + action.eloChange;
 
       try {

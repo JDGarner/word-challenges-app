@@ -3,8 +3,8 @@ import RhymePostGame from "./RhymePostGame";
 import { onPressStartNewGame } from "../redux/rhymes-actions";
 import { showLeaderboard } from "../../../redux/google-play/google-play-services-actions";
 
-const mapStateToProps = ({ rhymes, leaderboards }) => {
-  const { rhymesELO } = leaderboards;
+const mapStateToProps = ({ rhymes, eloTracking }) => {
+  const { rhymesELO } = eloTracking;
   const { currentWord, correctAnswers, eloChange } = rhymes;
 
   return {

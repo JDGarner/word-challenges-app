@@ -3,8 +3,8 @@ import MainMenu from "./MainMenu";
 import { changeScreen } from "../../redux/navigation/navigation-actions";
 import { showAllLeaderboards } from "../../redux/google-play/google-play-services-actions";
 
-const mapStateToProps = ({ leaderboards }) => {
-  const { definitionsELO, rhymesELO } = leaderboards;
+const mapStateToProps = ({ eloTracking }) => {
+  const { definitionsELO, rhymesELO } = eloTracking;
 
   return {
     definitionsELO,
