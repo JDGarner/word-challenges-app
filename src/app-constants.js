@@ -34,9 +34,14 @@ export const MODES = {
   RHYMES: "rhymes",
 };
 
-export const LEADERBOARD_IDS = {
+export const ANDROID_LEADERBOARD_IDS = {
   DEFINITIONS: "CgkIu9P2ttwGEAIQAQ",
   RHYMES: "CgkIu9P2ttwGEAIQAg",
+};
+
+export const IOS_LEADERBOARD_IDS = {
+  DEFINITIONS: "grp.definitions",
+  RHYMES: "grp.rhymes",
 };
 
 export const INITIAL_ELO = 800;

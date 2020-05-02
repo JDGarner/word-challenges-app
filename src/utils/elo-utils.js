@@ -1,5 +1,11 @@
 import { capitalize } from "lodash";
-import { DIFFICULTIES, MODES, APP_STORAGE, ENDPOINTS, LEADERBOARD_IDS } from "../app-constants";
+import {
+  DIFFICULTIES,
+  MODES,
+  APP_STORAGE,
+  ENDPOINTS,
+  ANDROID_LEADERBOARD_IDS,
+} from "../app-constants";
 
 const { NOVICE, JOURNEYMAN, EXPERT, MASTER } = DIFFICULTIES;
 
@@ -81,7 +87,7 @@ export const getELOKeysForMode = mode => {
       stateKey: "definitionsELO",
       storageKey: APP_STORAGE.DEFINITIONS_ELO,
       endpoint: ENDPOINTS.DEFINITIONS_ELO,
-      leaderboardId: LEADERBOARD_IDS.DEFINITIONS,
+      leaderboardId: ANDROID_LEADERBOARD_IDS.DEFINITIONS,
     };
   }
 
@@ -89,6 +95,6 @@ export const getELOKeysForMode = mode => {
     stateKey: "rhymesELO",
     storageKey: APP_STORAGE.RHYMES_ELO,
     endpoint: ENDPOINTS.RHYMES_ELO,
-    leaderboardId: LEADERBOARD_IDS.RHYMES,
+    leaderboardId: ANDROID_LEADERBOARD_IDS.RHYMES,
   };
 };

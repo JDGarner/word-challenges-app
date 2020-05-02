@@ -2,27 +2,17 @@
 1st Release
 ----------------------------------------
 
-Android Release:
-  - https://facebook.github.io/react-native/docs/signed-apk-android
-  - https://developer.android.com/studio/publish
-  - Add Game description to google play console
-  - Google play store feature image
-  - enable API_KEY on BE
-
+General:
+- enable API_KEY on BE
 
 iOS Release:
 - Connect to game center for iOS
 - test on ios device
 
-
 Testing:
-- test/user test difficulty levels with different clue parameters
-- test animation speeds/timings
-- test button placement
 - test different devices, small & big
 - Check for handle on screen background bugs
 - test offline play
-- look through each screen again carefully/critically
 
 Maybe in 1st release:
 - error reporting/tracking/analytics? (react native sentry)
