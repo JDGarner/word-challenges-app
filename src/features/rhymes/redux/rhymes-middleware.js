@@ -23,7 +23,7 @@ import {
   updatePlayerELO,
   updateQuestionELO,
 } from "../../../redux/elo-tracking/elo-tracking-actions";
-import { googlePlaySubmitScore } from "../../../redux/leaderboard-services/leaderboard-services-actions";
+import { submitScoreToLeaderboard } from "../../../redux/leaderboard-services/leaderboard-services-actions";
 import SoundManager from "../../sound/SoundManager";
 import { changeScreen } from "../../../redux/navigation/navigation-actions";
 
@@ -106,7 +106,7 @@ export default store => next => action => {
       store.dispatch(updatePlayerELO(MODES.RHYMES, playerELOChange));
       store.dispatch(updatePlayerELOChange(playerELOChange));
       store.dispatch(updateQuestionELO(MODES.RHYMES, currentWord.word, newQuestionELO));
-      store.dispatch(googlePlaySubmitScore(MODES.RHYMES, playerELO + playerELOChange));
+      store.dispatch(submitScoreToLeaderboard(MODES.RHYMES, playerELO + playerELOChange));
       break;
     }
 

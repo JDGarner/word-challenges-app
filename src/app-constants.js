@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 export const ENDPOINTS = {
   RHYMES: "rhymes",
   RHYMES_ELO: "rhymes-elo",
@@ -34,15 +36,18 @@ export const MODES = {
   RHYMES: "rhymes",
 };
 
-export const ANDROID_LEADERBOARD_IDS = {
+const ANDROID_LEADERBOARD_IDS = {
   DEFINITIONS: "CgkIu9P2ttwGEAIQAQ",
   RHYMES: "CgkIu9P2ttwGEAIQAg",
 };
 
-export const IOS_LEADERBOARD_IDS = {
+const IOS_LEADERBOARD_IDS = {
   DEFINITIONS: "grp.definitions",
   RHYMES: "grp.rhymes",
 };
+
+export const LEADERBOARD_IDS =
+  Platform.OS === "android" ? ANDROID_LEADERBOARD_IDS : IOS_LEADERBOARD_IDS;
 
 export const INITIAL_ELO = 800;
 export const RETRY_TIMEOUT = 1000;

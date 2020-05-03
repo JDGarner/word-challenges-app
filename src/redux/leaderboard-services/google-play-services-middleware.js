@@ -4,7 +4,7 @@ import {
   SHOW_LEADERBOARD,
   SILENT_SIGN_IN,
   SUBMIT_SCORE,
-  googlePlaySubmitScore,
+  submitScoreToLeaderboard,
 } from "./leaderboard-services-actions";
 import { MODES } from "../../app-constants";
 import { getELOKeysForMode } from "../../utils/elo-utils";
@@ -41,8 +41,8 @@ export default store => next => action => {
           signInToGooglePlay(RNGooglePlayGameServices.showAllLeaderboards);
         });
 
-      store.dispatch(googlePlaySubmitScore(MODES.DEFINITIONS));
-      store.dispatch(googlePlaySubmitScore(MODES.RHYMES));
+      store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
+      store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
 
       break;
 
@@ -55,8 +55,8 @@ export default store => next => action => {
           signInToGooglePlay(() => RNGooglePlayGameServices.showLeaderboard(action.id));
         });
 
-      store.dispatch(googlePlaySubmitScore(MODES.DEFINITIONS));
-      store.dispatch(googlePlaySubmitScore(MODES.RHYMES));
+      store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
+      store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
 
       break;
 

@@ -18,7 +18,7 @@ import { fetchFromApi } from "../../../utils/api-util";
 import { RETRY_TIMEOUT, MODES, SCREENS, ENDPOINTS } from "../../../app-constants";
 import { DEFINITIONS_LOCAL_BUFFER, FREE_LETTER_SCORE_COST } from "../definitions-constants";
 import { roundIsOver } from "../definitions-utils";
-import { googlePlaySubmitScore } from "../../../redux/leaderboard-services/leaderboard-services-actions";
+import { submitScoreToLeaderboard } from "../../../redux/leaderboard-services/leaderboard-services-actions";
 import { changeScreen } from "../../../redux/navigation/navigation-actions";
 import { updatePlayerELO } from "../../../redux/elo-tracking/elo-tracking-actions";
 
@@ -85,7 +85,7 @@ export default store => next => action => {
     }
 
     case ON_ROUND_END:
-      store.dispatch(googlePlaySubmitScore(MODES.DEFINITIONS));
+      store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
       potentiallyFetchMoreDefinitions(definitions, dispatch);
 
       break;

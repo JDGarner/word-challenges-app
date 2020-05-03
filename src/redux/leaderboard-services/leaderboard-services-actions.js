@@ -23,7 +23,7 @@ export const showLeaderboard = id => ({
   id,
 });
 
-export const googlePlaySubmitScore = (mode, score) => ({
+export const submitScoreToLeaderboard = (mode, score) => ({
   type: SUBMIT_SCORE,
   mode,
   score,
