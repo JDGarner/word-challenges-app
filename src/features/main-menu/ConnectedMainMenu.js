@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import MainMenu from "./MainMenu";
 import { changeScreen } from "../../redux/navigation/navigation-actions";
-import { showAllLeaderboards } from "../../redux/google-play/google-play-services-actions";
+import { showAllLeaderboards } from "../../redux/leaderboard-services/leaderboard-services-actions";
 
 const mapStateToProps = ({ eloTracking }) => {
   const { definitionsELO, rhymesELO } = eloTracking;
@@ -17,6 +17,9 @@ const mapDispatchToProps = {
   showAllLeaderboards,
 };
 
-const ConnectedMainMenu = connect(mapStateToProps, mapDispatchToProps)(MainMenu);
+const ConnectedMainMenu = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MainMenu);
 
 export default ConnectedMainMenu;

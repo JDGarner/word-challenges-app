@@ -5,7 +5,7 @@ import {
   SILENT_SIGN_IN,
   SUBMIT_SCORE,
   googlePlaySubmitScore,
-} from "./google-play-services-actions";
+} from "./leaderboard-services-actions";
 import { MODES } from "../../app-constants";
 import { getELOKeysForMode } from "../../utils/elo-utils";
 import { getConfig } from "../../Config";

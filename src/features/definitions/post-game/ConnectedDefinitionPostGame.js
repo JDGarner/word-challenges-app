@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import DefinitionPostGame from "./DefinitionPostGame";
-import { showLeaderboard } from "../../../redux/google-play/google-play-services-actions";
+import { showLeaderboard } from "../../../redux/leaderboard-services/leaderboard-services-actions";
 import { onPressStartNewGame } from "../redux/definitions-actions";
 
 const mapStateToProps = ({ definitions, eloTracking }) => {

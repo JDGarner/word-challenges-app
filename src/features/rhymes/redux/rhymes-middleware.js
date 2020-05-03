@@ -23,7 +23,7 @@ import {
   updatePlayerELO,
   updateQuestionELO,
 } from "../../../redux/elo-tracking/elo-tracking-actions";
-import { googlePlaySubmitScore } from "../../../redux/google-play/google-play-services-actions";
+import { googlePlaySubmitScore } from "../../../redux/leaderboard-services/leaderboard-services-actions";
 import SoundManager from "../../sound/SoundManager";
 import { changeScreen } from "../../../redux/navigation/navigation-actions";
 

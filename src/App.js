@@ -12,10 +12,12 @@ import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
 import { AppBackground } from "./components";
 import SoundManager from "./features/sound/SoundManager";
 import { retrieveELOs } from "./redux/elo-tracking/elo-tracking-actions";
-import { googlePlaySilentSignIn } from "./redux/google-play/google-play-services-actions";
+import {
+  googlePlaySilentSignIn,
+  gameCenterInit,
+} from "./redux/leaderboard-services/leaderboard-services-actions";
 import { onNavigateBack } from "./redux/navigation/navigation-actions";
 import { updateMutedSetting } from "./redux/settings/settings-actions";
-import { gameCenterInit } from "./redux/game-center/game-center-actions";
 
 const store = configureStore();
 
@@ -31,6 +33,8 @@ export default function AppProvider() {
 
     if (Platform.OS === "android") {
       store.dispatch(googlePlaySilentSignIn());
+    } else {
+      store.dispatch(gameCenterInit());
     }
 
     BackHandler.addEventListener("hardwareBackPress", onHardwareBackPress);

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { onSelectDifficulty } from "../redux/rhymes-actions";
-import { showLeaderboard } from "../../../redux/google-play/google-play-services-actions";
+import { showLeaderboard } from "../../../redux/leaderboard-services/leaderboard-services-actions";
 import RhymeDifficultySelection from "./RhymeDifficultySelection";
 
 const mapDispatchToProps = {

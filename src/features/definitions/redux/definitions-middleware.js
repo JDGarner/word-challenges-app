@@ -18,7 +18,7 @@ import { fetchFromApi } from "../../../utils/api-util";
 import { RETRY_TIMEOUT, MODES, SCREENS, ENDPOINTS } from "../../../app-constants";
 import { DEFINITIONS_LOCAL_BUFFER, FREE_LETTER_SCORE_COST } from "../definitions-constants";
 import { roundIsOver } from "../definitions-utils";
-import { googlePlaySubmitScore } from "../../../redux/google-play/google-play-services-actions";
+import { googlePlaySubmitScore } from "../../../redux/leaderboard-services/leaderboard-services-actions";
 import { changeScreen } from "../../../redux/navigation/navigation-actions";
 import { updatePlayerELO } from "../../../redux/elo-tracking/elo-tracking-actions";
 

@@ -5,11 +5,12 @@ import settingsReducer from "./redux/settings/settings-reducer";
 import navigationReducer from "./redux/navigation/navigation-reducer";
 import eloTrackingReducer from "./redux/elo-tracking/elo-tracking-reducer";
 import eloTrackingMiddleware from "./redux/elo-tracking/elo-tracking-middleware";
-import googlePlayServicesMiddleware from "./redux/google-play/google-play-services-middleware";
+import googlePlayServicesMiddleware from "./redux/leaderboard-services/google-play-services-middleware";
 import rhymesReducer from "./features/rhymes/redux/rhymes-reducer";
 import rhymesMiddleware from "./features/rhymes/redux/rhymes-middleware";
 import definitionsReducer from "./features/definitions/redux/definitions-reducer";
 import definitionsMiddleware from "./features/definitions/redux/definitions-middleware";
+import gameCenterMiddleware from "./redux/leaderboard-services/game-center-middleware";
 
 const initialStore = {};
 
@@ -26,7 +27,7 @@ export default function configureStore() {
     rhymesMiddleware,
     definitionsMiddleware,
     eloTrackingMiddleware,
-    ...(Platform.OS === "android" ? [googlePlayServicesMiddleware] : []),
+    ...(Platform.OS === "android" ? [googlePlayServicesMiddleware] : [gameCenterMiddleware]),
     thunk,
   ];
 
