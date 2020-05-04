@@ -52,7 +52,8 @@ const getPlayerELOChange = (score, playerELO, questionELO, difficulty) => {
 };
 
 const getNewDefinitionQuestionELO = (score, playerELO, questionELO) => {
-  const eloChange = getELOChange(score, questionELO, playerELO);
+  const questionScore = 1 - score;
+  const eloChange = getELOChange(questionScore, questionELO, playerELO);
   return questionELO + eloChange;
 };
 
