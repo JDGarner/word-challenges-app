@@ -12,10 +12,7 @@ import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
 import { AppBackground } from "./components";
 import SoundManager from "./features/sound/SoundManager";
 import { retrieveELOs } from "./redux/elo-tracking/elo-tracking-actions";
-import {
-  googlePlaySilentSignIn,
-  gameCenterInit,
-} from "./redux/leaderboard-services/leaderboard-services-actions";
+import { googlePlaySilentSignIn } from "./redux/leaderboard-services/leaderboard-services-actions";
 import { onNavigateBack } from "./redux/navigation/navigation-actions";
 import { updateMutedSetting } from "./redux/settings/settings-actions";
 

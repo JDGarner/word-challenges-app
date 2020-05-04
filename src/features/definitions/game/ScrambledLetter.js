@@ -5,9 +5,10 @@ import { BorderedButton, MediumText } from "../../../components";
 import { TEXT_TOP_PADDING } from "../../../components/text/Text";
 import { animateScrambledLetter } from "../definitions-utils";
 import SoundManager from "../../sound/SoundManager";
+import { getSizingForOptions } from "../../../utils/sizing-utils";
 
-const LETTER_SIZE = 46;
-const MARGIN_SIZE = 6;
+const LETTER_SIZE = getSizingForOptions(44, 45, 46);
+const MARGIN_SIZE = getSizingForOptions(5, 6, 6);
 
 const EmptyLetterPlaceHolder = styled(View)`
   margin-vertical: ${MARGIN_SIZE};

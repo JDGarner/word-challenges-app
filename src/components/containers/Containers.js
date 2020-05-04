@@ -42,9 +42,3 @@ export const ScreenContainerPadded = styled(CenteredContainer)`
   flex: 1;
   padding-horizontal: 5%;
 `;
-
-export const TitleContainer = styled(View)`
-  height: 12%;
-  justify-content: flex-end;
-  align-items: center;
-`;

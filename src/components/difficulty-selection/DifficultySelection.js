@@ -11,6 +11,10 @@ import ConnectedTopBar from "../top-bar/ConnectedTopBar";
 import Title from "../title/Title";
 import { HeightSpacer } from "../spacer/Spacer";
 import AnimatedSequence from "../animated-sequence/AnimatedSequence";
+import { getSizingForOptions } from "../../utils/sizing-utils";
+
+const OPTION_WIDTH = getSizingForOptions(180, 210, 230);
+const OPTION_PADDING = getSizingForOptions(10, 12, 14);
 
 const DifficultyOptions = styled(View)`
   flex: 1;
@@ -24,7 +28,10 @@ const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, m
     return map(DIFFICULTIES, difficulty => ({
       id: difficulty,
       component: (
-        <MenuButton onPress={() => onSelectDifficulty(difficulty)} width={230} verticalPadding={14}>
+        <MenuButton
+          onPress={() => onSelectDifficulty(difficulty)}
+          width={OPTION_WIDTH}
+          verticalPadding={OPTION_PADDING}>
           <MediumLargerText>{capitalize(difficulty)}</MediumLargerText>
         </MenuButton>
       ),

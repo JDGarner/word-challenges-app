@@ -7,9 +7,12 @@ import CommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import SoundManager from "../sound/SoundManager";
 import colors from "../../theme/colors";
 import { SCREENS } from "../../app-constants";
+import { getSizingForOptions } from "../../utils/sizing-utils";
+
+const MENU_OPTIONS_SPACING = getSizingForOptions("10%", "36%", "60%");
 
 const MenuOptionsContainer = styled(View)`
-  margin-top: 60%;
+  margin-top: ${MENU_OPTIONS_SPACING};
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;

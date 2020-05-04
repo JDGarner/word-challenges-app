@@ -5,13 +5,13 @@
 General:
 - enable API_KEY on BE
 - dont allow pausing by backgrounding?
+- Fix smaller screens
 
 iOS Release:
 - Connect to game center for iOS
 - test on ios device
 
 Testing:
-- test different devices, small & big
 - Check for handle on screen background bugs
 - test offline play
 

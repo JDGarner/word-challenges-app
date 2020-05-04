@@ -20,7 +20,9 @@ import { getELORatingChanges } from "../../../utils/elo-utils";
 import { MODES } from "../../../app-constants";
 import colors from "../../../theme/colors";
 import AnswerLetters from "./AnswerLetters";
+import { getSizingForOptions } from "../../../utils/sizing-utils";
 
+const GAME_TOP_SPACING = getSizingForOptions(28, 38, 46);
 const ICON_SIZE = 40;
 
 const ContentContainer = styled(Animated.View)`
@@ -35,7 +37,7 @@ const CentreContainer = styled(View)`
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  margin-top: 46;
+  margin-top: ${GAME_TOP_SPACING};
 `;
 
 const ScrambledLettersContainer = styled(View)`

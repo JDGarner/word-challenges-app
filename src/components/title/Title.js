@@ -1,7 +1,17 @@
 import React from "react";
-import { TitleContainer } from "../containers/Containers";
+import { View } from "react-native";
+import styled from "styled-components";
 import PopInView from "../pop-in-view/PopInView";
 import { MediumLargeText } from "../text/Text";
+import { getSizingForOptions } from "../../utils/sizing-utils";
+
+const TITLE_HEIGHT = getSizingForOptions("9%", "11%", "12%");
+
+const TitleContainer = styled(View)`
+  height: ${TITLE_HEIGHT};
+  justify-content: flex-end;
+  align-items: center;
+`;
 
 const Title = ({ fadeIn, text, delay }) => {
   if (fadeIn) {

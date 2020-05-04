@@ -12,7 +12,6 @@ import {
   FlexCenteredContainer,
   FlexStartContainer,
   ScreenContainerPadded,
-  TitleContainer,
 } from "./containers/Containers";
 import HideKeyboardOnTouch from "./keyboard/HideKeyboardOnTouch";
 import AppBackground from "./background/AppBackground";
@@ -50,7 +49,6 @@ export {
   FlexCenteredContainer,
   FlexStartContainer,
   ScreenContainerPadded,
-  TitleContainer,
   Title,
   TopBarTitle,
   HeightSpacer,
