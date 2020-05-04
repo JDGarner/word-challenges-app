@@ -65,8 +65,7 @@ export default store => next => action => {
       const scoreToSubmit = action.score || eloTracking[stateKey];
 
       const { IS_PROD } = getConfig();
-      // TODO: take out true
-      if (IS_PROD === "true" || true) {
+      if (IS_PROD === "true") {
         GameCenter.submitLeaderboardScore({
           score: scoreToSubmit,
           leaderboardIdentifier: leaderboardId,

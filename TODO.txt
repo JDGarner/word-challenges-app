@@ -4,6 +4,8 @@
 
 General:
 - enable API_KEY on BE
+- question elo change not correct
+- dont allow pausing by backgrounding?
 
 iOS Release:
 - Connect to game center for iOS

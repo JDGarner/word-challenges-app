@@ -33,8 +33,6 @@ export default function AppProvider() {
 
     if (Platform.OS === "android") {
       store.dispatch(googlePlaySilentSignIn());
-    } else {
-      store.dispatch(gameCenterInit());
     }
 
     BackHandler.addEventListener("hardwareBackPress", onHardwareBackPress);
