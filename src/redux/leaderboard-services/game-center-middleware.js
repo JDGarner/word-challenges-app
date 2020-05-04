@@ -11,17 +11,14 @@ import {
 import { getELOKeysForMode } from "../../utils/elo-utils";
 import { getConfig } from "../../Config";
 
-// TODO: submit score then show leaderboard, init if any of those fail
-const showLeaderboards = () => {};
-
 export default store => next => action => {
   switch (action.type) {
     case SHOW_ALL_LEADERBOARDS:
       GameCenter.openLeaderboards({
         leaderboardIdentifier: LEADERBOARD_IDS.DEFINITIONS,
       })
-        .then(res => {
-          console.log("Game Center: Open Leaderboard Successful. ", res);
+        .then(() => {
+          console.log("Game Center: Open Leaderboard Successful");
           store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
           store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
         })
@@ -32,12 +29,14 @@ export default store => next => action => {
 
       break;
 
-    case SHOW_LEADERBOARD:
+    case SHOW_LEADERBOARD: {
+      const { leaderboardId } = getELOKeysForMode(action.mode);
+
       GameCenter.openLeaderboardModal({
-        leaderboardIdentifier: action.id,
+        leaderboardIdentifier: leaderboardId,
       })
         .then(res => {
-          console.log("Game Center: Open Leaderboard Successful. ", res);
+          console.log("Game Center: Open Leaderboard Successful");
           store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
           store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
         })
@@ -47,11 +46,12 @@ export default store => next => action => {
         });
 
       break;
+    }
 
     case GAME_CENTER_INIT:
       GameCenter.init({ leaderboardIdentifier: LEADERBOARD_IDS.DEFINITIONS })
-        .then(res => {
-          console.log("Game Center: Init Successful. ", res);
+        .then(() => {
+          console.log("Game Center: Init Successful");
         })
         .catch(res => {
           console.log("Game Center: Init Failed. ", res);
@@ -59,7 +59,7 @@ export default store => next => action => {
 
       break;
 
-    case SUBMIT_SCORE:
+    case SUBMIT_SCORE: {
       const { eloTracking } = store.getState();
       const { stateKey, leaderboardId } = getELOKeysForMode(action.mode);
       const scoreToSubmit = action.score || eloTracking[stateKey];
@@ -71,8 +71,8 @@ export default store => next => action => {
           score: scoreToSubmit,
           leaderboardIdentifier: leaderboardId,
         })
-          .then(res => {
-            console.log("Game Center: Score Submit Successful. ", res);
+          .then(() => {
+            console.log("Game Center: Score Submit Successful");
           })
           .catch(res => {
             console.log("Game Center: Score Submit Failed. ", res);
@@ -82,6 +82,7 @@ export default store => next => action => {
       }
 
       break;
+    }
 
     default:
       break;

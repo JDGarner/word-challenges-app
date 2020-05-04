@@ -46,19 +46,22 @@ export default store => next => action => {
 
       break;
 
-    case SHOW_LEADERBOARD:
-      RNGooglePlayGameServices.showLeaderboard(action.id)
+    case SHOW_LEADERBOARD: {
+      const { leaderboardId } = getELOKeysForMode(action.mode);
+
+      RNGooglePlayGameServices.showLeaderboard(leaderboardId)
         .then(() => {
-          console.log("Google Play Game Services: Showing Leaderboard ", action.id);
+          console.log("Google Play Game Services: Showing Leaderboard ", leaderboardId);
         })
         .catch(() => {
-          signInToGooglePlay(() => RNGooglePlayGameServices.showLeaderboard(action.id));
+          signInToGooglePlay(() => RNGooglePlayGameServices.showLeaderboard(leaderboardId));
         });
 
       store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
       store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
 
       break;
+    }
 
     case SILENT_SIGN_IN:
       RNGooglePlayGameServices.signInSilently()
@@ -71,7 +74,7 @@ export default store => next => action => {
 
       break;
 
-    case SUBMIT_SCORE:
+    case SUBMIT_SCORE: {
       const { eloTracking } = store.getState();
       const { stateKey, leaderboardId } = getELOKeysForMode(action.mode);
       const scoreToSubmit = action.score || eloTracking[stateKey];
@@ -93,6 +96,7 @@ export default store => next => action => {
       }
 
       break;
+    }
 
     default:
       break;

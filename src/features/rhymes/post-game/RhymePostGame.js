@@ -20,7 +20,7 @@ import {
 } from "../rhymes-constants";
 import ScoreChange from "../../../components/score-change/ScoreChange";
 import { LeaderboardButton } from "../../../components/button/Button";
-import { LEADERBOARD_IDS } from "../../../app-constants";
+import { MODES } from "../../../app-constants";
 import SoundManager from "../../sound/SoundManager";
 
 const getPostGameText = (score, word) => {
@@ -77,9 +77,7 @@ const RhymePostGame = ({
   return (
     <>
       <ConnectedTopBar
-        RightComponent={
-          <LeaderboardButton onPress={() => showLeaderboard(LEADERBOARD_IDS.RHYMES)} />
-        }
+        RightComponent={<LeaderboardButton onPress={() => showLeaderboard(MODES.RHYMES)} />}
       />
       <Title text={praise} />
       <PostGameContainer>

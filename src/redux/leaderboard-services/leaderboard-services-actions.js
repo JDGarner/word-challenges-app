@@ -18,9 +18,9 @@ export const showAllLeaderboards = () => ({
   type: SHOW_ALL_LEADERBOARDS,
 });
 
-export const showLeaderboard = id => ({
+export const showLeaderboard = mode => ({
   type: SHOW_LEADERBOARD,
-  id,
+  mode,
 });
 
 export const submitScoreToLeaderboard = (mode, score) => ({

@@ -19,7 +19,7 @@ const DifficultyOptions = styled(View)`
   align-items: center;
 `;
 
-const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, leaderboardId }) => {
+const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, mode }) => {
   const getDifficultyOptions = () => {
     return map(DIFFICULTIES, difficulty => ({
       id: difficulty,
@@ -35,7 +35,7 @@ const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, l
     <Fragment>
       <ConnectedTopBar
         titleText={titleText}
-        RightComponent={<LeaderboardButton onPress={() => showLeaderboard(leaderboardId)} />}
+        RightComponent={<LeaderboardButton onPress={() => showLeaderboard(mode)} />}
       />
       <Title text="Select a difficulty" />
       <HeightSpacer height="5%" />
