@@ -9,7 +9,7 @@ import colors from "../../theme/colors";
 import { SCREENS } from "../../app-constants";
 import { getSizingForOptions } from "../../utils/sizing-utils";
 
-const MENU_OPTIONS_SPACING = getSizingForOptions("10%", "36%", "60%");
+const MENU_OPTIONS_SPACING = getSizingForOptions("10%", "18%", "56%");
 const MENU_OPTION_BUTTON = getSizingForOptions(48, 50, 52);
 const ICON_SIZE = getSizingForOptions(28, 30, 32);
 

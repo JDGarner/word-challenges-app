@@ -13,6 +13,20 @@ import {
   getLowPraiseWord,
 } from "../../utils/common-utils";
 
+// Potentially change letter size depending on screen size
+// import { SMALL, MEDIUM, LARGE, SCREEN_SIZE } from "../../utils/sizing-utils";
+// const LARGER_WORD_OPTIONS = { [SMALL]: 26, [MEDIUM]: 28, [LARGE]: 30 };
+// const LARGE_WORD_OPTIONS = { [SMALL]: 24, [MEDIUM]: 25, [LARGE]: 26 };
+// const MEDIUMLARGER_WORD_OPTIONS = { [SMALL]: 22, [MEDIUM]: 22, [LARGE]: 22 };
+// const MEDIUM_WORD_OPTIONS = { [SMALL]: 20, [MEDIUM]: 20, [LARGE]: 20 };
+// const SMALL_WORD_OPTIONS = { [SMALL]: 18, [MEDIUM]: 18, [LARGE]: 18 };
+
+// const LARGER_WORD_FONTSIZE = LARGER_WORD_OPTIONS[SCREEN_SIZE];
+// const LARGE_WORD_FONTSIZE = LARGE_WORD_OPTIONS[SCREEN_SIZE];
+// const MEDIUMLARGER_WORD_FONTSIZE = MEDIUMLARGER_WORD_OPTIONS[SCREEN_SIZE];
+// const MEDIUM_WORD_FONTSIZE = MEDIUM_WORD_OPTIONS[SCREEN_SIZE];
+// const SMALL_WORD_FONTSIZE = SMALL_WORD_OPTIONS[SCREEN_SIZE];
+
 export const roundIsOver = questionIndex => {
   return questionIndex >= WORDS_PER_ROUND;
 };

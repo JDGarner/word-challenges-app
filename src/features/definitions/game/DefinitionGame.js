@@ -23,7 +23,7 @@ import AnswerLetters from "./AnswerLetters";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 
 const GAME_TOP_SPACING = getSizingForOptions(10, 32, 46);
-const FOOTER_HEIGHT = getSizingForOptions("22%", "25%", "28%");
+const FOOTER_HEIGHT = getSizingForOptions("22%", "24%", "25%");
 const SCRAMBLED_MARGIN_BOTTOM = getSizingForOptions("0%", "3%", "6%");
 const ICON_SIZE = 40;
 
