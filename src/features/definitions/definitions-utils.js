@@ -42,11 +42,11 @@ const MEDIUMLARGER_FS = getSizingForOptions(22, 22, 22, 40);
 const MEDIUM_FS = getSizingForOptions(20, 20, 20, 38);
 const SMALL_FS = getSizingForOptions(18, 18, 18, 36);
 
-const LARGER_SIZE = getSizingForOptions(34, 34, 34, 53);
-const LARGE_SIZE = getSizingForOptions(30, 30, 30, 49);
-const MEDIUMLARGER_SIZE = getSizingForOptions(28, 28, 28, 48);
-const MEDIUM_SIZE = getSizingForOptions(28, 28, 28, 46);
-const SMALL_SIZE = getSizingForOptions(24, 24, 24, 45);
+const LARGER_SIZE = getSizingForOptions(32, 32, 32, 53);
+const LARGE_SIZE = getSizingForOptions(28, 28, 28, 49);
+const MEDIUMLARGER_SIZE = getSizingForOptions(26, 26, 26, 48);
+const MEDIUM_SIZE = getSizingForOptions(25, 25, 25, 46);
+const SMALL_SIZE = getSizingForOptions(22, 22, 22, 45);
 
 const LARGER_MARGIN = getSizingForOptions(5, 5, 5, 12);
 const LARGE_MARGIN = getSizingForOptions(4, 4, 4, 10);
