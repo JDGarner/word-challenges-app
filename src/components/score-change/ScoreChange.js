@@ -5,6 +5,9 @@ import { MediumLargeText } from "../text/Text";
 import theme from "../../theme";
 import PopInView from "../pop-in-view/PopInView";
 import SoundManager from "../../features/sound/SoundManager";
+import { getSizingForOptions } from "../../utils/sizing-utils";
+
+const PADDING_LEFT = getSizingForOptions(70, 70, 70, 100);
 
 const ScoreChangeContainer = styled(View)`
   width: 100%;
@@ -15,7 +18,7 @@ const ScoreChangeContainer = styled(View)`
 const ScoreChangeTextContainer = styled(View)`
   position: absolute;
   left: 50%;
-  padding-left: 70;
+  padding-left: ${PADDING_LEFT};
 `;
 
 let countdownInterval = null;

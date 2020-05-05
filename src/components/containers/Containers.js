@@ -39,7 +39,7 @@ export const ScreenContainer = styled(CenteredContainer)`
   justify-content: space-around;
 `;
 
-const SCREEN_PADDING = getSizingForOptions("4%", "5%", "5%");
+const SCREEN_PADDING = getSizingForOptions("4%", "5%", "5%", "5%");
 
 export const ScreenContainerPadded = styled(CenteredContainer)`
   flex: 1;

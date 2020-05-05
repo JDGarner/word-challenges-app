@@ -18,8 +18,8 @@ import { MODES } from "../../../app-constants";
 import SoundManager from "../../sound/SoundManager";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 
-const FOOTER_MARGIN_BOTTOM = getSizingForOptions("0%", "3%", "5%");
-const ANSWERS_MARGIN_VERTICAL = getSizingForOptions(8, 12, 16);
+const FOOTER_MARGIN_BOTTOM = getSizingForOptions("0%", "3%", "5%", "8%");
+const ANSWERS_MARGIN_VERTICAL = getSizingForOptions(8, 12, 16, 26);
 
 const ContentContainer = styled(View)`
   flex: 1;

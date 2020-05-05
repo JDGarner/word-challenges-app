@@ -2,6 +2,11 @@
 1st Release
 ----------------------------------------
 
+Current:
+- upload ipad screenshots
+- fix apk crashing issue and then re-test google play version
+
+
 General:
 - enable API_KEY on BE
 - dont allow pausing by backgrounding?

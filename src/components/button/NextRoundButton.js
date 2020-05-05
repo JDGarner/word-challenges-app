@@ -6,8 +6,8 @@ import SoundManager from "../../features/sound/SoundManager";
 import AnimatedButton from "./AnimatedButton";
 import { getSizingForOptions } from "../../utils/sizing-utils";
 
-const BUTTON_PADDING_VERTICAL = getSizingForOptions(8, 9, 10);
-const BUTTON_PADDING_HORIZONTAL = getSizingForOptions(20, 22, 24);
+const BUTTON_PADDING_VERTICAL = getSizingForOptions(8, 9, 10, 22);
+const BUTTON_PADDING_HORIZONTAL = getSizingForOptions(20, 22, 24, 48);
 
 const NextRoundPaddedButton = styled(AnimatedButton)`
   padding-top: ${BUTTON_PADDING_VERTICAL + TEXT_TOP_PADDING};

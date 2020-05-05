@@ -22,10 +22,10 @@ import colors from "../../../theme/colors";
 import AnswerLetters from "./AnswerLetters";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 
-const GAME_TOP_SPACING = getSizingForOptions(10, 32, 46);
-const FOOTER_HEIGHT = getSizingForOptions("22%", "24%", "25%");
-const SCRAMBLED_MARGIN_BOTTOM = getSizingForOptions("0%", "3%", "6%");
-const ICON_SIZE = 40;
+const GAME_TOP_SPACING = getSizingForOptions(10, 32, 46, 46);
+const FOOTER_HEIGHT = getSizingForOptions("22%", "24%", "25%", "25%");
+const SCRAMBLED_MARGIN_BOTTOM = getSizingForOptions("0%", "3%", "6%", "6%");
+const ICON_SIZE = getSizingForOptions(40, 40, 40, 68);
 
 const ContentContainer = styled(Animated.View)`
   flex: 1;

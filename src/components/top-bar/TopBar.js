@@ -5,9 +5,13 @@ import { IconButton } from "../../components/button/Button";
 import Countdown from "../countdown/Countdown";
 import TopBarTitle from "../title/TopBarTitle";
 import SoundManager from "../../features/sound/SoundManager";
+import { getSizingForOptions } from "../../utils/sizing-utils";
+
+const TOP_BAR_HEIGHT = getSizingForOptions(70, 70, 70, 120);
+const IMAGE_SIZE = getSizingForOptions(52, 58, 58, 96);
 
 const TopBarContainer = styled(View)`
-  height: 70;
+  height: ${TOP_BAR_HEIGHT};
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
@@ -15,7 +19,7 @@ const TopBarContainer = styled(View)`
   margin-bottom: auto;
 `;
 
-const imageStyles = { width: 58, height: 58, opacity: 0.8, marginTop: 4 };
+const imageStyles = { width: IMAGE_SIZE, height: IMAGE_SIZE, opacity: 0.8, marginTop: 4 };
 
 const TopBar = ({
   gameCountdown,

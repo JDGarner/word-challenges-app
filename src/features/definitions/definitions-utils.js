@@ -12,20 +12,7 @@ import {
   getMediumPraiseWord,
   getLowPraiseWord,
 } from "../../utils/common-utils";
-
-// Potentially change letter size depending on screen size
-// import { SMALL, MEDIUM, LARGE, SCREEN_SIZE } from "../../utils/sizing-utils";
-// const LARGER_WORD_OPTIONS = { [SMALL]: 26, [MEDIUM]: 28, [LARGE]: 30 };
-// const LARGE_WORD_OPTIONS = { [SMALL]: 24, [MEDIUM]: 25, [LARGE]: 26 };
-// const MEDIUMLARGER_WORD_OPTIONS = { [SMALL]: 22, [MEDIUM]: 22, [LARGE]: 22 };
-// const MEDIUM_WORD_OPTIONS = { [SMALL]: 20, [MEDIUM]: 20, [LARGE]: 20 };
-// const SMALL_WORD_OPTIONS = { [SMALL]: 18, [MEDIUM]: 18, [LARGE]: 18 };
-
-// const LARGER_WORD_FONTSIZE = LARGER_WORD_OPTIONS[SCREEN_SIZE];
-// const LARGE_WORD_FONTSIZE = LARGE_WORD_OPTIONS[SCREEN_SIZE];
-// const MEDIUMLARGER_WORD_FONTSIZE = MEDIUMLARGER_WORD_OPTIONS[SCREEN_SIZE];
-// const MEDIUM_WORD_FONTSIZE = MEDIUM_WORD_OPTIONS[SCREEN_SIZE];
-// const SMALL_WORD_FONTSIZE = SMALL_WORD_OPTIONS[SCREEN_SIZE];
+import { getSizingForOptions } from "../../utils/sizing-utils";
 
 export const roundIsOver = questionIndex => {
   return questionIndex >= WORDS_PER_ROUND;
@@ -49,24 +36,67 @@ export const getPraiseForScore = (correct, total) => {
   return getLowPraiseWord();
 };
 
+const LARGER_FS = getSizingForOptions(26, 26, 26, 44);
+const LARGE_FS = getSizingForOptions(24, 24, 24, 42);
+const MEDIUMLARGER_FS = getSizingForOptions(22, 22, 22, 40);
+const MEDIUM_FS = getSizingForOptions(20, 20, 20, 38);
+const SMALL_FS = getSizingForOptions(18, 18, 18, 36);
+
+const LARGER_SIZE = getSizingForOptions(34, 34, 34, 53);
+const LARGE_SIZE = getSizingForOptions(30, 30, 30, 49);
+const MEDIUMLARGER_SIZE = getSizingForOptions(28, 28, 28, 48);
+const MEDIUM_SIZE = getSizingForOptions(28, 28, 28, 46);
+const SMALL_SIZE = getSizingForOptions(24, 24, 24, 45);
+
+const LARGER_MARGIN = getSizingForOptions(5, 5, 5, 12);
+const LARGE_MARGIN = getSizingForOptions(4, 4, 4, 10);
+const MEDIUMLARGER_MARGIN = getSizingForOptions(3, 3, 3, 8);
+const MEDIUM_MARGIN = getSizingForOptions(3, 3, 3, 8);
+const SMALL_MARGIN = getSizingForOptions(2, 2, 2, 7);
+
 export const getAnswerTextProps = wordLength => {
   if (wordLength < 7) {
-    return { fontSize: 26, height: 36, maxWidth: 34, marginHorizontal: 5 };
+    return {
+      fontSize: LARGER_FS,
+      height: LARGER_SIZE + 2,
+      maxWidth: LARGER_SIZE,
+      marginHorizontal: LARGER_MARGIN,
+    };
   }
 
   if (wordLength < 10) {
-    return { fontSize: 24, height: 34, maxWidth: 30, marginHorizontal: 4 };
+    return {
+      fontSize: LARGE_FS,
+      height: LARGE_SIZE + 4,
+      maxWidth: LARGE_SIZE,
+      marginHorizontal: LARGE_MARGIN,
+    };
   }
 
   if (wordLength < 12) {
-    return { fontSize: 22, height: 32, maxWidth: 28, marginHorizontal: 3 };
+    return {
+      fontSize: MEDIUMLARGER_FS,
+      height: MEDIUMLARGER_SIZE + 4,
+      maxWidth: MEDIUMLARGER_SIZE,
+      marginHorizontal: MEDIUMLARGER_MARGIN,
+    };
   }
 
   if (wordLength < 14) {
-    return { fontSize: 20, height: 28, maxWidth: 28, marginHorizontal: 3 };
+    return {
+      fontSize: MEDIUM_FS,
+      height: MEDIUM_SIZE,
+      maxWidth: MEDIUM_SIZE,
+      marginHorizontal: MEDIUM_MARGIN,
+    };
   }
 
-  return { fontSize: 18, height: 24, maxWidth: 24, marginHorizontal: 2 };
+  return {
+    fontSize: SMALL_FS,
+    height: SMALL_SIZE,
+    maxWidth: SMALL_SIZE,
+    marginHorizontal: SMALL_MARGIN,
+  };
 };
 
 // Example return: [null, { ...ls }, { ...ls }, null, null, null]

@@ -13,8 +13,8 @@ import { HeightSpacer } from "../spacer/Spacer";
 import AnimatedSequence from "../animated-sequence/AnimatedSequence";
 import { getSizingForOptions } from "../../utils/sizing-utils";
 
-const OPTION_WIDTH = getSizingForOptions(180, 210, 230);
-const OPTION_PADDING = getSizingForOptions(10, 12, 14);
+const OPTION_WIDTH = getSizingForOptions(180, 210, 230, 370);
+const OPTION_PADDING = getSizingForOptions(10, 12, 14, 24);
 
 const DifficultyOptions = styled(View)`
   flex: 1;

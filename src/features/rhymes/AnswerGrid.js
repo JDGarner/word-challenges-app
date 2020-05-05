@@ -7,6 +7,11 @@ import { MediumText, PopInView, AnimatedSequence } from "../../components";
 import { ANSWER_ANIMATION_GAP_TIME, ANSWER_ANIMATION_START_DELAY_TIME } from "./rhymes-constants";
 import colors from "../../theme/colors";
 import SoundManager from "../sound/SoundManager";
+import { getSizingForOptions } from "../../utils/sizing-utils";
+
+const PADDING_V = getSizingForOptions(10, 10, 10, 22);
+const PADDING_H = getSizingForOptions(2, 2, 2, 10);
+const MARGIN_H = getSizingForOptions(14, 14, 14, 34);
 
 const GridContainer = styled(View)`
   height: 30%;
@@ -23,8 +28,9 @@ const AnswerText = styled(MediumText)`
 `;
 
 const AnswerContainer = styled(View)`
-  margin-horizontal: 14px;
-  padding: 10px 2px;
+  margin-horizontal: ${MARGIN_H};
+  padding-vertical: ${PADDING_V};
+  padding-horizontal: ${PADDING_H};
   background-color: ${colors.textColorLighter};
   border-radius: 4px;
 `;

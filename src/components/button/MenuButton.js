@@ -5,8 +5,8 @@ import { TEXT_TOP_PADDING } from "../text/Text";
 import AnimatedButton from "./AnimatedButton";
 import { getSizingForOptions } from "../../utils/sizing-utils";
 
-const MENU_BUTTON_SPACING = getSizingForOptions("3%", "4%", "6%");
-const MENU_BUTTON_WIDTH = getSizingForOptions(200, 220, 240);
+const MENU_BUTTON_SPACING = getSizingForOptions("3%", "4%", "6%", "5%");
+const MENU_BUTTON_WIDTH = getSizingForOptions(200, 220, 240, 380);
 
 const MenuPaddedButton = styled(AnimatedButton)`
   width: ${props => props.width || MENU_BUTTON_WIDTH};

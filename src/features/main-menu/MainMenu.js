@@ -17,6 +17,10 @@ import { SmallMediumText } from "../../components/text/Text";
 import colors from "../../theme/colors";
 import { getRankForScore } from "../../utils/elo-utils";
 import ConnectedMenuOptions from "./ConnectedMenuOptions";
+import { getSizingForOptions, ICON_SIZE } from "../../utils/sizing-utils";
+
+const BUTTON_PADDING = getSizingForOptions(0, 0, 0, 6);
+const TEXT_PADDING_TOP = getSizingForOptions(8, 8, 8, 14);
 
 const MenuContainer = styled(View)`
   flex: 1;
@@ -28,7 +32,7 @@ const ScoreTextContainer = styled(View)`
   border-top-width: 1;
   border-top-color: ${colors.textColorLight};
   width: 100%;
-  padding-top: 8;
+  padding-top: ${TEXT_PADDING_TOP};
   padding-bottom: 2;
   align-items: flex-start;
   justify-content: space-between;
@@ -86,7 +90,8 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
           <MenuButton
             onPress={() => changeScreen(initialScreen)}
             disabled={isSynonyms}
-            style={{ borderColor: color }}>
+            style={{ borderColor: color }}
+            verticalPadding={BUTTON_PADDING}>
             <MenuTextContainer>
               <MenuNameText color={color}>{displayName}</MenuNameText>
               {ItemFooter}
@@ -107,7 +112,7 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
   return (
     <ScreenContainerPadded>
       <TopBar
-        LeftComponent={<WidthSpacer width={36.5} />}
+        LeftComponent={<WidthSpacer width={ICON_SIZE} />}
         RightComponent={<LeaderboardButton onPress={showAllLeaderboards} />}
         displayLogo
       />

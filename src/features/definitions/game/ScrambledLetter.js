@@ -7,8 +7,8 @@ import { animateScrambledLetter } from "../definitions-utils";
 import SoundManager from "../../sound/SoundManager";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 
-const LETTER_SIZE = getSizingForOptions(44, 45, 50);
-const MARGIN_SIZE = getSizingForOptions(5, 6, 6);
+const LETTER_SIZE = getSizingForOptions(44, 45, 50, 84);
+const MARGIN_SIZE = getSizingForOptions(5, 6, 6, 10);
 
 const EmptyLetterPlaceHolder = styled(View)`
   margin-vertical: ${MARGIN_SIZE};

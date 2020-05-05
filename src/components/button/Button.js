@@ -7,6 +7,7 @@ import theme from "../../theme";
 import { TextContainer } from "../containers/Containers";
 import SoundManager from "../../features/sound/SoundManager";
 import { animateButtonPressIn, animateButtonPressOut } from "./button-utils";
+import { ICON_SIZE } from "../../utils/sizing-utils";
 
 export const BorderedButton = ({ children, style, reduceScaleFactor = 0.95, ...buttonProps }) => {
   const [scaleValue] = useState(new Animated.Value(1));
@@ -29,7 +30,7 @@ export const PaddedButton = styled(BorderedButton)`
   padding-horizontal: ${props => props.paddingHorizontal || 12};
 `;
 
-export const IconButton = ({ name, size = 36, ...buttonProps }) => {
+export const IconButton = ({ name, size = ICON_SIZE, ...buttonProps }) => {
   return (
     <TouchableOpacity {...buttonProps}>
       <Icon name={name} size={size} color={theme.textColor} />
@@ -37,7 +38,7 @@ export const IconButton = ({ name, size = 36, ...buttonProps }) => {
   );
 };
 
-export const FontAwesomeIconButton = ({ name, size = 36, ...buttonProps }) => {
+export const FontAwesomeIconButton = ({ name, size = ICON_SIZE, ...buttonProps }) => {
   return (
     <TouchableOpacity {...buttonProps}>
       <FontAwesomeIcon name={name} size={size} color={theme.textColor} />
@@ -54,8 +55,8 @@ export const LeaderboardButton = ({ onPress }) => {
   return (
     <FontAwesomeIconButton
       name="trophy"
-      size={28}
-      style={{ width: 36.5, alignItems: "flex-end" }}
+      size={ICON_SIZE - 4}
+      style={{ width: ICON_SIZE, alignItems: "flex-end" }}
       onPress={onPressLeaderboardButton}
     />
   );

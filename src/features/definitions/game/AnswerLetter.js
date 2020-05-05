@@ -6,6 +6,9 @@ import { animateAnswerLetter, animateFeedbackLetter } from "../definitions-utils
 import { TEXT_TOP_PADDING } from "../../../components/text/Text";
 import SoundManager from "../../sound/SoundManager";
 import colors from "../../../theme/colors";
+import { getSizingForOptions } from "../../../utils/sizing-utils";
+
+const LETTER_WIDTH = getSizingForOptions(28, 28, 28, 44);
 
 const AnswerButton = styled(TouchableOpacity)`
   border-bottom-width: 2px;
@@ -14,7 +17,7 @@ const AnswerButton = styled(TouchableOpacity)`
   margin-horizontal: ${props => props.marginHorizontal};
   flex: 1;
   height: ${props => props.height};
-  width: 28;
+  width: ${LETTER_WIDTH};
   max-width: ${props => props.maxWidth};
 `;
 
