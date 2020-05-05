@@ -22,6 +22,9 @@ import ScoreChange from "../../../components/score-change/ScoreChange";
 import { LeaderboardButton } from "../../../components/button/Button";
 import { MODES } from "../../../app-constants";
 import SoundManager from "../../sound/SoundManager";
+import { getSizingForOptions } from "../../../utils/sizing-utils";
+
+const POST_GAME_TEXT_MARGIN = getSizingForOptions(20, 25, 30);
 
 const getPostGameText = (score, word) => {
   const percentage = Math.floor((score / ANSWERS_REQUIRED) * 100);
@@ -33,7 +36,7 @@ const getPostGameText = (score, word) => {
 };
 
 const PostGameText = styled(MediumLargeText)`
-  margin-vertical: 30;
+  margin-vertical: ${POST_GAME_TEXT_MARGIN};
 `;
 
 const FooterContainer = styled(View)`
@@ -95,7 +98,7 @@ const RhymePostGame = ({
             scoreChange={eloChange}
             delay={footerAnimationDelay}
           />
-          <HeightSpacer height="10%" />
+          <HeightSpacer height="20%" />
           <NextRoundButton
             onPress={onPressStartNewGame}
             onAnimationStart={onPlayAgainAnimationStart}

@@ -1375,6 +1375,13 @@ export const definitions = {
   ],
   master: [
     {
+      _id: "5e93c7880a9cb363c896a450",
+      word: "convalescence",
+      definition: "Time spent recovering from an illness or medical treatment; recuperation",
+      difficulty: "master",
+      eloRating: 2800,
+    },
+    {
       _id: "5e93c7880a9cb363c896a3f2",
       word: "aberration",
       definition: "A state or condition markedly different from the norm",
@@ -1455,13 +1462,6 @@ export const definitions = {
       _id: "5e93c7880a9cb363c896a369",
       word: "cajole",
       definition: "Influence or urge by gentle urging, caressing, or flattering",
-      difficulty: "master",
-      eloRating: 2800,
-    },
-    {
-      _id: "5e93c7880a9cb363c896a450",
-      word: "convalescence",
-      definition: "Time spent recovering from an illness or medical treatment; recuperation",
       difficulty: "master",
       eloRating: 2800,
     },

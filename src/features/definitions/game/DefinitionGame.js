@@ -22,7 +22,9 @@ import colors from "../../../theme/colors";
 import AnswerLetters from "./AnswerLetters";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 
-const GAME_TOP_SPACING = getSizingForOptions(28, 38, 46);
+const GAME_TOP_SPACING = getSizingForOptions(10, 32, 46);
+const FOOTER_HEIGHT = getSizingForOptions("22%", "25%", "28%");
+const SCRAMBLED_MARGIN_BOTTOM = getSizingForOptions("0%", "3%", "6%");
 const ICON_SIZE = 40;
 
 const ContentContainer = styled(Animated.View)`
@@ -45,11 +47,11 @@ const ScrambledLettersContainer = styled(View)`
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
-  margin-bottom: 6%;
+  margin-bottom: ${SCRAMBLED_MARGIN_BOTTOM};
 `;
 
 const FooterContainer = styled(View)`
-  height: 28%;
+  height: ${FOOTER_HEIGHT};
   margin-top: auto;
 `;
 

@@ -4,11 +4,15 @@ import { MediumLargeText, TEXT_TOP_PADDING } from "../text/Text";
 import PopInView from "../pop-in-view/PopInView";
 import SoundManager from "../../features/sound/SoundManager";
 import AnimatedButton from "./AnimatedButton";
+import { getSizingForOptions } from "../../utils/sizing-utils";
+
+const BUTTON_PADDING_VERTICAL = getSizingForOptions(8, 9, 10);
+const BUTTON_PADDING_HORIZONTAL = getSizingForOptions(20, 22, 24);
 
 const NextRoundPaddedButton = styled(AnimatedButton)`
-  padding-top: ${10 + TEXT_TOP_PADDING};
-  padding-bottom: 10;
-  padding-horizontal: 24;
+  padding-top: ${BUTTON_PADDING_VERTICAL + TEXT_TOP_PADDING};
+  padding-bottom: ${BUTTON_PADDING_VERTICAL};
+  padding-horizontal: ${BUTTON_PADDING_HORIZONTAL};
 `;
 
 const NextRoundButton = ({ disabled, animateDelay, onPress, onAnimationStart }) => {

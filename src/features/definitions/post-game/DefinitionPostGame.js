@@ -16,6 +16,10 @@ import ScoreChange from "../../../components/score-change/ScoreChange";
 import { LeaderboardButton } from "../../../components/button/Button";
 import { MODES } from "../../../app-constants";
 import SoundManager from "../../sound/SoundManager";
+import { getSizingForOptions } from "../../../utils/sizing-utils";
+
+const FOOTER_MARGIN_BOTTOM = getSizingForOptions("0%", "3%", "5%");
+const ANSWERS_MARGIN_VERTICAL = getSizingForOptions(8, 12, 16);
 
 const ContentContainer = styled(View)`
   flex: 1;
@@ -37,7 +41,7 @@ const ScrollViewContainer = styled(View)`
 
 const AnswersScrollView = styled(ScrollView)`
   width: 100%;
-  margin-vertical: 16;
+  margin-vertical: ${ANSWERS_MARGIN_VERTICAL};
 `;
 
 const Footer = styled(View)`
@@ -45,7 +49,7 @@ const Footer = styled(View)`
   width: 100%;
   align-items: center;
   justify-content: space-evenly;
-  margin-bottom: 5%;
+  margin-bottom: ${FOOTER_MARGIN_BOTTOM};
 `;
 
 const DefinitionPostGame = ({

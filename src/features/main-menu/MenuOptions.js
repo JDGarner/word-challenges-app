@@ -10,6 +10,8 @@ import { SCREENS } from "../../app-constants";
 import { getSizingForOptions } from "../../utils/sizing-utils";
 
 const MENU_OPTIONS_SPACING = getSizingForOptions("10%", "36%", "60%");
+const MENU_OPTION_BUTTON = getSizingForOptions(48, 50, 52);
+const ICON_SIZE = getSizingForOptions(28, 30, 32);
 
 const MenuOptionsContainer = styled(View)`
   margin-top: ${MENU_OPTIONS_SPACING};
@@ -19,15 +21,15 @@ const MenuOptionsContainer = styled(View)`
 `;
 
 const MenuOptionButton = styled(AnimatedButton)`
-  height: 52;
-  width: 52;
+  height: ${MENU_OPTION_BUTTON};
+  width: ${MENU_OPTION_BUTTON};
   margin-horizontal: 10;
   align-items: center;
   justify-content: center;
 `;
 
-const VolumeOff = <Icon name="volume-off" size={32} color={colors.textColor} />;
-const VolumeOn = <Icon name="volume-up" size={32} color={colors.textColor} />;
+const VolumeOff = <Icon name="volume-off" size={ICON_SIZE} color={colors.textColor} />;
+const VolumeOn = <Icon name="volume-up" size={ICON_SIZE} color={colors.textColor} />;
 
 const MenuOptions = ({ changeScreen, muted }) => {
   const onPressToggleMute = () => {
@@ -45,7 +47,7 @@ const MenuOptions = ({ changeScreen, muted }) => {
     <MenuOptionsContainer>
       <MenuOptionButton onPress={onPressToggleMute}>{VolumeIcon}</MenuOptionButton>
       <MenuOptionButton onPress={onPressInfoButton}>
-        <CommunityIcon name="information-variant" size={32} color={colors.textColor} />
+        <CommunityIcon name="information-variant" size={ICON_SIZE} color={colors.textColor} />
       </MenuOptionButton>
     </MenuOptionsContainer>
   );
