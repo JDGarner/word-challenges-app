@@ -5,14 +5,14 @@
 General:
 - enable API_KEY on BE
 - dont allow pausing by backgrounding?
-- Fix smaller screens
 
 iOS Release:
-- Connect to game center for iOS
 - test on ios device
 
+Android Release:
+- test on android device
+
 Testing:
-- Check for handle on screen background bugs
 - test offline play
 
 Maybe in 1st release:
