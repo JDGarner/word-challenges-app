@@ -17,15 +17,18 @@ const signInToGooglePlay = onSuccess => {
       console.log("Google Play Game Services: Silent Sign In Successful");
       onSuccess();
     })
-    .catch(() => {
-      console.log("Google Play Game Services: Silent Sign In Failed, Trying Normal Sign In");
+    .catch(err => {
+      console.log(
+        "Google Play Game Services: Silent Sign In Failed, Trying Normal Sign In. Error: ",
+        err,
+      );
       RNGooglePlayGameServices.signInIntent()
         .then(() => {
           console.log("Google Play Game Services: Sign In Successful");
           onSuccess();
         })
-        .catch(() => {
-          console.log("Google Play Game Services: Sign In Failed");
+        .catch(err => {
+          console.log("Google Play Game Services: Sign In Failed. Error: ", err);
         });
     });
 };
@@ -37,7 +40,8 @@ export default store => next => action => {
         .then(() => {
           console.log("Google Play Game Services: Showing Leaderboards");
         })
-        .catch(() => {
+        .catch(err => {
+          console.log("Google Play Game Services: Showing Leaderboards Failed. Error: ", err);
           signInToGooglePlay(RNGooglePlayGameServices.showAllLeaderboards);
         });
 
@@ -68,8 +72,8 @@ export default store => next => action => {
         .then(() => {
           console.log("Google Play Game Services: Silent Sign In Successful");
         })
-        .catch(() => {
-          console.log("Google Play Game Services: Silent Sign In Failed");
+        .catch(err => {
+          console.log("Google Play Game Services: Silent Sign In Failed. Error: ", err);
         });
 
       break;

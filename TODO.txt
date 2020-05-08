@@ -3,19 +3,12 @@
 ----------------------------------------
 
 Current:
-- upload ipad screenshots
-- fix apk crashing issue and then re-test google play version
+- fix bundle issue -> release bundle instead of apk
 
 
 General:
 - enable API_KEY on BE
 - dont allow pausing by backgrounding?
-
-iOS Release:
-- test on ios device
-
-Android Release:
-- test on android device
 
 Testing:
 - test offline play
