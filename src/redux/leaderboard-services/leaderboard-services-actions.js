@@ -6,8 +6,9 @@ export const SHOW_ALL_LEADERBOARDS = `${NAMESPACE}/SHOW_ALL_LEADERBOARDS`;
 export const SHOW_LEADERBOARD = `${NAMESPACE}/SHOW_LEADERBOARD`;
 export const SUBMIT_SCORE = `${NAMESPACE}/SUBMIT_SCORE`;
 
-export const gameCenterInit = () => ({
+export const gameCenterInit = postAction => ({
   type: GAME_CENTER_INIT,
+  postAction,
 });
 
 export const googlePlaySilentSignIn = () => ({

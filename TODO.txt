@@ -7,7 +7,6 @@ Current:
 
 
 General:
-- enable API_KEY on BE
 - dont allow pausing by backgrounding?
 
 Testing:

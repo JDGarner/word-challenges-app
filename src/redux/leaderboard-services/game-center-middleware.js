@@ -11,6 +11,30 @@ import {
 import { getELOKeysForMode } from "../../utils/elo-utils";
 import { getConfig } from "../../Config";
 
+const showAllLeaderboards = () => {
+  GameCenter.openLeaderboards({
+    leaderboardIdentifier: LEADERBOARD_IDS.DEFINITIONS,
+  })
+    .then(() => {
+      console.log("Game Center: Open Leaderboard Successful");
+    })
+    .catch(res => {
+      console.log("Game Center: Open Leaderboard Failed. ", res);
+    });
+};
+
+const showLeaderboard = id => {
+  GameCenter.openLeaderboardModal({
+    leaderboardIdentifier: id,
+  })
+    .then(res => {
+      console.log("Game Center: Open Leaderboard Successful");
+    })
+    .catch(res => {
+      console.log("Game Center: Open Leaderboard Failed. ", res);
+    });
+};
+
 export default store => next => action => {
   switch (action.type) {
     case SHOW_ALL_LEADERBOARDS:
@@ -24,7 +48,7 @@ export default store => next => action => {
         })
         .catch(res => {
           console.log("Game Center: Open Leaderboard Failed. ", res);
-          store.dispatch(gameCenterInit());
+          store.dispatch(gameCenterInit(showAllLeaderboards));
         });
 
       break;
@@ -35,14 +59,14 @@ export default store => next => action => {
       GameCenter.openLeaderboardModal({
         leaderboardIdentifier: leaderboardId,
       })
-        .then(res => {
+        .then(() => {
           console.log("Game Center: Open Leaderboard Successful");
           store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
           store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
         })
         .catch(res => {
           console.log("Game Center: Open Leaderboard Failed. ", res);
-          store.dispatch(gameCenterInit());
+          store.dispatch(gameCenterInit(() => showLeaderboard(leaderboardId)));
         });
 
       break;
@@ -52,6 +76,9 @@ export default store => next => action => {
       GameCenter.init({ leaderboardIdentifier: LEADERBOARD_IDS.DEFINITIONS })
         .then(() => {
           console.log("Game Center: Init Successful");
+          if (action.postAction) {
+            action.postAction();
+          }
         })
         .catch(res => {
           console.log("Game Center: Init Failed. ", res);
