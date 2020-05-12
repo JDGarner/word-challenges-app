@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Platform } from "react-native";
 import styled from "styled-components";
 import {
   MenuButton,
@@ -71,6 +71,12 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
   const getMenuItems = () => {
     const menuItems = getMenuItemsConfig().map(({ displayName, initialScreen, score }) => {
       const isSynonyms = displayName === SCREENS.SYNONYMS;
+
+      // Not allowed to mention 'Coming Soon' features in iOS apps
+      if (isSynonyms && Platform.OS === "ios") {
+        return null;
+      }
+
       const color = isSynonyms ? colors.textColorDisabled : colors.textColor;
 
       const ItemFooter = isSynonyms ? (
@@ -109,6 +115,9 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
     return menuItems;
   };
 
+  // Filter out any null items (if Synonyms is not being displayed)
+  const menuItems = getMenuItems().filter(i => !!i);
+
   return (
     <ScreenContainerPadded>
       <TopBar
@@ -119,7 +128,7 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
       <Title text="What would you like to train?" />
       <HeightSpacer height="5%" />
       <MenuContainer>
-        <AnimatedSequence items={getMenuItems()} />
+        <AnimatedSequence items={menuItems} />
       </MenuContainer>
     </ScreenContainerPadded>
   );
