@@ -1,4 +1,4 @@
-package com.wordchallenges;
+package com.wordmonkeyfrench;
 
 import android.app.Application;
 import android.content.Context;

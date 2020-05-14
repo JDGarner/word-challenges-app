@@ -145,7 +145,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.wordchallenges"
+        applicationId "com.wordmonkeyfrench"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 3

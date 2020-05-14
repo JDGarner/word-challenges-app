@@ -52,23 +52,12 @@ const MenuTextContainer = styled(View)`
 `;
 
 const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO }) => {
-  const getMenuItemsConfig = () => {
-    return [
-      {
-        displayName: SCREENS.DEFINITIONS,
-        initialScreen: SCREENS.DEFINITIONS_DIFFICULTY,
-        score: definitionsELO,
-      },
-      {
-        displayName: SCREENS.RHYMES,
-        initialScreen: SCREENS.RHYMES_DIFFICULTY,
-        score: rhymesELO,
-      },
-      { displayName: SCREENS.SYNONYMS, initialScreen: SCREENS.SYNONYMS_DIFFICULTY, score: "N/A" },
-    ];
-  };
 
   const getMenuItems = () => {
+    const menuItems = [];
+
+    menuItems.push();
+
     const menuItems = getMenuItemsConfig().map(({ displayName, initialScreen, score }) => {
       const isSynonyms = displayName === SCREENS.SYNONYMS;
 
@@ -135,3 +124,5 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
 };
 
 export default MainMenu;
+
+

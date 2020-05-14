@@ -1,6 +1,21 @@
 ----------------------------------------
-1st Release
+French Refactor
 ----------------------------------------
+
+To Do:
+
+Update main menu to just be play button and display rank/rating
+Remove rhymes mode/api call/references
+Update api call to call french endpoint
+Add data and endpoint to BE
+Make sure it works with spaces
+
+Add new android leaderboard
+
+
+
+-------------------------------------
+To Triage:
 
 Current:
 - fix bundle issue -> release bundle instead of apk
