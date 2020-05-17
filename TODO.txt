@@ -2,6 +2,10 @@
 1st Release
 ----------------------------------------
 
+Synonyms
+Mixed mode?
+
+
 Current:
 - fix bundle issue -> release bundle instead of apk
 
