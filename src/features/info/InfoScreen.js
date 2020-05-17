@@ -126,8 +126,8 @@ const InfoScreen = ({ onNavigateBack }) => {
               <InfoText>Rank Boundaries:</InfoText>
               <InfoText>Novice: 600 - 1000</InfoText>
               <InfoText>Journeyman: 1000 - 1600</InfoText>
-              <InfoText>Expert: 1600 - 2200</InfoText>
-              <InfoText>Master: 2200 - 3600</InfoText>
+              <InfoText>Expert: 1600 - 2400</InfoText>
+              <InfoText>Master: 2400+</InfoText>
             </InfoTextContainer>
           )}
           <AnimatedButton inTextContainer={false} onPress={onPressRhymingInfo}>

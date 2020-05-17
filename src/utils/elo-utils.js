@@ -6,8 +6,8 @@ const { NOVICE, JOURNEYMAN, EXPERT, MASTER } = DIFFICULTIES;
 const DIFFICULTY_ELO_RANGES = {
   [NOVICE]: { lower: 600, upper: 1000 },
   [JOURNEYMAN]: { lower: 1000, upper: 1600 },
-  [EXPERT]: { lower: 1600, upper: 2200 },
-  [MASTER]: { lower: 2200, upper: 3600 },
+  [EXPERT]: { lower: 1600, upper: 2400 },
+  [MASTER]: { lower: 2400, upper: 3600 },
 };
 
 export const getRankForScore = score => {
