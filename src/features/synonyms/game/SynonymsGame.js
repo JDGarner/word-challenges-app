@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { View, TouchableOpacity, Animated } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-import GameHeader from "../../definitions/GameHeader";
+import GameHeader from "./GameHeader";
 import theme from "../../../theme";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../synonyms-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
@@ -14,7 +14,6 @@ import { MODES } from "../../../app-constants";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 import AnswerGrid from "../../rhymes/AnswerGrid";
 
-const GAME_TOP_SPACING = getSizingForOptions(10, 32, 46, 46);
 const FOOTER_HEIGHT = getSizingForOptions("22%", "24%", "25%", "25%");
 const ICON_SIZE = getSizingForOptions(40, 40, 40, 68);
 
@@ -30,7 +29,6 @@ const CentreContainer = styled(View)`
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  margin-top: ${GAME_TOP_SPACING};
 `;
 
 const FooterContainer = styled(View)`
@@ -147,7 +145,7 @@ const SynonymsGame = ({
       <ConnectedTopBar gameCountdown={gameCountdown} />
       <ContentContainer style={{ opacity: gameOpacity }}>
         <CentreContainer>
-          <GameHeader definition={definition} />
+          <GameHeader word={word} />
 
           <AnswerGrid answers={synonyms} />
         </CentreContainer>

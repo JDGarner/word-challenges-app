@@ -4,3 +4,4 @@ export const GAME_STATES = {
 };
 
 export const WORDS_PER_ROUND = 3;
+export const ANSWERS_REQUIRED = 3;

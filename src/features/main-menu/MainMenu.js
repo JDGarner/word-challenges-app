@@ -70,37 +70,16 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
 
   const getMenuItems = () => {
     const menuItems = getMenuItemsConfig().map(({ displayName, initialScreen, score }) => {
-      const isSynonyms = displayName === SCREENS.SYNONYMS;
-
-      // Not allowed to mention 'Coming Soon' features in iOS apps
-      if (isSynonyms && Platform.OS === "ios") {
-        return null;
-      }
-
-      const color = isSynonyms ? colors.textColorDisabled : colors.textColor;
-
-      const ItemFooter = isSynonyms ? (
-        <ScoreTextContainer style={{ justifyContent: "center" }}>
-          <SmallMediumText color={color}>Coming Soon</SmallMediumText>
-        </ScoreTextContainer>
-      ) : (
-        <ScoreTextContainer>
-          <SmallMediumText>{getRankForScore(score)}</SmallMediumText>
-          <SmallMediumText>Rating: {score}</SmallMediumText>
-        </ScoreTextContainer>
-      );
-
       return {
         id: displayName,
         component: (
-          <MenuButton
-            onPress={() => changeScreen(initialScreen)}
-            disabled={isSynonyms}
-            style={{ borderColor: color }}
-            verticalPadding={BUTTON_PADDING}>
+          <MenuButton onPress={() => changeScreen(initialScreen)} verticalPadding={BUTTON_PADDING}>
             <MenuTextContainer>
-              <MenuNameText color={color}>{displayName}</MenuNameText>
-              {ItemFooter}
+              <MenuNameText>{displayName}</MenuNameText>
+              <ScoreTextContainer>
+                <SmallMediumText>{getRankForScore(score)}</SmallMediumText>
+                <SmallMediumText>Rating: {score}</SmallMediumText>
+              </ScoreTextContainer>
             </MenuTextContainer>
           </MenuButton>
         ),
