@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep, sampleSize, forEach } from "lodash";
 import {
   FETCH_SYNONYMS_SUCCESS,
   FETCH_SYNONYMS_ERROR,
@@ -12,7 +12,7 @@ import {
   ON_ANSWER_FEEDBACK_FINISHED,
 } from "./synonyms-actions";
 import { GAME_STATES, INITIAL_COUNTDOWN, WORDS_PER_ROUND } from "../synonyms-constants";
-import { roundIsOver } from "../synonyms-utils";
+import { roundIsOver, getUpdatedSynonyms } from "../synonyms-utils";
 import { ERROR_CODES } from "../../../components/error/ErrorScreen";
 import { DIFFICULTIES } from "../../../app-constants";
 
@@ -104,10 +104,12 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case FETCH_SYNONYMS_SUCCESS: {
+      const synonyms = getUpdatedSynonyms(action.synonyms);
+
       return {
         ...state,
-        ...getStateForNewRound(state, 0, action.synonyms),
-        allSynonyms: action.synonyms,
+        ...getStateForNewRound(state, 0, synonyms),
+        allSynonyms: synonyms,
       };
     }
 
@@ -121,7 +123,7 @@ export default (state = initialState, action) => {
       // New Synonyms have arrived, get rid of the current ones before current index
       // Add the new ones on the end
       const allSynonyms = cloneDeep(state.allSynonyms);
-      const { synonyms } = action;
+      const synonyms = getUpdatedSynonyms(action.synonyms);
       const { allSynonymsIndex } = state;
 
       const newSynonyms = {

@@ -8,12 +8,12 @@ import {
 
 const mapStateToProps = state => {
   const { gameCountdown, difficulty, currentSynonym, correctSoFar } = state.synonyms;
-  const { definition, word, synonyms, eloRating } = currentSynonym;
+  const { definition, word, answers, eloRating } = currentSynonym;
   const { synonymsELO } = state.eloTracking;
 
   return {
     word,
-    synonyms,
+    answers,
     definition,
     gameCountdown,
     difficulty,

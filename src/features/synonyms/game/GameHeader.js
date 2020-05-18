@@ -7,6 +7,7 @@ import { MediumLargerText } from "../../../components";
 const GameHeaderContainer = styled(View)`
   justify-content: center;
   align-items: center;
+  height: 20%;
 `;
 
 const GameHeader = ({ word }) => {

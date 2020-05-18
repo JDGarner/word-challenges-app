@@ -27,7 +27,7 @@ const ContentContainer = styled(Animated.View)`
 const CentreContainer = styled(View)`
   flex: 1;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 100%;
 `;
 
@@ -43,14 +43,11 @@ const FooterButtons = styled(View)`
   align-items: flex-start;
 `;
 
-const SkipButton = styled(TouchableOpacity)`
-  margin-left: 23;
-`;
+const SkipButton = styled(TouchableOpacity)``;
 
 const SynonymsGame = ({
   word,
-  synonyms,
-  definition,
+  answers,
   gameCountdown,
   difficulty,
   correctSoFar,
@@ -146,8 +143,7 @@ const SynonymsGame = ({
       <ContentContainer style={{ opacity: gameOpacity }}>
         <CentreContainer>
           <GameHeader word={word} />
-
-          <AnswerGrid answers={synonyms} />
+          <AnswerGrid answers={answers} />
         </CentreContainer>
 
         <FooterContainer>
