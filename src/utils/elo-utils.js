@@ -86,10 +86,19 @@ export const getELOKeysForMode = mode => {
     };
   }
 
+  if (mode === MODES.RHYMES) {
+    return {
+      stateKey: "rhymesELO",
+      storageKey: APP_STORAGE.RHYMES_ELO,
+      endpoint: ENDPOINTS.RHYMES_ELO,
+      leaderboardId: LEADERBOARD_IDS.RHYMES,
+    };
+  }
+
   return {
-    stateKey: "rhymesELO",
-    storageKey: APP_STORAGE.RHYMES_ELO,
-    endpoint: ENDPOINTS.RHYMES_ELO,
-    leaderboardId: LEADERBOARD_IDS.RHYMES,
+    stateKey: "synonymsELO",
+    storageKey: APP_STORAGE.SYNONYMS_ELO,
+    endpoint: ENDPOINTS.SYNONYMS_ELO,
+    leaderboardId: LEADERBOARD_IDS.SYNONYMS,
   };
 };

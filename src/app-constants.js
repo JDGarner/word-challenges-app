@@ -5,6 +5,8 @@ export const ENDPOINTS = {
   RHYMES_ELO: "rhymes-elo",
   DEFINITIONS: "definitions",
   DEFINITIONS_ELO: "definitions-elo",
+  SYNONYMS: "synonyms",
+  SYNONYMS_ELO: "synonyms-elo",
 };
 
 export const SCREENS = {
@@ -29,11 +31,13 @@ export const APP_STORAGE = {
   MUTED: "app_muted",
   DEFINITIONS_ELO: "definitions_elo",
   RHYMES_ELO: "rhymes_elo",
+  SYNONYMS_ELO: "synonyms_elo",
 };
 
 export const MODES = {
   DEFINITIONS: "definitions",
   RHYMES: "rhymes",
+  SYNONYMS: "synonyms",
 };
 
 const ANDROID_LEADERBOARD_IDS = {
@@ -44,6 +48,7 @@ const ANDROID_LEADERBOARD_IDS = {
 const IOS_LEADERBOARD_IDS = {
   DEFINITIONS: "grp.definitions",
   RHYMES: "grp.rhymes",
+  SYNONYMS: "grp.synonyms",
 };
 
 export const LEADERBOARD_IDS =

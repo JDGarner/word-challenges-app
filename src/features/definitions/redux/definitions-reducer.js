@@ -165,7 +165,7 @@ export default (state = initialState, action) => {
       return { ...getStateForNextQuestion(state), netELOChange };
 
     case ON_EXIT_GAME: {
-      const nextIndex = Math.ceil(state.allDefinitionsIndex / 5) * 5;
+      const nextIndex = Math.ceil(state.allDefinitionsIndex / WORDS_PER_ROUND) * WORDS_PER_ROUND;
 
       return {
         ...state,

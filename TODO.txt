@@ -2,8 +2,9 @@
 1st Release
 ----------------------------------------
 
-Synonyms
-Mixed mode?
+Synonyms:
+- Add new leaderboard to google play
+- Add new leaderboard to game center
 
 
 Current:
@@ -23,6 +24,7 @@ Maybe in 1st release:
 
 
 
+Mixed mode?
 ----------------------------------------
 Future Release
 ----------------------------------------

@@ -8,6 +8,7 @@ import theme from "./theme";
 import configureStore from "./store";
 import { fetchRhymes } from "./features/rhymes/redux/rhymes-actions";
 import { fetchDefinitions } from "./features/definitions/redux/definitions-actions";
+import { fetchSynonyms } from "./features/synonyms/redux/synonyms-actions";
 import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
 import { AppBackground } from "./components";
 import SoundManager from "./features/sound/SoundManager";
@@ -26,6 +27,7 @@ export default function AppProvider() {
 
     store.dispatch(fetchRhymes());
     store.dispatch(fetchDefinitions());
+    store.dispatch(fetchSynonyms());
     store.dispatch(retrieveELOs());
 
     if (Platform.OS === "android") {

@@ -10,6 +10,8 @@ import rhymesReducer from "./features/rhymes/redux/rhymes-reducer";
 import rhymesMiddleware from "./features/rhymes/redux/rhymes-middleware";
 import definitionsReducer from "./features/definitions/redux/definitions-reducer";
 import definitionsMiddleware from "./features/definitions/redux/definitions-middleware";
+import synonymsReducer from "./features/synonyms/redux/synonyms-reducer";
+import synonymsMiddleware from "./features/synonyms/redux/synonyms-middleware";
 import gameCenterMiddleware from "./redux/leaderboard-services/game-center-middleware";
 
 const initialStore = {};
@@ -20,12 +22,14 @@ export default function configureStore() {
     settings: settingsReducer,
     rhymes: rhymesReducer,
     definitions: definitionsReducer,
+    synonyms: synonymsReducer,
     eloTracking: eloTrackingReducer,
   });
 
   const middleware = [
     rhymesMiddleware,
     definitionsMiddleware,
+    synonymsMiddleware,
     eloTrackingMiddleware,
     ...(Platform.OS === "android" ? [googlePlayServicesMiddleware] : [gameCenterMiddleware]),
     thunk,
