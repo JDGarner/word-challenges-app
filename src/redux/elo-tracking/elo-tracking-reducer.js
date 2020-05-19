@@ -4,6 +4,7 @@ import { getELOKeysForMode } from "../../utils/elo-utils";
 const initialState = {
   definitionsELO: null,
   rhymesELO: null,
+  synonymsELO: null,
 };
 
 export default (state = initialState, action) => {
@@ -15,6 +16,7 @@ export default (state = initialState, action) => {
         ...state,
         definitionsELO: action.elos.definitions,
         rhymesELO: action.elos.rhymes,
+        synonymsELO: action.elos.synonyms,
       };
     }
 

@@ -16,10 +16,12 @@ export default store => next => async action => {
         const elos = await AsyncStorage.multiGet([
           APP_STORAGE.DEFINITIONS_ELO,
           APP_STORAGE.RHYMES_ELO,
+          APP_STORAGE.SYNONYMS_ELO,
         ]);
         const elosObj = {
           definitions: Number(elos[0][1] || INITIAL_ELO),
           rhymes: Number(elos[1][1] || INITIAL_ELO),
+          synonyms: Number(elos[2][1] || INITIAL_ELO),
         };
         console.log("Retrieved ELOs: ", elosObj);
         store.dispatch(onELOsRetrieved(elosObj));

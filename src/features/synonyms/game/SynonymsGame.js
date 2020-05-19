@@ -12,6 +12,7 @@ import { getELORatingChanges } from "../../../utils/elo-utils";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 import AnswerGrid from "./AnswerGrid";
 import colors from "../../../theme/colors";
+import { MODES } from "../../../app-constants";
 
 const FOOTER_HEIGHT = getSizingForOptions("22%", "24%", "25%", "25%");
 
@@ -139,9 +140,8 @@ const SynonymsGame = ({
       onAnswerFeedbackFinished(playerELOChange);
     });
 
-    // TODO:
-    // updatePlayerELO(MODES.SYNONYMS, playerELOChange);
-    // updateQuestionELO(MODES.SYNONYMS, word, newQuestionELO);
+    updatePlayerELO(MODES.SYNONYMS, playerELOChange);
+    updateQuestionELO(MODES.SYNONYMS, word, newQuestionELO);
   };
 
   const onPressAnswer = (answer, index) => {
