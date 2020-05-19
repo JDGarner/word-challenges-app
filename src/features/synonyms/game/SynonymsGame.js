@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+import { cloneDeep } from "lodash";
 import styled from "styled-components";
 import { View, TouchableOpacity, Animated } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -12,7 +13,7 @@ import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import { MODES } from "../../../app-constants";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
-import AnswerGrid from "../../rhymes/AnswerGrid";
+import AnswerGrid from "./AnswerGrid";
 
 const FOOTER_HEIGHT = getSizingForOptions("22%", "24%", "25%", "25%");
 const ICON_SIZE = getSizingForOptions(40, 40, 40, 68);
@@ -45,6 +46,12 @@ const FooterButtons = styled(View)`
 
 const SkipButton = styled(TouchableOpacity)``;
 
+const getInitialAnswersState = answers => {
+  return answers.map(a => {
+    return { word: a, isSelected: false };
+  });
+};
+
 const SynonymsGame = ({
   word,
   answers,
@@ -59,6 +66,7 @@ const SynonymsGame = ({
   onSubmitAnswers,
   onAnswerFeedbackFinished,
 }) => {
+  const [answersState, setAnswersState] = useState(getInitialAnswersState(answers));
   const [gameOpacity] = useState(new Animated.Value(0));
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
   const [currentELOChange, setCurrentELOChange] = useState(0);
@@ -131,6 +139,18 @@ const SynonymsGame = ({
     updateQuestionELO(MODES.SYNONYMS, word, newQuestionELO);
   };
 
+  const onPressAnswer = (answer, index) => {
+    if (answer.isSelected) {
+      SoundManager.getInstance().playRemoveLetterSound();
+    } else {
+      SoundManager.getInstance().playAddLetterSound();
+    }
+
+    const newAnswersState = cloneDeep(answersState);
+    newAnswersState[index].isSelected = !newAnswersState[index].isSelected;
+    setAnswersState(newAnswersState);
+  };
+
   const onPressSubmitAnswers = () => {
     // TODO: check if answers are correct
     // handleGameTransition(true);
@@ -143,7 +163,7 @@ const SynonymsGame = ({
       <ContentContainer style={{ opacity: gameOpacity }}>
         <CentreContainer>
           <GameHeader word={word} />
-          <AnswerGrid answers={answers} />
+          <AnswerGrid answers={answersState} onPressAnswer={onPressAnswer} />
         </CentreContainer>
 
         <FooterContainer>

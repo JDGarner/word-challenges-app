@@ -1,4 +1,4 @@
-import { cloneDeep, sampleSize, forEach } from "lodash";
+import { cloneDeep } from "lodash";
 import {
   FETCH_SYNONYMS_SUCCESS,
   FETCH_SYNONYMS_ERROR,

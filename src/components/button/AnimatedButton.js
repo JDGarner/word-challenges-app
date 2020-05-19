@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { TouchableWithoutFeedback, Animated, Easing } from "react-native";
 import { AnimatedTextContainer } from "../containers/Containers";
 
-const AnimatedButton = ({ children, style, inTextContainer, ...buttonProps }) => {
+const AnimatedButton = ({
+  children,
+  style,
+  inTextContainer,
+  fromColour,
+  toColour,
+  ...buttonProps
+}) => {
   const [colorValue] = useState(new Animated.Value(0));
 
   const onPressIn = () => {
@@ -22,7 +29,7 @@ const AnimatedButton = ({ children, style, inTextContainer, ...buttonProps }) =>
 
   const interpolateColor = colorValue.interpolate({
     inputRange: [0, 150],
-    outputRange: ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.4)"],
+    outputRange: [fromColour, toColour],
   });
   const containerStyle = [...style, { backgroundColor: interpolateColor }];
 
@@ -44,6 +51,8 @@ const AnimatedButton = ({ children, style, inTextContainer, ...buttonProps }) =>
 AnimatedButton.defaultProps = {
   style: [],
   inTextContainer: true,
+  fromColour: "rgba(255, 255, 255, 0)",
+  toColour: "rgba(255, 255, 255, 0.4)",
 };
 
 export default AnimatedButton;

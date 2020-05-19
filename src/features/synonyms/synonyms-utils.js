@@ -1,4 +1,4 @@
-import { sampleSize, forEach, shuffle } from "lodash";
+import { sampleSize, forEach, shuffle, take } from "lodash";
 import { WORDS_PER_ROUND, ANSWERS_REQUIRED, NUM_OF_FAKE_ANSWERS } from "./synonyms-constants";
 import { DIFFICULTIES } from "../../app-constants";
 import fakeEasyWords from "./potential-fake-easy-words";
@@ -22,7 +22,7 @@ export const getUpdatedSynonyms = synonyms => {
   forEach(synonyms, (synonymsOfDifficulty, difficulty) => {
     synonymsOfDifficulty.forEach(s => {
       s.fakes = getFakeWordsForDifficulty(difficulty);
-      s.synonyms = sampleSize(s.synonyms, ANSWERS_REQUIRED);
+      s.synonyms = take(s.synonyms, ANSWERS_REQUIRED);
       s.answers = shuffle([...s.synonyms, ...s.fakes]);
     });
   });
