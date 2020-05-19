@@ -1,11 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { cloneDeep } from "lodash";
 import styled from "styled-components";
-import { View, TouchableOpacity, Animated } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { View, Animated } from "react-native";
 
 import GameHeader from "./GameHeader";
-import theme from "../../../theme";
 import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../synonyms-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
 import { ConnectedTopBar } from "../../../components";
@@ -14,9 +12,9 @@ import { getELORatingChanges } from "../../../utils/elo-utils";
 import { MODES } from "../../../app-constants";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 import AnswerGrid from "./AnswerGrid";
+import colors from "../../../theme/colors";
 
 const FOOTER_HEIGHT = getSizingForOptions("22%", "24%", "25%", "25%");
-const ICON_SIZE = getSizingForOptions(40, 40, 40, 68);
 
 const ContentContainer = styled(Animated.View)`
   flex: 1;
@@ -35,16 +33,19 @@ const CentreContainer = styled(View)`
 const FooterContainer = styled(View)`
   height: ${FOOTER_HEIGHT};
   margin-top: auto;
-`;
-
-const FooterButtons = styled(View)`
-  padding-top: 16;
+  margin-horizontal: 10;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 `;
 
-const SkipButton = styled(TouchableOpacity)``;
+const ProgressIndicator = styled(View)`
+  height: 18;
+  flex: 1;
+  background-color: ${({ highlighted }) =>
+    highlighted ? colors.textColorSelected : colors.textColorLighter};
+  margin-horizontal: 6;
+`;
 
 const getInitialAnswersState = answers => {
   return answers.map(a => {
@@ -67,6 +68,8 @@ const SynonymsGame = ({
   onAnswerFeedbackFinished,
 }) => {
   const [answersState, setAnswersState] = useState(getInitialAnswersState(answers));
+  const [answersSelected, setAnswersSelected] = useState(0);
+
   const [gameOpacity] = useState(new Animated.Value(0));
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
   const [currentELOChange, setCurrentELOChange] = useState(0);
@@ -141,8 +144,10 @@ const SynonymsGame = ({
 
   const onPressAnswer = (answer, index) => {
     if (answer.isSelected) {
+      setAnswersSelected(x => x - 1);
       SoundManager.getInstance().playRemoveLetterSound();
     } else {
+      setAnswersSelected(x => x + 1);
       SoundManager.getInstance().playAddLetterSound();
     }
 
@@ -167,11 +172,9 @@ const SynonymsGame = ({
         </CentreContainer>
 
         <FooterContainer>
-          <FooterButtons>
-            <SkipButton onPress={() => handleGameTransition(false)} disabled={userActionsDisabled}>
-              <Icon name="skip-next" size={ICON_SIZE + 6} color={theme.textColor} />
-            </SkipButton>
-          </FooterButtons>
+          <ProgressIndicator highlighted={answersSelected >= 1} />
+          <ProgressIndicator highlighted={answersSelected >= 2} />
+          <ProgressIndicator highlighted={answersSelected >= 3} />
         </FooterContainer>
       </ContentContainer>
       <AnswerFeedback

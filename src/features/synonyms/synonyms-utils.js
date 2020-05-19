@@ -12,16 +12,21 @@ export const roundIsOver = questionIndex => {
 
 const getFakeWordsForDifficulty = difficulty => {
   if (difficulty === NOVICE || difficulty === JOURNEYMAN) {
-    return sampleSize(fakeEasyWords, NUM_OF_FAKE_ANSWERS[difficulty]);
+    return sampleSize(fakeEasyWords, NUM_OF_FAKE_ANSWERS[difficulty] + 10);
   }
 
-  return sampleSize(fakeHardWords, NUM_OF_FAKE_ANSWERS[difficulty]);
+  return sampleSize(fakeHardWords, NUM_OF_FAKE_ANSWERS[difficulty] + 10);
 };
 
 export const getUpdatedSynonyms = synonyms => {
   forEach(synonyms, (synonymsOfDifficulty, difficulty) => {
     synonymsOfDifficulty.forEach(s => {
-      s.fakes = getFakeWordsForDifficulty(difficulty);
+      // Ensure no synonyms or the actual word is in the fakes list
+      s.fakes = take(
+        getFakeWordsForDifficulty(difficulty).filter(f => !s.synonyms.includes(f) && s.word !== f),
+        NUM_OF_FAKE_ANSWERS[difficulty],
+      );
+
       s.synonyms = take(s.synonyms, ANSWERS_REQUIRED);
       s.answers = shuffle([...s.synonyms, ...s.fakes]);
     });
