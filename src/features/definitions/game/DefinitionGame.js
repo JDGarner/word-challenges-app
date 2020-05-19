@@ -177,7 +177,6 @@ const DefinitionGame = ({
       userELO,
       questionELO,
       difficulty,
-      MODES.DEFINITIONS,
     );
 
     setUserActionsDisabled(true);

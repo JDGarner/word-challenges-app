@@ -100,7 +100,6 @@ export default store => next => action => {
         playerELO,
         currentWord.eloRating,
         difficulty,
-        MODES.RHYMES,
       );
 
       store.dispatch(updatePlayerELO(MODES.RHYMES, playerELOChange));

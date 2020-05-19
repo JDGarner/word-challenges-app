@@ -9,6 +9,7 @@ export const GAME_STATES = {
 
 export const WORDS_PER_ROUND = 3;
 export const ANSWERS_REQUIRED = 3;
+export const ANSWER_FEEDBACK_ANIMATION_DURATION = 1000;
 
 export const NUM_OF_FAKE_ANSWERS = {
   [NOVICE]: 8 - ANSWERS_REQUIRED,

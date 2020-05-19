@@ -6,7 +6,6 @@ import {
   GAME_COUNTDOWN_TICK,
   FETCH_ADDITIONAL_SYNONYMS_SUCCESS,
   ON_PRESS_START_NEW_GAME,
-  ON_SUBMIT_ANSWERS,
   ON_EXIT_GAME,
   ON_SELECT_DIFFICULTY_SYNONYMS,
   ON_ANSWER_FEEDBACK_FINISHED,
@@ -165,15 +164,6 @@ export default (state = initialState, action) => {
         gameState: GAME_STATES.PLAYING,
       };
     }
-
-    // case ON_SUBMIT_ANSWERS: {
-    //   const isCorrect = action.answer.toUpperCase() === state.currentSynonym.word.toUpperCase();
-    //   const currentSynonyms = cloneDeep(state.currentSynonyms);
-    //   currentSynonyms[state.questionIndex].isCorrect = isCorrect;
-    //   const correctSoFar = isCorrect ? state.correctSoFar + 1 : state.correctSoFar;
-
-    //   return { ...state, currentSynonyms: currentSynonyms, correctSoFar };
-    // }
 
     case ON_SELECT_DIFFICULTY_SYNONYMS: {
       const { allSynonyms, allSynonymsIndex } = state;

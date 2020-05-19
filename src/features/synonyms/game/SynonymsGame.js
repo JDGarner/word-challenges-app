@@ -4,12 +4,11 @@ import styled from "styled-components";
 import { View, Animated } from "react-native";
 
 import GameHeader from "./GameHeader";
-import { ANSWER_FEEDBACK_ANIMATION_DURATION } from "../synonyms-constants";
+import { ANSWER_FEEDBACK_ANIMATION_DURATION, ANSWERS_REQUIRED } from "../synonyms-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
 import { ConnectedTopBar } from "../../../components";
 import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
-import { MODES } from "../../../app-constants";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 import AnswerGrid from "./AnswerGrid";
 import colors from "../../../theme/colors";
@@ -56,6 +55,7 @@ const getInitialAnswersState = answers => {
 const SynonymsGame = ({
   word,
   answers,
+  correctAnswers,
   gameCountdown,
   difficulty,
   correctSoFar,
@@ -64,7 +64,6 @@ const SynonymsGame = ({
   updatePlayerELO,
   updateQuestionELO,
   onBeginGame,
-  onSubmitAnswers,
   onAnswerFeedbackFinished,
 }) => {
   const [answersState, setAnswersState] = useState(getInitialAnswersState(answers));
@@ -93,28 +92,30 @@ const SynonymsGame = ({
   // Game countdown ticked down
   useEffect(() => {
     if (gameCountdown === 0 && !userActionsDisabled) {
-      handleGameTransition(false);
+      const selectedAnswers = answersState.filter(as => as.isSelected);
+      handleGameTransition(selectedAnswers);
     }
   }, [gameCountdown]);
 
   // Fade out game, show answer feedback
-  const handleGameTransition = areAnswersCorrect => {
-    // TODO: should be score out of how many are correct
-    const score = areAnswersCorrect ? 1 : 0;
+  const handleGameTransition = selectedAnswers => {
+    const userCorrectAnswers = selectedAnswers.filter(sa => correctAnswers.includes(sa.word));
+    const allAnswersCorrect = userCorrectAnswers.length === correctAnswers.length;
+
+    const score = userCorrectAnswers.length / ANSWERS_REQUIRED;
     const { playerELOChange, newQuestionELO } = getELORatingChanges(
       score,
       userELO,
       questionELO,
       difficulty,
-      MODES.SYNONYMS,
     );
 
     setUserActionsDisabled(true);
     setIsShowingAnswerFeedback(true);
-    setIsCurrentAnswerCorrect(areAnswersCorrect);
+    setIsCurrentAnswerCorrect(allAnswersCorrect);
     setCurrentELOChange(playerELOChange);
 
-    if (areAnswersCorrect) {
+    if (allAnswersCorrect) {
       SoundManager.getInstance().playPositiveTone(correctSoFar);
     } else {
       SoundManager.getInstance().playNegativeSound();
@@ -138,8 +139,9 @@ const SynonymsGame = ({
       onAnswerFeedbackFinished(playerELOChange);
     });
 
-    updatePlayerELO(MODES.SYNONYMS, playerELOChange);
-    updateQuestionELO(MODES.SYNONYMS, word, newQuestionELO);
+    // TODO:
+    // updatePlayerELO(MODES.SYNONYMS, playerELOChange);
+    // updateQuestionELO(MODES.SYNONYMS, word, newQuestionELO);
   };
 
   const onPressAnswer = (answer, index) => {
@@ -153,13 +155,14 @@ const SynonymsGame = ({
 
     const newAnswersState = cloneDeep(answersState);
     newAnswersState[index].isSelected = !newAnswersState[index].isSelected;
-    setAnswersState(newAnswersState);
-  };
 
-  const onPressSubmitAnswers = () => {
-    // TODO: check if answers are correct
-    // handleGameTransition(true);
-    // onSubmitAnswers();
+    const selectedAnswers = newAnswersState.filter(as => as.isSelected);
+
+    if (selectedAnswers.length >= 3) {
+      handleGameTransition(selectedAnswers);
+    }
+
+    setAnswersState(newAnswersState);
   };
 
   return (
@@ -168,7 +171,11 @@ const SynonymsGame = ({
       <ContentContainer style={{ opacity: gameOpacity }}>
         <CentreContainer>
           <GameHeader word={word} />
-          <AnswerGrid answers={answersState} onPressAnswer={onPressAnswer} />
+          <AnswerGrid
+            answers={answersState}
+            onPressAnswer={onPressAnswer}
+            disabled={userActionsDisabled}
+          />
         </CentreContainer>
 
         <FooterContainer>

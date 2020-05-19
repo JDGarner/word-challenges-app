@@ -30,13 +30,10 @@ export const getRankForScore = score => {
   return capitalize(MASTER);
 };
 
-export const getELORatingChanges = (score, playerELO, questionELO, difficulty, mode) => {
-  const newQuestionELOFn =
-    mode === MODES.DEFINITIONS ? getNewDefinitionQuestionELO : getNewRhymeQuestionELO;
-
+export const getELORatingChanges = (score, playerELO, questionELO, difficulty) => {
   return {
     playerELOChange: getPlayerELOChange(score, playerELO, questionELO, difficulty),
-    newQuestionELO: newQuestionELOFn(score, playerELO, questionELO),
+    newQuestionELO: getQuestionELO(score, playerELO, questionELO),
   };
 };
 
@@ -51,13 +48,7 @@ const getPlayerELOChange = (score, playerELO, questionELO, difficulty) => {
   return potentialELOChange;
 };
 
-const getNewDefinitionQuestionELO = (score, playerELO, questionELO) => {
-  const questionScore = 1 - score;
-  const eloChange = getELOChange(questionScore, questionELO, playerELO);
-  return questionELO + eloChange;
-};
-
-const getNewRhymeQuestionELO = (score, playerELO, questionELO) => {
+const getQuestionELO = (score, playerELO, questionELO) => {
   const questionScore = 1 - score;
   const eloChange = getELOChange(questionScore, questionELO, playerELO);
   return questionELO + eloChange;

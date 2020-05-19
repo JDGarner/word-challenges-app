@@ -41,7 +41,7 @@ const answerContainerStyle = [
 
 const gridItemBottomMargin = 18;
 
-const AnswerGrid = ({ answers, onPressAnswer }) => {
+const AnswerGrid = ({ answers, onPressAnswer, disabled }) => {
   const getAnswerTiles = () => {
     return answers.map((answer, i) => {
       const fromColour = answer.isSelected ? colors.textColorSelected : colors.textColorLighter;
@@ -55,7 +55,8 @@ const AnswerGrid = ({ answers, onPressAnswer }) => {
             style={answerContainerStyle}
             fromColour={fromColour}
             toColour={toColour}
-            inTextContainer={false}>
+            inTextContainer={false}
+            disabled={disabled}>
             <AnswerText>{capitalize(answer.word)}</AnswerText>
           </AnimatedButton>
         ),
