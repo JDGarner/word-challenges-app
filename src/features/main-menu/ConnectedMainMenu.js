@@ -4,11 +4,12 @@ import { changeScreen } from "../../redux/navigation/navigation-actions";
 import { showAllLeaderboards } from "../../redux/leaderboard-services/leaderboard-services-actions";
 
 const mapStateToProps = ({ eloTracking }) => {
-  const { definitionsELO, rhymesELO } = eloTracking;
+  const { definitionsELO, rhymesELO, synonymsELO } = eloTracking;
 
   return {
     definitionsELO,
     rhymesELO,
+    synonymsELO,
   };
 };
 

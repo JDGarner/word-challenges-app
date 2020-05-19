@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 import { MediumText, AnimatedSequence } from "../../../components";
 import colors from "../../../theme/colors";
-import SoundManager from "../../sound/SoundManager";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 import AnimatedButton from "../../../components/button/AnimatedButton";
 
@@ -17,22 +16,22 @@ const PADDING_H = getSizingForOptions(2, 2, 2, 10);
 const MARGIN_H = getSizingForOptions(14, 14, 14, 34);
 
 const GridContainer = styled(View)`
-  height: 30%;
   width: 100%;
   margin-top: 14px;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 `;
 
 const AnswerText = styled(MediumText)`
   text-align: center;
 `;
 
-const answerContainerStyle = [
+const getAnswerContainerStyle = isEven => [
   {
-    marginHorizontal: MARGIN_H,
+    marginRight: isEven ? MARGIN_H : 0,
+    marginLeft: !isEven ? MARGIN_H : 0,
     paddingVertical: PADDING_V,
     paddingHorizontal: PADDING_H,
     borderRadius: 4,
@@ -52,7 +51,7 @@ const AnswerGrid = ({ answers, onPressAnswer, disabled }) => {
         component: (
           <AnimatedButton
             onPress={() => onPressAnswer(answer, i)}
-            style={answerContainerStyle}
+            style={getAnswerContainerStyle(i % 2 === 0)}
             fromColour={fromColour}
             toColour={toColour}
             inTextContainer={false}
@@ -65,16 +64,18 @@ const AnswerGrid = ({ answers, onPressAnswer, disabled }) => {
   };
 
   return (
-    <GridContainer>
-      <AnimatedSequence
-        items={getAnswerTiles()}
-        containerStyle={{ width: "50%", marginBottom: gridItemBottomMargin }}
-        animationGapTime={ANSWER_ANIMATION_GAP_TIME}
-        animationStartDelay={ANSWER_ANIMATION_START_DELAY_TIME}
-        popToSize={1.1}
-        animationAppearDuration={300}
-      />
-    </GridContainer>
+    <View style={{ flex: 1, justifyContent: "center" }}>
+      <GridContainer>
+        <AnimatedSequence
+          items={getAnswerTiles()}
+          containerStyle={{ width: "50%", marginBottom: gridItemBottomMargin }}
+          animationGapTime={ANSWER_ANIMATION_GAP_TIME}
+          animationStartDelay={ANSWER_ANIMATION_START_DELAY_TIME}
+          popToSize={1.1}
+          animationAppearDuration={300}
+        />
+      </GridContainer>
+    </View>
   );
 };
 

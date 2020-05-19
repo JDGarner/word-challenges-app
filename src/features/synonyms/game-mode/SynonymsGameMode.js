@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import ConnectedSynonymsGame from "../game/ConnectedSynonymsGame";
 import { GAME_STATES } from "../synonyms-constants";
-// import ConnectedSynonymsPostGame from "../post-game/ConnectedSynonymsPostGame";
+import ConnectedSynonymsPostGame from "../post-game/ConnectedSynonymsPostGame";
 import { ScreenContainerPadded } from "../../../components";
 
 const SynonymsGameMode = ({ gameState, currentWord, onExitGame }) => {
@@ -16,8 +16,8 @@ const SynonymsGameMode = ({ gameState, currentWord, onExitGame }) => {
     switch (gameState) {
       case GAME_STATES.PLAYING:
         return <ConnectedSynonymsGame key={currentWord} />;
-      // case GAME_STATES.POSTGAME:
-        // return <ConnectedSynonymsPostGame />;
+      case GAME_STATES.POSTGAME:
+        return <ConnectedSynonymsPostGame />;
     }
 
     return null;

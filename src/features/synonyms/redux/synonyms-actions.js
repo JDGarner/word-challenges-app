@@ -8,6 +8,7 @@ export const FETCH_ADDITIONAL_SYNONYMS_SUCCESS = `${NAMESPACE}/FETCH_ADDITIONAL_
 export const ON_BEGIN_GAME = `${NAMESPACE}/ON_BEGIN_GAME`;
 export const ON_ROUND_END = `${NAMESPACE}/ON_ROUND_END`;
 export const GAME_COUNTDOWN_TICK = `${NAMESPACE}/GAME_COUNTDOWN_TICK`;
+export const ON_SUBMIT_ANSWERS = `${NAMESPACE}/ON_SUBMIT_ANSWERS`;
 export const ON_ANSWER_FEEDBACK_FINISHED = `${NAMESPACE}/ON_ANSWER_FEEDBACK_FINISHED`;
 export const ON_PRESS_START_NEW_GAME = `${NAMESPACE}/ON_PRESS_START_NEW_GAME`;
 export const ON_EXIT_GAME = `${NAMESPACE}/ON_EXIT_GAME`;
@@ -47,6 +48,12 @@ export const onRoundEnd = () => ({
 
 export const gameCountdownTick = () => ({
   type: GAME_COUNTDOWN_TICK,
+});
+
+export const onSubmitAnswers = (answers, allCorrect) => ({
+  type: ON_SUBMIT_ANSWERS,
+  answers,
+  allCorrect,
 });
 
 export const onAnswerFeedbackFinished = eloChange => ({

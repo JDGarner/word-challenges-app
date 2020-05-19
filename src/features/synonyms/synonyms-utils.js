@@ -3,6 +3,12 @@ import { WORDS_PER_ROUND, ANSWERS_REQUIRED, NUM_OF_FAKE_ANSWERS } from "./synony
 import { DIFFICULTIES } from "../../app-constants";
 import fakeEasyWords from "./potential-fake-easy-words";
 import fakeHardWords from "./potential-fake-hard-words";
+import {
+  getHighestPraiseWord,
+  getHighPraiseWord,
+  getMediumPraiseWord,
+  getLowPraiseWord,
+} from "../../utils/common-utils";
 
 const { NOVICE, JOURNEYMAN } = DIFFICULTIES;
 
@@ -27,10 +33,28 @@ export const getUpdatedSynonyms = synonyms => {
         NUM_OF_FAKE_ANSWERS[difficulty],
       );
 
-      s.synonyms = take(s.synonyms, ANSWERS_REQUIRED);
-      s.answers = shuffle([...s.synonyms, ...s.fakes]);
+      s.correctAnswers = take(s.synonyms, ANSWERS_REQUIRED);
+      s.allAnswers = shuffle([...s.correctAnswers, ...s.fakes]);
     });
   });
 
   return synonyms;
+};
+
+export const getPraiseForScore = (correct, total) => {
+  const percent = correct / total;
+
+  if (percent === 1) {
+    return getHighestPraiseWord();
+  }
+
+  if (percent >= 0.5) {
+    return getHighPraiseWord();
+  }
+
+  if (percent >= 0.25) {
+    return getMediumPraiseWord();
+  }
+
+  return getLowPraiseWord();
 };

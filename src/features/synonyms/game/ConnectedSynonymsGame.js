@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import SynonymsGame from "./SynonymsGame";
-import { onBeginGame, onAnswerFeedbackFinished } from "../redux/synonyms-actions";
+import { onBeginGame, onSubmitAnswers, onAnswerFeedbackFinished } from "../redux/synonyms-actions";
 import {
   updatePlayerELO,
   updateQuestionELO,
@@ -8,13 +8,13 @@ import {
 
 const mapStateToProps = state => {
   const { gameCountdown, difficulty, currentSynonym, correctSoFar } = state.synonyms;
-  const { definition, word, answers, synonyms, eloRating } = currentSynonym;
+  const { definition, word, allAnswers, correctAnswers, eloRating } = currentSynonym;
   const { synonymsELO } = state.eloTracking;
 
   return {
     word,
-    answers,
-    correctAnswers: synonyms,
+    allAnswers,
+    correctAnswers,
     definition,
     gameCountdown,
     difficulty,
@@ -28,6 +28,7 @@ const mapDispatchToProps = {
   updatePlayerELO,
   updateQuestionELO,
   onBeginGame,
+  onSubmitAnswers,
   onAnswerFeedbackFinished,
 };
 

@@ -36,7 +36,7 @@ const FooterContainer = styled(View)`
   margin-horizontal: 10;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 const ProgressIndicator = styled(View)`
@@ -55,7 +55,7 @@ const getInitialAnswersState = answers => {
 
 const SynonymsGame = ({
   word,
-  answers,
+  allAnswers,
   correctAnswers,
   gameCountdown,
   difficulty,
@@ -65,9 +65,10 @@ const SynonymsGame = ({
   updatePlayerELO,
   updateQuestionELO,
   onBeginGame,
+  onSubmitAnswers,
   onAnswerFeedbackFinished,
 }) => {
-  const [answersState, setAnswersState] = useState(getInitialAnswersState(answers));
+  const [answersState, setAnswersState] = useState(getInitialAnswersState(allAnswers));
   const [answersSelected, setAnswersSelected] = useState(0);
 
   const [gameOpacity] = useState(new Animated.Value(0));
@@ -93,15 +94,17 @@ const SynonymsGame = ({
   // Game countdown ticked down
   useEffect(() => {
     if (gameCountdown === 0 && !userActionsDisabled) {
-      const selectedAnswers = answersState.filter(as => as.isSelected);
+      const selectedAnswers = answersState.filter(as => as.isSelected).map(a => a.word);
       handleGameTransition(selectedAnswers);
     }
   }, [gameCountdown]);
 
   // Fade out game, show answer feedback
   const handleGameTransition = selectedAnswers => {
-    const userCorrectAnswers = selectedAnswers.filter(sa => correctAnswers.includes(sa.word));
+    const userCorrectAnswers = selectedAnswers.filter(sa => correctAnswers.includes(sa));
     const allAnswersCorrect = userCorrectAnswers.length === correctAnswers.length;
+
+    onSubmitAnswers(selectedAnswers, allAnswersCorrect);
 
     const score = userCorrectAnswers.length / ANSWERS_REQUIRED;
     const { playerELOChange, newQuestionELO } = getELORatingChanges(
@@ -156,7 +159,7 @@ const SynonymsGame = ({
     const newAnswersState = cloneDeep(answersState);
     newAnswersState[index].isSelected = !newAnswersState[index].isSelected;
 
-    const selectedAnswers = newAnswersState.filter(as => as.isSelected);
+    const selectedAnswers = newAnswersState.filter(as => as.isSelected).map(a => a.word);
 
     if (selectedAnswers.length >= 3) {
       handleGameTransition(selectedAnswers);

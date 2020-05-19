@@ -180,7 +180,7 @@ export default (state = initialState, action) => {
       currentDefinitions[state.questionIndex].isCorrect = isCorrect;
       const correctSoFar = isCorrect ? state.correctSoFar + 1 : state.correctSoFar;
 
-      return { ...state, currentDefinitions: currentDefinitions, correctSoFar };
+      return { ...state, currentDefinitions, correctSoFar };
     }
 
     case ON_SELECT_DIFFICULTY_DEFINITIONS: {

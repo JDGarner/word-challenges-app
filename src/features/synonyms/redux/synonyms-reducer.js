@@ -9,6 +9,7 @@ import {
   ON_EXIT_GAME,
   ON_SELECT_DIFFICULTY_SYNONYMS,
   ON_ANSWER_FEEDBACK_FINISHED,
+  ON_SUBMIT_ANSWERS,
 } from "./synonyms-actions";
 import { GAME_STATES, INITIAL_COUNTDOWN, WORDS_PER_ROUND } from "../synonyms-constants";
 import { roundIsOver, getUpdatedSynonyms } from "../synonyms-utils";
@@ -154,6 +155,15 @@ export default (state = initialState, action) => {
       }
 
       return { ...getStateForNextQuestion(state), netELOChange };
+
+    case ON_SUBMIT_ANSWERS: {
+      const currentSynonyms = cloneDeep(state.currentSynonyms);
+      currentSynonyms[state.questionIndex].isCorrect = action.allCorrect;
+      currentSynonyms[state.questionIndex].userAnswers = action.answers;
+      const correctSoFar = action.allCorrect ? state.correctSoFar + 1 : state.correctSoFar;
+
+      return { ...state, currentSynonyms, correctSoFar };
+    }
 
     case ON_EXIT_GAME: {
       const nextIndex = Math.ceil(state.allSynonymsIndex / WORDS_PER_ROUND) * WORDS_PER_ROUND;

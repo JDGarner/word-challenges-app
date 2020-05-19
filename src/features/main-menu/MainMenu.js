@@ -51,7 +51,13 @@ const MenuTextContainer = styled(View)`
   padding-vertical: 6;
 `;
 
-const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO }) => {
+const MainMenu = ({
+  changeScreen,
+  showAllLeaderboards,
+  definitionsELO,
+  rhymesELO,
+  synonymsELO,
+}) => {
   const getMenuItemsConfig = () => {
     return [
       {
@@ -64,7 +70,11 @@ const MainMenu = ({ changeScreen, showAllLeaderboards, definitionsELO, rhymesELO
         initialScreen: SCREENS.RHYMES_DIFFICULTY,
         score: rhymesELO,
       },
-      { displayName: SCREENS.SYNONYMS, initialScreen: SCREENS.SYNONYMS_DIFFICULTY, score: "N/A" },
+      {
+        displayName: SCREENS.SYNONYMS,
+        initialScreen: SCREENS.SYNONYMS_DIFFICULTY,
+        score: synonymsELO,
+      },
     ];
   };
 

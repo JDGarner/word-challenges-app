@@ -9,6 +9,10 @@ export const GAME_STATES = {
 
 export const WORDS_PER_ROUND = 3;
 export const ANSWERS_REQUIRED = 3;
+
+export const ANSWER_ANIMATION_GAP_TIME = 180;
+export const ANSWER_ANIMATION_START_DELAY_TIME = 620;
+export const ANSWER_ANIMATION_DURATION = 270;
 export const ANSWER_FEEDBACK_ANIMATION_DURATION = 1000;
 
 export const NUM_OF_FAKE_ANSWERS = {
