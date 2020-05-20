@@ -1,12 +1,16 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { cloneDeep } from "lodash";
+import { cloneDeep, capitalize } from "lodash";
 import styled from "styled-components";
 import { View, Animated } from "react-native";
 
 import GameHeader from "./GameHeader";
-import { ANSWER_FEEDBACK_ANIMATION_DURATION, ANSWERS_REQUIRED } from "../synonyms-constants";
+import {
+  ANSWER_FEEDBACK_ANIMATION_DURATION,
+  ANSWERS_REQUIRED,
+  INTRO_TEXT_ANIMATION_DURATION,
+} from "../synonyms-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
-import { ConnectedTopBar } from "../../../components";
+import { ConnectedTopBar, MediumText } from "../../../components";
 import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
@@ -47,6 +51,12 @@ const ProgressIndicator = styled(View)`
   margin-horizontal: 6;
 `;
 
+const IntroTextContainer = styled(Animated.View)`
+  position: absolute;
+  top: 16;
+  width: 100%;
+`;
+
 const getInitialAnswersState = answers => {
   return answers.map(a => {
     return { word: a, isSelected: false };
@@ -60,6 +70,7 @@ const SynonymsGame = ({
   gameCountdown,
   difficulty,
   correctSoFar,
+  shouldShowIntroText,
   userELO,
   questionELO,
   updatePlayerELO,
@@ -72,6 +83,7 @@ const SynonymsGame = ({
   const [answersSelected, setAnswersSelected] = useState(0);
 
   const [gameOpacity] = useState(new Animated.Value(0));
+  const [introTextOpacity] = useState(new Animated.Value(0));
   const [isCurrentAnswerCorrect, setIsCurrentAnswerCorrect] = useState(false);
   const [currentELOChange, setCurrentELOChange] = useState(0);
   const [feedbackAnimationToggle, setFeedbackAnimationToggle] = useState(false);
@@ -168,6 +180,28 @@ const SynonymsGame = ({
     setAnswersState(newAnswersState);
   };
 
+  const onAnswerGridAnimationEnd = () => {
+    if (shouldShowIntroText) {
+      Animated.sequence([
+        Animated.timing(introTextOpacity, {
+          toValue: 1,
+          duration: INTRO_TEXT_ANIMATION_DURATION * 0.33,
+          useNativeDriver: true,
+        }),
+        Animated.timing(introTextOpacity, {
+          toValue: 1,
+          duration: INTRO_TEXT_ANIMATION_DURATION * 0.33,
+          useNativeDriver: true,
+        }),
+        Animated.timing(introTextOpacity, {
+          toValue: 0,
+          duration: INTRO_TEXT_ANIMATION_DURATION * 0.33,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }
+  };
+
   return (
     <Fragment>
       <ConnectedTopBar gameCountdown={gameCountdown} />
@@ -177,11 +211,15 @@ const SynonymsGame = ({
           <AnswerGrid
             answers={answersState}
             onPressAnswer={onPressAnswer}
+            onAnimationEnd={onAnswerGridAnimationEnd}
             disabled={userActionsDisabled}
           />
         </CentreContainer>
 
         <FooterContainer>
+          <IntroTextContainer style={{ opacity: introTextOpacity }}>
+            <MediumText textAlign="center">Select 3 synonyms for {capitalize(word)}</MediumText>
+          </IntroTextContainer>
           <ProgressIndicator highlighted={answersSelected >= 1} />
           <ProgressIndicator highlighted={answersSelected >= 2} />
           <ProgressIndicator highlighted={answersSelected >= 3} />

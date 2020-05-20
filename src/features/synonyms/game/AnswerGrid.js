@@ -40,7 +40,7 @@ const getAnswerContainerStyle = isEven => [
 
 const gridItemBottomMargin = 18;
 
-const AnswerGrid = ({ answers, onPressAnswer, disabled }) => {
+const AnswerGrid = ({ answers, onPressAnswer, onAnimationEnd, disabled }) => {
   const getAnswerTiles = () => {
     return answers.map((answer, i) => {
       const fromColour = answer.isSelected ? colors.textColorSelected : colors.textColorLighter;
@@ -73,6 +73,7 @@ const AnswerGrid = ({ answers, onPressAnswer, disabled }) => {
           animationStartDelay={ANSWER_ANIMATION_START_DELAY_TIME}
           popToSize={1.1}
           animationAppearDuration={300}
+          onAnimationEnd={onAnimationEnd}
         />
       </GridContainer>
     </View>

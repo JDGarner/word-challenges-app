@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Animated, Easing } from "react-native";
 import styled from "styled-components";
-import { LargeText } from "../text/Text";
+import { LargeText, TEXT_TOP_PADDING } from "../text/Text";
 import theme from "../../theme";
 
-const CountdownContainer = styled(Animated.View)`
-  padding-bottom: 2;
+const CountdownContainer = styled(Animated.View)``;
+
+const CountdownText = styled(LargeText)`
+  padding-top: ${TEXT_TOP_PADDING + 1};
 `;
 
 const Countdown = ({ gameCountdown, animatingCountdown, onAnimationEnd }) => {
@@ -36,7 +38,7 @@ const Countdown = ({ gameCountdown, animatingCountdown, onAnimationEnd }) => {
 
   return (
     <CountdownContainer style={{ transform: [{ scale: scaleValue }] }}>
-      <LargeText color={textColor}>{gameCountdown}</LargeText>
+      <CountdownText color={textColor}>{gameCountdown}</CountdownText>
     </CountdownContainer>
   );
 };

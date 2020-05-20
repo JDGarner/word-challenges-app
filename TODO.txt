@@ -5,7 +5,6 @@
 Synonyms:
 - shuffling seems dodgy?
 - Add new leaderboard to game center
-- add intro text that disappears after a few seconds below word
 - update sizings for smaller devices, and ipad
 
 - Add progress indicator to definitions?

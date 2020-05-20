@@ -11,7 +11,14 @@ const AnimatedSequence = ({
   animationAppearDuration,
   containerStyle,
   onAnimationStart,
+  onAnimationEnd,
 }) => {
+  const handleAnimationEnd = index => {
+    if (index === items.length - 1) {
+      onAnimationEnd();
+    }
+  };
+
   return items.map((item, i) => (
     <View key={item.id} style={containerStyle}>
       <PopInView
@@ -19,7 +26,8 @@ const AnimatedSequence = ({
         duration={animationAppearDuration}
         delay={i * animationGapTime + animationStartDelay}
         pointerEvents={itemsAreButtons ? "auto" : "none"}
-        onAnimationStart={() => onAnimationStart(i)}>
+        onAnimationStart={() => onAnimationStart(i)}
+        onAnimationEnd={() => handleAnimationEnd(i)}>
         {item.component}
       </PopInView>
     </View>
@@ -34,6 +42,7 @@ AnimatedSequence.defaultProps = {
   animationAppearDuration: 700,
   containerStyle: {},
   onAnimationStart: () => {},
+  onAnimationEnd: () => {},
 };
 
 export default AnimatedSequence;

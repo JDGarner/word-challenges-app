@@ -7,7 +7,7 @@ import {
 } from "../../../redux/elo-tracking/elo-tracking-actions";
 
 const mapStateToProps = state => {
-  const { gameCountdown, difficulty, currentSynonym, correctSoFar } = state.synonyms;
+  const { gameCountdown, difficulty, currentSynonym, correctSoFar, questionIndex } = state.synonyms;
   const { definition, word, allAnswers, correctAnswers, eloRating } = currentSynonym;
   const { synonymsELO } = state.eloTracking;
 
@@ -21,6 +21,7 @@ const mapStateToProps = state => {
     questionELO: eloRating,
     userELO: synonymsELO,
     correctSoFar,
+    shouldShowIntroText: questionIndex === 0,
   };
 };
 
