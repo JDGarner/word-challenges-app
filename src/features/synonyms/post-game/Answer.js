@@ -63,7 +63,7 @@ const Answer = ({ word, definition, correctAnswers, userAnswers, delay, index, i
         useNativeDriver: true,
       }).start();
 
-      SoundManager.getInstance().playFlubSound(index);
+      SoundManager.getInstance().playFlubSound(index + 2);
 
       Animated.sequence([
         Animated.timing(scale, {

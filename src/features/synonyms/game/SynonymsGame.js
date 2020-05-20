@@ -120,7 +120,7 @@ const SynonymsGame = ({
     setCurrentELOChange(playerELOChange);
 
     if (allAnswersCorrect) {
-      SoundManager.getInstance().playPositiveTone(correctSoFar);
+      SoundManager.getInstance().playPositiveTone(correctSoFar + 2);
     } else {
       SoundManager.getInstance().playNegativeSound();
     }
