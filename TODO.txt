@@ -3,8 +3,14 @@
 ----------------------------------------
 
 Synonyms:
-- Add new leaderboard to google play
+- shuffling seems dodgy
 - Add new leaderboard to game center
+- fix long text - Acknowledgement (extend to edge)
+- add intro text that disappears after a few seconds below word
+- update correct sounds
+- update sizings for smaller devices, and ipad
+
+- Add progress indicator to definitions
 
 
 Current:

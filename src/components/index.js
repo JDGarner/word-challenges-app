@@ -1,4 +1,11 @@
-import { SmallText, MediumText, MediumLargeText, MediumLargerText, LargeText } from "./text/Text";
+import {
+  SmallText,
+  SmallMediumText,
+  MediumText,
+  MediumLargeText,
+  MediumLargerText,
+  LargeText,
+} from "./text/Text";
 import { BorderedButton, PaddedButton } from "./button/Button";
 import NextRoundButton from "./button/NextRoundButton";
 import MenuButton from "./button/MenuButton";
@@ -26,6 +33,7 @@ import TopBarTitle from "./title/TopBarTitle";
 
 export {
   SmallText,
+  SmallMediumText,
   MediumText,
   MediumLargeText,
   MediumLargerText,

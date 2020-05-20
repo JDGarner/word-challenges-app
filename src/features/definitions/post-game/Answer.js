@@ -63,7 +63,7 @@ const Answer = ({ word, definition, delay, index, isCorrect }) => {
 
   return (
     <AnswerContainer style={{ transform: [{ scale }], opacity }}>
-      <Icon name={iconName} size={24} color={iconColor} />
+      <Icon name={iconName} size={22} color={iconColor} />
       <StyledDefinition color={theme.textColor}>
         {capitalize(word)} - {definition}
       </StyledDefinition>

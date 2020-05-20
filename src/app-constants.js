@@ -43,6 +43,7 @@ export const MODES = {
 const ANDROID_LEADERBOARD_IDS = {
   DEFINITIONS: "CgkIu9P2ttwGEAIQAQ",
   RHYMES: "CgkIu9P2ttwGEAIQAg",
+  SYNONYMS: "CgkIu9P2ttwGEAIQAw",
 };
 
 const IOS_LEADERBOARD_IDS = {

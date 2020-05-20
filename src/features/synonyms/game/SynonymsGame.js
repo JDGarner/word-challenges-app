@@ -173,7 +173,7 @@ const SynonymsGame = ({
       <ConnectedTopBar gameCountdown={gameCountdown} />
       <ContentContainer style={{ opacity: gameOpacity }}>
         <CentreContainer>
-          <GameHeader word={word} />
+          <GameHeader word={word} difficulty={difficulty} />
           <AnswerGrid
             answers={answersState}
             onPressAnswer={onPressAnswer}
