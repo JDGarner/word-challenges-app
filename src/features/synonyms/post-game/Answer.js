@@ -17,7 +17,7 @@ const CORRECT_ANSWER_SPACING = getSizingForOptions(3, 4, 4, 6);
 
 const ICON_SIZE = getSizingForOptions(20, 20, 20, 42);
 const PADDING_LEFT = getSizingForOptions(3, 3, 3, 12);
-const PADDING_RIGHT = getSizingForOptions(0, 0, 0, 12);
+const PADDING_RIGHT = getSizingForOptions(5, 5, 5, 12);
 const FLEX_LEFT = getSizingForOptions(1.25, 1.25, 1.25, 1.5);
 const DEFINITION_MARGIN = getSizingForOptions(6, 6, 6, 16);
 
@@ -80,7 +80,7 @@ const Answer = ({ word, definition, correctAnswers, userAnswers, delay, index, i
 
       Animated.sequence([
         Animated.timing(scale, {
-          toValue: 1.05,
+          toValue: 1.04,
           duration: ANSWER_ANIMATION_DURATION * 0.5,
           easing: Easing.linear,
           useNativeDriver: true,
