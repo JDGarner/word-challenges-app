@@ -21,6 +21,7 @@ import { getSizingForOptions, ICON_SIZE } from "../../utils/sizing-utils";
 
 const BUTTON_PADDING = getSizingForOptions(0, 0, 0, 6);
 const TEXT_PADDING_TOP = getSizingForOptions(8, 8, 8, 14);
+const TOP_BAR_HEIGHT = getSizingForOptions(56, 70, 70, 120);
 
 const MenuContainer = styled(View)`
   flex: 1;
@@ -112,6 +113,7 @@ const MainMenu = ({
       <TopBar
         LeftComponent={<WidthSpacer width={ICON_SIZE} />}
         RightComponent={<LeaderboardButton onPress={showAllLeaderboards} />}
+        height={TOP_BAR_HEIGHT}
         displayLogo
       />
       <Title text="What would you like to train?" />

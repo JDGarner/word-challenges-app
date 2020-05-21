@@ -16,9 +16,19 @@ import { getELORatingChanges } from "../../../utils/elo-utils";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 import AnswerGrid from "./AnswerGrid";
 import colors from "../../../theme/colors";
-import { MODES } from "../../../app-constants";
+import { MODES, DIFFICULTIES } from "../../../app-constants";
 
-const FOOTER_HEIGHT = getSizingForOptions("22%", "24%", "25%", "25%");
+const { NOVICE, JOURNEYMAN, EXPERT, MASTER } = DIFFICULTIES;
+
+const INTRO_TEXT_TOP = getSizingForOptions(0, 8, 16, 26);
+const PROGRESS_HEIGHT = getSizingForOptions(14, 16, 18, 28);
+
+const FOOTER_HEIGHT_FOR_DIFFICULTY = {
+  [NOVICE]: getSizingForOptions("23%", "26%", "28%", "25%"),
+  [JOURNEYMAN]: getSizingForOptions("22%", "24%", "26%", "25%"),
+  [EXPERT]: getSizingForOptions("18%", "22%", "24%", "25%"),
+  [MASTER]: getSizingForOptions("15%", "19%", "18%", "25%"),
+};
 
 const ContentContainer = styled(Animated.View)`
   flex: 1;
@@ -35,7 +45,7 @@ const CentreContainer = styled(View)`
 `;
 
 const FooterContainer = styled(View)`
-  height: ${FOOTER_HEIGHT};
+  height: ${({ difficulty }) => FOOTER_HEIGHT_FOR_DIFFICULTY[difficulty]};
   margin-top: auto;
   flex-direction: row;
   justify-content: space-between;
@@ -43,7 +53,7 @@ const FooterContainer = styled(View)`
 `;
 
 const ProgressIndicator = styled(View)`
-  height: 18;
+  height: ${PROGRESS_HEIGHT};
   flex: 1;
   background-color: ${({ highlighted }) =>
     highlighted ? colors.textColorSelected : colors.textColorLighter};
@@ -52,7 +62,7 @@ const ProgressIndicator = styled(View)`
 
 const IntroTextContainer = styled(Animated.View)`
   position: absolute;
-  top: 16;
+  top: ${INTRO_TEXT_TOP};
   width: 100%;
 `;
 
@@ -209,13 +219,14 @@ const SynonymsGame = ({
           <GameHeader word={word} difficulty={difficulty} />
           <AnswerGrid
             answers={answersState}
+            difficulty={difficulty}
             onPressAnswer={onPressAnswer}
             onAnimationEnd={onAnswerGridAnimationEnd}
             disabled={userActionsDisabled}
           />
         </CentreContainer>
 
-        <FooterContainer>
+        <FooterContainer difficulty={difficulty}>
           <IntroTextContainer style={{ opacity: introTextOpacity }}>
             <MediumText textAlign="center">Select 3 synonyms for {capitalize(word)}</MediumText>
           </IntroTextContainer>

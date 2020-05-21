@@ -5,7 +5,7 @@ import PopInView from "../pop-in-view/PopInView";
 import { MediumLargeText } from "../text/Text";
 import { getSizingForOptions } from "../../utils/sizing-utils";
 
-const TITLE_HEIGHT = getSizingForOptions("8%", "11%", "12%", "11%");
+const TITLE_HEIGHT = getSizingForOptions("9%", "11%", "12%", "11%");
 
 const TitleContainer = styled(View)`
   height: ${TITLE_HEIGHT};
