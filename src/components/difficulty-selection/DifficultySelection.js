@@ -15,6 +15,7 @@ import { getSizingForOptions } from "../../utils/sizing-utils";
 
 const OPTION_WIDTH = getSizingForOptions(180, 210, 230, 370);
 const OPTION_PADDING = getSizingForOptions(10, 12, 14, 24);
+const VERTICAL_SPACING = getSizingForOptions("5%", "5%", "6%", "5%");
 
 const DifficultyOptions = styled(View)`
   flex: 1;
@@ -31,7 +32,8 @@ const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, m
         <MenuButton
           onPress={() => onSelectDifficulty(difficulty)}
           width={OPTION_WIDTH}
-          verticalPadding={OPTION_PADDING}>
+          verticalPadding={OPTION_PADDING}
+          verticalSpacing={VERTICAL_SPACING}>
           <MediumLargerText>{capitalize(difficulty)}</MediumLargerText>
         </MenuButton>
       ),

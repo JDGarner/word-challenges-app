@@ -15,7 +15,7 @@ const MenuPaddedButton = styled(AnimatedButton)`
     verticalPadding ? TEXT_TOP_PADDING + verticalPadding : TEXT_TOP_PADDING};
   padding-bottom: ${props => props.verticalPadding || 0};
   padding-horizontal: 12;
-  margin-vertical: ${MENU_BUTTON_SPACING};
+  margin-vertical: ${props => props.verticalSpacing || MENU_BUTTON_SPACING};
 `;
 
 const MenuButton = ({ onPress, ...otherProps }) => {

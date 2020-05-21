@@ -12,6 +12,7 @@ import {
   ON_ROUND_END,
   ON_ANSWER_FEEDBACK_FINISHED,
   ON_SELECT_DIFFICULTY_SYNONYMS,
+  ON_SUBMIT_ANSWERS,
 } from "./synonyms-actions";
 import { fetchFromApi } from "../../../utils/api-util";
 import { RETRY_TIMEOUT, MODES, SCREENS, ENDPOINTS } from "../../../app-constants";
@@ -56,10 +57,13 @@ export default store => next => action => {
       clearInterval(gameCountdownInterval);
       break;
 
-    case ON_ANSWER_FEEDBACK_FINISHED:
-      // TODO: this should be done on answer feedback start
-      clearInterval(gameCountdownInterval);
+    case ON_SUBMIT_ANSWERS:
+      if (gameCountdownInterval) {
+        clearInterval(gameCountdownInterval);
+      }
+      break;
 
+    case ON_ANSWER_FEEDBACK_FINISHED:
       if (roundIsOver(synonyms.questionIndex + 1)) {
         store.dispatch(onRoundEnd());
       }

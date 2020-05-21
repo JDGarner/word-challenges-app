@@ -37,7 +37,6 @@ const CentreContainer = styled(View)`
 const FooterContainer = styled(View)`
   height: ${FOOTER_HEIGHT};
   margin-top: auto;
-  margin-horizontal: 10;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

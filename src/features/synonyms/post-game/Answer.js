@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Animated, Easing, View, ScrollView } from "react-native";
+import { Animated, Easing, View } from "react-native";
 import { capitalize } from "lodash";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import theme from "../../../theme";
@@ -8,13 +8,19 @@ import { MediumText, SmallMediumText } from "../../../components";
 import { ANSWER_ANIMATION_DURATION } from "../synonyms-constants";
 import SoundManager from "../../sound/SoundManager";
 import colors from "../../../theme/colors";
+import { getSizingForOptions } from "../../../utils/sizing-utils";
+
+const ANSWER_PADDING_TOP = getSizingForOptions(12, 18, 26, 46);
+const ANSWER_PADDING_BOTTOM = getSizingForOptions(6, 7, 8, 16);
+const WORD_TEXT_MARGIN_BOTTOM = getSizingForOptions(4, 6, 6, 14);
+const CORRECT_ANSWER_SPACING = getSizingForOptions(3, 4, 4, 6);
 
 const AnswerContainer = styled(Animated.View)`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: 26;
-  padding-bottom: 8;
+  padding-top: ${ANSWER_PADDING_TOP};
+  padding-bottom: ${ANSWER_PADDING_BOTTOM};
   padding-left: 3;
 `;
 
@@ -27,7 +33,7 @@ const DefinitionContainer = styled(View)`
 `;
 
 const WordText = styled(MediumText)`
-  margin-bottom: 6;
+  margin-bottom: ${WORD_TEXT_MARGIN_BOTTOM};
 `;
 
 const CorrectAnswersContainer = styled(View)`
@@ -41,9 +47,9 @@ const CorrectAnswer = styled(View)`
   background-color: ${({ isCorrect }) =>
     isCorrect ? colors.textColorSelected : colors.textColorLighter};
   color: ${({ isCorrect }) => (isCorrect ? colors.textColor : colors.textColorLight)};
-  margin-top: ${({ first }) => (first ? 0 : 4)};
-  margin-bottom: ${({ last }) => (last ? 0 : 4)};
-  padding-vertical: 4;
+  margin-top: ${({ first }) => (first ? 0 : CORRECT_ANSWER_SPACING)};
+  margin-bottom: ${({ last }) => (last ? 0 : CORRECT_ANSWER_SPACING)};
+  padding-vertical: ${CORRECT_ANSWER_SPACING};
   padding-horizontal: 1;
   width: 100%;
 `;

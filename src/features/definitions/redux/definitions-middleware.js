@@ -13,6 +13,7 @@ import {
   ON_ANSWER_FEEDBACK_FINISHED,
   ON_SELECT_DIFFICULTY_DEFINITIONS,
   ON_FREE_LETTER_ADDED,
+  ON_SUBMIT_ANSWER,
 } from "./definitions-actions";
 import { fetchFromApi } from "../../../utils/api-util";
 import { RETRY_TIMEOUT, MODES, SCREENS, ENDPOINTS } from "../../../app-constants";
@@ -55,12 +56,18 @@ export default store => next => action => {
       break;
 
     case ON_EXIT_GAME:
-      clearInterval(gameCountdownInterval);
+      if (gameCountdownInterval) {
+        clearInterval(gameCountdownInterval);
+      }
+      break;
+
+    case ON_SUBMIT_ANSWER:
+      if (gameCountdownInterval) {
+        clearInterval(gameCountdownInterval);
+      }
       break;
 
     case ON_ANSWER_FEEDBACK_FINISHED:
-      clearInterval(gameCountdownInterval);
-
       if (roundIsOver(definitions.questionIndex + 1)) {
         store.dispatch(onRoundEnd());
       }

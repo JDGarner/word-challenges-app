@@ -4,13 +4,15 @@ import styled from "styled-components";
 import { capitalize } from "lodash";
 import { MediumLargerText } from "../../../components";
 import { DIFFICULTIES } from "../../../app-constants";
+import { getSizingForOptions } from "../../../utils/sizing-utils";
 
 const { NOVICE, JOURNEYMAN, EXPERT, MASTER } = DIFFICULTIES;
+const HEADER_HEIGHT = getSizingForOptions("8%", "14%", "20%", "20%");
 
 const GameHeaderContainer = styled(View)`
   justify-content: ${({ justifyContent }) => justifyContent};
   align-items: center;
-  height: 20%;
+  height: ${HEADER_HEIGHT};
 `;
 
 const JUSTIFY_CONTENT = {

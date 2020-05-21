@@ -3,7 +3,6 @@
 ----------------------------------------
 
 Synonyms:
-- shuffling seems dodgy?
 - Add new leaderboard to game center
 - update sizings for smaller devices, and ipad
 
