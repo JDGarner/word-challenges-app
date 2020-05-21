@@ -24,10 +24,10 @@ const INTRO_TEXT_TOP = getSizingForOptions(0, 8, 16, 26);
 const PROGRESS_HEIGHT = getSizingForOptions(14, 16, 18, 28);
 
 const FOOTER_HEIGHT_FOR_DIFFICULTY = {
-  [NOVICE]: getSizingForOptions("23%", "26%", "28%", "25%"),
+  [NOVICE]: getSizingForOptions("23%", "26%", "28%", "27%"),
   [JOURNEYMAN]: getSizingForOptions("22%", "24%", "26%", "25%"),
   [EXPERT]: getSizingForOptions("18%", "22%", "24%", "25%"),
-  [MASTER]: getSizingForOptions("15%", "19%", "18%", "25%"),
+  [MASTER]: getSizingForOptions("15%", "19%", "18%", "22%"),
 };
 
 const ContentContainer = styled(Animated.View)`

@@ -9,10 +9,10 @@ import { getSizingForOptions } from "../../../utils/sizing-utils";
 const { NOVICE, JOURNEYMAN, EXPERT, MASTER } = DIFFICULTIES;
 
 const HEADER_HEIGHT_FOR_DIFFICULTY = {
-  [NOVICE]: getSizingForOptions("16%", "18%", "23%", "20%"),
-  [JOURNEYMAN]: getSizingForOptions("10%", "14%", "22%", "20%"),
-  [EXPERT]: getSizingForOptions("10%", "14%", "21%", "20%"),
-  [MASTER]: getSizingForOptions("7%", "10%", "17%", "20%"),
+  [NOVICE]: getSizingForOptions("16%", "18%", "23%", "24%"),
+  [JOURNEYMAN]: getSizingForOptions("10%", "14%", "22%", "22%"),
+  [EXPERT]: getSizingForOptions("10%", "14%", "21%", "18%"),
+  [MASTER]: getSizingForOptions("7%", "10%", "17%", "16%"),
 };
 
 const GameHeaderContainer = styled(View)`

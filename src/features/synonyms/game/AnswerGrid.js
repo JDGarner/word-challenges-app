@@ -15,7 +15,7 @@ const ANSWER_ANIMATION_GAP_TIME = 70;
 const ANSWER_ANIMATION_START_DELAY_TIME = 0;
 
 const PADDING_H = getSizingForOptions(2, 2, 2, 10);
-const MARGIN_H = getSizingForOptions(10, 10, 10, 34);
+const MARGIN_H = getSizingForOptions(10, 10, 10, 36);
 const MARGIN_TOP = getSizingForOptions(2, 10, 14, 24);
 
 const PADDING_V_FOR_DIFFICULTY = {

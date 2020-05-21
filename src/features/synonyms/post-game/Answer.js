@@ -15,19 +15,26 @@ const ANSWER_PADDING_BOTTOM = getSizingForOptions(6, 7, 8, 16);
 const WORD_TEXT_MARGIN_BOTTOM = getSizingForOptions(4, 6, 6, 14);
 const CORRECT_ANSWER_SPACING = getSizingForOptions(3, 4, 4, 6);
 
+const ICON_SIZE = getSizingForOptions(20, 20, 20, 42);
+const PADDING_LEFT = getSizingForOptions(3, 3, 3, 12);
+const PADDING_RIGHT = getSizingForOptions(0, 0, 0, 12);
+const FLEX_LEFT = getSizingForOptions(1.25, 1.25, 1.25, 1.5);
+const DEFINITION_MARGIN = getSizingForOptions(6, 6, 6, 16);
+
 const AnswerContainer = styled(Animated.View)`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding-top: ${ANSWER_PADDING_TOP};
   padding-bottom: ${ANSWER_PADDING_BOTTOM};
-  padding-left: 3;
+  padding-left: ${PADDING_LEFT};
+  padding-right: ${PADDING_RIGHT};
 `;
 
 const DefinitionContainer = styled(View)`
-  flex: 1.25;
-  margin-right: 6;
-  margin-left: 6;
+  flex: ${FLEX_LEFT};
+  margin-right: ${DEFINITION_MARGIN};
+  margin-left: ${DEFINITION_MARGIN};
   justify-content: flex-start;
   height: 100%;
 `;
@@ -97,7 +104,7 @@ const Answer = ({ word, definition, correctAnswers, userAnswers, delay, index, i
 
   return (
     <AnswerContainer style={{ transform: [{ scale }], opacity }}>
-      <Icon name={iconName} size={20} color={iconColor} />
+      <Icon name={iconName} size={ICON_SIZE} color={iconColor} />
       <DefinitionContainer>
         <WordText textAlign="center">{capitalize(word)}</WordText>
         <SmallMediumText>{definition}</SmallMediumText>
