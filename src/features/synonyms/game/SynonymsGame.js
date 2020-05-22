@@ -8,20 +8,19 @@ import {
   ANSWER_FEEDBACK_ANIMATION_DURATION,
   ANSWERS_REQUIRED,
   INTRO_TEXT_ANIMATION_DURATION,
+  WORDS_PER_ROUND,
 } from "../synonyms-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
-import { ConnectedTopBar, MediumText } from "../../../components";
+import { ConnectedTopBar, MediumText, ProgressBar } from "../../../components";
 import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import { getSizingForOptions } from "../../../utils/sizing-utils";
 import AnswerGrid from "./AnswerGrid";
-import colors from "../../../theme/colors";
 import { MODES, DIFFICULTIES } from "../../../app-constants";
 
 const { NOVICE, JOURNEYMAN, EXPERT, MASTER } = DIFFICULTIES;
 
 const INTRO_TEXT_TOP = getSizingForOptions(0, 8, 16, 26);
-const PROGRESS_HEIGHT = getSizingForOptions(14, 16, 18, 28);
 
 const FOOTER_HEIGHT_FOR_DIFFICULTY = {
   [NOVICE]: getSizingForOptions("23%", "26%", "28%", "27%"),
@@ -47,17 +46,9 @@ const CentreContainer = styled(View)`
 const FooterContainer = styled(View)`
   height: ${({ difficulty }) => FOOTER_HEIGHT_FOR_DIFFICULTY[difficulty]};
   margin-top: auto;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-`;
-
-const ProgressIndicator = styled(View)`
-  height: ${PROGRESS_HEIGHT};
-  flex: 1;
-  background-color: ${({ highlighted }) =>
-    highlighted ? colors.textColorSelected : colors.textColorLighter};
-  margin-horizontal: 6;
+  width: 100%;
 `;
 
 const IntroTextContainer = styled(Animated.View)`
@@ -230,9 +221,7 @@ const SynonymsGame = ({
           <IntroTextContainer style={{ opacity: introTextOpacity }}>
             <MediumText textAlign="center">Select 3 synonyms for {capitalize(word)}</MediumText>
           </IntroTextContainer>
-          <ProgressIndicator highlighted={answersSelected >= 1} />
-          <ProgressIndicator highlighted={answersSelected >= 2} />
-          <ProgressIndicator highlighted={answersSelected >= 3} />
+          <ProgressBar currentLevel={answersSelected} total={WORDS_PER_ROUND} />
         </FooterContainer>
       </ContentContainer>
       <AnswerFeedback

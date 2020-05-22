@@ -5,6 +5,8 @@ import {
   onSubmitAnswer,
   onAnswerFeedbackFinished,
   onFreeLetterAdded,
+  onGameCountdownEnd,
+  onSkipQuestion,
 } from "../redux/definitions-actions";
 import {
   updatePlayerELO,
@@ -18,6 +20,7 @@ const mapStateToProps = ({ definitions, eloTracking }) => {
     currentDefinition,
     freeLettersRemaining,
     correctSoFar,
+    answeredSoFar,
   } = definitions;
   const { definition, word, eloRating } = currentDefinition;
   const { definitionsELO } = eloTracking;
@@ -31,6 +34,7 @@ const mapStateToProps = ({ definitions, eloTracking }) => {
     userELO: definitionsELO,
     freeLettersRemaining,
     correctSoFar,
+    answeredSoFar,
   };
 };
 
@@ -41,6 +45,8 @@ const mapDispatchToProps = {
   onSubmitAnswer,
   onAnswerFeedbackFinished,
   onFreeLetterAdded,
+  onGameCountdownEnd,
+  onSkipQuestion,
 };
 
 const ConnectedDefinitionGame = connect(

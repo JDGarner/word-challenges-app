@@ -12,9 +12,10 @@ import { getShuffleReappearDelay, doShuffleAnimation, getAnswersState } from "..
 import {
   ANSWER_FEEDBACK_ANIMATION_DURATION,
   FREE_LETTER_SCORE_COST,
+  WORDS_PER_ROUND,
 } from "../definitions-constants";
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
-import { ConnectedTopBar, SmallText } from "../../../components";
+import { ConnectedTopBar, SmallText, ProgressBar } from "../../../components";
 import SoundManager from "../../sound/SoundManager";
 import { getELORatingChanges } from "../../../utils/elo-utils";
 import { MODES } from "../../../app-constants";
@@ -26,6 +27,7 @@ const GAME_TOP_SPACING = getSizingForOptions(10, 32, 46, 46);
 const FOOTER_HEIGHT = getSizingForOptions("22%", "24%", "25%", "25%");
 const SCRAMBLED_MARGIN_BOTTOM = getSizingForOptions("0%", "3%", "6%", "6%");
 const ICON_SIZE = getSizingForOptions(40, 40, 40, 68);
+const PROGRESS_HEIGHT = getSizingForOptions(8, 13, 16, 24);
 
 const ContentContainer = styled(Animated.View)`
   flex: 1;
@@ -53,6 +55,13 @@ const ScrambledLettersContainer = styled(View)`
 const FooterContainer = styled(View)`
   height: ${FOOTER_HEIGHT};
   margin-top: auto;
+`;
+
+const ProgressIndicators = styled(View)`
+  position: absolute;
+  width: 100%;
+  height: ${PROGRESS_HEIGHT};
+  bottom: 10;
 `;
 
 const FooterButtons = styled(View)`
@@ -122,6 +131,7 @@ const DefinitionGame = ({
   gameCountdown,
   difficulty,
   correctSoFar,
+  answeredSoFar,
   userELO,
   questionELO,
   updatePlayerELO,
@@ -131,6 +141,8 @@ const DefinitionGame = ({
   onSubmitAnswer,
   onAnswerFeedbackFinished,
   onFreeLetterAdded,
+  onGameCountdownEnd,
+  onSkipQuestion,
 }) => {
   const [lettersState, setLettersState] = useState(getInitialLettersState(word));
   const letterStateScrambledOrder = useMemo(() => sortBy(lettersState, ["scrambledIndex"]), [
@@ -165,6 +177,7 @@ const DefinitionGame = ({
   // Game countdown ticked down
   useEffect(() => {
     if (gameCountdown === 0 && !userActionsDisabled) {
+      onGameCountdownEnd();
       handleGameTransition(false);
     }
   }, [gameCountdown]);
@@ -315,6 +328,11 @@ const DefinitionGame = ({
     }
   };
 
+  const onPressSkipQuestion = () => {
+    onSkipQuestion();
+    handleGameTransition(false);
+  };
+
   const freeLetterEnabled =
     freeLettersRemaining > 0 && lettersState.filter(l => !l.isPlaced).length > 1;
   const freeLetterColor = freeLetterEnabled ? colors.textColor : colors.textColorDisabled;
@@ -368,7 +386,7 @@ const DefinitionGame = ({
             <ShuffleButton onPress={onPressShuffle} disabled={userActionsDisabled}>
               <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
             </ShuffleButton>
-            <SkipButton onPress={() => handleGameTransition(false)} disabled={userActionsDisabled}>
+            <SkipButton onPress={onPressSkipQuestion} disabled={userActionsDisabled}>
               <Icon name="skip-next" size={ICON_SIZE + 6} color={theme.textColor} />
             </SkipButton>
           </FooterButtons>
@@ -380,6 +398,14 @@ const DefinitionGame = ({
         isShowingAnswerFeedback={isShowingAnswerFeedback}
         animationToggle={feedbackAnimationToggle}
       />
+      <ProgressIndicators>
+        <ProgressBar
+          currentLevel={answeredSoFar}
+          total={WORDS_PER_ROUND}
+          marginH={5}
+          height={PROGRESS_HEIGHT}
+        />
+      </ProgressIndicators>
     </Fragment>
   );
 };

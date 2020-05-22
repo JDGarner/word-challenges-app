@@ -11,6 +11,8 @@ import {
   ON_SELECT_DIFFICULTY_DEFINITIONS,
   ON_ANSWER_FEEDBACK_FINISHED,
   ON_FREE_LETTER_ADDED,
+  ON_GAME_COUNTDOWN_END,
+  ON_SKIP_QUESTION,
 } from "./definitions-actions";
 import {
   GAME_STATES,
@@ -31,6 +33,7 @@ const initialState = {
   currentDefinition: {},
   allDefinitionsIndex: 0,
   questionIndex: 0,
+  answeredSoFar: 0,
   netELOChange: 0,
   correctSoFar: 0,
   freeLettersRemaining: FREE_LETTER_INITIAL_COUNT,
@@ -46,6 +49,7 @@ const getStateForRoundEnd = state => {
   return {
     ...state,
     questionIndex: 0,
+    answeredSoFar: 0,
     allDefinitionsIndex: state.allDefinitionsIndex + 1,
     gameState: GAME_STATES.POSTGAME,
   };
@@ -86,6 +90,7 @@ const getStateForNewRound = (state, nextIndex, allDefinitions) => {
       currentDefinition,
       currentDefinitions,
       questionIndex: 0,
+      answeredSoFar: 0,
       netELOChange: 0,
       correctSoFar: 0,
       freeLettersRemaining: FREE_LETTER_INITIAL_COUNT,
@@ -180,7 +185,7 @@ export default (state = initialState, action) => {
       currentDefinitions[state.questionIndex].isCorrect = isCorrect;
       const correctSoFar = isCorrect ? state.correctSoFar + 1 : state.correctSoFar;
 
-      return { ...state, currentDefinitions, correctSoFar };
+      return { ...state, currentDefinitions, correctSoFar, answeredSoFar: state.answeredSoFar + 1 };
     }
 
     case ON_SELECT_DIFFICULTY_DEFINITIONS: {
@@ -222,6 +227,10 @@ export default (state = initialState, action) => {
         netELOChange: state.netELOChange + FREE_LETTER_SCORE_COST,
       };
     }
+
+    case ON_GAME_COUNTDOWN_END:
+    case ON_SKIP_QUESTION:
+      return { ...state, answeredSoFar: state.answeredSoFar + 1 };
 
     default:
       return state;

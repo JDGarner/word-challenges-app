@@ -30,6 +30,7 @@ import ConnectedTopBar from "./top-bar/ConnectedTopBar";
 import { HeightSpacer, WidthSpacer } from "./spacer/Spacer";
 import Title from "./title/Title";
 import TopBarTitle from "./title/TopBarTitle";
+import ProgressBar from "./progress-bar/ProgressBar";
 
 export {
   SmallText,
@@ -62,4 +63,5 @@ export {
   HeightSpacer,
   WidthSpacer,
   NextRoundButton,
+  ProgressBar,
 };

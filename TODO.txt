@@ -4,11 +4,10 @@
 
 Synonyms:
 - Add new leaderboard to game center
-- update sizings for smaller devices, and ipad
 - release android
 - release ios
 
-- Add progress indicator to definitions?
+- add keyboard avoiding view
 
 
 Current:
