@@ -4,7 +4,6 @@
 
 Synonyms:
 - Add new leaderboard to game center
-- release android
 
 - add keyboard avoiding view
   - release ios
