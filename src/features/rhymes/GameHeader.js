@@ -6,10 +6,10 @@ import { TEXT_TOP_PADDING } from "../../components/text/Text";
 import { ANSWERS_REQUIRED } from "./rhymes-constants";
 import { getSizingForOptions } from "../../utils/sizing-utils";
 
-const WORD_MARGIN_TOP = getSizingForOptions(14, 16, 18, 28);
-const WORD_MARGIN_BOTTOM = getSizingForOptions(12, 22, 28, 48);
-const WORD_PADDING_V = getSizingForOptions(8, 9, 10, 18);
-const WORD_PADDING_H = getSizingForOptions(28, 30, 32, 58);
+const WORD_MARGIN_TOP = getSizingForOptions(10, 13, 16, 28);
+const WORD_MARGIN_BOTTOM = getSizingForOptions(8, 20, 26, 48);
+const WORD_PADDING_V = getSizingForOptions(6, 8, 10, 18);
+const WORD_PADDING_H = getSizingForOptions(22, 28, 32, 58);
 
 const CurrentWordContainer = styled(TextContainer)`
   justify-content: center;

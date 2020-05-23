@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
-import { View, Animated, Keyboard } from "react-native";
+import { View, Animated, Keyboard, KeyboardAvoidingView, Platform } from "react-native";
 import styled from "styled-components";
 
 import { ConnectedTopBar } from "../../../components";
@@ -10,6 +10,12 @@ import { ANSWERS_REQUIRED, RHYME_GAME_FADE_OUT_DURATION } from "../rhymes-consta
 import AnswerFeedback from "../../../components/answer-feedback/AnswerFeedback";
 
 const GameContainer = styled(Animated.View)`
+  flex: 1;
+  align-items: center;
+  width: 100%;
+`;
+
+const StyledKeyboardAvoidingView = styled(KeyboardAvoidingView)`
   flex: 1;
   align-items: center;
   width: 100%;
@@ -82,15 +88,17 @@ const RhymeGame = ({
         animatingCountdown={animatingCountdown}
         onAnimationEnd={onCountdownAnimationEnd}
       />
-      <GameContainer style={{ opacity: gameOpacity }}>
-        <GameHeader word={currentWord} />
-        <ContentContainer>
-          <AnswerGrid answers={correctAnswers} onAnswerAnimationEnd={onAnswerAnimationEnd} />
-          <AnswerTextContainer>
-            <AnswerText onSubmitAnswer={onSubmitAnswer} placeholder="Enter Rhyme" />
-          </AnswerTextContainer>
-        </ContentContainer>
-      </GameContainer>
+      <StyledKeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+        <GameContainer style={{ opacity: gameOpacity }}>
+          <GameHeader word={currentWord} />
+          <ContentContainer>
+            <AnswerGrid answers={correctAnswers} onAnswerAnimationEnd={onAnswerAnimationEnd} />
+            <AnswerTextContainer>
+              <AnswerText onSubmitAnswer={onSubmitAnswer} placeholder="Enter Rhyme" />
+            </AnswerTextContainer>
+          </ContentContainer>
+        </GameContainer>
+      </StyledKeyboardAvoidingView>
       <AnswerFeedback isCorrect={false} animationToggle={incorrectAnswerAnimationToggle} />
     </Fragment>
   );

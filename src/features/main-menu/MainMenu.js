@@ -67,14 +67,14 @@ const MainMenu = ({
         score: definitionsELO,
       },
       {
-        displayName: SCREENS.RHYMES,
-        initialScreen: SCREENS.RHYMES_DIFFICULTY,
-        score: rhymesELO,
-      },
-      {
         displayName: SCREENS.SYNONYMS,
         initialScreen: SCREENS.SYNONYMS_DIFFICULTY,
         score: synonymsELO,
+      },
+      {
+        displayName: SCREENS.RHYMES,
+        initialScreen: SCREENS.RHYMES_DIFFICULTY,
+        score: rhymesELO,
       },
     ];
   };

@@ -9,7 +9,7 @@ const AnswerInput = styled(TextInput).attrs(props => ({
   border-bottom-width: 1px;
   border-bottom-color: ${props => props.theme.textColor};
   padding: 5px;
-  margin-top: 60;
+  margin-top: 50;
   min-width: 126px;
   text-align: center;
   font-size: ${props => props.theme.medium.fontSize};

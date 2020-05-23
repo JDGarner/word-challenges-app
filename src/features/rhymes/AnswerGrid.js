@@ -9,7 +9,7 @@ import colors from "../../theme/colors";
 import SoundManager from "../sound/SoundManager";
 import { getSizingForOptions } from "../../utils/sizing-utils";
 
-const PADDING_V = getSizingForOptions(10, 10, 10, 22);
+const PADDING_V = getSizingForOptions(8, 9, 10, 22);
 const PADDING_H = getSizingForOptions(2, 2, 2, 10);
 const MARGIN_H = getSizingForOptions(14, 14, 14, 34);
 
