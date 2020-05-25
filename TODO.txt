@@ -2,11 +2,13 @@
 1st Release
 ----------------------------------------
 
-Synonyms:
-- Add new leaderboard to game center
+Google Ad:
+Headlines:
+  - Solve word problems
+  - Learn new words
 
-- add keyboard avoiding view
-  - release ios
+Desc:
+  - Test your knowledge of definitions, synonyms and rhymes
 
 
 Current:

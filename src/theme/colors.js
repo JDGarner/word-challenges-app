@@ -1,5 +1,6 @@
 export default {
   textColor: "rgba(255, 255, 255, 0.82)",
+  textColorMedium: "rgba(255, 255, 255, 0.65)",
   textColorLight: "rgba(255, 255, 255, 0.4)",
   textColorLighter: "rgba(255, 255, 255, 0.1)",
   textColorDisabled: "rgba(255, 255, 255, 0.2)",

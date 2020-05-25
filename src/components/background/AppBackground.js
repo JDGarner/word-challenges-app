@@ -15,4 +15,14 @@ const AppBackground = ({ children }) => {
   );
 };
 
+// return (
+//   <LinearGradient
+//     colors={["#2ea7d7", "#b242f1"]}
+//     start={{ x: 1, y: 0 }}
+//     end={{ x: 0, y: 0 }}
+//     style={{ flex: 1 }}>
+//     <SafeAreaView style={{ flex: 1 }}>{children}</SafeAreaView>
+//   </LinearGradient>
+// );
+
 export default AppBackground;
