@@ -587,7 +587,7 @@ const rhymes = {
   journeyman: [
     {
       _id: "5e6f0868f12f4e3abf6c8914",
-      word: "throat",
+      word: "goat",
       rhymes: [
         { word: "note" },
         { word: "boat" },
@@ -597,7 +597,7 @@ const rhymes = {
         { word: "float" },
         { word: "quote" },
         { word: "denote" },
-        { word: "goat" },
+        { word: "throat" },
         { word: "remote" },
         { word: "rote" },
         { word: "vote" },

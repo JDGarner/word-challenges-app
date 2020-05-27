@@ -16,6 +16,7 @@ import { retrieveELOs } from "./redux/elo-tracking/elo-tracking-actions";
 import { googlePlaySilentSignIn } from "./redux/leaderboard-services/leaderboard-services-actions";
 import { onNavigateBack } from "./redux/navigation/navigation-actions";
 import { updateMutedSetting } from "./redux/settings/settings-actions";
+import PromoScreen from "./features/screens/PromoScreen";
 
 const store = configureStore();
 
@@ -57,6 +58,7 @@ export default function AppProvider() {
         <>
           <StatusBar backgroundColor="black" barStyle="light-content" />
           <AppBackground>
+            {/* <PromoScreen /> */}
             <ConnectedAppScreens />
           </AppBackground>
         </>

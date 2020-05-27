@@ -1,6 +1,7 @@
 import React from "react";
 import { SafeAreaView } from "react-native";
 import AnimatedLinearGradient from "react-native-animated-linear-gradient";
+// import LinearGradient from "react-native-linear-gradient";
 
 const appColors = ["#2ea7d7", "#b242f1", "#F89221", "#2ac6b2", "#870acb"];
 
@@ -13,16 +14,15 @@ const AppBackground = ({ children }) => {
       <SafeAreaView style={{ flex: 1 }}>{children}</SafeAreaView>
     </AnimatedLinearGradient>
   );
+  // return (
+  //   <LinearGradient
+  //     colors={["#2ea7d7", "#b242f1"]}
+  //     start={{ x: 1, y: 0 }}
+  //     end={{ x: 0, y: 0 }}
+  //     style={{ flex: 1 }}>
+  //     <SafeAreaView style={{ flex: 1 }}>{children}</SafeAreaView>
+  //   </LinearGradient>
+  // );
 };
-
-// return (
-//   <LinearGradient
-//     colors={["#2ea7d7", "#b242f1"]}
-//     start={{ x: 1, y: 0 }}
-//     end={{ x: 0, y: 0 }}
-//     style={{ flex: 1 }}>
-//     <SafeAreaView style={{ flex: 1 }}>{children}</SafeAreaView>
-//   </LinearGradient>
-// );
 
 export default AppBackground;

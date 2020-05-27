@@ -63,6 +63,9 @@ const getInitialAnswersState = answers => {
   });
 };
 
+// Used for demo video
+// const fakeAnswers = ["thrill", "exhilarate", "electrify"];
+
 const SynonymsGame = ({
   word,
   allAnswers,
@@ -92,6 +95,13 @@ const SynonymsGame = ({
 
   useEffect(() => {
     onBeginGame();
+
+    // Used for demo video
+    // setTimeout(() => {
+    //   if (word.toLowerCase() === "excite") {
+    //     onPressAnswerFake(answersState, 0);
+    //   }
+    // }, 1200);
   }, [onBeginGame, word]);
 
   // Fade in game when word changes
@@ -158,6 +168,36 @@ const SynonymsGame = ({
     updatePlayerELO(MODES.SYNONYMS, playerELOChange);
     updateQuestionELO(MODES.SYNONYMS, word, newQuestionELO);
   };
+
+  // Used for demo video
+  // const onPressAnswerFake = (currentAnswersState, counter) => {
+  //   const fake = fakeAnswers[counter];
+  //   const answer = currentAnswersState.find(a => a.word === fake);
+  //   const index = currentAnswersState.findIndex(a => a.word === answer.word);
+
+  //   if (answer.isSelected) {
+  //     setAnswersSelected(x => x - 1);
+  //     SoundManager.getInstance().playRemoveLetterSound();
+  //   } else {
+  //     setAnswersSelected(x => x + 1);
+  //     SoundManager.getInstance().playAddLetterSound();
+  //   }
+
+  //   const newAnswersState = cloneDeep(currentAnswersState);
+  //   newAnswersState[index].isSelected = !newAnswersState[index].isSelected;
+
+  //   const selectedAnswers = newAnswersState.filter(as => as.isSelected).map(a => a.word);
+
+  //   if (selectedAnswers.length >= 3) {
+  //     handleGameTransition(selectedAnswers);
+  //   } else {
+  //     setTimeout(() => {
+  //       onPressAnswerFake(newAnswersState, selectedAnswers.length);
+  //     }, 400);
+  //   }
+
+  //   setAnswersState(newAnswersState);
+  // };
 
   const onPressAnswer = (answer, index) => {
     if (answer.isSelected) {

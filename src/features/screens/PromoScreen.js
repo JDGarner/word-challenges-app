@@ -5,7 +5,7 @@ import { BorderedButton } from "../../components";
 import { TEXT_TOP_PADDING, MediumLargeText } from "../../components/text/Text";
 import colors from "../../theme/colors";
 
-const LETTER_SIZE = 56;
+const LETTER_SIZE = 58;
 const MARGIN_SIZE = 6;
 
 const Container = styled(View)`
@@ -68,7 +68,9 @@ const getStyleForLetter = l => {
     return { backgroundColor: colors.textColorDisabled };
   }
 
-  return {};
+  return {
+    borderColor: colors.textColorPromoDisabled,
+  };
 };
 
 const getTextColorForLetter = l => {
@@ -76,7 +78,11 @@ const getTextColorForLetter = l => {
     return colors.textColorBright;
   }
 
-  return colors.textColorMedium;
+  return colors.textColorPromoDisabled;
+};
+
+const disabledButtonStyle = {
+  borderColor: colors.textColorPromoDisabled,
 };
 
 const Row = ({ rowText }) => {
@@ -84,9 +90,9 @@ const Row = ({ rowText }) => {
     <RowContainer>
       {rowText.map(l => {
         return (
-          <LetterButton onPress={() => {}}>
+          <LetterButton onPress={() => {}} style={disabledButtonStyle}>
             <MediumLargeText
-              color={colors.textColorMedium}
+              color={colors.textColorPromoDisabled}
               style={{ transform: [{ rotate: "90deg" }] }}>
               {l}
             </MediumLargeText>

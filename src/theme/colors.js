@@ -15,4 +15,5 @@ export default {
   switchTrackColor: "rgba(255,255,255,0.25)",
   textColorSelected: "rgba(255, 255, 255, 0.3)",
   textColorSelectedAgain: "rgba(255, 255, 255, 0.35)",
+  textColorPromoDisabled: "rgba(255, 255, 255, 0.25)",
 };
