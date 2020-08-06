@@ -23,7 +23,7 @@ const Bar = styled(View)`
 const ProgressBar = ({ currentLevel, total, containerStyle, marginH, height }) => {
   const bars = [];
   for (let i = 1; i <= total; i++) {
-    bars.push(<Bar highlighted={currentLevel >= i} marginH={marginH} height={height} />);
+    bars.push(<Bar key={i} highlighted={currentLevel >= i} marginH={marginH} height={height} />);
   }
 
   return (

@@ -9,7 +9,12 @@ import SoundManager from "../../features/sound/SoundManager";
 import { animateButtonPressIn, animateButtonPressOut } from "./button-utils";
 import { ICON_SIZE } from "../../utils/sizing-utils";
 
-export const BorderedButton = ({ children, style, reduceScaleFactor = 0.95, ...buttonProps }) => {
+export const BorderedButton = ({
+  children,
+  style = [],
+  reduceScaleFactor = 0.95,
+  ...buttonProps
+}) => {
   const [scaleValue] = useState(new Animated.Value(1));
   const textContainerStyle = [...style];
 

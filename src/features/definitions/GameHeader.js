@@ -12,7 +12,9 @@ const GameHeaderContainer = styled(View)`
 const GameHeader = ({ definition }) => {
   return (
     <GameHeaderContainer>
-      <MediumLargeText textAlign="center">{capitalize(definition)}</MediumLargeText>
+      <MediumLargeText textAlign="center" testID="definitions-game-header">
+        {capitalize(definition)}
+      </MediumLargeText>
     </GameHeaderContainer>
   );
 };

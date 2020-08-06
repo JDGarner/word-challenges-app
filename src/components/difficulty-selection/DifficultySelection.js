@@ -31,6 +31,7 @@ const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, m
       component: (
         <MenuButton
           onPress={() => onSelectDifficulty(difficulty)}
+          testID={`difficulty-button-${difficulty}`}
           width={OPTION_WIDTH}
           verticalPadding={OPTION_PADDING}
           verticalSpacing={VERTICAL_SPACING}>

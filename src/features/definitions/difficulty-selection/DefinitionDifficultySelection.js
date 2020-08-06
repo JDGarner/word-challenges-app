@@ -5,7 +5,7 @@ import { MODES } from "../../../app-constants";
 
 const DefinitionDifficultySelection = ({ onSelectDifficulty, showLeaderboard }) => {
   return (
-    <ScreenContainerPadded>
+    <ScreenContainerPadded testID="definition-difficulty-selection">
       <DifficultySelection
         titleText="Definitions"
         mode={MODES.DEFINITIONS}

@@ -84,7 +84,10 @@ const MainMenu = ({
       return {
         id: displayName,
         component: (
-          <MenuButton onPress={() => changeScreen(initialScreen)} verticalPadding={BUTTON_PADDING}>
+          <MenuButton
+            onPress={() => changeScreen(initialScreen)}
+            testID={`test-id-${displayName}`}
+            verticalPadding={BUTTON_PADDING}>
             <MenuTextContainer>
               <MenuNameText>{displayName}</MenuNameText>
               <ScoreTextContainer>
@@ -109,7 +112,7 @@ const MainMenu = ({
   const menuItems = getMenuItems().filter(i => !!i);
 
   return (
-    <ScreenContainerPadded>
+    <ScreenContainerPadded testID="main-menu-screen">
       <TopBar
         LeftComponent={<WidthSpacer width={ICON_SIZE} />}
         RightComponent={<LeaderboardButton onPress={showAllLeaderboards} />}

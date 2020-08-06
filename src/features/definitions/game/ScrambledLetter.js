@@ -42,7 +42,7 @@ const ScrambledLetter = ({ letter, showing, onPressLetter, disabled, scaleValue,
   return (
     <Animated.View style={{ transform: [{ scale: scaleValue }], opacity: scaleValue }}>
       {showing === false ? (
-        <EmptyLetterPlaceHolder />
+        <EmptyLetterPlaceHolder testID="empty-placeholder" />
       ) : (
         <LetterButton onPress={onPressLetterButton} reduceScaleFactor={0.8} disabled={disabled}>
           <MediumText>{letter}</MediumText>

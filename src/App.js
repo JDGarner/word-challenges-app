@@ -18,7 +18,7 @@ import { onNavigateBack } from "./redux/navigation/navigation-actions";
 import { updateMutedSetting } from "./redux/settings/settings-actions";
 import PromoScreen from "./features/screens/PromoScreen";
 
-const store = configureStore();
+export const store = configureStore();
 
 export default function AppProvider() {
   SoundManager.init(m => onUpdateMuteSetting(m));

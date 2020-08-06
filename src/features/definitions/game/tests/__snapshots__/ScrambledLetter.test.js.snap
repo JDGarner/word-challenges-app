@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scrambled Letter should match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "opacity": 1,
+      "transform": Array [
+        Object {
+          "scale": 1,
+        },
+      ],
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "transform": Array [
+          Object {
+            "scale": 1,
+          },
+        ],
+      }
+    }
+  >
+    <View
+      accessible={true}
+      className="sc-gqjmRU bsUHzu"
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={Array []}
+    >
+      <Text
+        className="sc-ifAKCX lojWEY"
+      >
+        S
+      </Text>
+    </View>
+  </View>
+</View>
+`;

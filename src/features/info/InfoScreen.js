@@ -87,7 +87,7 @@ const InfoScreen = ({ onNavigateBack }) => {
   };
 
   return (
-    <ScreenContainerPadded>
+    <ScreenContainerPadded testID="info-screen">
       <TopBar onPressLeftButton={onNavigateBack} />
       <InfoScreenContainer>
         <ScrollView showsVerticalScrollIndicator={false}>

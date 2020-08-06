@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  bottom={0}
+  className="sc-bdVaJa ipKhlm"
+  color="red"
+  left={0}
+  radius={10}
+  right={0}
+  top={0}
+/>
+`;

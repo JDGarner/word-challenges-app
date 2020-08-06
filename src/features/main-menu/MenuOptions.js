@@ -46,7 +46,7 @@ const MenuOptions = ({ changeScreen, muted }) => {
   return (
     <MenuOptionsContainer>
       <MenuOptionButton onPress={onPressToggleMute}>{VolumeIcon}</MenuOptionButton>
-      <MenuOptionButton onPress={onPressInfoButton}>
+      <MenuOptionButton onPress={onPressInfoButton} testID="info-button">
         <CommunityIcon name="information-variant" size={ICON_SIZE} color={colors.textColor} />
       </MenuOptionButton>
     </MenuOptionsContainer>
