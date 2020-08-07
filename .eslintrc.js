@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   extends: "@react-native-community",
   rules: {
-    "curly": 0,
+    curly: 0,
     "global-require": 0,
     "no-use-before-define": 0,
     "react/prop-types": 0,
@@ -15,5 +15,10 @@ module.exports = {
     quotes: ["error", "double"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": 0,
+  },
+  plugins: ["detox"],
+  env: {
+    jest: true,
+    "detox/detox": true,
   },
 };
