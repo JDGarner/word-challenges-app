@@ -4,8 +4,8 @@
   "configurations": {
     "ios": {
       "type": "ios.simulator",
-      "binaryPath": "ios/build/WordChallenges.dev/Build/Products/Debug-iphonesimulator/WordChallenges.app",
-      "build": "xcodebuild -workspace ios/WordChallenges.xcworkspace -scheme WordChallenges.dev -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+      "binaryPath": "ios/build/WordChallenges.prod/Build/Products/Debug-iphonesimulator/WordChallenges.app",
+      "build": "xcodebuild -workspace ios/WordChallenges.xcworkspace -scheme WordChallenges.prod -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
       "device": {
         "type": "iPhone 11"
       } 

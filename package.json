@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
+    "start:clear-cache": "watchman watch-del-all && yarn cache clean && rm -rf $TMPDIR/metro-cache && yarn start --reset-cache",
+    "start:e2e": "env RN_SRC_EXT=e2e.js yarn start:clear-cache",
     "ios": "react-native run-ios --scheme \"WordChallenges.dev\"",
     "ios:prod": "react-native run-ios --scheme \"WordChallenges.prod\"",
     "android": "react-native run-android --variant=debug",
