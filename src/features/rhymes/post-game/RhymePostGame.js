@@ -89,7 +89,9 @@ const RhymePostGame = ({
           duration={300}
           delay={300}
           onAnimationStart={onPraiseAnimationStart}>
-          <PostGameText textAlign="center">{scoreText}</PostGameText>
+          <PostGameText testID="rhyme-post-game-praise" textAlign="center">
+            {scoreText}
+          </PostGameText>
         </PopInView>
         <AnswerGrid answers={correctAnswers} postGame />
         <FooterContainer>

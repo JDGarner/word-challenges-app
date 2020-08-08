@@ -386,7 +386,10 @@ const DefinitionGame = ({
             <ShuffleButton onPress={onPressShuffle} disabled={userActionsDisabled}>
               <Icon name="shuffle" size={ICON_SIZE} color={theme.textColor} />
             </ShuffleButton>
-            <SkipButton onPress={onPressSkipQuestion} disabled={userActionsDisabled}>
+            <SkipButton
+              onPress={onPressSkipQuestion}
+              disabled={userActionsDisabled}
+              testID="skip-button">
               <Icon name="skip-next" size={ICON_SIZE + 6} color={theme.textColor} />
             </SkipButton>
           </FooterButtons>

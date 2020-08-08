@@ -95,7 +95,7 @@ const DefinitionPostGame = ({
             duration={ANSWER_ANIMATION_START_DELAY_TIME}
             delay={220}
             onAnimationStart={onPraiseAnimationStart}>
-            <MediumLargeText>
+            <MediumLargeText testID="definitions-post-game-praise">
               {praise} - {score}/{WORDS_PER_ROUND}
             </MediumLargeText>
           </PopInView>

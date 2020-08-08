@@ -9,6 +9,11 @@ let ConfigWithOverrides = {
   ...Config,
 };
 
+// Use mocks for e2e tests (because words from real BE are random)
+if (Config.RN_SRC_EXT === "e2e.js") {
+  ConfigWithOverrides.API_URL = MOCK_URL;
+}
+
 // Set any overrides here:
 // ConfigWithOverrides.API_URL = MOCK_URL;
 // ConfigWithOverrides.API_URL = LOCAL_URL;

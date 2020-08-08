@@ -29,6 +29,7 @@ const AnswerText = ({ onSubmitAnswer, placeholder }) => {
 
   return (
     <AnswerInput
+      testID="answer-input"
       value={answerText}
       placeholder={answerTextPlaceholder}
       onChangeText={setAnswerText}

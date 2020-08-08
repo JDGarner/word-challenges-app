@@ -11,6 +11,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import "RNSplashScreen.h"
+#import "ReactNativeConfig.h"
 
 @implementation AppDelegate
 
@@ -28,8 +29,12 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  
-  [RNSplashScreen show];
+
+  NSString *isE2ETest = [ReactNativeConfig envFor:@"RN_SRC_EXT"];
+
+  if (isE2ETest != @"e2e.js") {
+    [RNSplashScreen show];
+  }
   return YES;
 }
 
