@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7D3DB631245A7DE800DB6795 /* menubuttonnegative.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7D3DB627245A7DE700DB6795 /* menubuttonnegative.mp3 */; };
@@ -21,6 +20,7 @@
 		7D3DB638245A7DE800DB6795 /* positivetone2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7D3DB62E245A7DE800DB6795 /* positivetone2.mp3 */; };
 		7D3DB639245A7DE800DB6795 /* negative.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7D3DB62F245A7DE800DB6795 /* negative.mp3 */; };
 		7D3DB63A245A7DE800DB6795 /* letterbuttonremove.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7D3DB630245A7DE800DB6795 /* letterbuttonremove.mp3 */; };
+		7D40BC6924FEAE7300460FBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D40BC6824FEAE7300460FBB /* LaunchScreen.storyboard */; };
 		7DAC6ED9244715AE0029D895 /* shuffle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7DAC6ED8244715AE0029D895 /* shuffle.mp3 */; };
 		7DAE83D424590C3F00F4CA0F /* flub3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7DAE83CF24590C3F00F4CA0F /* flub3.mp3 */; };
 		7DAE83D524590C3F00F4CA0F /* flub0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7DAE83D024590C3F00F4CA0F /* flub0.mp3 */; };
@@ -37,7 +37,6 @@
 		13B07F961A680F5B00A75B9A /* WordChallenges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordChallenges.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = WordChallenges/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = WordChallenges/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = WordChallenges/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = WordChallenges/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WordChallenges/main.m; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		7D3DB62E245A7DE800DB6795 /* positivetone2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = positivetone2.mp3; sourceTree = "<group>"; };
 		7D3DB62F245A7DE800DB6795 /* negative.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = negative.mp3; sourceTree = "<group>"; };
 		7D3DB630245A7DE800DB6795 /* letterbuttonremove.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = letterbuttonremove.mp3; sourceTree = "<group>"; };
+		7D40BC6824FEAE7300460FBB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D8390A624F9B31100BFE2BA /* WordChallenges-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WordChallenges-Bridging-Header.h"; sourceTree = "<group>"; };
 		7DAC6ED8244715AE0029D895 /* shuffle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shuffle.mp3; sourceTree = "<group>"; };
 		7DAE83CF24590C3F00F4CA0F /* flub3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flub3.mp3; sourceTree = "<group>"; };
@@ -90,9 +90,9 @@
 				7DDBC1DE24FA4C5800AEDC92 /* BridgingFile.swift */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				7D8390A624F9B31100BFE2BA /* WordChallenges-Bridging-Header.h */,
+				7D40BC6824FEAE7300460FBB /* LaunchScreen.storyboard */,
 			);
 			name = WordChallenges;
 			sourceTree = "<group>";
@@ -238,6 +238,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				7D3DB634245A7DE800DB6795 /* positivetone4.mp3 in Resources */,
 				7D3DB631245A7DE800DB6795 /* menubuttonnegative.mp3 in Resources */,
+				7D40BC6924FEAE7300460FBB /* LaunchScreen.storyboard in Resources */,
 				7D3DB63A245A7DE800DB6795 /* letterbuttonremove.mp3 in Resources */,
 				7D3DB633245A7DE800DB6795 /* positivetone3.mp3 in Resources */,
 				7DAE83D824590C3F00F4CA0F /* flub2.mp3 in Resources */,
@@ -248,7 +249,6 @@
 				7D3DB635245A7DE800DB6795 /* positivetone0.mp3 in Resources */,
 				7DAC6ED9244715AE0029D895 /* shuffle.mp3 in Resources */,
 				7D3DB637245A7DE800DB6795 /* letterbutton.mp3 in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				7D3DB632245A7DE800DB6795 /* menubutton.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +315,7 @@
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -334,6 +335,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -373,18 +375,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = WordChallenges;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
