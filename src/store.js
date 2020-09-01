@@ -35,5 +35,10 @@ export default function configureStore() {
     thunk,
   ];
 
+  if (__DEV__) {
+    const createFlipperDebuggerMiddleware = require("redux-flipper").default;
+    middleware.push(createFlipperDebuggerMiddleware());
+  }
+
   return createStore(reducers, initialStore, applyMiddleware(...middleware));
 }
