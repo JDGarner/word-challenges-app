@@ -308,6 +308,8 @@ PODS:
     - React-jsi (= 0.63.2)
   - RNCAsyncStorage (1.8.1):
     - React
+  - RNCPushNotificationIOS (1.4.1):
+    - React
   - RNGameCenter (1.2.3):
     - React
   - RNGestureHandler (1.6.1):
@@ -376,6 +378,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - RNGameCenter (from `../node_modules/react-native-game-center/RNGameCenter/ios`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNSound (from `../node_modules/react-native-sound`)
@@ -460,6 +463,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
+  RNCPushNotificationIOS:
+    :path: "../node_modules/@react-native-community/push-notification-ios"
   RNGameCenter:
     :path: "../node_modules/react-native-game-center/RNGameCenter/ios"
   RNGestureHandler:
@@ -514,6 +519,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 4d2e726957f4087449739b595f107c0d4b6c2d2d
   ReactCommon: a0a1edbebcac5e91338371b72ffc66aa822792ce
   RNCAsyncStorage: e0dd7c8a36543b4ef84969acd9f8aceba3a92dc2
+  RNCPushNotificationIOS: c145c6253ea016e5efeff604f2720736b4a596f7
   RNGameCenter: 695fa7f714b301f2a74fcb333d50a7386e73f209
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0

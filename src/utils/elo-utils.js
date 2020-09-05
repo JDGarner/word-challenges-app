@@ -10,7 +10,7 @@ const DIFFICULTY_ELO_RANGES = {
   [MASTER]: { lower: 2400, upper: 3600 },
 };
 
-export const getRankForScore = score => {
+export const getRankForScore = (score) => {
   if (score === "N/A") {
     return "N/A";
   }
@@ -67,7 +67,7 @@ export const getProbabilityOfUserWin = (playerELO, questionELO) => {
   return 1 / (1 + Math.pow(10, (questionELO - playerELO) / 400));
 };
 
-export const getELOKeysForMode = mode => {
+export const getELOKeysForMode = (mode) => {
   if (mode === MODES.DEFINITIONS) {
     return {
       stateKey: "definitionsELO",

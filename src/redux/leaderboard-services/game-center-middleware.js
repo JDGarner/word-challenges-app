@@ -18,24 +18,24 @@ const showAllLeaderboards = () => {
     .then(() => {
       console.log("Game Center: Open Leaderboard Successful");
     })
-    .catch(res => {
+    .catch((res) => {
       console.log("Game Center: Open Leaderboard Failed. ", res);
     });
 };
 
-const showLeaderboard = id => {
+const showLeaderboard = (id) => {
   GameCenter.openLeaderboardModal({
     leaderboardIdentifier: id,
   })
-    .then(res => {
+    .then((res) => {
       console.log("Game Center: Open Leaderboard Successful");
     })
-    .catch(res => {
+    .catch((res) => {
       console.log("Game Center: Open Leaderboard Failed. ", res);
     });
 };
 
-export default store => next => action => {
+export default (store) => (next) => (action) => {
   switch (action.type) {
     case SHOW_ALL_LEADERBOARDS:
       GameCenter.openLeaderboards({
@@ -46,7 +46,7 @@ export default store => next => action => {
           store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
           store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
         })
-        .catch(res => {
+        .catch((res) => {
           console.log("Game Center: Open Leaderboard Failed. ", res);
           store.dispatch(gameCenterInit(showAllLeaderboards));
         });
@@ -64,7 +64,7 @@ export default store => next => action => {
           store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
           store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
         })
-        .catch(res => {
+        .catch((res) => {
           console.log("Game Center: Open Leaderboard Failed. ", res);
           store.dispatch(gameCenterInit(() => showLeaderboard(leaderboardId)));
         });
@@ -80,7 +80,7 @@ export default store => next => action => {
             action.postAction();
           }
         })
-        .catch(res => {
+        .catch((res) => {
           console.log("Game Center: Init Failed. ", res);
         });
 
@@ -100,7 +100,7 @@ export default store => next => action => {
           .then(() => {
             console.log("Game Center: Score Submit Successful");
           })
-          .catch(res => {
+          .catch((res) => {
             console.log("Game Center: Score Submit Failed. ", res);
           });
       } else {

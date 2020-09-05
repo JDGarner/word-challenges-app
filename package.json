@@ -18,6 +18,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.8.1",
     "@react-native-community/netinfo": "^4.2.2",
+    "@react-native-community/push-notification-ios": "^1.4.1",
     "lodash": "^4.17.15",
     "react": "16.13.1",
     "react-native": "0.63.2",
@@ -27,6 +28,7 @@
     "react-native-gesture-handler": "^1.6.1",
     "react-native-google-play-game-services": "https://github.com/JDGarner/react-native-google-play-game-services",
     "react-native-linear-gradient": "^2.5.6",
+    "react-native-push-notification": "^5.1.0",
     "react-native-sound": "^0.11.0",
     "react-native-splash-screen": "^3.2.0",
     "react-native-vector-icons": "^6.6.0",

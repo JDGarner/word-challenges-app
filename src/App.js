@@ -17,11 +17,14 @@ import { googlePlaySilentSignIn } from "./redux/leaderboard-services/leaderboard
 import { onNavigateBack } from "./redux/navigation/navigation-actions";
 import { updateMutedSetting } from "./redux/settings/settings-actions";
 import PromoScreen from "./features/screens/PromoScreen";
+import { initPushNotifications } from "./notifications/init";
 
 export const store = configureStore();
 
+initPushNotifications(store);
+
 export default function AppProvider() {
-  SoundManager.init(m => onUpdateMuteSetting(m));
+  SoundManager.init((m) => onUpdateMuteSetting(m));
 
   useEffect(() => {
     SplashScreen.hide();
@@ -38,7 +41,7 @@ export default function AppProvider() {
     BackHandler.addEventListener("hardwareBackPress", onHardwareBackPress);
   }, []);
 
-  const onUpdateMuteSetting = muted => {
+  const onUpdateMuteSetting = (muted) => {
     store.dispatch(updateMutedSetting(muted));
   };
 
