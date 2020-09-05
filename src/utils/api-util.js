@@ -7,7 +7,7 @@ const { API_URL, API_KEY } = getConfig();
 
 const FETCH_TIMEOUT = 12000;
 
-const mockFetch = endpoint => {
+const mockFetch = (endpoint) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(createMockSuccessResponse(endpoint));
@@ -15,11 +15,11 @@ const mockFetch = endpoint => {
   });
 };
 
-const createMockSuccessResponse = endpoint => {
+const createMockSuccessResponse = (endpoint) => {
   return {
     status: 200,
     json: () =>
-      new Promise(resolve => {
+      new Promise((resolve) => {
         resolve(getMockData(endpoint));
       }),
   };
@@ -40,7 +40,7 @@ const enhancedFetch = async (url, endpoint) => {
 };
 
 const fetchData = async (endpoint, onError = () => {}) => {
-  return await NetInfo.fetch().then(async state => {
+  return await NetInfo.fetch().then(async (state) => {
     if (!state.isConnected && API_URL !== MOCK_URL) {
       onError(ERROR_CODES.CONNECTION);
       return null;
@@ -48,7 +48,7 @@ const fetchData = async (endpoint, onError = () => {}) => {
 
     let didTimeOut = false;
 
-    const fetchTimeout = setTimeout(function() {
+    const fetchTimeout = setTimeout(function () {
       didTimeOut = true;
       console.log("Network request timed out");
       onError(ERROR_CODES.TIMEOUT);

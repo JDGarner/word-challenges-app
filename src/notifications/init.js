@@ -1,12 +1,14 @@
 import PushNotification from "react-native-push-notification";
-import { onReceivedPushNotification } from "../redux/push-notifications/push-notifications-actions";
+import {
+  onReceivedPushNotification,
+  storeDeviceToken,
+} from "../redux/push-notifications/push-notifications-actions";
 
 export const initPushNotifications = (store) => {
   PushNotification.configure({
     // (optional) Called when Token is generated (iOS and Android)
     onRegister: function (token) {
-      console.log("TOKEN:", token);
-      // TODO: Post this token to BE and store it in DB
+      store.dispatch(storeDeviceToken(token));
     },
 
     // Called when a remote is received or opened, or local notification is opened
