@@ -18,9 +18,6 @@ const mapDispatchToProps = {
   showAllLeaderboards,
 };
 
-const ConnectedMainMenu = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(MainMenu);
+const ConnectedMainMenu = connect(mapStateToProps, mapDispatchToProps)(MainMenu);
 
 export default ConnectedMainMenu;

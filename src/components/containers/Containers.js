@@ -26,12 +26,12 @@ export const SpaceAroundContainer = styled(View)`
 
 export const AnimatedTextContainer = styled(Animated.View)`
   border-radius: 4px;
-  border: 2px solid ${props => props.theme.textColor};
+  border: 2px solid ${(props) => props.theme.textColor};
 `;
 
 export const TextContainer = styled(View)`
   border-radius: 4px;
-  border: 2px solid ${props => props.theme.textColor};
+  border: 2px solid ${(props) => props.theme.textColor};
 `;
 
 export const ScreenContainer = styled(CenteredContainer)`

@@ -10,37 +10,37 @@ import { MODES } from "../../app-constants";
 import { getELOKeysForMode } from "../../utils/elo-utils";
 import { getConfig } from "../../Config";
 
-const signInToGooglePlay = onSuccess => {
+const signInToGooglePlay = (onSuccess) => {
   console.log("Google Play Game Services: Attempting Silent Sign");
   RNGooglePlayGameServices.signInSilently()
     .then(() => {
       console.log("Google Play Game Services: Silent Sign In Successful");
       onSuccess();
     })
-    .catch(err => {
+    .catch((signInSilentlyErr) => {
       console.log(
         "Google Play Game Services: Silent Sign In Failed, Trying Normal Sign In. Error: ",
-        err,
+        signInSilentlyErr,
       );
       RNGooglePlayGameServices.signInIntent()
         .then(() => {
           console.log("Google Play Game Services: Sign In Successful");
           onSuccess();
         })
-        .catch(err => {
-          console.log("Google Play Game Services: Sign In Failed. Error: ", err);
+        .catch((signInIntentErr) => {
+          console.log("Google Play Game Services: Sign In Failed. Error: ", signInIntentErr);
         });
     });
 };
 
-export default store => next => action => {
+export default (store) => (next) => (action) => {
   switch (action.type) {
     case SHOW_ALL_LEADERBOARDS:
       RNGooglePlayGameServices.showAllLeaderboards()
         .then(() => {
           console.log("Google Play Game Services: Showing Leaderboards");
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("Google Play Game Services: Showing Leaderboards Failed. Error: ", err);
           signInToGooglePlay(RNGooglePlayGameServices.showAllLeaderboards);
         });
@@ -72,7 +72,7 @@ export default store => next => action => {
         .then(() => {
           console.log("Google Play Game Services: Silent Sign In Successful");
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("Google Play Game Services: Silent Sign In Failed. Error: ", err);
         });
 

@@ -51,7 +51,7 @@ const initialState = {
   connectionError: false,
 };
 
-const getBumpedCountdown = countdown => {
+const getBumpedCountdown = (countdown) => {
   let newCountdown = countdown + 5;
 
   if (newCountdown > INITIAL_COUNTDOWN) {
@@ -61,7 +61,7 @@ const getBumpedCountdown = countdown => {
   return newCountdown;
 };
 
-const getStateForNewRound = state => {
+const getStateForNewRound = (state) => {
   const nextIndex = state.currentRhymeIndex + 1;
   const rhymes = state.allRhymes[state.difficulty];
 

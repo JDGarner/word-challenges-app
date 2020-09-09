@@ -31,8 +31,8 @@ export const BorderedButton = ({
 };
 
 export const PaddedButton = styled(BorderedButton)`
-  padding-vertical: ${props => props.paddingVertical || 6};
-  padding-horizontal: ${props => props.paddingHorizontal || 12};
+  padding-vertical: ${(props) => props.paddingVertical || 6};
+  padding-horizontal: ${(props) => props.paddingHorizontal || 12};
 `;
 
 export const IconButton = ({ name, size = ICON_SIZE, ...buttonProps }) => {

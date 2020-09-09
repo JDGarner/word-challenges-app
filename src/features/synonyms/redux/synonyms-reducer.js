@@ -34,7 +34,7 @@ const initialState = {
   loaded: false,
 };
 
-const getStateForRoundEnd = state => {
+const getStateForRoundEnd = (state) => {
   return {
     ...state,
     questionIndex: 0,
@@ -43,7 +43,7 @@ const getStateForRoundEnd = state => {
   };
 };
 
-const getStateForNextQuestion = state => {
+const getStateForNextQuestion = (state) => {
   let questionIndex = state.questionIndex + 1;
   const currentSynonym = state.currentSynonyms[questionIndex];
 

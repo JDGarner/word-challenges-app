@@ -32,11 +32,13 @@ const potentiallyFetchMoreDefinitions = (definitions, dispatch) => {
     allDefinitions[difficulty] &&
     allDefinitionsIndex > allDefinitions[difficulty].length - DEFINITIONS_LOCAL_BUFFER
   ) {
-    fetchFromApi(ENDPOINTS.DEFINITIONS, data => dispatch(fetchAdditionalDefinitionsSuccess(data)));
+    fetchFromApi(ENDPOINTS.DEFINITIONS, (data) =>
+      dispatch(fetchAdditionalDefinitionsSuccess(data)),
+    );
   }
 };
 
-export default store => next => action => {
+export default (store) => (next) => (action) => {
   const { dispatch, getState } = store;
   const { definitions } = getState();
 
@@ -44,8 +46,8 @@ export default store => next => action => {
     case FETCH_DEFINITIONS:
       fetchFromApi(
         ENDPOINTS.DEFINITIONS,
-        data => dispatch(fetchDefinitionsSuccess(data)),
-        code => dispatch(fetchDefinitionsError(code)),
+        (data) => dispatch(fetchDefinitionsSuccess(data)),
+        (code) => dispatch(fetchDefinitionsError(code)),
       );
       break;
 

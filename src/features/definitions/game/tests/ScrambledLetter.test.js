@@ -1,6 +1,5 @@
 import "react-native";
 import React from "react";
-import { fireEvent } from "@testing-library/react-native";
 import { renderWithTheme } from "../../../../testing";
 import ScrambledLetter from "../ScrambledLetter";
 import * as ReactNative from "react-native";

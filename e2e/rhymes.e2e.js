@@ -1,4 +1,4 @@
-const enterWord = async word => {
+const enterWord = async (word) => {
   await element(by.id("answer-input")).typeText(word);
   await element(by.id("answer-input")).tapReturnKey();
 };

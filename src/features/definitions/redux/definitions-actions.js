@@ -25,17 +25,17 @@ export const fetchDefinitionsRetry = () => ({
   type: FETCH_DEFINITIONS_RETRY,
 });
 
-export const fetchDefinitionsSuccess = definitions => ({
+export const fetchDefinitionsSuccess = (definitions) => ({
   type: FETCH_DEFINITIONS_SUCCESS,
   definitions,
 });
 
-export const fetchDefinitionsError = errorCode => ({
+export const fetchDefinitionsError = (errorCode) => ({
   type: FETCH_DEFINITIONS_ERROR,
   errorCode,
 });
 
-export const fetchAdditionalDefinitionsSuccess = definitions => ({
+export const fetchAdditionalDefinitionsSuccess = (definitions) => ({
   type: FETCH_ADDITIONAL_DEFINITIONS_SUCCESS,
   definitions,
 });
@@ -56,12 +56,12 @@ export const onGameCountdownEnd = () => ({
   type: ON_GAME_COUNTDOWN_END,
 });
 
-export const onSubmitAnswer = answer => ({
+export const onSubmitAnswer = (answer) => ({
   type: ON_SUBMIT_ANSWER,
   answer,
 });
 
-export const onAnswerFeedbackFinished = eloChange => ({
+export const onAnswerFeedbackFinished = (eloChange) => ({
   type: ON_ANSWER_FEEDBACK_FINISHED,
   eloChange,
 });
@@ -74,7 +74,7 @@ export const onExitGame = () => ({
   type: ON_EXIT_GAME,
 });
 
-export const onSelectDifficulty = difficulty => ({
+export const onSelectDifficulty = (difficulty) => ({
   type: ON_SELECT_DIFFICULTY_DEFINITIONS,
   difficulty,
 });

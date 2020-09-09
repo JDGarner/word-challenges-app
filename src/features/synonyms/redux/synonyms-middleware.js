@@ -30,11 +30,11 @@ const potentiallyFetchMoreSynonyms = (synonyms, dispatch) => {
     allSynonyms[difficulty] &&
     allSynonymsIndex > allSynonyms[difficulty].length - SYNONYMS_LOCAL_BUFFER
   ) {
-    fetchFromApi(ENDPOINTS.SYNONYMS, data => dispatch(fetchAdditionalSynonymsSuccess(data)));
+    fetchFromApi(ENDPOINTS.SYNONYMS, (data) => dispatch(fetchAdditionalSynonymsSuccess(data)));
   }
 };
 
-export default store => next => action => {
+export default (store) => (next) => (action) => {
   const { dispatch, getState } = store;
   const { synonyms } = getState();
 
@@ -42,8 +42,8 @@ export default store => next => action => {
     case FETCH_SYNONYMS:
       fetchFromApi(
         ENDPOINTS.SYNONYMS,
-        data => dispatch(fetchSynonymsSuccess(data)),
-        code => dispatch(fetchSynonymsError(code)),
+        (data) => dispatch(fetchSynonymsSuccess(data)),
+        (code) => dispatch(fetchSynonymsError(code)),
       );
       break;
 

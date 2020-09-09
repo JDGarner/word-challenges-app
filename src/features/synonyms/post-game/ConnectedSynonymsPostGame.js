@@ -14,9 +14,6 @@ const mapDispatchToProps = {
   showLeaderboard,
 };
 
-const ConnectedSynonymsPostGame = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SynonymsPostGame);
+const ConnectedSynonymsPostGame = connect(mapStateToProps, mapDispatchToProps)(SynonymsPostGame);
 
 export default ConnectedSynonymsPostGame;

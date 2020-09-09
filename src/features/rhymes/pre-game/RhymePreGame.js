@@ -34,7 +34,7 @@ const RhymePreGame = ({ currentWord, onPreGameCountdownEnd }) => {
     preCountdownTimeout = setTimeout(() => {
       setCountdown(PRE_GAME_COUNTDOWN);
       countdownInterval = setInterval(() => {
-        setCountdown(c => c - 1);
+        setCountdown((c) => c - 1);
       }, 1000);
     }, PRE_GAME_COUNTDOWN_DELAY);
 

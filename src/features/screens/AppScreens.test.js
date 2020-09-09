@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { cleanup, fireEvent, render } from "@testing-library/react-native";
+import { fireEvent } from "@testing-library/react-native";
 import configureStore from "../../store";
 import ConnectedAppScreens from "./ConnectedAppScreens";
 import { renderWithTheme } from "../../testing";

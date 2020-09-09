@@ -49,9 +49,6 @@ const mapDispatchToProps = {
   onSkipQuestion,
 };
 
-const ConnectedDefinitionGame = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(DefinitionGame);
+const ConnectedDefinitionGame = connect(mapStateToProps, mapDispatchToProps)(DefinitionGame);
 
 export default ConnectedDefinitionGame;

@@ -23,17 +23,17 @@ export const fetchSynonymsRetry = () => ({
   type: FETCH_SYNONYMS_RETRY,
 });
 
-export const fetchSynonymsSuccess = synonyms => ({
+export const fetchSynonymsSuccess = (synonyms) => ({
   type: FETCH_SYNONYMS_SUCCESS,
   synonyms,
 });
 
-export const fetchSynonymsError = errorCode => ({
+export const fetchSynonymsError = (errorCode) => ({
   type: FETCH_SYNONYMS_ERROR,
   errorCode,
 });
 
-export const fetchAdditionalSynoynmsSuccess = synonyms => ({
+export const fetchAdditionalSynoynmsSuccess = (synonyms) => ({
   type: FETCH_ADDITIONAL_SYNONYMS_SUCCESS,
   synonyms,
 });
@@ -56,7 +56,7 @@ export const onSubmitAnswers = (answers, allCorrect) => ({
   allCorrect,
 });
 
-export const onAnswerFeedbackFinished = eloChange => ({
+export const onAnswerFeedbackFinished = (eloChange) => ({
   type: ON_ANSWER_FEEDBACK_FINISHED,
   eloChange,
 });
@@ -69,7 +69,7 @@ export const onExitGame = () => ({
   type: ON_EXIT_GAME,
 });
 
-export const onSelectDifficulty = difficulty => ({
+export const onSelectDifficulty = (difficulty) => ({
   type: ON_SELECT_DIFFICULTY_SYNONYMS,
   difficulty,
 });

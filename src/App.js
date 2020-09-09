@@ -16,7 +16,7 @@ import { retrieveELOs } from "./redux/elo-tracking/elo-tracking-actions";
 import { googlePlaySilentSignIn } from "./redux/leaderboard-services/leaderboard-services-actions";
 import { onNavigateBack } from "./redux/navigation/navigation-actions";
 import { updateMutedSetting } from "./redux/settings/settings-actions";
-import PromoScreen from "./features/screens/PromoScreen";
+// import PromoScreen from "./features/screens/PromoScreen";
 import { initPushNotifications } from "./notifications/init";
 
 export const store = configureStore();

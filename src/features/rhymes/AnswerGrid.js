@@ -43,12 +43,12 @@ const GridItem = styled(View)`
 `;
 
 const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
-  const onAnswerAnimationStart = index => {
+  const onAnswerAnimationStart = (index) => {
     SoundManager.getInstance().playFlubSound(index + 1);
   };
 
   const getAnswerTiles = () => {
-    return answers.map(answer => ({
+    return answers.map((answer) => ({
       id: answer,
       component: (
         <AnswerContainer>
@@ -69,7 +69,7 @@ const AnswerGrid = ({ answers, postGame = false, onAnswerAnimationEnd }) => {
       animationAppearDuration={300}
     />
   ) : (
-    answers.map(answer => {
+    answers.map((answer) => {
       return (
         <GridItem key={answer}>
           <PopInView onAnimationEnd={onAnswerAnimationEnd}>

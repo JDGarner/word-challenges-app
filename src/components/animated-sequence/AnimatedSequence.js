@@ -13,7 +13,7 @@ const AnimatedSequence = ({
   onAnimationStart,
   onAnimationEnd,
 }) => {
-  const handleAnimationEnd = index => {
+  const handleAnimationEnd = (index) => {
     if (index === items.length - 1) {
       onAnimationEnd();
     }

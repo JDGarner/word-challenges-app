@@ -9,7 +9,7 @@ export const retrieveELOs = () => ({
   type: RETRIEVE_ELOS,
 });
 
-export const onELOsRetrieved = elos => ({
+export const onELOsRetrieved = (elos) => ({
   type: ON_ELOS_RETRIEVED,
   elos,
 });

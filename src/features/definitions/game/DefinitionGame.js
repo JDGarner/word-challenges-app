@@ -107,9 +107,9 @@ const lettersState = [
 
  */
 
-const getShuffledIndexes = word => shuffle(word.split("").map((l, i) => i));
+const getShuffledIndexes = (word) => shuffle(word.split("").map((l, i) => i));
 
-const getInitialLettersState = word => {
+const getInitialLettersState = (word) => {
   const letters = word.toUpperCase().split("");
   const shuffledIndexes = getShuffledIndexes(word);
 
@@ -183,7 +183,7 @@ const DefinitionGame = ({
   }, [gameCountdown]);
 
   // Fade out game, show answer feedback
-  const handleGameTransition = isAnswerCorrect => {
+  const handleGameTransition = (isAnswerCorrect) => {
     const score = isAnswerCorrect ? 1 : 0;
     const { playerELOChange, newQuestionELO } = getELORatingChanges(
       score,
@@ -225,15 +225,15 @@ const DefinitionGame = ({
     updateQuestionELO(MODES.DEFINITIONS, word, newQuestionELO);
   };
 
-  const onAllLettersAdded = answer => {
+  const onAllLettersAdded = (answer) => {
     handleGameTransition(answer.toUpperCase() === word.toUpperCase());
     onSubmitAnswer(answer);
   };
 
-  const addAnswerLetter = letterState => {
+  const addAnswerLetter = (letterState) => {
     if (!letterState.isPlaced) {
       // Add letter to first empty answer space
-      const firstEmptyAnswerIndex = answersState.findIndex(ans => ans === null);
+      const firstEmptyAnswerIndex = answersState.findIndex((ans) => ans === null);
       const newLettersState = cloneDeep(lettersState);
 
       newLettersState[letterState.index].isPlaced = true;
@@ -242,16 +242,16 @@ const DefinitionGame = ({
       setLettersState(newLettersState);
 
       // If all letters are now placed, submit answer
-      if (newLettersState.every(ls => ls.isPlaced)) {
+      if (newLettersState.every((ls) => ls.isPlaced)) {
         const answer = sortBy(newLettersState, ["answerIndex"])
-          .map(ls => ls.letter)
+          .map((ls) => ls.letter)
           .join("");
         onAllLettersAdded(answer);
       }
     }
   };
 
-  const removeAnswerLetter = letterState => {
+  const removeAnswerLetter = (letterState) => {
     if (letterState.isPlaced) {
       const newLettersState = cloneDeep(lettersState);
 
@@ -296,12 +296,12 @@ const DefinitionGame = ({
 
     // Find all letters in lettersState that have the correct letter for this index
     const matchingLetterStates = lettersState.filter(
-      ls => ls.letter === correctLetters[firstIncorrectIndex],
+      (ls) => ls.letter === correctLetters[firstIncorrectIndex],
     );
 
     // Find the first matching letter that is either not placed or in the wrong place
     const letterStateToUse = matchingLetterStates.find(
-      ls => !ls.isPlaced || ls.letter !== correctLetters[ls.answerIndex],
+      (ls) => !ls.isPlaced || ls.letter !== correctLetters[ls.answerIndex],
     );
 
     if (letterStateToUse) {
@@ -334,7 +334,7 @@ const DefinitionGame = ({
   };
 
   const freeLetterEnabled =
-    freeLettersRemaining > 0 && lettersState.filter(l => !l.isPlaced).length > 1;
+    freeLettersRemaining > 0 && lettersState.filter((l) => !l.isPlaced).length > 1;
   const freeLetterColor = freeLetterEnabled ? colors.textColor : colors.textColorDisabled;
 
   return (

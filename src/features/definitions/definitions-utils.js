@@ -14,7 +14,7 @@ import {
 } from "../../utils/common-utils";
 import { getSizingForOptions } from "../../utils/sizing-utils";
 
-export const roundIsOver = questionIndex => {
+export const roundIsOver = (questionIndex) => {
   return questionIndex >= WORDS_PER_ROUND;
 };
 
@@ -54,7 +54,7 @@ const MEDIUMLARGER_MARGIN = getSizingForOptions(3, 3, 3, 8);
 const MEDIUM_MARGIN = getSizingForOptions(3, 3, 3, 8);
 const SMALL_MARGIN = getSizingForOptions(2, 2, 2, 7);
 
-export const getAnswerTextProps = wordLength => {
+export const getAnswerTextProps = (wordLength) => {
   if (wordLength < 7) {
     return {
       fontSize: LARGER_FS,
@@ -100,16 +100,16 @@ export const getAnswerTextProps = wordLength => {
 };
 
 // Example return: [null, { ...ls }, { ...ls }, null, null, null]
-export const getAnswersState = lettersState => {
+export const getAnswersState = (lettersState) => {
   const answersState = [];
   for (let i = 0; i < lettersState.length; i++) {
-    const answer = lettersState.find(ls => ls.answerIndex === i);
+    const answer = lettersState.find((ls) => ls.answerIndex === i);
     answersState[i] = answer ? answer : null;
   }
   return answersState;
 };
 
-const animateLetterSpring = value => {
+const animateLetterSpring = (value) => {
   Animated.spring(value, {
     toValue: 1,
     speed: 14,
@@ -118,7 +118,7 @@ const animateLetterSpring = value => {
   }).start();
 };
 
-const animateLetterHide = value => {
+const animateLetterHide = (value) => {
   Animated.spring(value, {
     toValue: 0.7,
     useNativeDriver: true,
@@ -141,7 +141,7 @@ export const animateAnswerLetter = (value, letter) => {
   }
 };
 
-export const animateFeedbackLetter = value => {
+export const animateFeedbackLetter = (value) => {
   Animated.sequence([
     Animated.timing(value, {
       toValue: 1.1,
@@ -161,7 +161,7 @@ export const animateFeedbackLetter = value => {
 export const doShuffleAnimation = (letterScales, appear, onAnimationEnd = () => {}) => {
   Animated.stagger(
     SHUFFLE_ANIMATION_STAGGER_TIME,
-    shuffle(letterScales).map(scale => {
+    shuffle(letterScales).map((scale) => {
       return Animated.timing(scale, {
         toValue: appear ? 1 : 0,
         duration: SHUFFLE_ANIMATION_TIME,
@@ -174,7 +174,7 @@ export const doShuffleAnimation = (letterScales, appear, onAnimationEnd = () => 
   });
 };
 
-export const getShuffleReappearDelay = letters => {
+export const getShuffleReappearDelay = (letters) => {
   return (
     SHUFFLE_ANIMATION_TIME +
     letters.length * SHUFFLE_ANIMATION_STAGGER_TIME +

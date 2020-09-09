@@ -3,7 +3,8 @@ const synonyms = {
     {
       _id: "5e93c7880a9cb363c896a50f",
       word: "ignite",
-      definition: "Cause to start burning A point or level beyond which something does not or may not extend or pass A point or level beyond which something does not or may not extend or pass",
+      definition:
+        "Cause to start burning A point or level beyond which something does not or may not extend or pass A point or level beyond which something does not or may not extend or pass",
       difficulty: "novice",
       eloRating: 800,
       synonyms: ["catch", "erupt", "explode"],

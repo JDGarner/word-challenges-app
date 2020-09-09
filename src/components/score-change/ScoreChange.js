@@ -58,8 +58,8 @@ const ScoreChange = ({ previousScore, scoreChange, delay, onCountdownEnd }) => {
           : SoundManager.getInstance().playIncorrectScoreChange;
 
       countdownInterval = setInterval(() => {
-        setNewScoreCountdown(prevNewCount => prevNewCount + countIncrement);
-        setScoreChangeCountdown(prevScoreChange => prevScoreChange - countIncrement);
+        setNewScoreCountdown((prevNewCount) => prevNewCount + countIncrement);
+        setScoreChangeCountdown((prevScoreChange) => prevScoreChange - countIncrement);
         soundFn();
       }, 40);
     }

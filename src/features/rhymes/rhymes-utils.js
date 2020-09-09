@@ -10,7 +10,7 @@ export const isAnswerCorrect = (answer, { currentWord, correctAnswers }) => {
   const formattedAnswer = capitalize(answer.trim());
 
   return (
-    currentWord.rhymes.some(rhyme => rhyme.word === formattedAnswer.toLowerCase()) &&
+    currentWord.rhymes.some((rhyme) => rhyme.word === formattedAnswer.toLowerCase()) &&
     isNotDuplicateAnswer(formattedAnswer, correctAnswers)
   );
 };
@@ -18,10 +18,10 @@ export const isAnswerCorrect = (answer, { currentWord, correctAnswers }) => {
 export const isNotDuplicateAnswer = (answer, answers) => {
   const formattedAnswer = capitalize(answer.trim());
 
-  return !answers.some(a => a === formattedAnswer);
+  return !answers.some((a) => a === formattedAnswer);
 };
 
-export const getPreGameCountdownText = countdown => {
+export const getPreGameCountdownText = (countdown) => {
   if (countdown === 3) {
     return "Get Ready...";
   }
@@ -37,7 +37,7 @@ export const getPreGameCountdownText = countdown => {
   return "";
 };
 
-export const getPraiseForScore = percentage => {
+export const getPraiseForScore = (percentage) => {
   if (percentage === 100) {
     return getHighestPraiseWord();
   }

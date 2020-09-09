@@ -6,7 +6,7 @@ import {
   updateQuestionELO,
 } from "../../../redux/elo-tracking/elo-tracking-actions";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { gameCountdown, difficulty, currentSynonym, correctSoFar, questionIndex } = state.synonyms;
   const { definition, word, allAnswers, correctAnswers, eloRating } = currentSynonym;
   const { synonymsELO } = state.eloTracking;
@@ -33,9 +33,6 @@ const mapDispatchToProps = {
   onAnswerFeedbackFinished,
 };
 
-const ConnectedSynonymsGame = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SynonymsGame);
+const ConnectedSynonymsGame = connect(mapStateToProps, mapDispatchToProps)(SynonymsGame);
 
 export default ConnectedSynonymsGame;

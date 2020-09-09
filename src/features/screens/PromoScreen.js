@@ -32,7 +32,6 @@ const LetterButton = styled(BorderedButton)`
   padding-right: ${TEXT_TOP_PADDING};
 `;
 
-const row1 = "AXOMASYNORHYPH".split("");
 const row2 = "ILANTHROINCEND".split("");
 const row3 = "ARYKHRUANGAPPEL".split("");
 const row4 = "LLEJAOLINGFELLB".split("");
@@ -63,7 +62,7 @@ const rowMiddle2 = [
   { letter: "H" },
 ];
 
-const getStyleForLetter = l => {
+const getStyleForLetter = (l) => {
   if (l.highlight) {
     return { backgroundColor: colors.textColorDisabled };
   }
@@ -73,7 +72,7 @@ const getStyleForLetter = l => {
   };
 };
 
-const getTextColorForLetter = l => {
+const getTextColorForLetter = (l) => {
   if (l.highlight) {
     return colors.textColorBright;
   }
@@ -88,7 +87,7 @@ const disabledButtonStyle = {
 const Row = ({ rowText }) => {
   return (
     <RowContainer>
-      {rowText.map(l => {
+      {rowText.map((l) => {
         return (
           <LetterButton onPress={() => {}} style={disabledButtonStyle}>
             <MediumLargeText
@@ -106,12 +105,11 @@ const Row = ({ rowText }) => {
 const PromoScreen = () => {
   return (
     <Container>
-      {/* <Row rowText={row1} /> */}
       <Row rowText={row2} />
       <Row rowText={row4} />
 
       <RowContainer>
-        {rowMiddle2.map(l => {
+        {rowMiddle2.map((l) => {
           return (
             <LetterButton onPress={() => {}} style={getStyleForLetter(l)}>
               <MediumLargeText
@@ -124,7 +122,7 @@ const PromoScreen = () => {
         })}
       </RowContainer>
       <RowContainer>
-        {rowMiddle.map(l => {
+        {rowMiddle.map((l) => {
           return (
             <LetterButton onPress={() => {}} style={getStyleForLetter(l)}>
               <MediumLargeText

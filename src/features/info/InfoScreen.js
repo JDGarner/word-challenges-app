@@ -55,7 +55,7 @@ const InfoScreen = ({ onNavigateBack }) => {
   const [showRhymingInfo, setShowRhymingInfo] = useState(false);
   const [showAboutInfo, setShowAboutInfo] = useState(false);
 
-  const openURL = async url => {
+  const openURL = async (url) => {
     const supported = await Linking.canOpenURL(url);
 
     if (supported) {
@@ -63,7 +63,7 @@ const InfoScreen = ({ onNavigateBack }) => {
     }
   };
 
-  const playPressSound = showing => {
+  const playPressSound = (showing) => {
     if (showing) {
       SoundManager.getInstance().playMenuNegativeButtonSound();
     } else {

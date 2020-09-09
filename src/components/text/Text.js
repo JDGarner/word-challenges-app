@@ -4,11 +4,11 @@ import { Platform, Text } from "react-native";
 const FONT_FAMILY = Platform.OS === "ios" ? "AppleSDGothicNeo-Thin" : "sans-serif-light";
 export const TEXT_TOP_PADDING = Platform.OS === "ios" ? 3 : 0;
 
-const decorateText = type => styled(Text)`
-  font-size: ${props => props.fontSize || props.theme[type].fontSize};
-  font-weight: ${props => props.theme[type].fontWeight};
-  color: ${props => props.color || props.theme.textColor};
-  text-align: ${props => props.textAlign || "left"};
+const decorateText = (type) => styled(Text)`
+  font-size: ${(props) => props.fontSize || props.theme[type].fontSize};
+  font-weight: ${(props) => props.theme[type].fontWeight};
+  color: ${(props) => props.color || props.theme.textColor};
+  text-align: ${(props) => props.textAlign || "left"};
   font-family: ${FONT_FAMILY};
 `;
 

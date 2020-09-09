@@ -50,7 +50,7 @@ export default class SoundManager {
     this.saveMuteSetting(this.muted);
   };
 
-  saveMuteSetting = async muted => {
+  saveMuteSetting = async (muted) => {
     try {
       await AsyncStorage.setItem(APP_STORAGE.MUTED, muted.toString());
     } catch (e) {
@@ -70,8 +70,8 @@ export default class SoundManager {
     }
   };
 
-  initSound = filename => {
-    return new Sound(filename, Sound.MAIN_BUNDLE, error => {
+  initSound = (filename) => {
+    return new Sound(filename, Sound.MAIN_BUNDLE, (error) => {
       if (error) return null;
     });
   };
@@ -82,7 +82,7 @@ export default class SoundManager {
 
     for (let i = 0; i <= numberOfBackups; i++) {
       sounds.push(
-        new Sound(filename, Sound.MAIN_BUNDLE, error => {
+        new Sound(filename, Sound.MAIN_BUNDLE, (error) => {
           if (error) return null;
         }),
       );
@@ -96,7 +96,7 @@ export default class SoundManager {
 
     for (let i = 0; i < size; i++) {
       sounds.push(
-        new Sound(`${name}${i}.mp3`, Sound.MAIN_BUNDLE, error => {
+        new Sound(`${name}${i}.mp3`, Sound.MAIN_BUNDLE, (error) => {
           if (error) return null;
         }),
       );
@@ -105,13 +105,13 @@ export default class SoundManager {
     return sounds;
   };
 
-  playSound = sound => {
+  playSound = (sound) => {
     if (!this.muted && sound && sound.play) {
       sound.play();
     }
   };
 
-  playSoundWithBackups = sounds => {
+  playSoundWithBackups = (sounds) => {
     for (let i = 0; i < sounds.length; i++) {
       if (!sounds[i].isPlaying()) {
         this.playSound(sounds[i]);
@@ -120,7 +120,7 @@ export default class SoundManager {
     }
   };
 
-  playPositiveTone = index => {
+  playPositiveTone = (index) => {
     const indexToPlay = Math.min(NUM_POSITIVE_TONES, index);
     this.playSound(this.positiveTones[indexToPlay]);
   };
@@ -157,7 +157,7 @@ export default class SoundManager {
     this.playSoundWithBackups(this.flubFirstSounds);
   };
 
-  playFlubSound = index => {
+  playFlubSound = (index) => {
     const indexToPlay = Math.min(NUM_FLUB_TONES, index);
     this.playSound(this.flubSounds[indexToPlay]);
   };

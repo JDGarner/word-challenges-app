@@ -63,7 +63,7 @@ const SynonymsPostGame = ({
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
   const scrollViewRef = useRef();
 
-  const score = currentSynonyms.filter(d => d.isCorrect).length;
+  const score = currentSynonyms.filter((d) => d.isCorrect).length;
   const praise = useMemo(() => getPraiseForScore(score, WORDS_PER_ROUND), [currentSynonyms]);
 
   const totalAnimationTime =

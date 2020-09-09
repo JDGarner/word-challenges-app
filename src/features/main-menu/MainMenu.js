@@ -109,7 +109,7 @@ const MainMenu = ({
   };
 
   // Filter out any null items (if Synonyms is not being displayed)
-  const menuItems = getMenuItems().filter(i => !!i);
+  const menuItems = getMenuItems().filter((i) => !!i);
 
   return (
     <ScreenContainerPadded testID="main-menu-screen">

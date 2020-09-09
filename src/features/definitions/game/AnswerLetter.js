@@ -12,27 +12,27 @@ const LETTER_WIDTH = getSizingForOptions(28, 28, 28, 44);
 
 const AnswerButton = styled(TouchableOpacity)`
   border-bottom-width: 2px;
-  border-bottom-color: ${props => props.theme.textColor};
+  border-bottom-color: ${(props) => props.theme.textColor};
   justify-content: center;
-  margin-horizontal: ${props => props.marginHorizontal};
+  margin-horizontal: ${(props) => props.marginHorizontal};
   flex: 1;
-  height: ${props => props.height};
+  height: ${(props) => props.height};
   width: ${LETTER_WIDTH};
-  max-width: ${props => props.maxWidth};
+  max-width: ${(props) => props.maxWidth};
 `;
 
 const AnswerLetterText = styled(MediumText)`
   padding-top: ${TEXT_TOP_PADDING};
 `;
 
-const animateLetterPressIn = value => {
+const animateLetterPressIn = (value) => {
   Animated.spring(value, {
     toValue: 0.8,
     useNativeDriver: true,
   }).start();
 };
 
-const animateLetterPressOut = value => {
+const animateLetterPressOut = (value) => {
   Animated.spring(value, {
     toValue: 1,
     speed: 16,

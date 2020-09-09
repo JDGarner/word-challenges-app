@@ -18,7 +18,7 @@ const mapDispatchToProps = {
   onExitGame,
 };
 
-const SynonymsGameModeLoader = props => {
+const SynonymsGameModeLoader = (props) => {
   const getContent = () => {
     if (props.connectionError) {
       return (

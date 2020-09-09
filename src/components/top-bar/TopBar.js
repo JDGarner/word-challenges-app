@@ -11,7 +11,7 @@ const TOP_BAR_HEIGHT = getSizingForOptions(52, 70, 70, 120);
 const IMAGE_SIZE = getSizingForOptions(52, 58, 58, 96);
 
 const TopBarContainer = styled(View)`
-  height: ${props => props.height || TOP_BAR_HEIGHT};
+  height: ${(props) => props.height || TOP_BAR_HEIGHT};
   width: 100%;
   flex-direction: row;
   justify-content: space-between;

@@ -7,7 +7,7 @@ export const animateButtonPressIn = (value, toValue) => {
   }).start();
 };
 
-export const animateButtonPressOut = value => {
+export const animateButtonPressOut = (value) => {
   Animated.spring(value, {
     toValue: 1,
     speed: 16,

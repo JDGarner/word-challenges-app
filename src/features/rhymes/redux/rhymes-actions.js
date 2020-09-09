@@ -25,17 +25,17 @@ export const fetchRhymesRetry = () => ({
   type: FETCH_RHYMES_RETRY,
 });
 
-export const fetchRhymesSuccess = rhymes => ({
+export const fetchRhymesSuccess = (rhymes) => ({
   type: FETCH_RHYMES_SUCCESS,
   rhymes,
 });
 
-export const fetchRhymesError = errorCode => ({
+export const fetchRhymesError = (errorCode) => ({
   type: FETCH_RHYMES_ERROR,
   errorCode,
 });
 
-export const fetchAdditionalRhymesSuccess = rhymes => ({
+export const fetchAdditionalRhymesSuccess = (rhymes) => ({
   type: FETCH_ADDITIONAL_RHYMES_SUCCESS,
   rhymes,
 });
@@ -64,7 +64,7 @@ export const onPreGameCountdownEnd = () => ({
   type: ON_PRE_GAME_COUNTDOWN_END,
 });
 
-export const onSubmitAnswer = answer => ({
+export const onSubmitAnswer = (answer) => ({
   type: ON_SUBMIT_ANSWER,
   answer,
 });
@@ -73,7 +73,7 @@ export const onExitGame = () => ({
   type: ON_EXIT_GAME,
 });
 
-export const onSelectDifficulty = difficulty => ({
+export const onSelectDifficulty = (difficulty) => ({
   type: ON_SELECT_DIFFICULTY_RHYMES,
   difficulty,
 });
@@ -82,7 +82,7 @@ export const onGameFadeOutEnd = () => ({
   type: ON_GAME_FADE_OUT_END,
 });
 
-export const updatePlayerELOChange = eloChange => ({
+export const updatePlayerELOChange = (eloChange) => ({
   type: UPDATE_PLAYER_ELO_CHANGE,
   eloChange,
 });

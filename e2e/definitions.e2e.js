@@ -1,4 +1,4 @@
-const tapWord = async word => {
+const tapWord = async (word) => {
   const letters = word.toUpperCase().split("");
   for (let i = 0; i < letters.length; i++) {
     await element(by.id(`scrambledLetter-${letters[i]}`))

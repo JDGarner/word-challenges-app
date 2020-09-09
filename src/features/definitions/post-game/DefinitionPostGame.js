@@ -63,7 +63,7 @@ const DefinitionPostGame = ({
   const [userActionsDisabled, setUserActionsDisabled] = useState(true);
   const scrollViewRef = useRef();
 
-  const score = currentDefinitions.filter(d => d.isCorrect).length;
+  const score = currentDefinitions.filter((d) => d.isCorrect).length;
   const praise = useMemo(() => getPraiseForScore(score, WORDS_PER_ROUND), [currentDefinitions]);
 
   const totalAnimationTime =

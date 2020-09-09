@@ -21,9 +21,6 @@ const mapDispatchToProps = {
   showLeaderboard,
 };
 
-const ConnectedRhymePostGame = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(RhymePostGame);
+const ConnectedRhymePostGame = connect(mapStateToProps, mapDispatchToProps)(RhymePostGame);
 
 export default ConnectedRhymePostGame;

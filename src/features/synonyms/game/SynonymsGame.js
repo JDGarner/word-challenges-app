@@ -57,8 +57,8 @@ const IntroTextContainer = styled(Animated.View)`
   width: 100%;
 `;
 
-const getInitialAnswersState = answers => {
-  return answers.map(a => {
+const getInitialAnswersState = (answers) => {
+  return answers.map((a) => {
     return { word: a, isSelected: false };
   });
 };
@@ -116,14 +116,14 @@ const SynonymsGame = ({
   // Game countdown ticked down
   useEffect(() => {
     if (gameCountdown === 0 && !userActionsDisabled) {
-      const selectedAnswers = answersState.filter(as => as.isSelected).map(a => a.word);
+      const selectedAnswers = answersState.filter((as) => as.isSelected).map((a) => a.word);
       handleGameTransition(selectedAnswers);
     }
   }, [gameCountdown]);
 
   // Fade out game, show answer feedback
-  const handleGameTransition = selectedAnswers => {
-    const userCorrectAnswers = selectedAnswers.filter(sa => correctAnswers.includes(sa));
+  const handleGameTransition = (selectedAnswers) => {
+    const userCorrectAnswers = selectedAnswers.filter((sa) => correctAnswers.includes(sa));
     const allAnswersCorrect = userCorrectAnswers.length === correctAnswers.length;
 
     onSubmitAnswers(selectedAnswers, allAnswersCorrect);
@@ -201,17 +201,17 @@ const SynonymsGame = ({
 
   const onPressAnswer = (answer, index) => {
     if (answer.isSelected) {
-      setAnswersSelected(x => x - 1);
+      setAnswersSelected((x) => x - 1);
       SoundManager.getInstance().playRemoveLetterSound();
     } else {
-      setAnswersSelected(x => x + 1);
+      setAnswersSelected((x) => x + 1);
       SoundManager.getInstance().playAddLetterSound();
     }
 
     const newAnswersState = cloneDeep(answersState);
     newAnswersState[index].isSelected = !newAnswersState[index].isSelected;
 
-    const selectedAnswers = newAnswersState.filter(as => as.isSelected).map(a => a.word);
+    const selectedAnswers = newAnswersState.filter((as) => as.isSelected).map((a) => a.word);
 
     if (selectedAnswers.length >= 3) {
       handleGameTransition(selectedAnswers);

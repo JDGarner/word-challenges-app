@@ -26,7 +26,7 @@ const DifficultyOptions = styled(View)`
 
 const DifficultySelection = ({ titleText, onSelectDifficulty, showLeaderboard, mode }) => {
   const getDifficultyOptions = () => {
-    return map(DIFFICULTIES, difficulty => ({
+    return map(DIFFICULTIES, (difficulty) => ({
       id: difficulty,
       component: (
         <MenuButton

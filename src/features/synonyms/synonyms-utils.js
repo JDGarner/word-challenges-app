@@ -12,11 +12,11 @@ import {
 
 const { NOVICE, JOURNEYMAN } = DIFFICULTIES;
 
-export const roundIsOver = questionIndex => {
+export const roundIsOver = (questionIndex) => {
   return questionIndex >= WORDS_PER_ROUND;
 };
 
-const getFakeWordsForDifficulty = difficulty => {
+const getFakeWordsForDifficulty = (difficulty) => {
   if (difficulty === NOVICE || difficulty === JOURNEYMAN) {
     return sampleSize(fakeEasyWords, NUM_OF_FAKE_ANSWERS[difficulty] + 10);
   }
@@ -24,12 +24,14 @@ const getFakeWordsForDifficulty = difficulty => {
   return sampleSize(fakeHardWords, NUM_OF_FAKE_ANSWERS[difficulty] + 10);
 };
 
-export const getUpdatedSynonyms = synonyms => {
+export const getUpdatedSynonyms = (synonyms) => {
   forEach(synonyms, (synonymsOfDifficulty, difficulty) => {
-    synonymsOfDifficulty.forEach(s => {
+    synonymsOfDifficulty.forEach((s) => {
       // Ensure no synonyms or the actual word is in the fakes list
       s.fakes = take(
-        getFakeWordsForDifficulty(difficulty).filter(f => !s.synonyms.includes(f) && s.word !== f),
+        getFakeWordsForDifficulty(difficulty).filter(
+          (f) => !s.synonyms.includes(f) && s.word !== f,
+        ),
         NUM_OF_FAKE_ANSWERS[difficulty],
       );
 

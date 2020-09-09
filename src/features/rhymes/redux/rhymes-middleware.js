@@ -42,19 +42,19 @@ const potentiallyFetchMoreRhymes = (getState, dispatch) => {
     allRhymes[difficulty] &&
     currentRhymeIndex > allRhymes[difficulty].length - RHYMES_LOCAL_BUFFER
   ) {
-    fetchFromApi(ENDPOINTS.RHYMES, data => dispatch(fetchAdditionalRhymesSuccess(data)));
+    fetchFromApi(ENDPOINTS.RHYMES, (data) => dispatch(fetchAdditionalRhymesSuccess(data)));
   }
 };
 
-export default store => next => action => {
+export default (store) => (next) => (action) => {
   const { dispatch, getState } = store;
 
   switch (action.type) {
     case FETCH_RHYMES:
       fetchFromApi(
         ENDPOINTS.RHYMES,
-        data => dispatch(fetchRhymesSuccess(data)),
-        code => dispatch(fetchRhymesError(code)),
+        (data) => dispatch(fetchRhymesSuccess(data)),
+        (code) => dispatch(fetchRhymesError(code)),
       );
       break;
 

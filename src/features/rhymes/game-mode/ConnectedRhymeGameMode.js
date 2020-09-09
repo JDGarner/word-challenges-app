@@ -18,7 +18,7 @@ const mapDispatchToProps = {
   onNavigateBack,
 };
 
-const RhymeGameModeLoader = props => {
+const RhymeGameModeLoader = (props) => {
   const getContent = () => {
     if (props.connectionError) {
       return (
