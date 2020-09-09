@@ -100,7 +100,7 @@ export const postToApi = async (endpoint, params) => {
     return;
   }
 
-  console.log(">>> Post Request: ", endpoint, params);
+  console.log(">>> Post Request: ", `${API_URL}/${endpoint}`, params);
   fetch(`${API_URL}/${endpoint}`, {
     method: "POST",
     headers: {
