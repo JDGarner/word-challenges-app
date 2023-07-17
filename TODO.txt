@@ -51,7 +51,6 @@ General:
 - add X to loading state
 - look into adding reselect
 - look into making splash screen a gradient
-- look into flipper/rn 0.62
 - Set different themes in settings menu?
 - Add gradient to splash screen?
 - Think about other ways to incorporate monkey theme

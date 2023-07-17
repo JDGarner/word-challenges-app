@@ -4,7 +4,7 @@ import {
   UPDATE_PLAYER_ELO,
   UPDATE_QUESTION_ELO,
 } from "./elo-tracking-actions";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { APP_STORAGE, INITIAL_ELO } from "../../app-constants";
 import { postToApi } from "../../utils/api-util";
 import { getELOKeysForMode } from "../../utils/elo-utils";

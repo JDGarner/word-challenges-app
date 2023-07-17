@@ -44,6 +44,7 @@ export default (store) => (next) => (action) => {
         .then(() => {
           console.log("Game Center: Open Leaderboard Successful");
           store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
+          store.dispatch(submitScoreToLeaderboard(MODES.SYNONYMS));
           store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
         })
         .catch((res) => {
@@ -62,6 +63,7 @@ export default (store) => (next) => (action) => {
         .then(() => {
           console.log("Game Center: Open Leaderboard Successful");
           store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
+          store.dispatch(submitScoreToLeaderboard(MODES.SYNONYMS));
           store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
         })
         .catch((res) => {

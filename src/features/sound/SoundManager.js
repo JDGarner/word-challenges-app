@@ -1,5 +1,5 @@
 import Sound from "react-native-sound";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { APP_STORAGE } from "../../app-constants";
 
 Sound.setCategory("Playback", true);

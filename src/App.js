@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StatusBar, Platform, BackHandler } from "react-native";
+import { StatusBar, BackHandler } from "react-native";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import SplashScreen from "react-native-splash-screen";
@@ -13,15 +13,11 @@ import ConnectedAppScreens from "./features/screens/ConnectedAppScreens";
 import { AppBackground } from "./components";
 import SoundManager from "./features/sound/SoundManager";
 import { retrieveELOs } from "./redux/elo-tracking/elo-tracking-actions";
-import { googlePlaySilentSignIn } from "./redux/leaderboard-services/leaderboard-services-actions";
 import { onNavigateBack } from "./redux/navigation/navigation-actions";
 import { updateMutedSetting } from "./redux/settings/settings-actions";
 // import PromoScreen from "./features/screens/PromoScreen";
-import { initPushNotifications } from "./notifications/init";
 
 export const store = configureStore();
-
-initPushNotifications(store);
 
 export default function AppProvider() {
   SoundManager.init((m) => onUpdateMuteSetting(m));
@@ -34,11 +30,9 @@ export default function AppProvider() {
     store.dispatch(fetchSynonyms());
     store.dispatch(retrieveELOs());
 
-    if (Platform.OS === "android") {
-      store.dispatch(googlePlaySilentSignIn());
-    }
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", onHardwareBackPress);
 
-    BackHandler.addEventListener("hardwareBackPress", onHardwareBackPress);
+    return () => backHandler.remove();
   }, []);
 
   const onUpdateMuteSetting = (muted) => {

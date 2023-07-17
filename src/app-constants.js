@@ -7,7 +7,6 @@ export const ENDPOINTS = {
   DEFINITIONS_ELO: "definitions-elo",
   SYNONYMS: "synonyms",
   SYNONYMS_ELO: "synonyms-elo",
-  DEVICE_TOKEN: "device-token",
 };
 
 export const SCREENS = {

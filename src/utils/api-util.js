@@ -85,7 +85,9 @@ export const fetchFromApi = async (endpoint, onSuccess, onError = () => {}) => {
   try {
     if (response) {
       const responseJson = await response.json();
-      // console.log(">>> response: ", responseJson);
+
+      console.log(">>> Response: ", `${API_URL}/${endpoint}`, responseJson);
+
       onSuccess(responseJson);
     }
   } catch (error) {
@@ -101,6 +103,7 @@ export const postToApi = async (endpoint, params) => {
   }
 
   console.log(">>> Post Request: ", `${API_URL}/${endpoint}`, params);
+
   fetch(`${API_URL}/${endpoint}`, {
     method: "POST",
     headers: {

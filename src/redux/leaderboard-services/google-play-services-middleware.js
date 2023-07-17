@@ -1,8 +1,7 @@
-import RNGooglePlayGameServices from "react-native-google-play-game-services";
+import { NativeModules } from "react-native";
 import {
   SHOW_ALL_LEADERBOARDS,
   SHOW_LEADERBOARD,
-  SILENT_SIGN_IN,
   SUBMIT_SCORE,
   submitScoreToLeaderboard,
 } from "./leaderboard-services-actions";
@@ -10,42 +9,33 @@ import { MODES } from "../../app-constants";
 import { getELOKeysForMode } from "../../utils/elo-utils";
 import { getConfig } from "../../Config";
 
+const { RNGameLeaderboardsModule } = NativeModules;
+
 const signInToGooglePlay = (onSuccess) => {
-  console.log("Google Play Game Services: Attempting Silent Sign");
-  RNGooglePlayGameServices.signInSilently()
+  RNGameLeaderboardsModule.signIn()
     .then(() => {
-      console.log("Google Play Game Services: Silent Sign In Successful");
+      console.log("Google Play Game Services: Sign In Successful");
       onSuccess();
     })
-    .catch((signInSilentlyErr) => {
-      console.log(
-        "Google Play Game Services: Silent Sign In Failed, Trying Normal Sign In. Error: ",
-        signInSilentlyErr,
-      );
-      RNGooglePlayGameServices.signInIntent()
-        .then(() => {
-          console.log("Google Play Game Services: Sign In Successful");
-          onSuccess();
-        })
-        .catch((signInIntentErr) => {
-          console.log("Google Play Game Services: Sign In Failed. Error: ", signInIntentErr);
-        });
+    .catch((signInIntentErr) => {
+      console.log("Google Play Game Services: Sign In Failed. Error: ", signInIntentErr);
     });
 };
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case SHOW_ALL_LEADERBOARDS:
-      RNGooglePlayGameServices.showAllLeaderboards()
+      RNGameLeaderboardsModule.showAllLeaderboards()
         .then(() => {
-          console.log("Google Play Game Services: Showing Leaderboards");
+          console.log("Google Play Game Services: Leaderboards Launched");
         })
         .catch((err) => {
           console.log("Google Play Game Services: Showing Leaderboards Failed. Error: ", err);
-          signInToGooglePlay(RNGooglePlayGameServices.showAllLeaderboards);
+          signInToGooglePlay(RNGameLeaderboardsModule.showAllLeaderboards);
         });
 
       store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
+      store.dispatch(submitScoreToLeaderboard(MODES.SYNONYMS));
       store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
 
       break;
@@ -53,30 +43,20 @@ export default (store) => (next) => (action) => {
     case SHOW_LEADERBOARD: {
       const { leaderboardId } = getELOKeysForMode(action.mode);
 
-      RNGooglePlayGameServices.showLeaderboard(leaderboardId)
+      RNGameLeaderboardsModule.showLeaderboard(leaderboardId)
         .then(() => {
-          console.log("Google Play Game Services: Showing Leaderboard ", leaderboardId);
+          console.log("Google Play Game Services: Leaderboard Launched: ", leaderboardId);
         })
         .catch(() => {
-          signInToGooglePlay(() => RNGooglePlayGameServices.showLeaderboard(leaderboardId));
+          signInToGooglePlay(() => RNGameLeaderboardsModule.showLeaderboard(leaderboardId));
         });
 
       store.dispatch(submitScoreToLeaderboard(MODES.DEFINITIONS));
+      store.dispatch(submitScoreToLeaderboard(MODES.SYNONYMS));
       store.dispatch(submitScoreToLeaderboard(MODES.RHYMES));
 
       break;
     }
-
-    case SILENT_SIGN_IN:
-      RNGooglePlayGameServices.signInSilently()
-        .then(() => {
-          console.log("Google Play Game Services: Silent Sign In Successful");
-        })
-        .catch((err) => {
-          console.log("Google Play Game Services: Silent Sign In Failed. Error: ", err);
-        });
-
-      break;
 
     case SUBMIT_SCORE: {
       const { eloTracking } = store.getState();
@@ -84,8 +64,9 @@ export default (store) => (next) => (action) => {
       const scoreToSubmit = action.score || eloTracking[stateKey];
 
       const { IS_PROD } = getConfig();
+
       if (IS_PROD === "true") {
-        RNGooglePlayGameServices.setLeaderboardScore(leaderboardId, Number(scoreToSubmit))
+        RNGameLeaderboardsModule.setLeaderboardScore(leaderboardId, Number(scoreToSubmit))
           .then(() => {
             console.log(
               `Google Play Game Services: ${action.mode} Score Submit Success: `,

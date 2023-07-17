@@ -13,7 +13,6 @@ import definitionsMiddleware from "./features/definitions/redux/definitions-midd
 import synonymsReducer from "./features/synonyms/redux/synonyms-reducer";
 import synonymsMiddleware from "./features/synonyms/redux/synonyms-middleware";
 import gameCenterMiddleware from "./redux/leaderboard-services/game-center-middleware";
-import pushNotificationsMiddleware from "./redux/push-notifications/push-notifications-middleware";
 
 const initialStore = {};
 
@@ -32,15 +31,9 @@ export default function configureStore() {
     definitionsMiddleware,
     synonymsMiddleware,
     eloTrackingMiddleware,
-    pushNotificationsMiddleware,
     ...(Platform.OS === "android" ? [googlePlayServicesMiddleware] : [gameCenterMiddleware]),
     thunk,
   ];
-
-  if (__DEV__) {
-    const createFlipperDebuggerMiddleware = require("redux-flipper").default;
-    middleware.push(createFlipperDebuggerMiddleware());
-  }
 
   return createStore(reducers, initialStore, applyMiddleware(...middleware));
 }

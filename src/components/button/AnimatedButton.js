@@ -16,6 +16,7 @@ const AnimatedButton = ({
     Animated.timing(colorValue, {
       toValue: 150,
       duration: 35,
+      useNativeDriver: false,
     }).start();
   };
 
@@ -24,6 +25,7 @@ const AnimatedButton = ({
       toValue: 0,
       duration: 400,
       easing: Easing.quad,
+      useNativeDriver: false,
     }).start();
   };
 
